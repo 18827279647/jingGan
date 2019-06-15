@@ -1,0 +1,6 @@
+module Pods_jingGang {
+  umbrella header "Pods-jingGang-umbrella.h"
+
+  export *
+  module * { export * }
+}
