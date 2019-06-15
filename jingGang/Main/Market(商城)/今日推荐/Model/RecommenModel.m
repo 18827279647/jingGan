@@ -1,0 +1,13 @@
+//
+//  RecommenModel.m
+//  jingGang
+//
+//  Created by whlx on 2019/5/16.
+//  Copyright © 2019年 dengxf_dev. All rights reserved.
+//
+
+#import "RecommenModel.h"
+
+@implementation RecommenModel
+
+@end

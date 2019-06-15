@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuickBodyTestHomeController">
+            <connections>
+                <outlet property="beginTestButton" destination="x1u-bN-rNp" id="wS4-7O-eJb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOi-MV-Z12" userLabel="phoneTestView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" text="手指覆盖住摄像头,双摄头的手机请覆盖第一个摄像头,然后开始检测                                                                                             " translatesAutoresizingMaskIntoConstraints="NO" id="AZh-kS-oat">
+                            <rect key="frame" x="30" y="47" width="315" height="56"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="05k-yC-nUo"/>
+                                <constraint firstAttribute="width" constant="315" id="Br2-kF-ubc"/>
+                            </constraints>
+                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="telephone2x" translatesAutoresizingMaskIntoConstraints="NO" id="PZx-be-iDk">
+                            <rect key="frame" x="54" y="111" width="266" height="359"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="266" id="kGK-ih-sgp"/>
+                                <constraint firstAttribute="height" constant="359" id="v0g-qS-bgo"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1u-bN-rNp">
+                            <rect key="frame" x="28" y="488" width="319" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Pa2-gy-R6l"/>
+                                <constraint firstAttribute="width" constant="319" id="nH8-if-gny"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="准备好啦,开始" backgroundImage="button222">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="beginQuickTestAction:" destination="-1" eventType="touchUpInside" id="hCx-28-Lv2"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="x1u-bN-rNp" firstAttribute="centerX" secondItem="SOi-MV-Z12" secondAttribute="centerX" id="605-t1-AYC"/>
+                        <constraint firstItem="x1u-bN-rNp" firstAttribute="top" secondItem="PZx-be-iDk" secondAttribute="bottom" constant="18" id="E8b-JQ-Tbo"/>
+                        <constraint firstItem="PZx-be-iDk" firstAttribute="centerX" secondItem="SOi-MV-Z12" secondAttribute="centerX" id="Yne-Lf-QhF"/>
+                        <constraint firstItem="PZx-be-iDk" firstAttribute="top" secondItem="AZh-kS-oat" secondAttribute="bottom" constant="8" id="cqz-pt-hco"/>
+                        <constraint firstItem="PZx-be-iDk" firstAttribute="top" secondItem="AZh-kS-oat" secondAttribute="bottom" constant="8" id="gHv-Ff-hML"/>
+                        <constraint firstItem="AZh-kS-oat" firstAttribute="top" secondItem="SOi-MV-Z12" secondAttribute="top" constant="47" id="jIF-in-Jzv"/>
+                        <constraint firstItem="AZh-kS-oat" firstAttribute="centerX" secondItem="SOi-MV-Z12" secondAttribute="centerX" id="ksT-8D-4P7"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="SOi-MV-Z12" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7Fd-M9-y3B"/>
+                <constraint firstAttribute="bottom" secondItem="SOi-MV-Z12" secondAttribute="bottom" id="FKs-BX-GfM"/>
+                <constraint firstItem="SOi-MV-Z12" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="S1k-UD-JnX"/>
+                <constraint firstAttribute="trailing" secondItem="SOi-MV-Z12" secondAttribute="trailing" id="SDT-Fd-dav"/>
+            </constraints>
+            <point key="canvasLocation" x="32.5" y="101.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="button222" width="292" height="44"/>
+        <image name="telephone2x" width="253" height="359"/>
+    </resources>
+</document>

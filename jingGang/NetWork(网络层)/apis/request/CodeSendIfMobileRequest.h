@@ -1,0 +1,21 @@
+//
+//  AppInitRequest.h
+//  VApiSDK_iOS
+//
+//  Created by duocai on 14-6-16.
+//  Copyright (c) 2014年 duocai. All rights reserved.
+//
+
+#import "IRequest.h"
+#import "CodeSendIfMobileResponse.h"
+
+@interface CodeSendIfMobileRequest : AbstractRequest
+/** 
+ * 手机|必须
+ */
+@property (nonatomic, readwrite, copy) NSString *api_mobile;
+/**
+ * 验证码|必须
+ */
+@property (nonatomic, readwrite, copy) NSString *api_code;
+@end

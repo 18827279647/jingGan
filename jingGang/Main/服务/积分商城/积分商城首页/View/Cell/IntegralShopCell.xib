@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="IntegralShopCell">
+            <rect key="frame" x="0.0" y="0.0" width="156" height="224"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="156" height="224"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OTH-hg-nAN">
+                        <rect key="frame" x="6" y="6" width="144" height="144"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="OTH-hg-nAN" secondAttribute="height" multiplier="1:1" id="7QC-mG-QYG"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="600" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qiw-sK-aIG">
+                        <rect key="frame" x="10" y="196" width="31.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.094117647060000004" green="0.74901960779999999" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKL-gT-it2">
+                        <rect key="frame" x="48" y="198" width="28" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鲜享有机大米礼盒装5000g东北五常大米杂粮礼盒十斤" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-UW-M8z">
+                        <rect key="frame" x="12" y="157" width="132" height="31.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rKL-gT-it2" firstAttribute="leading" secondItem="Qiw-sK-aIG" secondAttribute="trailing" constant="6" id="3cx-d1-6nl"/>
+                <constraint firstItem="OTH-hg-nAN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="6hH-Fy-pZS"/>
+                <constraint firstItem="rKL-gT-it2" firstAttribute="centerY" secondItem="Qiw-sK-aIG" secondAttribute="centerY" id="CCj-Zz-yTA"/>
+                <constraint firstAttribute="bottom" secondItem="Qiw-sK-aIG" secondAttribute="bottom" constant="7" id="H04-mh-miO"/>
+                <constraint firstAttribute="trailing" secondItem="zN1-UW-M8z" secondAttribute="trailing" constant="12" id="S44-gK-t8M"/>
+                <constraint firstItem="zN1-UW-M8z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="a0r-ad-Cyy"/>
+                <constraint firstItem="OTH-hg-nAN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="bXo-zT-Wmr"/>
+                <constraint firstItem="zN1-UW-M8z" firstAttribute="top" secondItem="OTH-hg-nAN" secondAttribute="bottom" constant="7" id="baQ-xb-g4T"/>
+                <constraint firstAttribute="trailing" secondItem="OTH-hg-nAN" secondAttribute="trailing" constant="6" id="f1n-OM-a5y"/>
+                <constraint firstItem="Qiw-sK-aIG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="gwB-8W-IWD"/>
+            </constraints>
+            <size key="customSize" width="145" height="196"/>
+            <connections>
+                <outlet property="imageViewGoods" destination="OTH-hg-nAN" id="Rf7-fg-3vB"/>
+                <outlet property="labelGoodsIntegralPrice" destination="Qiw-sK-aIG" id="Zdb-3E-ox1"/>
+                <outlet property="labelGoodsTitle" destination="zN1-UW-M8z" id="5sP-8W-4nc"/>
+            </connections>
+            <point key="canvasLocation" x="226" y="259"/>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntegralShopHomeController">
+            <connections>
+                <outlet property="collectionHeightConstraint" destination="F4U-8r-H82" id="AEZ-Q9-fvs"/>
+                <outlet property="headerView" destination="nMO-Yq-v9b" id="qE4-PU-Qkz"/>
+                <outlet property="integralHomeScrollView" destination="V81-ND-jk1" id="52b-L2-rj6"/>
+                <outlet property="integralShopCollectionView" destination="yye-I5-cr8" id="fMn-kI-XeB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9KP-di-Xgj" userLabel="refrenceView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="0IR-D5-3hI"/>
+                    </constraints>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V81-ND-jk1">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGW-fH-36Y" userLabel="contentView">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="562"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-Yq-v9b" userLabel="headerView" customClass="SDCycleScrollView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="172" id="scT-Yh-h7X"/>
+                                    </constraints>
+                                </view>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="yye-I5-cr8" customClass="IntergralShopGoodsCollectionView">
+                                    <rect key="frame" x="0.0" y="182" width="375" height="380"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="380" id="F4U-8r-H82"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vvo-rD-ooL">
+                                        <size key="itemSize" width="50" height="50"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.91764705882352937" green="0.92156862745098034" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="nMO-Yq-v9b" secondAttribute="trailing" id="Dda-bX-h6s"/>
+                                <constraint firstItem="nMO-Yq-v9b" firstAttribute="leading" secondItem="SGW-fH-36Y" secondAttribute="leading" id="NJC-QK-af3"/>
+                                <constraint firstAttribute="trailing" secondItem="yye-I5-cr8" secondAttribute="trailing" id="YMu-O3-SXN"/>
+                                <constraint firstItem="yye-I5-cr8" firstAttribute="leading" secondItem="SGW-fH-36Y" secondAttribute="leading" id="fKR-5X-9TM"/>
+                                <constraint firstAttribute="bottom" secondItem="yye-I5-cr8" secondAttribute="bottom" id="hfs-Zi-I0h"/>
+                                <constraint firstItem="nMO-Yq-v9b" firstAttribute="top" secondItem="SGW-fH-36Y" secondAttribute="top" id="mJu-gr-1Ve"/>
+                                <constraint firstItem="yye-I5-cr8" firstAttribute="top" secondItem="nMO-Yq-v9b" secondAttribute="bottom" constant="10" id="vSM-1N-lhF"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="SGW-fH-36Y" firstAttribute="top" secondItem="V81-ND-jk1" secondAttribute="top" id="7lw-31-eTc"/>
+                        <constraint firstAttribute="trailing" secondItem="SGW-fH-36Y" secondAttribute="trailing" id="MiB-Y1-bYs"/>
+                        <constraint firstAttribute="bottom" secondItem="SGW-fH-36Y" secondAttribute="bottom" id="eh7-BK-wb7"/>
+                        <constraint firstItem="SGW-fH-36Y" firstAttribute="leading" secondItem="V81-ND-jk1" secondAttribute="leading" id="vgw-9w-5JW"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9KP-di-Xgj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1Ew-aX-yjS"/>
+                <constraint firstItem="V81-ND-jk1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5VG-wc-Nny"/>
+                <constraint firstAttribute="trailing" secondItem="9KP-di-Xgj" secondAttribute="trailing" id="A7X-Km-MXb"/>
+                <constraint firstItem="nMO-Yq-v9b" firstAttribute="width" secondItem="9KP-di-Xgj" secondAttribute="width" id="GHQ-5d-98A"/>
+                <constraint firstItem="V81-ND-jk1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KJL-4p-bZa"/>
+                <constraint firstAttribute="bottom" secondItem="V81-ND-jk1" secondAttribute="bottom" id="goU-wk-chi"/>
+                <constraint firstAttribute="trailing" secondItem="V81-ND-jk1" secondAttribute="trailing" id="oBT-Ap-BwO"/>
+                <constraint firstItem="9KP-di-Xgj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rsc-a0-uCu"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="277.5" y="292.5"/>
+        </view>
+    </objects>
+</document>

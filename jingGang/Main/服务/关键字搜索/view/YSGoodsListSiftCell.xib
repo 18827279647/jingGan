@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="YSGoodsListSiftCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="47.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有库存" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7c-fH-VC7">
+                        <rect key="frame" x="19" y="14" width="49" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzA-7c-QGy">
+                        <rect key="frame" x="269" y="16" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="DFQ-WL-O4w"/>
+                            <constraint firstAttribute="width" constant="16" id="wIu-aD-apQ"/>
+                        </constraints>
+                        <state key="normal" image="XUANZHONGD"/>
+                        <state key="selected" image="XUANZHONG"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uzA-7c-QGy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KdN-hb-fxd"/>
+                    <constraint firstItem="B7c-fH-VC7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WBd-du-QAu"/>
+                    <constraint firstItem="B7c-fH-VC7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="ZvN-Im-Cca"/>
+                    <constraint firstAttribute="trailing" secondItem="uzA-7c-QGy" secondAttribute="trailing" constant="35" id="l5z-qF-cWz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonSelectSsift" destination="uzA-7c-QGy" id="bWb-CV-Ih5"/>
+                <outlet property="labelTitleSift" destination="B7c-fH-VC7" id="8rh-cm-8iz"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="XUANZHONG" width="17" height="17"/>
+        <image name="XUANZHONGD" width="17" height="17"/>
+    </resources>
+</document>

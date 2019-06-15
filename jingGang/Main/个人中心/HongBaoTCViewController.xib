@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HongBaoTCViewController">
+            <connections>
+                <outlet property="button" destination="Diq-5j-QPm" id="oFA-Z8-GvX"/>
+                <outlet property="contentLabel" destination="dV1-HK-Hds" id="Kuh-Zu-PR4"/>
+                <outlet property="lable" destination="d2X-uP-JEm" id="GH0-JP-zv8"/>
+                <outlet property="titleLabel" destination="RZL-7S-FF6" id="Jue-t7-bAu"/>
+                <outlet property="totalLabel" destination="R63-Th-rQJ" id="jZ5-Fe-iHL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8g-mG-uuL">
+                    <rect key="frame" x="0.0" y="163.5" width="375" height="340"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hongbaoTC" translatesAutoresizingMaskIntoConstraints="NO" id="Nyu-de-Maa">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="340"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Diq-5j-QPm">
+                            <rect key="frame" x="60" y="270" width="255" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="8bn-KM-4rW"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="tcButton">
+                                <color key="titleColor" red="0.60392156862745094" green="0.20392156862745098" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="pushVIew:" destination="-1" eventType="touchUpInside" id="esj-5s-cJg"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠券限时，快去使用吧！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dV1-HK-Hds">
+                            <rect key="frame" x="60" y="120" width="255" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="KXP-5x-lfI"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20张优惠券已放至账户" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZL-7S-FF6">
+                            <rect key="frame" x="60" y="85" width="255" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="stu-id-7O6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R63-Th-rQJ">
+                            <rect key="frame" x="60" y="185" width="90" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="h9t-zB-Jgu"/>
+                                <constraint firstAttribute="height" constant="40" id="ocv-iS-ryB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="37"/>
+                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专享优惠券" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2X-uP-JEm">
+                            <rect key="frame" x="190" y="190" width="115" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="LMQ-9C-uHK"/>
+                                <constraint firstAttribute="width" constant="115" id="sW0-Ll-uAz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" red="0.74901960784313726" green="0.29411764705882354" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="dV1-HK-Hds" firstAttribute="leading" secondItem="X8g-mG-uuL" secondAttribute="leading" constant="60" id="1ne-vn-AQY"/>
+                        <constraint firstItem="R63-Th-rQJ" firstAttribute="top" secondItem="dV1-HK-Hds" secondAttribute="bottom" constant="45" id="437-Om-gI9"/>
+                        <constraint firstItem="R63-Th-rQJ" firstAttribute="leading" secondItem="X8g-mG-uuL" secondAttribute="leading" constant="60" id="81b-Lz-3Sg"/>
+                        <constraint firstAttribute="trailing" secondItem="d2X-uP-JEm" secondAttribute="trailing" constant="70" id="AVh-ld-34T"/>
+                        <constraint firstItem="Nyu-de-Maa" firstAttribute="top" secondItem="X8g-mG-uuL" secondAttribute="top" id="Dkt-bH-o8s"/>
+                        <constraint firstItem="RZL-7S-FF6" firstAttribute="top" secondItem="X8g-mG-uuL" secondAttribute="top" constant="85" id="EG5-Fa-Dx3"/>
+                        <constraint firstItem="d2X-uP-JEm" firstAttribute="top" secondItem="dV1-HK-Hds" secondAttribute="bottom" constant="50" id="HWY-7D-rt7"/>
+                        <constraint firstAttribute="bottom" secondItem="Diq-5j-QPm" secondAttribute="bottom" constant="10" id="MzA-t1-1hP"/>
+                        <constraint firstItem="RZL-7S-FF6" firstAttribute="leading" secondItem="X8g-mG-uuL" secondAttribute="leading" constant="60" id="Pi7-vS-6Sn"/>
+                        <constraint firstItem="Diq-5j-QPm" firstAttribute="leading" secondItem="X8g-mG-uuL" secondAttribute="leading" constant="60" id="Y33-oa-s4d"/>
+                        <constraint firstItem="Nyu-de-Maa" firstAttribute="leading" secondItem="X8g-mG-uuL" secondAttribute="leading" id="YE1-ya-frO"/>
+                        <constraint firstAttribute="trailing" secondItem="dV1-HK-Hds" secondAttribute="trailing" constant="60" id="dTl-Sp-0Sb"/>
+                        <constraint firstAttribute="trailing" secondItem="RZL-7S-FF6" secondAttribute="trailing" constant="60" id="foA-Pm-0QB"/>
+                        <constraint firstAttribute="bottom" secondItem="Nyu-de-Maa" secondAttribute="bottom" id="gqg-Na-tOX"/>
+                        <constraint firstAttribute="trailing" secondItem="Diq-5j-QPm" secondAttribute="trailing" constant="60" id="hf4-G4-phO"/>
+                        <constraint firstAttribute="trailing" secondItem="Nyu-de-Maa" secondAttribute="trailing" id="po7-XB-J4J"/>
+                        <constraint firstItem="dV1-HK-Hds" firstAttribute="top" secondItem="RZL-7S-FF6" secondAttribute="bottom" constant="5" id="qYL-Vm-j9g"/>
+                        <constraint firstAttribute="height" constant="340" id="vCE-fZ-L05"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fox-8K-bqK">
+                    <rect key="frame" x="172.5" y="518.5" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Wv1-K4-whs"/>
+                        <constraint firstAttribute="width" constant="30" id="eM5-mZ-yS0"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="hbquX"/>
+                    <connections>
+                        <action selector="back:" destination="-1" eventType="touchUpInside" id="gip-Gb-LyT"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="X8g-mG-uuL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2tA-BS-wcd"/>
+                <constraint firstItem="X8g-mG-uuL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BPe-SZ-eA1"/>
+                <constraint firstItem="X8g-mG-uuL" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="HXv-is-xmA"/>
+                <constraint firstAttribute="trailing" secondItem="X8g-mG-uuL" secondAttribute="trailing" id="u94-5W-dw2"/>
+                <constraint firstItem="fox-8K-bqK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wyg-Hz-Yu3"/>
+                <constraint firstItem="fox-8K-bqK" firstAttribute="top" secondItem="X8g-mG-uuL" secondAttribute="bottom" constant="15" id="yaG-mV-6Ww"/>
+            </constraints>
+            <point key="canvasLocation" x="52" y="64.31784107946028"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="hbquX" width="30" height="30"/>
+        <image name="hongbaoTC" width="375" height="338"/>
+        <image name="tcButton" width="257" height="62"/>
+    </resources>
+</document>

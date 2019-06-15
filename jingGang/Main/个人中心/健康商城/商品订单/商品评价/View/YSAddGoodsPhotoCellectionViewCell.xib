@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="YSAddGoodsPhotoCellectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FQp-4g-R9s">
+                        <rect key="frame" x="0.0" y="12" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="GcH-S9-mdz"/>
+                            <constraint firstAttribute="width" constant="48" id="jzl-Su-qWj"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZgL-EH-Ofe">
+                        <rect key="frame" x="40" y="4" width="15" height="22"/>
+                        <state key="normal" image="Goods_Comment_Delete"/>
+                        <connections>
+                            <action selector="deleteButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="rnw-7x-nO3"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="FQp-4g-R9s" secondAttribute="bottom" id="6GG-Ip-am9"/>
+                <constraint firstItem="FQp-4g-R9s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SCX-xz-AgQ"/>
+                <constraint firstItem="ZgL-EH-Ofe" firstAttribute="leading" secondItem="FQp-4g-R9s" secondAttribute="trailing" constant="-8" id="Z7I-1X-ENf"/>
+                <constraint firstItem="FQp-4g-R9s" firstAttribute="top" secondItem="ZgL-EH-Ofe" secondAttribute="bottom" constant="-14" id="g09-U5-Uib"/>
+            </constraints>
+            <connections>
+                <outlet property="buttonDelect" destination="ZgL-EH-Ofe" id="NHu-3y-OnD"/>
+                <outlet property="imageViewPhoto" destination="FQp-4g-R9s" id="fDs-0k-vzY"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Goods_Comment_Delete" width="15" height="15"/>
+    </resources>
+</document>

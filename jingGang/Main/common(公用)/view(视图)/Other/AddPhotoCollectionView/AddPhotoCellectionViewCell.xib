@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AddPhotoCellectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0y-tq-poN">
+                        <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qnf-4e-CsF">
+                                <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zcf-qJ-E0o">
+                                <rect key="frame" x="0.0" y="66" width="88" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="C4Y-mA-ZnX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="删除">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="XaY-JF-lyb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Qnf-4e-CsF" secondAttribute="bottom" id="JDG-X6-gyi"/>
+                            <constraint firstAttribute="bottom" secondItem="Zcf-qJ-E0o" secondAttribute="bottom" id="JUW-8z-QHc"/>
+                            <constraint firstItem="Qnf-4e-CsF" firstAttribute="top" secondItem="R0y-tq-poN" secondAttribute="top" id="UsW-qg-qGv"/>
+                            <constraint firstAttribute="trailing" secondItem="Zcf-qJ-E0o" secondAttribute="trailing" id="gc9-KS-P76"/>
+                            <constraint firstItem="Zcf-qJ-E0o" firstAttribute="leading" secondItem="R0y-tq-poN" secondAttribute="leading" id="hem-9e-LWa"/>
+                            <constraint firstAttribute="trailing" secondItem="Qnf-4e-CsF" secondAttribute="trailing" id="pAl-o7-fIa"/>
+                            <constraint firstItem="Qnf-4e-CsF" firstAttribute="leading" secondItem="R0y-tq-poN" secondAttribute="leading" id="uQ9-pQ-fUM"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Service_Appraise_AppPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="QlC-EG-1Cr">
+                        <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="QlC-EG-1Cr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ao0-ir-RDj"/>
+                <constraint firstAttribute="trailing" secondItem="R0y-tq-poN" secondAttribute="trailing" id="bVH-rc-gvv"/>
+                <constraint firstItem="R0y-tq-poN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fx7-bM-9X7"/>
+                <constraint firstItem="R0y-tq-poN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="g1E-7j-nVf"/>
+                <constraint firstItem="QlC-EG-1Cr" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="iGy-XB-cmr"/>
+                <constraint firstAttribute="trailing" secondItem="QlC-EG-1Cr" secondAttribute="trailing" id="izy-LT-kQ9"/>
+                <constraint firstAttribute="bottom" secondItem="R0y-tq-poN" secondAttribute="bottom" id="jhI-TT-2ut"/>
+                <constraint firstAttribute="bottom" secondItem="QlC-EG-1Cr" secondAttribute="bottom" id="wZj-rn-OAj"/>
+            </constraints>
+            <size key="customSize" width="50" height="102"/>
+            <connections>
+                <outlet property="deleteButton" destination="Zcf-qJ-E0o" id="QpW-DT-uGV"/>
+                <outlet property="imageViewAddPhoto" destination="QlC-EG-1Cr" id="TG2-Ko-j8b"/>
+                <outlet property="photoBgView" destination="R0y-tq-poN" id="G6S-9E-1xE"/>
+                <outlet property="photoImgView" destination="Qnf-4e-CsF" id="pB4-qp-2hY"/>
+            </connections>
+            <point key="canvasLocation" x="288" y="273"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Service_Appraise_AppPhoto" width="72" height="72"/>
+    </resources>
+</document>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WSJKeySearchViewController">
+            <connections>
+                <outlet property="btnDelete" destination="iYZ-af-fxT" id="wNy-6X-HBY"/>
+                <outlet property="contentView" destination="CKT-UN-33h" id="GH7-zc-1pP"/>
+                <outlet property="lblSearchTitle" destination="NTT-V4-mJ0" id="Mge-5V-5hi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="搜索历史" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTT-V4-mJ0">
+                    <rect key="frame" x="22" y="96" width="61.5" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="SnP-DN-rsg"/>
+                        <constraint firstAttribute="width" constant="61.5" id="cQS-12-CLk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYZ-af-fxT">
+                    <rect key="frame" x="335" y="88" width="34" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="34" id="0HA-is-7z0"/>
+                        <constraint firstAttribute="height" constant="34" id="jmG-dW-W4f"/>
+                    </constraints>
+                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <state key="normal" image="delete"/>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKT-UN-33h">
+                    <rect key="frame" x="22" y="130" width="331" height="537"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="NTT-V4-mJ0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="96" id="Sav-Xz-tIt"/>
+                <constraint firstItem="CKT-UN-33h" firstAttribute="top" secondItem="iYZ-af-fxT" secondAttribute="bottom" constant="8" id="SbV-YQ-iqZ"/>
+                <constraint firstItem="NTT-V4-mJ0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="Unl-9h-R07"/>
+                <constraint firstItem="CKT-UN-33h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="Ux0-VT-43t"/>
+                <constraint firstAttribute="bottom" secondItem="CKT-UN-33h" secondAttribute="bottom" id="Wo6-xB-EJ8"/>
+                <constraint firstItem="iYZ-af-fxT" firstAttribute="centerY" secondItem="NTT-V4-mJ0" secondAttribute="centerY" id="Yap-c4-SV8"/>
+                <constraint firstAttribute="trailing" secondItem="iYZ-af-fxT" secondAttribute="trailing" constant="6" id="dTQ-vT-7kl"/>
+                <constraint firstAttribute="trailing" secondItem="CKT-UN-33h" secondAttribute="trailing" constant="22" id="oQI-BG-nwK"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="MnI-NQ-aQ0" appends="YES" id="msE-K6-DKD"/>
+            </connections>
+            <point key="canvasLocation" x="130.40000000000001" y="103.89805097451276"/>
+        </view>
+        <tapGestureRecognizer id="MnI-NQ-aQ0">
+            <connections>
+                <action selector="hiddenKey:" destination="-1" id="eWo-e3-h6h"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="delete" width="34" height="34"/>
+    </resources>
+</document>

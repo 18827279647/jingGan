@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ShopCartView">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tx9-LK-SHd" customClass="JGTouchEdgeInsetsButton">
+                    <rect key="frame" x="22.5" y="29" width="22" height="22"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="QUn-Wi-0hH"/>
+                        <constraint firstAttribute="height" constant="22" id="V8D-XR-oDL"/>
+                        <constraint firstAttribute="width" constant="22" id="oy6-fh-Ft4"/>
+                        <constraint firstAttribute="width" constant="25" id="q2F-TI-dGh"/>
+                    </constraints>
+                    <state key="normal" image="gouwuche_hei">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="QUn-Wi-0hH"/>
+                            <exclude reference="q2F-TI-dGh"/>
+                        </mask>
+                    </variation>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0b-Yb-qGC">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="gotoShopCarAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="h1v-Eh-JuB"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ep8-cd-IEP">
+                    <rect key="frame" x="38" y="23" width="14" height="14"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="14" id="bCW-HW-Hza"/>
+                        <constraint firstAttribute="height" constant="14" id="stt-23-hYA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="9"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Y0b-Yb-qGC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0fR-Y8-HQA"/>
+                <constraint firstItem="Y0b-Yb-qGC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NGF-4C-rWL"/>
+                <constraint firstAttribute="centerY" secondItem="tx9-LK-SHd" secondAttribute="centerY" id="POf-L9-Okl"/>
+                <constraint firstAttribute="trailing" secondItem="Y0b-Yb-qGC" secondAttribute="trailing" id="bJS-pZ-LBh"/>
+                <constraint firstAttribute="bottom" secondItem="Y0b-Yb-qGC" secondAttribute="bottom" id="dWy-OB-tpY"/>
+                <constraint firstItem="ep8-cd-IEP" firstAttribute="centerY" secondItem="Y0b-Yb-qGC" secondAttribute="centerY" constant="-10" id="ete-Ry-S07"/>
+                <constraint firstItem="ep8-cd-IEP" firstAttribute="centerX" secondItem="Y0b-Yb-qGC" secondAttribute="centerX" constant="5" id="kBX-WJ-2eb"/>
+                <constraint firstAttribute="centerX" secondItem="tx9-LK-SHd" secondAttribute="centerX" multiplier="1.2" id="zPz-nr-g2h"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="guwubutton" destination="tx9-LK-SHd" id="ey4-6R-czI"/>
+                <outlet property="shopNumberLabel" destination="ep8-cd-IEP" id="6Wn-Tz-Hav"/>
+            </connections>
+            <point key="canvasLocation" x="276" y="229"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gouwuche_hei" width="24" height="24"/>
+    </resources>
+</document>

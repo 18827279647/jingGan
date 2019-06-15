@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>NewTakeMoneyViewController</string>
+	<string>YSMassageSettingController</string>
+	<string>YSMassageSceneController</string>
+	<string>YSMassageBraBluetoothController</string>
+	<string>ApplySalesReturnVC</string>
+	<string>JGPayResultController</string>
+	<string>JGIntegralValueController</string>
+	<string>YSLinkCYDoctorWebController</string>
+	<string>YSYunGouBiPayController</string>
+	<string>YSScanOrderDetailController</string>
+	<string>WSJShopCategoryViewController</string>
+	<string>OrderDetailController</string>
+	<string>OrderConfirmViewController</string>
+	<string>XKJHMapViewController</string>
+	<string>ShoppingOrderDetailController</string>
+	<string>YSSelecteCityController</string>
+	<string>YSMyHealthMissonController</string>
+	<string>JGCloudValueController</string>
+	<string>WSJLungResultViewController</string>
+	<string>WSJHeartRateResultViewController</string>
+	<string>WSJBloodPressureViewController</string>
+	<string>MERFastResultViewController</string>
+	<string>examineResultViewController</string>
+	<string>blindnessResultViewController</string>
+	<string>YSBloodOxyenTestController</string>
+	<string>JGHeartRateTestController</string>
+	<string>JGBloodPressureTestController</string>
+	<string>QuickTestController</string>
+	<string>PayOrderViewController</string>
+	<string>WSJLungResultViewController</string>
+	<string>WSJHeartRateResultViewController</string>
+	<string>WSJBloodPressureViewController</string>
+	<string>WSJLungResultViewController</string>
+	<string>YSLoginFirstUpdateUserInfoController</string>
+	<string>YSHealthyManageWebController</string>
+	<string>YSComposeStatusController</string>
+	<string>HearingTestVC</string>
+	<string>UnderLineOrderManagerViewController</string>
+	<string>YSHotelOrderDetailController</string>
+</array>
+</plist>

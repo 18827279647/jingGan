@@ -1,0 +1,132 @@
+//
+//  jingGang.pch
+//  jingGang
+//
+//  Created by thinker_des on 15/6/28.
+//  Copyright (c) 2015年 yi jiehuang. All rights reserved.
+//
+
+#ifndef jingGang_jingGang_pch
+#define jingGang_jingGang_pch
+
+#import "YYKIt.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+#import <CRBoost/CRBoost.h>
+#import <UIView+Toast.h>
+#import <MBProgressHUD.h>
+#import <Masonry.h>
+
+#import "KMacro.h"
+
+#define kNetworkFailureMessage                                                  @"网络请求失败"
+//PingFangSC是iOS 9之后才有
+#define kPingFang_Regular(s)     (IS_IOS8 ? [UIFont systemFontOfSize:s] : [UIFont fontWithName:@"PingFangSC-Regular" size:s])
+#define kPingFang_Medium(s)      (IS_IOS8 ? [UIFont systemFontOfSize:s] : [UIFont fontWithName:@"PingFangSC-Medium" size:s])
+#define kPingFang_Semibold(s)    (IS_IOS8 ? [UIFont systemFontOfSize:s] : [UIFont fontWithName:@"PingFangSC-Semibold" size:s])
+
+
+#pragma mark ---------------- 头文件 ------------------
+#import "JGHeader.h"
+#import "DefineEnum.h"
+
+#ifdef DEBUG // 处于开发阶段
+#define JGLog(...) NSLog(__VA_ARGS__)
+#else // 处于发布阶段
+#define JGLog(...)
+#endif
+#define kGCDBackground(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#define kGCDMain(block)       dispatch_async(dispatch_get_main_queue(),block)
+
+#pragma mark ---------------- 内存释放 ----------------
+#if __has_feature(objc_arc)
+#define RELEASE(obj)
+#define AUTO_RELEASE(obj)           obj
+#define WEAK_SELF                   __weak typeof(self) weak_self = self;
+#define WEAK_OBJECT(weak_obj, obj)  __weak typeof(obj) weak_obj = obj;
+#else
+#define RELEASE(obj)            {if(obj) {[obj release]; obj = nil;}}//安全释放对象
+#define AUTO_RELEASE(obj)       [obj autorelease]
+#define WEAK_SELF                   __block typeof(self) weak_self = self;
+#define WEAK_OBJECT(weak_obj, obj)  __block typeof(obj) weak_obj = obj;
+#endif
+
+#define ScreenWidth      [[UIScreen mainScreen] bounds].size.width
+#define ScreenHeight     [[UIScreen mainScreen] bounds].size.height
+#define __StatusScreenFrame             [[UIApplication sharedApplication] statusBarFrame]
+#define __Other_Height                  (__StatusScreen_Height + 44)
+#define __StatusScreen_Height           __StatusScreenFrame.size.height
+#define MaxX(x)  CGRectGetMaxX(x.frame)
+#define MaxY(x)  CGRectGetMaxY(x.frame)
+
+#define UIColorFromRGB(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+//默认主题颜色
+//#define COMMONTOPICCOLOR  [UIColor colorWithRed:47.0/255 green:162.0/255 blue:58.0/255 alpha:1]
+#define COMMONTOPICCOLOR  [UIColor colorWithRed:104.0/255 green:187.0/255 blue:177.0/255 alpha:1]
+
+// RGB颜色
+#define JGColor(r, g, b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+
+// 随机色
+#define JGRandomColor JGColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256),1)
+// 白色
+#define JGWhiteColor [UIColor whiteColor]
+
+// 无色
+#define JGClearColor [UIColor clearColor]
+
+// 黑色
+#define JGBlackColor [UIColor blackColor]
+
+// 界面底色
+#define JGBaseColor JGColor(247, 247, 247, 1)
+
+#define TNSString(obj)  [NSString stringWithFormat:@"%@",obj]
+
+// 弱引用
+#define WeakSelf        __weak typeof(self) bself = self
+// 强引用
+#define StrongSelf      __strong __typeof(bself) strongSelf = bself
+
+
+// 读取图片
+#define LOADIMAGE(file,ext) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:file ofType:ext]]
+
+#define IS_IOS_7 ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)?YES:NO
+
+#define StateBarHeight ((IS_IOS_7)?20:0)
+
+#define NavBarHeight ((IS_IOS_7)?64:44)
+
+#define JGFont(x)           [UIFont fontWithName:@"Avenir-Light" size:(x)]
+#define JGLightFont(x)      JGFont(x)
+#define JGRegularFont(x)    [UIFont fontWithName:@"Avenir-Book" size:(x)]
+#define JGMediumFont(x)     [UIFont fontWithName:@"Avenir-Medium" size:(x)]
+
+//#define YSPingFangMedium(x) [UIFont fontWithName:@"PingFangSC-Medium" size:(x)]
+//#define YSPingFangRegular(x) [UIFont fontWithName:@"PingFangSC-Regular" size:(x)]
+#define YSPingFangMedium(x)     JGMediumFont(x)
+#define YSPingFangRegular(x)    JGRegularFont(x)
+
+#define YSHexColorString(x) [UIColor colorWithHexString:x]
+
+// 检测block是否可用
+#define BLOCK_EXEC(block, ...) if (block) { block(__VA_ARGS__); };
+
+
+
+//http://192.168.8.160:8080 http://1t6y344017.iask.in
+//#define  ShanrdURL @"http://api.bhesky.cn/" //测试线
+#define  ShanrdURL @"http://api.bhesky.com/" // 正式线
+
+/*
+ *  block弱引用
+ */
+#define DefineWeakSelf __weak __typeof(self) weakSelf = self
+
+
+#endif

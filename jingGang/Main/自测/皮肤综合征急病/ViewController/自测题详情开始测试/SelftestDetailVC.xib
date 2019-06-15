@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelftestDetailVC">
+            <connections>
+                <outlet property="beginTestBottonView" destination="gbU-Zn-7Fe" id="EVL-O4-aMC"/>
+                <outlet property="st_DetailWebView" destination="FT4-Uu-SeZ" id="keu-lQ-WfU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FT4-Uu-SeZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </webView>
+                <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbU-Zn-7Fe">
+                    <rect key="frame" x="15" y="545" width="345" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="P0i-sb-eUH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
+                    <state key="normal" title="开始测试" backgroundImage="button222">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="beginTest:" destination="-1" eventType="touchUpInside" id="Ngl-9z-APp"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="FT4-Uu-SeZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7f1-hg-oOc"/>
+                <constraint firstAttribute="bottom" secondItem="FT4-Uu-SeZ" secondAttribute="bottom" id="R87-Vk-lg3"/>
+                <constraint firstAttribute="trailing" secondItem="gbU-Zn-7Fe" secondAttribute="trailing" constant="15" id="XK8-qj-bLw"/>
+                <constraint firstAttribute="bottom" secondItem="gbU-Zn-7Fe" secondAttribute="bottom" constant="10" id="cgo-1V-Qgz"/>
+                <constraint firstItem="gbU-Zn-7Fe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="ftL-e6-1hG"/>
+                <constraint firstAttribute="trailing" secondItem="FT4-Uu-SeZ" secondAttribute="trailing" id="nDN-vY-PAd"/>
+                <constraint firstItem="FT4-Uu-SeZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xnD-NT-5xl"/>
+            </constraints>
+            <point key="canvasLocation" x="246" y="194"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="button222" width="292" height="44"/>
+    </resources>
+</document>

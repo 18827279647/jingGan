@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="WSJAddressTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="81.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wri-Fi-95S">
+                        <rect key="frame" x="10" y="28" width="26" height="26"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="BEB-93-x99"/>
+                            <constraint firstAttribute="width" constant="26" id="mRv-oq-4cy"/>
+                        </constraints>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <inset key="imageEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" backgroundImage="XUANZHONGD">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected" backgroundImage="XUANZHONG">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="selectAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PmR-dw-5z4"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刘丹" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7E-k6-jnX">
+                        <rect key="frame" x="41" y="11" width="35" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.15056313574314117" green="0.15055863559246063" blue="0.15056121349334717" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="广东省深圳市 南山区科苑北路科兴科学园A1单元5楼" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVd-sH-9ih">
+                        <rect key="frame" x="41" y="42" width="269" height="36"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.32584697008132935" green="0.32583719491958618" blue="0.32584273815155029" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12312312311" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqt-Lw-WT1">
+                        <rect key="frame" x="205.5" y="11" width="98.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.15056313574314117" green="0.15055863559246063" blue="0.15056121349334717" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="Wri-Fi-95S" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="4Ub-pM-NZW"/>
+                    <constraint firstAttribute="trailing" secondItem="jqt-Lw-WT1" secondAttribute="trailing" constant="16" id="6Yt-cv-fOb"/>
+                    <constraint firstItem="QVd-sH-9ih" firstAttribute="leading" secondItem="l7E-k6-jnX" secondAttribute="leading" id="9a3-vg-lT8"/>
+                    <constraint firstItem="QVd-sH-9ih" firstAttribute="top" secondItem="l7E-k6-jnX" secondAttribute="bottom" constant="10" id="NF7-fT-dyQ"/>
+                    <constraint firstItem="jqt-Lw-WT1" firstAttribute="centerY" secondItem="l7E-k6-jnX" secondAttribute="centerY" id="a4A-rX-Dec"/>
+                    <constraint firstItem="l7E-k6-jnX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="iVo-Rf-ZkB"/>
+                    <constraint firstItem="Wri-Fi-95S" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ljN-da-9OH"/>
+                    <constraint firstAttribute="trailing" secondItem="QVd-sH-9ih" secondAttribute="trailing" constant="10" id="net-9A-tfm"/>
+                    <constraint firstItem="l7E-k6-jnX" firstAttribute="leading" secondItem="Wri-Fi-95S" secondAttribute="trailing" constant="5" id="uKT-wK-Xbo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="addressLabel" destination="QVd-sH-9ih" id="fyw-xh-pZF"/>
+                <outlet property="nameLabel" destination="l7E-k6-jnX" id="58L-ss-rnv"/>
+                <outlet property="selectBtn" destination="Wri-Fi-95S" id="vwk-Gt-EKw"/>
+                <outlet property="telLabel" destination="jqt-Lw-WT1" id="gcB-cm-Wv6"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="XUANZHONG" width="40" height="40"/>
+        <image name="XUANZHONGD" width="40" height="40"/>
+    </resources>
+</document>

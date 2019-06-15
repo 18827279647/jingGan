@@ -1,0 +1,156 @@
+//
+//  YSBigClassDataTableViewCell.m
+//  jingGang
+//
+//  Created by 李海 on 2018/8/21.
+//  Copyright © 2018年 dengxf_dev. All rights reserved.
+//
+
+#import "YSBigClassDataTableViewCell.h"
+#import "Masonry.h"
+#import "HomeConst.h"
+#import "YSImageConfig.h"
+#import "YSThumbnailManager.h"
+
+@interface YSBigClassDataTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@property (nonatomic, strong)UICollectionView *collectionView;
+@property (nonatomic, strong)NSArray *imageArray;
+@end
+@implementation YSBigClassDataTableViewCell
+static NSString *cellId=@"YSBigClassDataTableViewCellId";
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setUpUI];
+    }
+    return self;
+}
+
+- (void)setUpUI{
+    CGFloat width = (ScreenWidth - 32)/3.5;
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(width, 90);
+    layout.sectionInset = UIEdgeInsetsMake(8, 16, 8, 16);
+    layout.minimumLineSpacing = 5;
+    layout.minimumInteritemSpacing = 0;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 150) collectionViewLayout:layout];
+    _collectionView.backgroundColor = JGColor(249, 249, 249, 1);
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    _collectionView.tag = YSGoodRecommendType;
+    [_collectionView registerClass:[BigClassCollectionViewCell class] forCellWithReuseIdentifier:cellId];
+    [self.contentView addSubview:_collectionView];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+}
+
+-(void)setModels:(NSArray<NSDictionary *> *)models{
+    _models = models;
+    [_collectionView reloadData];
+}
+
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _models.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    BigClassCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    cell.model = _models[indexPath.row];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [_delegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+}
+@end
+
+@interface BigClassCollectionViewCell ()
+@property (nonatomic,strong)UIImageView *iconImageView;
+@property (nonatomic,strong)UILabel *titleLab;
+@property (nonatomic,strong)UILabel *priceLab;
+@property (nonatomic,strong)UILabel *originalPriceLab;
+@end
+@implementation BigClassCollectionViewCell
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setUpUI];
+    }
+    return self;
+}
+
+- (void)setUpUI{
+    self.userInteractionEnabled = YES;
+    self.contentView.backgroundColor=JGWhiteColor;
+    _iconImageView = [[UIImageView alloc] init];
+    [self.contentView addSubview:_iconImageView];
+    [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView);
+        make.top.equalTo(self.contentView);
+        make.right.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView).offset(-90);
+    }];
+    UILabel *line=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(_iconImageView.frame), CGRectGetMaxY(_iconImageView.frame), self.width, 1)];
+    line.backgroundColor=[UIColor colorWithHexString:@"F2F7F9"];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.contentView);
+        make.top.equalTo(_iconImageView.mas_bottom).offset(4);
+        make.height.mas_equalTo(@1);
+    }];
+    
+    _titleLab = [[UILabel alloc] init];
+    _titleLab.textColor=[UIColor colorWithHexString:@"#333333"];
+    _titleLab.numberOfLines = 2;
+    _titleLab.font=JGRegularFont(15);
+    _titleLab.textColor=[UIColor colorWithHexString:@"333333"];
+    [self.contentView addSubview:_titleLab];
+    [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.contentView);
+        make.top.equalTo(line.mas_bottom).offset(1);
+        make.bottom.equalTo(self.contentView).offset(-30);
+    }];
+    
+    _priceLab = [[UILabel alloc] init];
+    _priceLab.textColor = [UIColor redColor];
+    _priceLab.font=JGRegularFont(15);
+    _priceLab.textColor=[UIColor colorWithHexString:@"D0021B"];
+    [self.contentView addSubview:_priceLab];
+    [_priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView);
+        make.top.equalTo(_titleLab.mas_bottom).offset(10);
+        make.bottom.equalTo(self.contentView).offset(-10);
+    }];
+    _originalPriceLab = [[UILabel alloc] init];
+    _originalPriceLab.font=JGRegularFont(13);
+    _originalPriceLab.textColor=[UIColor colorWithHexString:@"BCBCBC"];
+    [self.contentView addSubview:_originalPriceLab];
+    [_originalPriceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_priceLab.mas_right).offset(5);
+        make.width.mas_equalTo(@40);
+        make.top.bottom.equalTo(_priceLab);
+        make.right.equalTo(self.contentView);
+    }];
+}
+
+-(void)setModel:(NSDictionary *)model{
+//    [YSImageConfig yy_view:_iconImageView setImageWithURL:[NSURL URLWithString:[YSThumbnailManager shopSpecialPricePicUrlString:@""]] placeholderImage:DEFAULTIMG];
+    _titleLab.text = model[@"title"];
+    _priceLab.text = [NSString stringWithFormat:@"￥10.1f"];
+    NSString *originallyPrice = [NSString stringWithFormat:@"¥12.0f"];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:originallyPrice attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSBaselineOffsetAttributeName:@(0)}];
+    _originalPriceLab.attributedText = attributedString;
+}
+@end

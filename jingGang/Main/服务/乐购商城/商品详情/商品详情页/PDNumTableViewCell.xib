@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PDNumTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moren" translatesAutoresizingMaskIntoConstraints="NO" id="uWY-Wt-zdv">
+                        <rect key="frame" x="50" y="8" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="rNq-MS-B5r"/>
+                            <constraint firstAttribute="width" constant="44" id="txR-9s-MFI"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="22"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moren" translatesAutoresizingMaskIntoConstraints="NO" id="O21-bU-OXg">
+                        <rect key="frame" x="15" y="8" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="2WM-nN-obA"/>
+                            <constraint firstAttribute="width" constant="44" id="umn-KH-plG"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="22"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcy-Un-qLB">
+                        <rect key="frame" x="109" y="8" width="116" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="116" id="drx-vo-ppl"/>
+                            <constraint firstAttribute="height" constant="20" id="lbK-Sl-0Vt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9E-Nj-TtM">
+                        <rect key="frame" x="237" y="17.5" width="68" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="68" id="DVr-nW-QOd"/>
+                            <constraint firstAttribute="height" constant="25" id="ZkN-SB-p2Z"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="参与拼单" backgroundImage="pindanbutton"/>
+                        <connections>
+                            <action selector="blockOrlid:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lNs-Of-KHh"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="结束时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBg-5I-Oah">
+                        <rect key="frame" x="109" y="33" width="174" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Fr3-Ye-IRj"/>
+                            <constraint firstAttribute="width" constant="174" id="kCN-E9-knf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wcy-Un-qLB" firstAttribute="leading" secondItem="uWY-Wt-zdv" secondAttribute="trailing" constant="15" id="0WS-1o-9hn"/>
+                    <constraint firstItem="O21-bU-OXg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="8tJ-w4-MNZ"/>
+                    <constraint firstItem="uWY-Wt-zdv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ClJ-Sr-cti"/>
+                    <constraint firstItem="eBg-5I-Oah" firstAttribute="leading" secondItem="uWY-Wt-zdv" secondAttribute="trailing" constant="15" id="DqG-L9-CDL"/>
+                    <constraint firstAttribute="trailing" secondItem="m9E-Nj-TtM" secondAttribute="trailing" constant="15" id="TeO-F7-mMv"/>
+                    <constraint firstItem="uWY-Wt-zdv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="anx-WI-ADR"/>
+                    <constraint firstItem="wcy-Un-qLB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="cD5-0X-qIs"/>
+                    <constraint firstItem="O21-bU-OXg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dOD-xE-3eY"/>
+                    <constraint firstItem="m9E-Nj-TtM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ff8-GK-qdy"/>
+                    <constraint firstItem="eBg-5I-Oah" firstAttribute="top" secondItem="wcy-Un-qLB" secondAttribute="bottom" constant="5" id="l3P-PV-Edw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="name" destination="wcy-Un-qLB" id="sUx-0z-Rr8"/>
+                <outlet property="pdbutton" destination="m9E-Nj-TtM" id="v49-xc-qgb"/>
+                <outlet property="time" destination="eBg-5I-Oah" id="4Y0-MK-Pfz"/>
+                <outlet property="touxiangOne" destination="O21-bU-OXg" id="kId-aS-nBj"/>
+                <outlet property="touxiangtwo" destination="uWY-Wt-zdv" id="d5M-eD-Joz"/>
+            </connections>
+            <point key="canvasLocation" x="52.799999999999997" y="98.950524737631198"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="moren" width="36" height="36"/>
+        <image name="pindanbutton" width="68" height="25"/>
+    </resources>
+</document>

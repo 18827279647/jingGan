@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MerchantPosterDetailVC">
+            <connections>
+                <outlet property="cnameLab" destination="CJe-HU-Yo8" id="dYY-EU-GSA"/>
+                <outlet property="labelLogo" destination="CJe-HU-Yo8" id="4c4-Zt-cgo"/>
+                <outlet property="posterAuthorLabel" destination="CJe-HU-Yo8" id="nC7-RY-5Iw"/>
+                <outlet property="posterWeb" destination="83f-BJ-wTU" id="9Am-1z-06V"/>
+                <outlet property="timeLabel" destination="3dA-Up-YD9" id="HrG-Al-uUJ"/>
+                <outlet property="titleLabel" destination="BWI-nH-kmX" id="kOE-O6-0Na"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWI-nH-kmX">
+                    <rect key="frame" x="15" y="20" width="348" height="0.0"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83f-BJ-wTU">
+                    <rect key="frame" x="8" y="38" width="359" height="609"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </webView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="e生康缘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJe-HU-Yo8">
+                    <rect key="frame" x="304" y="20" width="51" height="17"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.18823529411764706" green="0.74901960784313726" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dA-Up-YD9">
+                    <rect key="frame" x="15" y="28" width="0.0" height="0.0"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="CJe-HU-Yo8" firstAttribute="top" secondItem="BWI-nH-kmX" secondAttribute="bottom" id="1m5-yF-Wmz"/>
+                <constraint firstItem="83f-BJ-wTU" firstAttribute="top" secondItem="3dA-Up-YD9" secondAttribute="bottom" constant="10" id="2Kc-52-v39"/>
+                <constraint firstAttribute="trailing" secondItem="83f-BJ-wTU" secondAttribute="trailing" constant="8" id="41S-rJ-6ZT"/>
+                <constraint firstAttribute="bottom" secondItem="83f-BJ-wTU" secondAttribute="bottom" constant="20" id="HRS-J6-bDa"/>
+                <constraint firstItem="3dA-Up-YD9" firstAttribute="leading" secondItem="BWI-nH-kmX" secondAttribute="leading" id="LKm-op-uTD"/>
+                <constraint firstItem="BWI-nH-kmX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="TLl-xc-ANi"/>
+                <constraint firstAttribute="trailing" secondItem="CJe-HU-Yo8" secondAttribute="trailing" constant="20" id="UaS-De-081"/>
+                <constraint firstItem="3dA-Up-YD9" firstAttribute="top" secondItem="BWI-nH-kmX" secondAttribute="bottom" constant="8" id="Yba-dr-cr9"/>
+                <constraint firstAttribute="trailing" secondItem="BWI-nH-kmX" secondAttribute="trailing" constant="12" id="aiD-RU-Dk6"/>
+                <constraint firstItem="BWI-nH-kmX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="caO-Ov-hBt"/>
+                <constraint firstItem="83f-BJ-wTU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="kUG-8V-ZgO"/>
+            </constraints>
+            <point key="canvasLocation" x="263.5" y="228.5"/>
+        </view>
+    </objects>
+</document>
