@@ -71,7 +71,6 @@
     [self reqeustNoticeMessageNoReadCount];
     [self reqeustconfirmJiankangdouReadCount];
     [self reqeustconfirmYouhuiquanReadCount];
-    
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

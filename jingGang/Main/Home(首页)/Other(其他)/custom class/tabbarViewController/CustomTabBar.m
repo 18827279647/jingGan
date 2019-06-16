@@ -195,7 +195,6 @@ static CustomTabBar* s_pCustomTabBar = nil;
     //健康商城
     //GoToStoreExperiseController *gotoStore = [[GoToStoreExperiseController alloc] init];
     
-    
     YSShapingViewController *gotoStore = [[YSShapingViewController alloc] init];
     
     YSGestureNavigationController * nav4 = [[YSGestureNavigationController alloc]initWithRootViewController:gotoStore];

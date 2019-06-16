@@ -208,6 +208,7 @@ static const CGFloat kTitleButtonMargin = 22;
 
     UIScrollView *titleScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
     [self.view addSubview:titleScrollView];
+    
     titleScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     _titleScrollView = titleScrollView;
     titleScrollView.showsHorizontalScrollIndicator = NO;
@@ -226,6 +227,8 @@ static const CGFloat kTitleButtonMargin = 22;
     contentView.showsVerticalScrollIndicator = NO;
     contentView.bounces = NO;
     contentView.decelerationRate = UIScrollViewDecelerationRateFast;
+    
+    
     
     //浮窗广告
     UIImageView *floatImageView = [UIImageView new];

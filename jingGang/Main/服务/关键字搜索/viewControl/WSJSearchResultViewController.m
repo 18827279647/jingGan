@@ -213,7 +213,6 @@
         
             };
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenKey) name:@"WHiddenKey" object:nil];
-
 }
 
 
