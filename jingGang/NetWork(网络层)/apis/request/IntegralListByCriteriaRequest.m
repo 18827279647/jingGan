@@ -42,7 +42,7 @@
 
 - (NSString *) getApiUrl
 {
-     NSString *url = [NSString stringWithFormat:@"%@/v1/integral/listByCriteria",self.baseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/integral/listByCriteria",self.baseUrl];
     return url;
 }
 

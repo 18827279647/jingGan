@@ -32,8 +32,11 @@
 #import "YSVersionConfig.h"
 #import "UIImage+Extension.h"
 #import "YSHomeViewController.h"
-
 #import "YSShoppingMallController.h"
+
+//新今日任务
+#import "RXMainViewController.h"
+
 @interface CustomTabBar ()
 
 @end
@@ -174,7 +177,8 @@ static CustomTabBar* s_pCustomTabBar = nil;
     
     //健康圈
 //    communityViewController * communityVc = [[communityViewController alloc]init];
-    mainViewController *communityVc=[[mainViewController alloc]init];
+    //mainViewController *communityVc=[[mainViewController alloc]init];
+    RXMainViewController*communityVc=[[RXMainViewController alloc]init];
     YSGestureNavigationController * nav2 = [[YSGestureNavigationController alloc]initWithRootViewController:communityVc];
     communityVc.title = @"今日任务";
     nav2.tabBarItem.image = [[UIImage imageNamed:@"今日任务"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -279,11 +283,11 @@ static CustomTabBar* s_pCustomTabBar = nil;
             [JGActivityTools sharedInstance].isServiceModule = YES;
             
         }else if ([self.viewControllers indexOfObject:viewController] == 2) {
-            BOOL ret = CheckLoginState(YES);
-            if (!ret) {
-                // 没登录 直接返回
-                return NO;
-            }
+//            BOOL ret = CheckLoginState(YES);
+//            if (!ret) {
+//                // 没登录 直接返回
+//                return NO;
+//            }
             [JGActivityTools sharedInstance].isServiceModule = NO;
             [JGActivityTools switchTabBarAction];
         }else{

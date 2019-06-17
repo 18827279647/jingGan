@@ -76,6 +76,18 @@
 #import "IntegralNewHomeController.h"
 #import "JGIntegralCommendGoodsModel.h"
 #import "IntegralGoodsDetailController.h"
+
+//默认首页默认显示数据
+#import "YSConTableViewCell.h"
+//商品推荐
+#import "YSGoodsTableViewCell.h"
+//质询问题
+#import "YSHotInfoTableViewCell.h"
+
+#import "YSHealthyInformationVIew.h"
+static NSString *goodsCellID = @"goodsCellID";
+static NSString *heathInfoCellID = @"heathInfoCellID";
+
 @interface mainViewController ()<YSAPIManagerParamSource,YSAPICallbackProtocol,YSHealthManageHeaderViewDelegate,UICollectionViewDelegate,TZImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (strong,nonatomic) UITableView *tableView;
@@ -115,6 +127,17 @@
 //用户积分状况
 @property (strong,nonatomic) NSDictionary *userIntegral;
 
+@property(strong,nonatomic)NSArray*titleArray;
+@property(strong,nonatomic)NSArray*iconArray;
+
+@property (nonatomic, strong)VApiManager *vapiManager;
+//商品推荐信息
+@property (nonatomic, strong)NSArray *GoodsModels;
+//热门问题
+@property (nonatomic, strong)NSMutableArray *InfosModels;
+//热门问题下标
+@property (assign, nonatomic) NSInteger pageNum;
+
 @end
 
 @implementation mainViewController
@@ -123,6 +146,20 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
     return ((ScreenWidth * imageSize.height ) / imageSize.width)  + KHealthyConsultMargin * 2;
 }
 
+//临时文本
+-(NSArray*)titleArray;{
+    if (!_titleArray) {
+        _titleArray=[NSArray array];
+    }
+    return _titleArray;
+}
+//图标
+-(NSArray*)iconArray;{
+    if (_iconArray) {
+        _iconArray=[NSArray array];
+    }
+    return _iconArray;
+}
 - (NSMutableArray *)circles {
     if (!_circles) {
         _circles = [NSMutableArray array];
@@ -163,17 +200,18 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
         CGFloat tableY = 0;
         CGFloat tableW = ScreenWidth;
         if(iPhoneX_X){
-            _tableH = ScreenHeight - NavBarHeight - kTopBarHeight -64;
+            _tableH = ScreenHeight- kTopBarHeight -64;
         }else{
-            _tableH = ScreenHeight - NavBarHeight - kTopBarHeight;
+            _tableH = ScreenHeight- kTopBarHeight;
         }
-       
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(tableX, tableY, tableW, _tableH) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 5.5f, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(0,0, 5.5f, 0);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = JGColor(247, 247, 247, 1);
+        [_tableView registerClass:[YSGoodsTableViewCell class] forCellReuseIdentifier:goodsCellID];
+        [_tableView registerClass:[YSHotInfoTableViewCell class] forCellReuseIdentifier:heathInfoCellID];
         [self.view addSubview:_tableView];
     }
     return _tableView;
@@ -226,6 +264,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     self.navigationController.navigationBar.barTintColor = COMMONTOPICCOLOR;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -242,7 +281,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
         return;
     }
     self.tabBarController.tabBar.hidden = NO;
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [UIView setAnimationsEnabled:YES];
     [self requestUserIntergral];
     [self requestMyIntegralExchangeList];
@@ -392,7 +431,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
     [self hiddenHud];
     [self showHud];
     [self chunYuDoctorEnterRequest];
-#pragma mark 健康管理广告位接口调用
+    #pragma mark 健康管理广告位接口调用
     [[YSConfigAdRequestManager sharedInstance] requestAdContent:YSAdContentWithHealthyManagerType
                                                       cacheItem:^(YSAdContentItem *cacheItem) {
                                                         // 返回一个缓存广告位对象
@@ -532,97 +571,97 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
 }
 
 - (void)requestStepData {
-    if ([YSStepManager healthyKitAccess]) {
-        @weakify(self);
-        [YSStepManager healthStoreDataWithStartDate:nil endDate:nil WithFailAccess:^{
-            @strongify(self);
-            [self showErrorHudWithText:@"无数据获取权限"];
-        } walkRunningCallback:^(NSNumber *walkRunning) {
-            @strongify(self);
-            [self.stepUserInfo xf_safeSetObject:walkRunning forKey:kStepCount];
-//            _headerView.jrrwView.ljlc.text= [NSString stringWithFormat:@"累计里程：%@公里",[walkRunning stringValue]];
-//            _headerView.jrrwView.processView.persentage=[walkRunning intValue]/80000;
-//            NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
-//            [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
-            
-        } stepCallback:^(NSNumber *step) {
-            CGFloat margin2=(self.tableView.size.width -95*3)/3;
-            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-            
-            NSString * api_XYmaxValue = [[defaults objectForKey:@"XYmaxValue"] stringValue];
-            NSString * api_XYminValue = [[defaults objectForKey:@"XYminValue"] stringValue];
-            
-            NSString * str = [NSString stringWithFormat:@"%@/%@",api_XYmaxValue,api_XYminValue];
-            NSString * api_xinlv =[[defaults objectForKey:@"heartRateValue"] stringValue];
-            NSString * api_xueyang =[[defaults objectForKey:@"xueyangRateValue"] stringValue];
-            
-                if (api_XYmaxValue == NULL) {
-                [ _headerView.jrrwView.xueyang removeFromSuperview];
-           _headerView.jrrwView.xueya= [_headerView.jrrwView genItem:@"xueya" titles:@[@"血压",@"--/--",@"mmHg"]];
-                } else {
-                    [_headerView.jrrwView.xueya removeFromSuperview];
-                _headerView.jrrwView.xueya= [_headerView.jrrwView genItem:@"xueya" titles:@[@"血压",str,@"mmHg"]];
-                }
-       
-         
-            if (api_xinlv== NULL) {
-                  [ _headerView.jrrwView.xueyang removeFromSuperview];
-                _headerView.jrrwView.xinlv= [_headerView.jrrwView genItem:@"xinlv" titles:@[@"心率",@"--",@"BMP"]];
-            }else{
-                [_headerView.jrrwView.xinlv removeFromSuperview];
-                _headerView.jrrwView.xinlv= [_headerView.jrrwView genItem:@"xinlv" titles:@[@"心率",api_xinlv,@"BMP"]];
-            }
-            
-            if (api_xueyang==NULL) {
-                  [ _headerView.jrrwView.xueyang removeFromSuperview];
-               _headerView.jrrwView.xueyang= [_headerView.jrrwView genItem:@"xueyang" titles:@[@"血氧",@"--",@"%"]];
-            } else {
-                
-                [ _headerView.jrrwView.xueyang removeFromSuperview];
-                
-              _headerView.jrrwView.xueyang= [_headerView.jrrwView genItem:@"xueyang" titles:@[@"血氧",api_xueyang,@"%"]];
-            }
-            _headerView.jrrwView.xueya.x =margin2;
-            _headerView.jrrwView.xinlv.x=_headerView.jrrwView.xueya.x+_headerView.jrrwView.xueya.width+margin2+10;
-            _headerView.jrrwView.xueyang.x=_headerView.jrrwView.xinlv.x+_headerView.jrrwView.xinlv.width+margin2;
-            [_headerView.jrrwView.part2 addSubview:_headerView.jrrwView.xueya];
-            [_headerView.jrrwView.part2 addSubview: _headerView.jrrwView.xinlv];
-            [_headerView.jrrwView.part2 addSubview:_headerView.jrrwView.xueyang];
-            
-            @strongify(self);
-            [self.stepUserInfo xf_safeSetObject:step forKey:kStepCount];
-            
-            
-            NSString *string1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"sdbs"];
-            
-            if(string1.length == 0){
-                
-                _headerView.jrrwView.count.text=@"- -";
-                
-                _headerView.jrrwView.ljlc.text =[NSString stringWithFormat:@"累计里程：--公里"];
-                _headerView.jrrwView.reliangLabel.text = [NSString stringWithFormat:@"消耗热量：--卡"];
-                 _headerView.jrrwView.mubiao.textColor=kGetColor(93,187,177);
-                
-                _headerView.jrrwView.processView.persentage= 0.00/80000;
-                NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
-                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
-                
-                
-            }else  {
-                
-                _headerView.jrrwView.count.text=[step stringValue];
-                double gongli = [step doubleValue] * 0.00065;
-                _headerView.jrrwView.mubiao.text =[NSString stringWithFormat:@"设定目标：%@",string1];;
-                _headerView.jrrwView.ljlc.text =[NSString stringWithFormat:@"累计里程：%.2f公里",gongli];
-                int kaluli =  62*gongli*0.8;
-                _headerView.jrrwView.reliangLabel.text = [NSString stringWithFormat:@"消耗热量：%d卡",kaluli];
-                _headerView.jrrwView.processView.persentage= [step floatValue]/[string1 longValue];
-                NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
-                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
-            }
-         
-        }];
-    }
+//    if ([YSStepManager healthyKitAccess]) {
+//        @weakify(self);
+//        [YSStepManager healthStoreDataWithStartDate:nil endDate:nil WithFailAccess:^{
+//            @strongify(self);
+//            [self showErrorHudWithText:@"无数据获取权限"];
+//        } walkRunningCallback:^(NSNumber *walkRunning) {
+//            @strongify(self);
+//            [self.stepUserInfo xf_safeSetObject:walkRunning forKey:kStepCount];
+////            _headerView.jrrwView.ljlc.text= [NSString stringWithFormat:@"累计里程：%@公里",[walkRunning stringValue]];
+////            _headerView.jrrwView.processView.persentage=[walkRunning intValue]/80000;
+////            NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
+////            [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
+//
+//        } stepCallback:^(NSNumber *step) {
+//            CGFloat margin2=(self.tableView.size.width -95*3)/3;
+//            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+//
+//            NSString * api_XYmaxValue = [[defaults objectForKey:@"XYmaxValue"] stringValue];
+//            NSString * api_XYminValue = [[defaults objectForKey:@"XYminValue"] stringValue];
+//
+//            NSString * str = [NSString stringWithFormat:@"%@/%@",api_XYmaxValue,api_XYminValue];
+//            NSString * api_xinlv =[[defaults objectForKey:@"heartRateValue"] stringValue];
+//            NSString * api_xueyang =[[defaults objectForKey:@"xueyangRateValue"] stringValue];
+//
+//                if (api_XYmaxValue == NULL) {
+//                [ _headerView.jrrwView.xueyang removeFromSuperview];
+//           _headerView.jrrwView.xueya= [_headerView.jrrwView genItem:@"xueya" titles:@[@"血压",@"--/--",@"mmHg"]];
+//                } else {
+//                    [_headerView.jrrwView.xueya removeFromSuperview];
+//                _headerView.jrrwView.xueya= [_headerView.jrrwView genItem:@"xueya" titles:@[@"血压",str,@"mmHg"]];
+//                }
+//
+//
+//            if (api_xinlv== NULL) {
+//                  [ _headerView.jrrwView.xueyang removeFromSuperview];
+//                _headerView.jrrwView.xinlv= [_headerView.jrrwView genItem:@"xinlv" titles:@[@"心率",@"--",@"BMP"]];
+//            }else{
+//                [_headerView.jrrwView.xinlv removeFromSuperview];
+//                _headerView.jrrwView.xinlv= [_headerView.jrrwView genItem:@"xinlv" titles:@[@"心率",api_xinlv,@"BMP"]];
+//            }
+//
+//            if (api_xueyang==NULL) {
+//                  [ _headerView.jrrwView.xueyang removeFromSuperview];
+//               _headerView.jrrwView.xueyang= [_headerView.jrrwView genItem:@"xueyang" titles:@[@"血氧",@"--",@"%"]];
+//            } else {
+//
+//                [ _headerView.jrrwView.xueyang removeFromSuperview];
+//
+//              _headerView.jrrwView.xueyang= [_headerView.jrrwView genItem:@"xueyang" titles:@[@"血氧",api_xueyang,@"%"]];
+//            }
+//            _headerView.jrrwView.xueya.x =margin2;
+//            _headerView.jrrwView.xinlv.x=_headerView.jrrwView.xueya.x+_headerView.jrrwView.xueya.width+margin2+10;
+//            _headerView.jrrwView.xueyang.x=_headerView.jrrwView.xinlv.x+_headerView.jrrwView.xinlv.width+margin2;
+//            [_headerView.jrrwView.part2 addSubview:_headerView.jrrwView.xueya];
+//            [_headerView.jrrwView.part2 addSubview: _headerView.jrrwView.xinlv];
+//            [_headerView.jrrwView.part2 addSubview:_headerView.jrrwView.xueyang];
+//
+//            @strongify(self);
+//            [self.stepUserInfo xf_safeSetObject:step forKey:kStepCount];
+//
+//
+//            NSString *string1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"sdbs"];
+//
+//            if(string1.length == 0){
+//
+//                _headerView.jrrwView.count.text=@"- -";
+//
+//                _headerView.jrrwView.ljlc.text =[NSString stringWithFormat:@"累计里程：--公里"];
+//                _headerView.jrrwView.reliangLabel.text = [NSString stringWithFormat:@"消耗热量：--卡"];
+//                 _headerView.jrrwView.mubiao.textColor=kGetColor(93,187,177);
+//
+//                _headerView.jrrwView.processView.persentage= 0.00/80000;
+//                NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
+//                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
+//
+//
+//            }else  {
+//
+//                _headerView.jrrwView.count.text=[step stringValue];
+//                double gongli = [step doubleValue] * 0.00065;
+//                _headerView.jrrwView.mubiao.text =[NSString stringWithFormat:@"设定目标：%@",string1];;
+//                _headerView.jrrwView.ljlc.text =[NSString stringWithFormat:@"累计里程：%.2f公里",gongli];
+//                int kaluli =  62*gongli*0.8;
+//                _headerView.jrrwView.reliangLabel.text = [NSString stringWithFormat:@"消耗热量：%d卡",kaluli];
+//                _headerView.jrrwView.processView.persentage= [step floatValue]/[string1 longValue];
+//                NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
+//                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
+//            }
+//
+//        }];
+//    }
 }
 
 - (void)disafterDismiss {
@@ -634,16 +673,17 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
 }
 
 - (void)setup {
-    [YSThemeManager setNavigationTitle:@"今日任务" andViewController:self];
-    [self setupNavRightButtonWithImage:@"ys_healthmanager_comment" showBage:NO number:1];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    //健康资讯数据
+    self.InfosModels = [NSMutableArray array];
+    //请求数据
+    [self requestData];
     @weakify(self);
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
-        [self refreshPage];
-        [self disafterDismiss];
+        [self requestData];
     }];
-    self.tableView.mj_header = header;
     UIImageView *floatImageView = [UIImageView new];
     floatImageView.width = 90;
     floatImageView.height = 90;
@@ -729,9 +769,10 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
     [super viewDidLoad];
 //    [self.securityVerifyCodeImgManager requestData];
     
-    
-    
     [self setup];
+    
+    _titleArray=@[@"运动",@"血压",@"血糖",@"体重"];
+    _iconArray=@[@"consummate_yundong_image",@"consummate_xueya_image",@"consummate_xuntang_image",@"Consummate_tizhong_image"];
     self.view.backgroundColor = JGColor(247, 247, 247, 1);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"kUserDidLoadMainController" object:nil];
@@ -787,7 +828,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
     switch (section) {
         case 0:{
             if (!self.headerView) {
-                YSHealthManageHeaderView *headerView = [[YSHealthManageHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, [YSHealthManageHeaderView tableViewHearderHeight]) buttonClickCallback:^(NSInteger index) {
+                YSHealthManageHeaderView *headerView = [[YSHealthManageHeaderView alloc] initWithFrame:CGRectMake(0,0, ScreenWidth, [YSHealthManageHeaderView tableViewHearderHeight]) buttonClickCallback:^(NSInteger index) {
                     @strongify(self);
                     [self headerViewButtonClickWithIdex:index];
                 } clickCallback:^(id obj){
@@ -841,6 +882,10 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
             break;
         case 2:
         {
+            return [UIView new];
+        }
+        break;
+        case 3:{
             YSHealthyTaskView *view = [[YSHealthyTaskView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 84.0/2) questionnaire:self.questionnaire tasks:self.taskList addTaskCallback:^{
                 YSHealthyManageWebController *testWebController = [[YSHealthyManageWebController alloc] initWithWebType:YSHealthyManageAddTaskType uid:self.userCustome.uid];
                 [self.navigationController pushViewController:testWebController animated:YES];
@@ -849,52 +894,21 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
             return view;
         }
             break;
-        case 3:
-        {
+        case 4:{
             return [UIView new];
         }
             break;
-        case 4:
-        {
-            UIView *healthyCircle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 84.0/2)];
-            UILabel *lab = [[UILabel alloc] init];
-            lab.x = 12.0f+21;
-            lab.y = 0;
-            lab.width = ScreenWidth;
-            lab.height = healthyCircle.height;
-            lab.font = JGRegularFont(15);
-            lab.text =@"积分兑换";
-            lab.backgroundColor = JGClearColor;
-            healthyCircle.backgroundColor = JGWhiteColor;
-            [healthyCircle addSubview:lab];
-            
-            UIView *themeView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 5, 20)];
-            themeView.layer.cornerRadius = 2.5;
-            
-            themeView.backgroundColor = [YSThemeManager themeColor];
-            [healthyCircle addSubview:themeView];
-            themeView.centerY=lab.centerY;
-            
-            UILabel *moreButton=[UILabel new];
-            moreButton.textAlignment=NSTextAlignmentRight;
-            moreButton.text= @"更多";
-            moreButton.textColor = [YSThemeManager themeColor];
-            moreButton.font = JGRegularFont(13);
-            moreButton.x = ScreenWidth - 150 - 16;
-            moreButton.width = 150;
-            moreButton.height = healthyCircle.height;;
-            moreButton.y = 5;
-            [moreButton addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-                @strongify(self);
-                [self gotojifenshangcheng];
+        case 5:{
+            YSHealthyInformationVIew *view = [[YSHealthyInformationVIew alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 84.0/2)  addTaskCallback:^{
+//                YSHealthyManageWebController *testWebController = [[YSHealthyManageWebController alloc] initWithWebType:YSHealthyManageAddTaskType uid:self.userCustome.uid];
+//                [self.navigationController pushViewController:testWebController animated:YES];
             }];
-            moreButton.userInteractionEnabled=YES;
-            [healthyCircle addSubview:moreButton];
-            
-            UIView * bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, healthyCircle.height - 0.5, ScreenWidth, 0.5)];
-            bottomView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.2];
-            [healthyCircle addSubview:bottomView];
-            return healthyCircle;
+            [view setBackgroundColor:JGWhiteColor];
+            return view;
+        }
+            break;
+        case 6:{
+            return [UIView new];
         }
             break;
         default:
@@ -907,17 +921,26 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
     switch (section) {
         case 0:
         {
-            return 400;//(358.5 - 9.2 - 4) + self.adContentItem.adTotleHeight;
+            return 300-20;//(358.5 - 9.2 - 4) + self.adContentItem.adTotleHeight;
         }
-            break;
+        break;
         case 1:
-            return 8.;
+            return 0.01;
             break;
         case 2:
-            return 84.0 / 2;
+            return 0.01;
+            break;
+        case 3:
+            return 84.0/2;
             break;
         case 4:
-            return 84.0 / 2;
+            return 0.01;
+            break;
+        case 5:
+            return 84.0/2;
+            break;
+        case 6:
+            return 84.0/2;
             break;
         default:
             break;
@@ -926,7 +949,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -938,13 +961,19 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
             return 1;
             break;
         case 2:
-            return 1;//[HealthyManageData taskDatasWithTaskList:self.taskList].count;
+            return 4;//[HealthyManageData taskDatasWithTaskList:self.taskList].count;
             break;
         case 3:
             return 1;
             break;
         case 4:
             return 1;//self.circles.count;
+        case 5:
+            return 1;
+            break;
+        case 6:
+            return 1;
+            break;
         default:
             break;
     }
@@ -953,9 +982,9 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-//        case 0:
-//            return 36.0f;
-//            break;
+        case 0:
+            return 0.001f;
+            break;
         case 1:
         {
             return 0.001f;
@@ -963,6 +992,10 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
             break;
         case 2:
         {
+            return 100;
+        }
+           break;
+        case 3:
             if (self.taskList.result) {
                 if (self.taskList.successCode) {
                     if (self.taskList.healthTaskList.count) {
@@ -978,15 +1011,18 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
             }else{
                 return kHealthyTaskCellHeight(140);
             }
-        }
-            break;
-        case 3:
-            return 180;//kHealthyStepCellHeight;
+
             break;
         case 4:
         {
-            return  ((self.intergralProductsListArrayData.count%2)+self.intergralProductsListArrayData.count/2)*(ScreenWidth-80)/2;
+            return 180;//kHealthyStepCellHeight;
         }
+            break;
+        case 5:
+            return 125;
+            break;
+        case 6:
+            return 200;
             break;
         default:
             break;
@@ -1008,7 +1044,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
             }
         }
             break;
-        case 3:
+        case 4:
         {
             if ([self.questionnaire.result integerValue] == 15) {
                 
@@ -1017,7 +1053,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
             }
         }
             break;
-        case 5:
+        case 6:
         {
             /**
              *  push到帖子详情 */
@@ -1033,7 +1069,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
     YSFriendCircleDetailController *friendCircleDetailController = [[YSFriendCircleDetailController alloc] initWithCircleModel:frame];
     [self.navigationController pushViewController:friendCircleDetailController animated:YES];
 }
-
+#define user_tiezi @"/circle/look_invitation?invitationId="
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
 //        static NSString *CellId = @"identifierId";
@@ -1084,6 +1120,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
                 }];
             }];
             cell.consultImage = self.chunYuEntranceImage;
+             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else {
             static NSString *cellId = @"kDoctorConsultHiddenCell";
@@ -1094,26 +1131,40 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
             return cell;
         }
     }else if (indexPath.section  == 2) {
-        YSHealthTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"healthtaskcellid"];
-        if (cell == nil) {
-            cell = [[YSHealthTaskTableViewCell alloc] initWithStyle:UITableViewCellSelectionStyleNone reuseIdentifier:@"healthtaskcellid"];
-            //设置你的cell
+        YSConTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:@"YSConTableViewCellId"];
+        if (cell==nil) {
+            cell=[[NSBundle mainBundle]loadNibNamed:@"YSConTableViewCell" owner:self options:nil][0];
         }
-        cell.models = [HealthyManageData taskDatasWithTaskList:self.taskList];
-        cell.delegate = self;
-        
-        cell.addTask = ^{
-            YSHealthyManageWebController *testWebController = [[YSHealthyManageWebController alloc] initWithWebType:YSHealthyManageAddTaskType uid:self.userCustome.uid];
-            [self.navigationController pushViewController:testWebController animated:YES];
-        };
+        cell.iconImage.image=[UIImage imageNamed:_iconArray[indexPath.row]];
+        cell.textlabel.text=_titleArray[indexPath.row];
+    
+        cell.addButton.hidden=YES;
+        cell.laiYuanlabel.hidden=YES;
+        cell.timelabel.hidden=YES;
+        cell.conbackImage.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
+        cell.conbackImage.layer.cornerRadius = 8;
+        cell.conbackImage.layer.shadowColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:0.9].CGColor;
+        cell.conbackImage.layer.shadowOffset = CGSizeMake(0,0);
+        cell.conbackImage.layer.shadowOpacity = 1;
+        cell.conbackImage.layer.shadowRadius = 10;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if (indexPath.section == 3) {
-//        @weakify(self);
-//        return [YSHealthyStepCell setupWithTableView:tableView data:self.stepUserInfo updateStep:^{
-//            @strongify(self);stepUserInfo
-//            [UIAl ertView xf_showWithTitle:@"正在更新记步数据..." message:nil delay:2.0 onDismiss:NULL];
-//            [self requestStepData];
-//        }];
+    }else if(indexPath.section==3){
+            YSHealthTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"healthtaskcellid"];
+            if (cell == nil) {
+                cell = [[YSHealthTaskTableViewCell alloc] initWithStyle:UITableViewCellSelectionStyleNone reuseIdentifier:@"healthtaskcellid"];
+                //设置你的cell
+            }
+            cell.models = [HealthyManageData taskDatasWithTaskList:self.taskList];
+            cell.delegate = self;
+    
+            cell.addTask = ^{
+                YSHealthyManageWebController *testWebController = [[YSHealthyManageWebController alloc] initWithWebType:YSHealthyManageAddTaskType uid:self.userCustome.uid];
+                [self.navigationController pushViewController:testWebController animated:YES];
+            };
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+    }else if (indexPath.section == 4) {
         YSJijfenrenwTableVIewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"jirirenwucellid"];
         if (cell == nil) {
             cell = [[YSJijfenrenwTableVIewCell alloc] initWithStyle:UITableViewCellSelectionStyleNone reuseIdentifier:@"jirirenwucellid"];
@@ -1126,16 +1177,31 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
         }
         cell.models = self.intergralListArrayData;
         cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if (indexPath.section == 4) {
-        YSjifenduihuanView *cell = [tableView dequeueReusableCellWithIdentifier:@"jifenduihuanCellid"];
-        if (cell == nil) {
-            cell = [[YSjifenduihuanView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"jifenduihuanCellid"];
+    }else if(indexPath.section == 5){
+        static NSString *cellId = @"yshotinfotableviewcell";
+        YSHotInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:heathInfoCellID];
+        if (!cell) {
+            cell = [[YSHotInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         }
-        cell.models = self.intergralProductsListArrayData;
+//        NSDictionary * dic = [self.InfosModels objectAtIndex:1];
+//        NSString *url = [NSString stringWithFormat:@"%@%@%@",Base_URL,user_tiezi,[dic objectForKey:@"id"]];
+//        cell.strUrl = url;
+//        cell.models=dic;
+//        cell.dic = dic;
+        cell.nav1 = self.navigationController;
+        [cell panduandianzan];
+         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else if(indexPath.section == 6){
+        YSGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
+        cell.models = _GoodsModels;
         cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+
     return nil;
 }
 
@@ -1191,6 +1257,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
         [UIAlertView xf_showWithTitle:@"网络好像是不很给力，请检查网络后再试" message:nil delay:1.0 onDismiss:NULL];
     }];
 }
+
 
 - (void)fixesToolsActionWithType:(ToolsButtonsClickType)type indexPath:(NSIndexPath *)indexPath {
     YSFriendCircleFrame *frame = [self.circles xf_safeObjectAtIndex:indexPath.row];
@@ -1352,7 +1419,6 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
         
     }];
 }
-
 /**
  *  个人信息请求成功 */
 - (void)_personalInfoSuccessWithLists:(NSArray *)lists userInfo:(YSCircleUserInfo *)userInfo uid:(NSString *)uid {
@@ -1831,35 +1897,79 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
 
 
 - (void)requestMyIntegralExchangeList {
-    IntegralListByCriteriaRequest *request = [[IntegralListByCriteriaRequest alloc] init:GetToken];
-    request.api_mobileRecommend = @"2";
-    request.api_pageSize = @4;
-    request.api_pageNum = @1;
-    VApiManager *manager = [[VApiManager alloc] init];
-   
-    
-    [manager integralListByCriteria:request success:^(AFHTTPRequestOperation *operation, IntegralListByCriteriaResponse *response) {
-        
-        NSLog(@"%@.....",operation);
-        
-            NSArray *arrayList = [response.integralList copy];
-            [self.intergralProductsListArrayData removeAllObjects];
-            for (NSInteger i = 0; i < arrayList.count; i++) {
-                NSDictionary *dicDetailsList = [NSDictionary dictionaryWithDictionary:arrayList[i]];
-                [self.intergralProductsListArrayData addObject:[JGIntegralCommendGoodsModel objectWithKeyValues:dicDetailsList]];
-            }
-            [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [MBProgressHUD hideHUDForView:weak_self.view animated:YES];
-//        [weak_self.tableView.mj_header endRefreshing];
-//        [weak_self.tableView.mj_footer endRefreshing];
-    }];
+//    IntegralListByCriteriaRequest *request = [[IntegralListByCriteriaRequest alloc] init:GetToken];
+//    request.api_mobileRecommend = @"2";
+//    request.api_pageSize = @4;
+//    request.api_pageNum = @1;
+//    VApiManager *manager = [[VApiManager alloc] init];
+//
+//    [manager integralListByCriteria:request success:^(AFHTTPRequestOperation *operation, IntegralListByCriteriaResponse *response) {
+//
+//        NSLog(@"%@.....",operation);
+//
+//            NSArray *arrayList = [response.integralList copy];
+//            [self.intergralProductsListArrayData removeAllObjects];
+//            for (NSInteger i = 0; i < arrayList.count; i++) {
+//                NSDictionary *dicDetailsList = [NSDictionary dictionaryWithDictionary:arrayList[i]];
+//                [self.intergralProductsListArrayData addObject:[JGIntegralCommendGoodsModel objectWithKeyValues:dicDetailsList]];
+//            }
+//            [self.tableView reloadData];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+////        [MBProgressHUD hideHUDForView:weak_self.view animated:YES];
+////        [weak_self.tableView.mj_header endRefreshing];
+////        [weak_self.tableView.mj_footer endRefreshing];
+//    }];
 }
 -(void)gotojifenshangcheng{
     IntegralNewHomeController *integralShopHomeController = [[IntegralNewHomeController alloc] init];
     integralShopHomeController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:integralShopHomeController animated:YES];
 }
-//获取用积分信息
+#pragma mark ---requestData
+- (void)requestData;{
+    
+    //商品推荐
+    [self _requestGoodsShowcaseGoodsDataWithCaseID];
+    @weakify(self);
+    [self showHud];
+    self.pageNum = 1;
+    [YSHealthyMessageDatas healthyMessageMostDaysSuccess:^(NSArray *datas) {
+        @strongify(self);
+        [self.InfosModels removeAllObjects];
+        [self.InfosModels xf_safeAddObjectsFromArray:datas];
+        [self.tableView reloadData];
+        [self hiddenHud];
+    } fail:^{
+        @strongify(self);
+        [self hiddenHud];
+    } pageNumber:self.pageNum];
 
+}
+
+#pragma mark - 首页商品推荐下面的商品列表 caseid=26
+-(void)_requestGoodsShowcaseGoodsDataWithCaseID{
+    
+//    GoodsCaseListRequest *request = [[GoodsCaseListRequest alloc] init:GetToken];
+//    request.api_id = @26;
+//
+//    [_vapiManager goodsCaseList:request success:^(AFHTTPRequestOperation *operation, GoodsCaseListResponse *response) {
+//        JGLog(@"good  list response %@",response);
+//        NSMutableArray *caseGoodsArr = [NSMutableArray arrayWithCapacity:response.goodsList.count];
+//        for (NSDictionary *dic in response.goodsList) {
+//            GoodsDetailModel *model = [[GoodsDetailModel alloc] initWithJSONDic:dic];
+//            [caseGoodsArr addObject:model];
+//            //            NSLog(@"imgUrl - %@",model.goodsMainPhotoPath);
+//        }
+//        self.GoodsModels = caseGoodsArr;
+//        [self.tableView reloadData];
+//
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//
+//        //请求猜您喜欢数据
+//        //        [self _requestGuessYouLikeData];
+//
+//    }];
+    
+    
+}
 @end

@@ -29,8 +29,6 @@
 
 - (void)setup {
     UITapGestureRecognizer *ui=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(alickList)];
-    
-   
 
     CGFloat contentWidth=self.width;
     
@@ -169,23 +167,14 @@
 }
 
 -(void)alickList{
-    
 
     SDViewController * view =[[SDViewController alloc] init];
-    
-  
     id object = [self nextResponder];
     while (![object isKindOfClass:[UIViewController class]] && object != nil) {
         object = [object nextResponder];
     }
     UIViewController *superController = (UIViewController*)object;
-  
     [superController.navigationController pushViewController:view animated:YES];
-  
-    
-
-  
-
 }
 
 @end

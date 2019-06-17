@@ -361,7 +361,6 @@
 
 - (void)developModeChange {
     [UIAlertView xf_shoeWithTitle:@"提示" message:@"更改测试环境" buttonsAndOnDismiss:@"取消",@".102内网环境",@".cn测试环境",@".com正式环境", ^(UIAlertView *alertView, NSInteger index){
-        JGLog(@"selecte index:%ld",index);
         switch (index) {
             case 0:
                 // 取消

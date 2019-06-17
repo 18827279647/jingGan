@@ -40,6 +40,7 @@ static NSString *cellId = @"cellId";
 @property (strong,nonatomic)  UIWebView *web;
 @property (assign, nonatomic) int isPraise;
 @property (nonatomic, assign)BOOL  isSel;
+@property(nonatomic,assign)BOOL isRX;
 @end
 
 @implementation YSHotInfoTableViewCell
@@ -47,22 +48,31 @@ static NSString *cellId = @"cellId";
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        if ([reuseIdentifier isEqualToString:@"RXHotInfoTableViewCell"]) {
+            self.isRX=true;
+        }
         [self setUpUI];
     }
     return self;
 }
 
 
+
 //首页点赞
 - (void)setUpUI{
     CGFloat w=ScreenWidth;
     CGFloat h=ScreenWidth/4+20;
-    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, w-20, h-10)];
+    UIView *whiteView;
+    if (self.isRX) {
+        whiteView = [[UIView alloc] initWithFrame:CGRectMake(10,0, w-20, h)];
+    }else{
+        whiteView = [[UIView alloc] initWithFrame:CGRectMake(10,10, w-20, h-10)];
+    }
     self.contentView.backgroundColor = JGColor(249, 249, 249, 1);
     whiteView.backgroundColor=[UIColor whiteColor];
     [self.contentView addSubview:whiteView];
 
-    
+
     _titleLab = [[UILabelTopLeft alloc] initWithFrame:CGRectMake(10, 20, (w-30)/3*2-10, (h-30)/3*2)];
     _titleLab.numberOfLines = 2;
     [whiteView addSubview:_titleLab];

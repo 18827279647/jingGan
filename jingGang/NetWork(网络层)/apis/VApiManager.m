@@ -2937,4 +2937,11 @@ NSString * const kOAuthGrantType = @"password";
     [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
 }
 
+//新增用户个人数据中心及健康参数数据，及专区数据
+-(void)RXMakeUserDetail:(RXUserDetailRequest*)request success:(void (^)(AFHTTPRequestOperation *operation, RXUserDetailResponse *response))success
+                failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
 @end

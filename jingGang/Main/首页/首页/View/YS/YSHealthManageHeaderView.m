@@ -54,7 +54,7 @@
 }
 
 + (CGFloat)tableViewHearderHeight {
-    return (190 + 2 * 8 );//+ [self advertViewHeight]
+    return (100 + 2 * 8 );//+ [self advertViewHeight]
 }
 
 + (CGFloat)advertViewHeight {
@@ -72,13 +72,14 @@
     [super layoutSubviews];
     // 基本信息
     if (!self.baseInfoView) {
-        YSBaseInfoView *baseInfoView =[[YSBaseInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50) withData:nil];
+        YSBaseInfoView*baseInfoView=[[[NSBundle mainBundle]loadNibNamed:@"YSBaseInfoView" owner:self options:nil]firstObject];
+        baseInfoView.frame=CGRectMake(0,0,ScreenWidth,300);
+        baseInfoView.userInteractionEnabled=YES;
         [self addSubview:baseInfoView];
         self.baseInfoView = baseInfoView;
     }else {
-        self.baseInfoView.frame = CGRectMake(0, 0, ScreenWidth, 50);
+        self.baseInfoView.frame = CGRectMake(0, 0, ScreenWidth,300);
     }
-
     // 功能信息
 //    @weakify(self);
 //    if (!self.funcView) {
@@ -91,25 +92,24 @@
 //    }else {
 //        self.funcView.frame = CGRectMake(0, MaxY(self.baseInfoView) + 8, ScreenWidth, 100);
 //    }
-    //今日任务步数模块
-    @weakify(self);
-    if (!self.jrrwView) {
-        YSJirirenwubushuView *jrrwView = [[YSJirirenwubushuView alloc] initWithFrame:CGRectMake(0, MaxY(self.baseInfoView) + 8, ScreenWidth, 400) clickCallback:^(NSInteger clickIndex) {
-            @strongify(self);
-            BLOCK_EXEC(self.buttonClickCallback,clickIndex);
-        } cxjcCallback:^(id obj) {
-            
-//                                              NSDictionary *dict = (NSDictionary *)obj;
-                                              BLOCK_EXEC(self.clickCallback, obj);
-//                DefuController *defuVC = [[DefuController alloc] init];
-//                [self.navigationController pushViewController:defuVC animated:YES];
-                                          }];
-        [self addSubview:jrrwView];
-        self.jrrwView = jrrwView;
-    }else {
-        self.jrrwView.frame = CGRectMake(0, MaxY(self.baseInfoView) + 8, ScreenWidth, 400);
-    }
-    
+//    //今日任务步数模块
+//    @weakify(self);
+//    if (!self.jrrwView) {
+//        YSJirirenwubushuView *jrrwView = [[YSJirirenwubushuView alloc] initWithFrame:CGRectMake(0, MaxY(self.baseInfoView) + 8, ScreenWidth, 400) clickCallback:^(NSInteger clickIndex) {
+//            @strongify(self);
+//            BLOCK_EXEC(self.buttonClickCallback,clickIndex);
+//        } cxjcCallback:^(id obj) {
+//
+////                                              NSDictionary *dict = (NSDictionary *)obj;
+//                                              BLOCK_EXEC(self.clickCallback, obj);
+////                DefuController *defuVC = [[DefuController alloc] init];
+////                [self.navigationController pushViewController:defuVC animated:YES];
+//                                          }];
+//        [self addSubview:jrrwView];
+//        self.jrrwView = jrrwView;
+//    }else {
+//        self.jrrwView.frame = CGRectMake(0, MaxY(self.baseInfoView) + 8, ScreenWidth, 400);
+//    }
     // 广告位
 //    if (!self.adContentView) {
 //        YSAdContentView *adContentView = [[YSAdContentView alloc] initWithFrame:CGRectMake(0, MaxY(self.jrrwView) + 2, self.width, self.adContentItem.adTotleHeight) clickItem:^(YSNearAdContent *adContentModel) {
@@ -175,7 +175,7 @@
         [subViews removeFromSuperview];
     }
     
-    YSBaseInfoView *baseInfoView =[[YSBaseInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50) withData:nil];
+    YSBaseInfoView *baseInfoView =[[YSBaseInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth,300) withData:nil];
     [self addSubview:baseInfoView];
     self.baseInfoView = baseInfoView;
     

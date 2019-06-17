@@ -340,4 +340,5 @@ return shared##classname;                               \
 #endif
 
 
+
 #endif /* CRMacros_h */

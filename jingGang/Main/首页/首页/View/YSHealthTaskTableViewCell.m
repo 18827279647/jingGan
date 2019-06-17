@@ -53,6 +53,9 @@ static NSString *cellId = @"cellId";
     _collectionView.dataSource = self;
     _collectionView.tag=0;
     [_collectionView registerClass:[HealthTaskViewCell class] forCellWithReuseIdentifier:cellId];
+    _collectionView.showsVerticalScrollIndicator = NO;
+    
+    _collectionView.showsHorizontalScrollIndicator = NO;
     [self.contentView addSubview:_collectionView];
     [self.contentView addSubview:_zeroContioner];
 }

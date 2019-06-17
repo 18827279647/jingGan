@@ -43,24 +43,22 @@
     /**
      *  两个空格符 */
     NSString *text;
-    BOOL isHidden = NO;
-    if (!questionnaire.successCode || !taskList.healthTaskList.count || [taskList.result integerValue] == 210)  {
-        text = @"";
-//        isHidden = YES;
-    }else {
-        text = [self taskProgressWithTasks:taskList.healthTaskList];
-//        isHidden = NO;
-    }
-   
-    NSLog(@"..............%@",text);
-    NSLog(@".....%ld",text.length);
+     text = [self taskProgressWithTasks:taskList.healthTaskList];
+//    BOOL isHidden = NO;
+//    if (!questionnaire.successCode || !taskList.healthTaskList.count || [taskList.result integerValue] == 210)  {
+//        text = @"";
+////        isHidden = YES;
+//    }else {
+//        text = [self taskProgressWithTasks:taskList.healthTaskList];
+////        isHidden = NO;
+//    }
     UILabel *titleLab = [[UILabel alloc] init];
-    titleLab.x = 12+21+100;
+    titleLab.x = 20+75+10;
     titleLab.y = 0;
     titleLab.width = 200.0;
     titleLab.height = self.height;
     titleLab.textAlignment = NSTextAlignmentLeft;
-    titleLab.font = JGRegularFont(14);
+    titleLab.font = JGRegularFont(12);
     titleLab.textColor = [UIColor lightGrayColor];
     titleLab.attributedText = [text addAttributeWithString:text
                                                 attriRange:NSMakeRange(5, text.length - 8)
@@ -69,20 +67,20 @@
     
     
     UILabel *titleLab1 = [[UILabel alloc] init];
-    titleLab1.x = 12+21;
+    titleLab1.x =20;
     titleLab1.y = 0;
-    titleLab1.width = 100;
+    titleLab1.width = 80;
     titleLab1.height = self.height;
     titleLab1.textAlignment = NSTextAlignmentLeft;
-    titleLab1.font = JGRegularFont(15);
+    titleLab1.font = JGRegularFont(16);
     titleLab1.textColor = [UIColor blackColor];
-    titleLab1.text = @"今日健康清单";
+    titleLab1.text = @"今日任务";
     
-    UIView *themeView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 5, 20)];
-    themeView.layer.cornerRadius = 2.5;
-    themeView.backgroundColor = [YSThemeManager themeColor];
-    [self addSubview:themeView];
-    themeView.centerY=titleLab.centerY;
+//    UIView *themeView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 5, 20)];
+//    themeView.layer.cornerRadius = 2.5;
+//    themeView.backgroundColor = [YSThemeManager themeColor];
+//    [self addSubview:themeView];
+//    themeView.centerY=titleLab.centerY;
     [self addSubview:titleLab];
     [self addSubview:titleLab1];
     
@@ -103,6 +101,7 @@
         addTaskButton.frame = buttonBgImageView.frame;
         [addTaskButton setTitle:@"添加任务" forState:UIControlStateNormal];
         [addTaskButton setTitleColor: [YSThemeManager themeColor] forState:UIControlStateNormal];
+//        [addTaskButton setImage:[UIImage imageNamed:@"consummate_right_image"] forState:UIControlStateNormal];
         addTaskButton.titleLabel.font = JGFont(14);
         addTaskButton.backgroundColor = JGClearColor;
         [addTaskButton addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {

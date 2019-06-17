@@ -162,10 +162,12 @@
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {
             if (failure) {
+                
                 failure(task, error);
             }
         } else {
             if (success) {
+                
                 success(task, responseObject);
             }
         }

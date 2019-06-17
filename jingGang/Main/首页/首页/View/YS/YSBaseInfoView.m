@@ -53,6 +53,7 @@
 
 - (void)setup {
     self.backgroundColor = JGWhiteColor;
+
 //    UIImage *img = [UIImage imageNamed:@"ys_healthymanager_locationicon"];
 //    UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
 //    imgView.x = 12.0f;
@@ -60,62 +61,57 @@
 //    imgView.width = img.imageWidth;
 //    imgView.height = img.imageHeight;
 //    [self addSubview:imgView];
-    NSString *localName =[NSString stringWithFormat:@"%@,%@",[YSLoginManager userNickName], [self getTheTimeBucket] ];
-    UILabel *localLab = [[UILabel alloc] init];
-    localLab.x = 12;
-    localLab.height = 50;
-    localLab.width = 130;
-    localLab.font = JGFont(14);
-    localLab.y = (self.height - localLab.height) / 2;
-    localLab.text = localName;
-    [self addSubview:localLab];
-    self.localLab = localLab;
     
-    UIImage *weatherImg = [UIImage imageNamed:@"ys_healthmanager_weather_01"];
-    UIImageView *weatherIcon = [[UIImageView alloc] initWithImage:weatherImg];
-    weatherIcon.y = (self.height -30) / 2;
-    weatherIcon.width = 28;
-    weatherIcon.height =  28;;
-    [self addSubview:weatherIcon];
-    self.weatherIcon = weatherIcon;
+//    UIImageView*imageView=[[UIImageView alloc]initWithFrame:self.frame];
+//    imageView.image=[UIImage imageNamed:@"Consummate_back_image"];
+//    [self addSubview:imageView];
+//
+//
+//
+//    NSString *localName =[NSString stringWithFormat:@"%@,%@",[YSLoginManager userNickName], [self getTheTimeBucket] ];
+//    UILabel *localLab = [[UILabel alloc] init];
+//    localLab.x = 12;
+//    localLab.height = 50;
+//    localLab.width = 130;
+//    localLab.font = JGFont(14);
+//    localLab.y = (self.height - localLab.height) / 2;
+//    localLab.text = localName;
+//    [self addSubview:localLab];
+//    self.localLab = localLab;
+//
+//    UIImage *weatherImg = [UIImage imageNamed:@"ys_healthmanager_weather_01"];
+//    UIImageView *weatherIcon = [[UIImageView alloc] initWithImage:weatherImg];
+//    weatherIcon.y = (self.height -30) / 2;
+//    weatherIcon.width = 28;
+//    weatherIcon.height =  28;;
+//    [self addSubview:weatherIcon];
+//    self.weatherIcon = weatherIcon;
+//
+//    UILabel *weatherLab = [[UILabel alloc] init];
+//    weatherLab.width = 210;
+//    weatherLab.x = self.width - weatherLab.width - 12;
+//    weatherLab.height = 30;
+//    weatherLab.y =  (self.height -30) / 2;
+//    weatherLab.textAlignment = NSTextAlignmentRight;
+//    weatherLab.font = JGFont(12.0);
+//    [self addSubview:weatherLab];
+//    self.weatherLab = weatherLab;
+//    self.weatherIcon.x = CGRectGetMinX(self.weatherLab.frame) - 10;
+//
+//    UILabel *dateLab = [[UILabel alloc] init];
+//    dateLab.x = weatherIcon.x;
+//    dateLab.y = MaxY(weatherIcon) + 4.2;
+//    dateLab.width = 134;
+//    dateLab.height = 22;
+//    dateLab.textAlignment = NSTextAlignmentRight;
+//    NSString *dateText = [NSDate getChineseCalendarWithDate:[NSDate date]];
+//    [dateLab setText:[NSString stringWithFormat:@"今天  %@",dateText]];
+//    dateLab.font = JGFont(13);
+////    [self addSubview:dateLab];
+//    self.dateLab = dateLab;
+//    self.dateLab.x = self.width - dateLab.width - 12;
     
-    UILabel *weatherLab = [[UILabel alloc] init];
-    weatherLab.width = 210;
-    weatherLab.x = self.width - weatherLab.width - 12;
-    weatherLab.height = 30;
-    weatherLab.y =  (self.height -30) / 2;
-    weatherLab.textAlignment = NSTextAlignmentRight;
-    weatherLab.font = JGFont(12.0);
-    [self addSubview:weatherLab];
-    self.weatherLab = weatherLab;
-    self.weatherIcon.x = CGRectGetMinX(self.weatherLab.frame) - 10;
-    
-    UILabel *dateLab = [[UILabel alloc] init];
-    dateLab.x = weatherIcon.x;
-    dateLab.y = MaxY(weatherIcon) + 4.2;
-    dateLab.width = 134;
-    dateLab.height = 22;
-    dateLab.textAlignment = NSTextAlignmentRight;
-    NSString *dateText = [NSDate getChineseCalendarWithDate:[NSDate date]];
-    [dateLab setText:[NSString stringWithFormat:@"今天  %@",dateText]];
-    dateLab.font = JGFont(13);
-//    [self addSubview:dateLab];
-    self.dateLab = dateLab;
-    self.dateLab.x = self.width - dateLab.width - 12;
-    
-    UILabel *calendarLab = [[UILabel alloc] init];
-    calendarLab.x = MaxX(dateLab) + 12;
-    calendarLab.y = dateLab.y;
-    calendarLab.width = 48;
-    calendarLab.height = dateLab.height;
-    calendarLab.layer.borderColor = [YSThemeManager buttonBgColor].CGColor;
-    calendarLab.backgroundColor = JGWhiteColor;
-    calendarLab.layer.cornerRadius = 10;
-    calendarLab.clipsToBounds = YES;
-    calendarLab.text = @"小暑";
-    calendarLab.font = JGFont(14.0);
-    calendarLab.layer.borderWidth = 1;
-    calendarLab.textAlignment = NSTextAlignmentCenter;
+
 //    [self addSubview:calendarLab];
 }
 

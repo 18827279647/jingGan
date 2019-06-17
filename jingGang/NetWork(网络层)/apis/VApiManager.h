@@ -718,6 +718,10 @@
 #import "YSMakeDetailResponse.h"
 #import "YSMakeDetailRequest.h"
 
+//用户个人数据中心及健康参数数据，及专区数据
+#import "RXUserDetailRequest.h"
+#import "RXUserDetailResponse.h"
+
 @interface VApiManager : AFHTTPRequestOperationManager
 
 @property (readonly, nonatomic) NSString *clientId;
@@ -1846,4 +1850,8 @@
 -(void) YSMakeDetail:(YSMakeDetailRequest *) request
                success:(void (^)(AFHTTPRequestOperation *operation, YSMakeDetailResponse *response))success
                failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+//新增用户个人数据中心及健康参数数据，及专区数据
+-(void)RXMakeUserDetail:(RXUserDetailRequest*)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserDetailResponse *response))success
+                failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
 @end

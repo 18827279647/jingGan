@@ -32,33 +32,28 @@ static NSString *cellId = @"jifenrenwucellid";
 }
 
 - (void)setUpUI{
+    
+    
     CGFloat width = (ScreenWidth - 32)/4;
-
     CGFloat labHeight = 84.0 / 2;
-    CGFloat marginX = 12.0f;
+    CGFloat marginX = 20;
     UILabel *titleLab = [[UILabel alloc] init];
-    titleLab.x = marginX+21;
+    titleLab.x =marginX;
     titleLab.y = 5;
     titleLab.width = ScreenWidth;
     titleLab.height = labHeight;
+    titleLab.textColor=JGColor(51, 51, 51, 1);
     titleLab.text = @"今日赚积分任务";
-    titleLab.font = JGRegularFont(14);
+    titleLab.font = JGRegularFont(16);
     titleLab.textAlignment = NSTextAlignmentLeft;
     titleLab.userInteractionEnabled=NO;
     [self.contentView addSubview:titleLab];
-    
-    UIView *themeView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 5, 20)];
-    themeView.layer.cornerRadius = 2.5;
-    themeView.backgroundColor = [YSThemeManager themeColor];
-    themeView.userInteractionEnabled=NO;
-    [self addSubview:themeView];
-    themeView.centerY=titleLab.centerY;
     
     _refreshButton=[UILabel new];
     _refreshButton.textAlignment=NSTextAlignmentRight;
     _refreshButton.text= @"当前累计积分：0";
     _refreshButton.textColor  = [UIColor lightGrayColor];
-    _refreshButton.font = JGRegularFont(13);
+    _refreshButton.font = JGRegularFont(12);
     _refreshButton.x = ScreenWidth - 150 - 16;
     _refreshButton.width = 150;
     _refreshButton.height = labHeight;
@@ -66,31 +61,41 @@ static NSString *cellId = @"jifenrenwucellid";
      _refreshButton.userInteractionEnabled=NO;
     [self addSubview:_refreshButton];
     
+
+    _process=[[UILabel alloc] initWithFrame:CGRectMake(marginX,labHeight+10, ScreenWidth-80-marginX, 15)];
+    _process.backgroundColor=JGColor(243,243,243,1);
+    _front=[[UILabel alloc] initWithFrame:CGRectMake(marginX,labHeight+10, ScreenWidth-190-marginX, 15)];
+    _front.backgroundColor=[UIColor colorWithHexString:@"84C7AD"];
+    _process.layer.cornerRadius=_front.layer.cornerRadius=15/2;
+    _process.clipsToBounds =_front.clipsToBounds =  YES;
+    
+    
+    _shuzi=[[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth-60,labHeight+5, 50, 20)];
+    _shuzi.text=@"+124";
+    _shuzi.textAlignment=NSTextAlignmentLeft;
+    _shuzi.textColor=JGColor(234, 83, 83, 1);
+    _shuzi.font = [UIFont fontWithName:@"PingFangSC-Medium" size:13.f];
+    [self addSubview:_process];
+    [self addSubview:_front];
+    [self addSubview:_shuzi];
+
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(90, 85);
     layout.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16);
     layout.minimumLineSpacing = 8;
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, ScreenWidth, 110) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,labHeight+30, ScreenWidth, 110) collectionViewLayout:layout];
     _collectionView.backgroundColor =[UIColor whiteColor];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.tag=1;
     [_collectionView registerClass:[JijfenrenwTableVIewCell class] forCellWithReuseIdentifier:cellId];
+    
+    _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView.showsHorizontalScrollIndicator = NO;
     [self.contentView addSubview:_collectionView];
-    _process=[[UILabel alloc] initWithFrame:CGRectMake(marginX,160, ScreenWidth-80-marginX, 15)];
-    _process.backgroundColor=JGColor(243,243,243,1);
-    _front=[[UILabel alloc] initWithFrame:CGRectMake(marginX,160, ScreenWidth-190-marginX, 15)];
-    _front.backgroundColor=[UIColor colorWithHexString:@"84C7AD"];
-    _process.layer.cornerRadius=_front.layer.cornerRadius=8;
-    _process.clipsToBounds =_front.clipsToBounds =  YES;
-    _shuzi=[[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth-60, 155, 50, 20)];
-    _shuzi.text=@"+124";
-    _shuzi.textAlignment=NSTextAlignmentLeft;
-    _shuzi.textColor=[UIColor colorWithHexString:@"#BFBFBF"];
-    _shuzi.font = [UIFont fontWithName:@"PingFangSC-Medium" size:13.f];
-     [self.contentView addSubview:_process]; [self.contentView addSubview:_front]; [self.contentView addSubview:_shuzi];
+    
 }
 
 - (void)awakeFromNib {
