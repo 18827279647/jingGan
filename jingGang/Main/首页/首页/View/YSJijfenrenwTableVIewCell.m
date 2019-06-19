@@ -33,7 +33,6 @@ static NSString *cellId = @"jifenrenwucellid";
 
 - (void)setUpUI{
     
-    
     CGFloat width = (ScreenWidth - 32)/4;
     CGFloat labHeight = 84.0 / 2;
     CGFloat marginX = 20;
@@ -136,6 +135,8 @@ static NSString *cellId = @"jifenrenwucellid";
     [_delegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
 }
 @end
+
+
 
 @interface JijfenrenwTableVIewCell ()
 @property (nonatomic,strong)UILabel *labelAwardIntegral;

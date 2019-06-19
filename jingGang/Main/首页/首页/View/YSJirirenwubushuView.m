@@ -48,7 +48,7 @@
     _mubiao.textColor=title.textColor=[UIColor colorWithHexString:@"#999999"];
     _count.font = [UIFont fontWithName:@"PingFangSC-Medium" size:28.f];
     _count.textColor=[UIColor colorWithHexString:@"#333333"];
-    title.text=@"今日步数";
+    title.text=@"能量消耗";
     _count.text=@"10000";
     _mubiao.text=@"设定目标";
     title.x=_count.x=_mubiao.x=0;

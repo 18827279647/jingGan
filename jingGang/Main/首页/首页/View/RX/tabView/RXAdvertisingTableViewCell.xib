@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="159" id="KGk-i7-Jjw" customClass="RXAdvertisingTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="159"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="343" height="158.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="KmD-3d-hhm">
+                        <rect key="frame" x="20" y="10" width="303" height="138.5"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="KmD-3d-hhm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="6ul-yE-SyN"/>
+                    <constraint firstAttribute="trailing" secondItem="KmD-3d-hhm" secondAttribute="trailing" constant="20" id="fzt-Ob-rDu"/>
+                    <constraint firstAttribute="bottom" secondItem="KmD-3d-hhm" secondAttribute="bottom" constant="10" id="jCh-g2-hUc"/>
+                    <constraint firstItem="KmD-3d-hhm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="kTu-Wp-eBf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="105" y="162"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="background" width="320" height="568"/>
+    </resources>
+</document>

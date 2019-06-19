@@ -2450,7 +2450,22 @@
 		BE00881122B620FE0046F3DD /* YSConTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE00880F22B620FE0046F3DD /* YSConTableViewCell.m */; };
 		BE00881222B620FE0046F3DD /* YSConTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE00881022B620FE0046F3DD /* YSConTableViewCell.xib */; };
 		BE00881522B64FB00046F3DD /* YSHealthyInformationVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = BE00881422B64FB00046F3DD /* YSHealthyInformationVIew.m */; };
+		BE13DD4122B7CADE00A0E868 /* RXHealthyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE13DD3F22B7CADE00A0E868 /* RXHealthyTableViewCell.m */; };
+		BE13DD4222B7CADE00A0E868 /* RXHealthyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE13DD4022B7CADE00A0E868 /* RXHealthyTableViewCell.xib */; };
+		BE13DD4622B7D27400A0E868 /* RXAdvertisingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE13DD4422B7D27400A0E868 /* RXAdvertisingTableViewCell.m */; };
+		BE13DD4722B7D27400A0E868 /* RXAdvertisingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE13DD4522B7D27400A0E868 /* RXAdvertisingTableViewCell.xib */; };
+		BE13DD4A22B7D68900A0E868 /* RXShoppingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE13DD4922B7D68900A0E868 /* RXShoppingTableViewCell.m */; };
+		BE13DD4E22B7D98400A0E868 /* RXShopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE13DD4C22B7D98400A0E868 /* RXShopCollectionViewCell.m */; };
+		BE13DD4F22B7D98400A0E868 /* RXShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE13DD4D22B7D98400A0E868 /* RXShopCollectionViewCell.xib */; };
 		BE1B66AAA2F550D398C36D047929864B /* NewDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F444EEE22D01435964F54361ED0F0E3 /* NewDetailCell.m */; };
+		BE32109D22B87DCB0004E387 /* RXMotionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32109C22B87DCB0004E387 /* RXMotionTableViewCell.m */; };
+		BE3210A022B881C40004E387 /* RXJirirenwubushuView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32109F22B881C40004E387 /* RXJirirenwubushuView.m */; };
+		BE3210A222B882340004E387 /* RXJirirenwubushuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE3210A122B882340004E387 /* RXJirirenwubushuView.xib */; };
+		BE3210A522B88D8F0004E387 /* CircleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3210A422B88D8F0004E387 /* CircleLoader.m */; };
+		BE3210AC22B899AE0004E387 /* RXBloodPressureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3210AA22B899AE0004E387 /* RXBloodPressureTableViewCell.m */; };
+		BE3210AD22B899AE0004E387 /* RXBloodPressureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE3210AB22B899AE0004E387 /* RXBloodPressureTableViewCell.xib */; };
+		BE3210B022B8B5D20004E387 /* RXUserInfoVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3210AF22B8B5D20004E387 /* RXUserInfoVIew.m */; };
+		BE3210B222B8B5E10004E387 /* RXUserInfoVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE3210B122B8B5E10004E387 /* RXUserInfoVIew.xib */; };
 		BE4D6BE122B5F28C0018F9B9 /* YSBaseInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE4D6BE022B5F28C0018F9B9 /* YSBaseInfoView.xib */; };
 		BE63101422B71EEC0018CE42 /* RXYuHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63101322B71EEC0018CE42 /* RXYuHeadView.m */; };
 		BE63101622B71F170018CE42 /* RXYuHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE63101522B71F170018CE42 /* RXYuHeadView.xib */; };
@@ -7354,7 +7369,31 @@
 		BE00881022B620FE0046F3DD /* YSConTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YSConTableViewCell.xib; sourceTree = "<group>"; };
 		BE00881322B64FB00046F3DD /* YSHealthyInformationVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSHealthyInformationVIew.h; sourceTree = "<group>"; };
 		BE00881422B64FB00046F3DD /* YSHealthyInformationVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSHealthyInformationVIew.m; sourceTree = "<group>"; };
+		BE13DD3E22B7CADE00A0E868 /* RXHealthyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXHealthyTableViewCell.h; sourceTree = "<group>"; };
+		BE13DD3F22B7CADE00A0E868 /* RXHealthyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXHealthyTableViewCell.m; sourceTree = "<group>"; };
+		BE13DD4022B7CADE00A0E868 /* RXHealthyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXHealthyTableViewCell.xib; sourceTree = "<group>"; };
+		BE13DD4322B7D27400A0E868 /* RXAdvertisingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXAdvertisingTableViewCell.h; sourceTree = "<group>"; };
+		BE13DD4422B7D27400A0E868 /* RXAdvertisingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXAdvertisingTableViewCell.m; sourceTree = "<group>"; };
+		BE13DD4522B7D27400A0E868 /* RXAdvertisingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXAdvertisingTableViewCell.xib; sourceTree = "<group>"; };
+		BE13DD4822B7D68900A0E868 /* RXShoppingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXShoppingTableViewCell.h; sourceTree = "<group>"; };
+		BE13DD4922B7D68900A0E868 /* RXShoppingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXShoppingTableViewCell.m; sourceTree = "<group>"; };
+		BE13DD4B22B7D98400A0E868 /* RXShopCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXShopCollectionViewCell.h; sourceTree = "<group>"; };
+		BE13DD4C22B7D98400A0E868 /* RXShopCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXShopCollectionViewCell.m; sourceTree = "<group>"; };
+		BE13DD4D22B7D98400A0E868 /* RXShopCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXShopCollectionViewCell.xib; sourceTree = "<group>"; };
 		BE16E30065EFFC04C843F5B65E98F769 /* MainTainceResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTainceResultVC.m; sourceTree = "<group>"; };
+		BE32109B22B87DCB0004E387 /* RXMotionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXMotionTableViewCell.h; sourceTree = "<group>"; };
+		BE32109C22B87DCB0004E387 /* RXMotionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXMotionTableViewCell.m; sourceTree = "<group>"; };
+		BE32109E22B881C40004E387 /* RXJirirenwubushuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXJirirenwubushuView.h; sourceTree = "<group>"; };
+		BE32109F22B881C40004E387 /* RXJirirenwubushuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXJirirenwubushuView.m; sourceTree = "<group>"; };
+		BE3210A122B882340004E387 /* RXJirirenwubushuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXJirirenwubushuView.xib; sourceTree = "<group>"; };
+		BE3210A322B88D8F0004E387 /* CircleLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleLoader.h; sourceTree = "<group>"; };
+		BE3210A422B88D8F0004E387 /* CircleLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleLoader.m; sourceTree = "<group>"; };
+		BE3210A922B899AE0004E387 /* RXBloodPressureTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXBloodPressureTableViewCell.h; sourceTree = "<group>"; };
+		BE3210AA22B899AE0004E387 /* RXBloodPressureTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXBloodPressureTableViewCell.m; sourceTree = "<group>"; };
+		BE3210AB22B899AE0004E387 /* RXBloodPressureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXBloodPressureTableViewCell.xib; sourceTree = "<group>"; };
+		BE3210AE22B8B5D20004E387 /* RXUserInfoVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXUserInfoVIew.h; sourceTree = "<group>"; };
+		BE3210AF22B8B5D20004E387 /* RXUserInfoVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXUserInfoVIew.m; sourceTree = "<group>"; };
+		BE3210B122B8B5E10004E387 /* RXUserInfoVIew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXUserInfoVIew.xib; sourceTree = "<group>"; };
 		BE4D6BE022B5F28C0018F9B9 /* YSBaseInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YSBaseInfoView.xib; sourceTree = "<group>"; };
 		BE4DCB20AA39B32C7C704428A914F3EB /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
 		BE63101222B71EEC0018CE42 /* RXYuHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXYuHeadView.h; sourceTree = "<group>"; };
@@ -17022,6 +17061,14 @@
 				BE63101222B71EEC0018CE42 /* RXYuHeadView.h */,
 				BE63101322B71EEC0018CE42 /* RXYuHeadView.m */,
 				BE63101522B71F170018CE42 /* RXYuHeadView.xib */,
+				BE32109E22B881C40004E387 /* RXJirirenwubushuView.h */,
+				BE32109F22B881C40004E387 /* RXJirirenwubushuView.m */,
+				BE3210A122B882340004E387 /* RXJirirenwubushuView.xib */,
+				BE3210A322B88D8F0004E387 /* CircleLoader.h */,
+				BE3210A422B88D8F0004E387 /* CircleLoader.m */,
+				BE3210AE22B8B5D20004E387 /* RXUserInfoVIew.h */,
+				BE3210AF22B8B5D20004E387 /* RXUserInfoVIew.m */,
+				BE3210B122B8B5E10004E387 /* RXUserInfoVIew.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -17032,6 +17079,22 @@
 				BE63101722B722140018CE42 /* RXTravelTableViewCell.h */,
 				BE63101822B722140018CE42 /* RXTravelTableViewCell.m */,
 				BE63101922B722140018CE42 /* RXTravelTableViewCell.xib */,
+				BE13DD3E22B7CADE00A0E868 /* RXHealthyTableViewCell.h */,
+				BE13DD3F22B7CADE00A0E868 /* RXHealthyTableViewCell.m */,
+				BE13DD4022B7CADE00A0E868 /* RXHealthyTableViewCell.xib */,
+				BE13DD4322B7D27400A0E868 /* RXAdvertisingTableViewCell.h */,
+				BE13DD4422B7D27400A0E868 /* RXAdvertisingTableViewCell.m */,
+				BE13DD4522B7D27400A0E868 /* RXAdvertisingTableViewCell.xib */,
+				BE13DD4822B7D68900A0E868 /* RXShoppingTableViewCell.h */,
+				BE13DD4922B7D68900A0E868 /* RXShoppingTableViewCell.m */,
+				BE13DD4B22B7D98400A0E868 /* RXShopCollectionViewCell.h */,
+				BE13DD4C22B7D98400A0E868 /* RXShopCollectionViewCell.m */,
+				BE13DD4D22B7D98400A0E868 /* RXShopCollectionViewCell.xib */,
+				BE32109B22B87DCB0004E387 /* RXMotionTableViewCell.h */,
+				BE32109C22B87DCB0004E387 /* RXMotionTableViewCell.m */,
+				BE3210A922B899AE0004E387 /* RXBloodPressureTableViewCell.h */,
+				BE3210AA22B899AE0004E387 /* RXBloodPressureTableViewCell.m */,
+				BE3210AB22B899AE0004E387 /* RXBloodPressureTableViewCell.xib */,
 			);
 			path = tabView;
 			sourceTree = "<group>";
@@ -18944,6 +19007,7 @@
 				EF62027B4828971C2CBE9A1BF66115E9 /* NoTokenApi.plist in Resources */,
 				33BD0FB996B54F77283A46CA01CBD31A /* NodataShowView.xib in Resources */,
 				899F6709C64A8F9C7D6D606B33E23D8B /* NoticeCell.xib in Resources */,
+				BE3210A222B882340004E387 /* RXJirirenwubushuView.xib in Resources */,
 				4134CAA001052EDC20A08BB74A13BAA1 /* OptionViewController.xib in Resources */,
 				B48B55531C1537CF00E1E2DC /* cropArrowTopRight@2x.png in Resources */,
 				7F86E5DE4517B0C766D1EDB9912DAB22 /* OrderConfirmViewController.xib in Resources */,
@@ -18998,6 +19062,7 @@
 				47EC2B33F1C59B36E0E69CEE57D6A80A /* ShoppingCircleCellectionCell.xib in Resources */,
 				51C0A28D2266D15300CAF725 /* ZFPasswordViewController.xib in Resources */,
 				786005E895296DD447F6990E58B3CC09 /* ShoppingHomeController.xib in Resources */,
+				BE3210B222B8B5E10004E387 /* RXUserInfoVIew.xib in Resources */,
 				F1EF3E8EA3AB910DEDA18FFD15E91EC1 /* ShowCaseFirstLevelCollectionCell.xib in Resources */,
 				51D48211227211A00062970E /* JGRedEnvelopeCardCell.xib in Resources */,
 				B1485FC88C7091913AC7C6878D0DD9B3 /* ShowCaseSecondCollectionCell.xib in Resources */,
@@ -19017,6 +19082,8 @@
 				AE8A3FD389AFA2D2669CDBC8BCFB276D /* WInputXingViewController.xib in Resources */,
 				07485F9F1F9E6BCDC0F07E454532674A /* WIntegralCartViewController.xib in Resources */,
 				495BABD55AB3BADA977D5C1BD9534ACD /* WIntegralDeleteTableViewCell.xib in Resources */,
+				BE13DD4F22B7D98400A0E868 /* RXShopCollectionViewCell.xib in Resources */,
+				BE13DD4222B7CADE00A0E868 /* RXHealthyTableViewCell.xib in Resources */,
 				FED53A15A075D56B3D2F6C41AFC7D37A /* WIntegralShopPrompt.xib in Resources */,
 				A56EDDC0E3AF384E29D907D804DA13ED /* WIntegralShopView.xib in Resources */,
 				0AE9748CCB941AE44D7D2A93D9BCCF0C /* WIntegralTableViewCell.xib in Resources */,
@@ -19059,6 +19126,7 @@
 				D04027F45204DEB06F738225F53BE9B4 /* WSJSiftRowTableViewCell.xib in Resources */,
 				70BAF5931D3874E000793F5C /* HeatTestVC.xib in Resources */,
 				0B1CB84AADD02BBA60F95D0462668D4A /* WSProgressBundle.bundle in Resources */,
+				BE13DD4722B7D27400A0E868 /* RXAdvertisingTableViewCell.xib in Resources */,
 				FC952455E2B5165D4E3D5197EEDF63D0 /* WeiboSDK.bundle in Resources */,
 				CE3358DDF1DBD623A845EAD94817C15B /* XKJHMapViewController.xib in Resources */,
 				096EF9951C2972F90078E193 /* DateTools.bundle in Resources */,
@@ -19095,6 +19163,7 @@
 				70CCA77B1C51D5E900ADD4A0 /* JGCouponListCell.xib in Resources */,
 				7035F5961EE526F300E2BE71 /* YSThreeStairClassfyCollectionViewCell.xib in Resources */,
 				B48B553C1C15373800E1E2DC /* PhysicalReportDetailCell.xib in Resources */,
+				BE3210AD22B899AE0004E387 /* RXBloodPressureTableViewCell.xib in Resources */,
 				70CCA6D91C4F68E100ADD4A0 /* JGSettingCell.xib in Resources */,
 				5157BA8E22379574000F9235 /* ZZCircleProgress.bundle in Resources */,
 				511B8F42222F72EF00B04FA4 /* LJTableViewCell.xib in Resources */,
@@ -19503,6 +19572,7 @@
 				0923DD3A1D4096B5002B7F8A /* YYTextLayout.m in Sources */,
 				705F58EB1C2AD87200DDC31D /* UsersRelationListResponse.m in Sources */,
 				F357806BB6833C9D0577005104F31011 /* CollectionServerTableViewCell.m in Sources */,
+				BE13DD4E22B7D98400A0E868 /* RXShopCollectionViewCell.m in Sources */,
 				705F58231C2AD87200DDC31D /* OConsumeStatisListResponse.m in Sources */,
 				091238F31D80FC5100E64820 /* BindingCreatUserResponse.m in Sources */,
 				09B2BAFA1F0CDE330034AFB9 /* YSBaseResponseItem.m in Sources */,
@@ -19528,6 +19598,7 @@
 				EC8239608887123201D4E2B1DEF47424 /* DALabeledCircularProgressView.m in Sources */,
 				C388E649EDB8FF84EBDA5E1A5F36C4EE /* DateCalendarController.m in Sources */,
 				0960A0EE1D5827E200A15507 /* PostPagePostListBylabelIdRequest.m in Sources */,
+				BE13DD4A22B7D68900A0E868 /* RXShoppingTableViewCell.m in Sources */,
 				E22CB2F4E0DF5A97069A44FF8F59B64B /* DefaultAddressTableViewCell.m in Sources */,
 				705F58A51C2AD87200DDC31D /* SnsCheckListResponse.m in Sources */,
 				705502D61EF75D6A0009856A /* YSHotelOrderListModel.m in Sources */,
@@ -19644,6 +19715,7 @@
 				F0561F2B58DD6D9CAB374269110513ED /* GoodStoreRecommendTableView.m in Sources */,
 				63046AB81EA4C0F23D6087BB5116EBDD /* GoodsConsultController.m in Sources */,
 				70BAF5681D38743900793F5C /* zhengZhuangCureCell.m in Sources */,
+				BE32109D22B87DCB0004E387 /* RXMotionTableViewCell.m in Sources */,
 				705F58811C2AD87200DDC31D /* SelfGoodsConfirmResponse.m in Sources */,
 				1440647ABFAA41A5C8FA4F488C54C252 /* GoodsConsultModel.m in Sources */,
 				705F56F51C2AD87200DDC31D /* IntegralListByCriteriaRequest.m in Sources */,
@@ -20243,6 +20315,7 @@
 				416D7E665FEF3C0B13995DEF32206CB4 /* MMDrawerBarButtonItem.m in Sources */,
 				D0711FFF5E2B87915F15E6AF2B86C224 /* MMDrawerController.m in Sources */,
 				705F58DD1C2AD87200DDC31D /* UsersInvitationExtendResponse.m in Sources */,
+				BE3210AC22B899AE0004E387 /* RXBloodPressureTableViewCell.m in Sources */,
 				705F56271C2AD87200DDC31D /* ActHotSaleGoodsInfoApiBO.m in Sources */,
 				705F58731C2AD87200DDC31D /* ReportResultDetailsUpdateResponse.m in Sources */,
 				093AE8131D5DC460006E5884 /* NSDate+ChineseDay.m in Sources */,
@@ -20298,6 +20371,7 @@
 				C96D2EF774DAC47588584BB8CDD0AD36 /* MyStore.m in Sources */,
 				D78E4F858E2419B1DF2393C990F3B21A /* MyStoreCell.m in Sources */,
 				705F57651C2AD87200DDC31D /* ShopCartAddRequest.m in Sources */,
+				BE3210A522B88D8F0004E387 /* CircleLoader.m in Sources */,
 				705F57BE1C2AD87200DDC31D /* UsersInvitationSearchRequest.m in Sources */,
 				705F57251C2AD87200DDC31D /* PersonalCancelRequest.m in Sources */,
 				563C827A32E2A49DD739A2DC82B2B0DB /* NJKWebViewProgress.m in Sources */,
@@ -20371,6 +20445,7 @@
 				705F569A1C2AD87200DDC31D /* ShopUserAddress.m in Sources */,
 				42104E5D20CB156A3EBC5C62708624E9 /* NSObject+FBKVOController.m in Sources */,
 				09B7F1511D50DBD5001DD36A /* YSComposeStatusController.m in Sources */,
+				BE3210B022B8B5D20004E387 /* RXUserInfoVIew.m in Sources */,
 				705F57781C2AD87200DDC31D /* ShopTradePaymetViewRequest.m in Sources */,
 				094269FD1D83FC7B00C49A7C /* UsersMobileGoBindRequest.m in Sources */,
 				70AF74941EEF913F00F4030E /* YSHotelOrderDetailController.m in Sources */,
@@ -21392,6 +21467,7 @@
 				705F566A1C2AD87200DDC31D /* OperatorProfit.m in Sources */,
 				705F57941C2AD87200DDC31D /* SnsIntegralGetRequest.m in Sources */,
 				099518581C181F5900FE6B79 /* JGActivityCollectionView.m in Sources */,
+				BE13DD4122B7CADE00A0E868 /* RXHealthyTableViewCell.m in Sources */,
 				515018422292A5BF005FCCE3 /* GoodsDownView.m in Sources */,
 				705F58B21C2AD87200DDC31D /* SnsInformationClassResponse.m in Sources */,
 				705F583D1C2AD87200DDC31D /* OQueryGroupGoodsListResponse.m in Sources */,
@@ -21427,6 +21503,7 @@
 				705F580A1C2AD87200DDC31D /* GroupRebateCountResponse.m in Sources */,
 				705F57961C2AD87200DDC31D /* SnsRecommenGoodsAndStoreListRequest.m in Sources */,
 				09B2BB2C1F1328DB0034AFB9 /* YSNearAdContentDataManager.m in Sources */,
+				BE13DD4622B7D27400A0E868 /* RXAdvertisingTableViewCell.m in Sources */,
 				705F58541C2AD87200DDC31D /* PersonalKeywordSearchResponse.m in Sources */,
 				9D144ABD5A58A1D0B31E22D7CB635669 /* loginAndRegistManager.m in Sources */,
 				A56A17F02E42A2AE0B85DF05606175FE /* loginViewController.m in Sources */,
@@ -21467,6 +21544,7 @@
 				096BFFB41DC1F9E80001B97C /* IntegralFlipCardsGetResponse.m in Sources */,
 				D0EBC20A6E2409F9C3143884351E62F0 /* mainPublicTableViewHeader.m in Sources */,
 				705F56B81C2AD87200DDC31D /* ComplaintsHandlerRequest.m in Sources */,
+				BE3210A022B881C40004E387 /* RXJirirenwubushuView.m in Sources */,
 				51D482282272148B0062970E /* AnyiUI.m in Sources */,
 				4F596BBC35872DD32AA9329C9796515A /* mainTableViewCell.m in Sources */,
 				2615AC2A6403B77FDEEA27873C3002B0 /* mainViewController.m in Sources */,

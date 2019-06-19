@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="KGk-i7-Jjw" customClass="RXHealthyTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="114.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oN-EA-Y1V">
+                        <rect key="frame" x="20" y="15" width="221" height="42"/>
+                        <attributedString key="attributedText">
+                            <fragment content="健身与不健身的区别有多大？来看看，你就明白为什么要健身？">
+                                <attributes>
+                                    <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="8qU-iZ-Ul7">
+                        <rect key="frame" x="256" y="15" width="138" height="79.5"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciL-1t-Hgc">
+                        <rect key="frame" x="20" y="78" width="43" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="点赞" image="点赞">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlN-Uu-ZA1">
+                        <rect key="frame" x="85" y="78" width="91" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="评论(+1000)" image="评论">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xc-20-Ov1">
+                        <rect key="frame" x="205" y="78" width="41" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="分享" image="分享">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8qU-iZ-Ul7" firstAttribute="leading" secondItem="3oN-EA-Y1V" secondAttribute="trailing" constant="15" id="1Nx-0S-yLd"/>
+                    <constraint firstItem="AlN-Uu-ZA1" firstAttribute="centerX" secondItem="3oN-EA-Y1V" secondAttribute="centerX" id="93b-vi-3Ar"/>
+                    <constraint firstItem="3oN-EA-Y1V" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Any-JZ-5xu"/>
+                    <constraint firstAttribute="trailing" secondItem="8qU-iZ-Ul7" secondAttribute="trailing" constant="20" id="Fm4-HX-DeZ"/>
+                    <constraint firstItem="AlN-Uu-ZA1" firstAttribute="centerY" secondItem="ciL-1t-Hgc" secondAttribute="centerY" id="GSJ-FX-MAq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ciL-1t-Hgc" secondAttribute="bottom" constant="10" id="Mrr-Hw-Xsu"/>
+                    <constraint firstItem="8qU-iZ-Ul7" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/3" id="Yuc-i0-6dM"/>
+                    <constraint firstItem="8qU-iZ-Ul7" firstAttribute="top" secondItem="3oN-EA-Y1V" secondAttribute="top" id="dyV-XV-jPO"/>
+                    <constraint firstItem="3oN-EA-Y1V" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="etV-gq-skQ"/>
+                    <constraint firstItem="8qU-iZ-Ul7" firstAttribute="leading" secondItem="7Xc-20-Ov1" secondAttribute="trailing" constant="10" id="fpu-su-KkO"/>
+                    <constraint firstAttribute="bottom" secondItem="8qU-iZ-Ul7" secondAttribute="bottom" constant="20" id="qAf-uF-hVn"/>
+                    <constraint firstItem="7Xc-20-Ov1" firstAttribute="centerY" secondItem="AlN-Uu-ZA1" secondAttribute="centerY" id="tXJ-KC-mVK"/>
+                    <constraint firstItem="ciL-1t-Hgc" firstAttribute="leading" secondItem="3oN-EA-Y1V" secondAttribute="leading" id="vB8-kI-9zY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="165" y="62"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="background" width="320" height="568"/>
+        <image name="分享" width="16" height="16"/>
+        <image name="点赞" width="16" height="16"/>
+        <image name="评论" width="16" height="16"/>
+    </resources>
+</document>

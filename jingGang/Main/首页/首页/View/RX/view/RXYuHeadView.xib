@@ -50,6 +50,7 @@
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <state key="selected" image="Add_Subtract_Num"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,6 +80,7 @@
         </view>
     </objects>
     <resources>
+        <image name="Add_Subtract_Num" width="100" height="30"/>
         <image name="Consummate_add_image" width="74" height="74"/>
     </resources>
 </document>

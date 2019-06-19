@@ -283,11 +283,11 @@ static CustomTabBar* s_pCustomTabBar = nil;
             [JGActivityTools sharedInstance].isServiceModule = YES;
             
         }else if ([self.viewControllers indexOfObject:viewController] == 2) {
-//            BOOL ret = CheckLoginState(YES);
-//            if (!ret) {
-//                // 没登录 直接返回
-//                return NO;
-//            }
+            BOOL ret = CheckLoginState(YES);
+            if (!ret) {
+                // 没登录 直接返回
+                return NO;
+            }
             [JGActivityTools sharedInstance].isServiceModule = NO;
             [JGActivityTools switchTabBarAction];
         }else{
