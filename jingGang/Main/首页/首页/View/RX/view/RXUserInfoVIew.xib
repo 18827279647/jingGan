@@ -56,8 +56,8 @@
                         <constraint firstAttribute="height" constant="60" id="k27-Am-Yhb"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李玉芮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pr0-70-3dQ">
-                    <rect key="frame" x="100" y="27" width="64.5" height="26"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pr0-70-3dQ">
+                    <rect key="frame" x="100" y="27" width="19" height="26"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -111,15 +111,16 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nH-mp-X0V">
-                    <rect key="frame" x="461" y="214" width="31" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="续费">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nH-mp-X0V">
+                    <rect key="frame" x="435" y="214" width="67" height="30"/>
+                    <inset key="titleEdgeInsets" minX="-50" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="续费" image="续费跳转">
                         <color key="titleColor" red="0.49019075839999998" green="0.92549019610000005" blue="0.7550825457" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的健康管家VIP已到期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKh-4E-G7U">
-                    <rect key="frame" x="311" y="221" width="140" height="16"/>
+                    <rect key="frame" x="285" y="221" width="140" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -169,7 +170,7 @@
                 <constraint firstItem="2U7-Sv-yY7" firstAttribute="centerY" secondItem="BsX-Kh-Z9C" secondAttribute="centerY" id="sSL-7Q-vTK"/>
                 <constraint firstItem="7N0-ip-T6Y" firstAttribute="width" secondItem="AoA-mQ-DVP" secondAttribute="width" id="sxf-L7-FmZ"/>
                 <constraint firstItem="94I-8x-SGl" firstAttribute="width" secondItem="AoA-mQ-DVP" secondAttribute="width" id="szT-UM-4mv"/>
-                <constraint firstItem="QMe-JJ-lp4" firstAttribute="trailing" secondItem="0nH-mp-X0V" secondAttribute="trailing" constant="30" id="tqW-sA-uCA"/>
+                <constraint firstItem="QMe-JJ-lp4" firstAttribute="trailing" secondItem="0nH-mp-X0V" secondAttribute="trailing" constant="20" id="tqW-sA-uCA"/>
                 <constraint firstItem="OtH-sb-eos" firstAttribute="leading" secondItem="axp-Lo-wbQ" secondAttribute="trailing" constant="20" id="trv-hk-oF5"/>
                 <constraint firstItem="BsX-Kh-Z9C" firstAttribute="leading" secondItem="QMe-JJ-lp4" secondAttribute="leading" constant="10" id="vQ8-KC-JVz"/>
                 <constraint firstItem="pr0-70-3dQ" firstAttribute="centerY" secondItem="axp-Lo-wbQ" secondAttribute="centerY" constant="-20" id="vjH-Dx-LIP"/>
@@ -200,5 +201,6 @@
         <image name="Consummate_VIP_back" width="684" height="80"/>
         <image name="Consummate_back_image" width="750" height="416"/>
         <image name="weatherStatus00" width="24" height="24"/>
+        <image name="续费跳转" width="30" height="30"/>
     </resources>
 </document>

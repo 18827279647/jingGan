@@ -11,6 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RXHealthyTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *conterlabel;
+@property (weak, nonatomic) IBOutlet UIImageView *iconimage;
+@property (weak, nonatomic) IBOutlet UIButton *dianButton;
+@property (weak, nonatomic) IBOutlet UIButton *pingButton;
+@property (weak, nonatomic) IBOutlet UIButton *flashButton;
 
 @end
 

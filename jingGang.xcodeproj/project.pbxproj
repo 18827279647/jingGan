@@ -2467,6 +2467,11 @@
 		BE3210B022B8B5D20004E387 /* RXUserInfoVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3210AF22B8B5D20004E387 /* RXUserInfoVIew.m */; };
 		BE3210B222B8B5E10004E387 /* RXUserInfoVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE3210B122B8B5E10004E387 /* RXUserInfoVIew.xib */; };
 		BE4D6BE122B5F28C0018F9B9 /* YSBaseInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE4D6BE022B5F28C0018F9B9 /* YSBaseInfoView.xib */; };
+		BE565E4F22BA0704004D9E9E /* RXTabViewHeightObjject.m in Sources */ = {isa = PBXBuildFile; fileRef = BE565E4E22BA0704004D9E9E /* RXTabViewHeightObjject.m */; };
+		BE565E5222BA073B004D9E9E /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = BE565E5122BA073A004D9E9E /* Unit.m */; };
+		BE565E5522BA2FA2004D9E9E /* UILabel+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = BE565E5422BA2FA2004D9E9E /* UILabel+extension.m */; };
+		BE565E5922BA422D004D9E9E /* RXZhangKaiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE565E5722BA422D004D9E9E /* RXZhangKaiTableViewCell.m */; };
+		BE565E5A22BA422D004D9E9E /* RXZhangKaiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE565E5822BA422D004D9E9E /* RXZhangKaiTableViewCell.xib */; };
 		BE63101422B71EEC0018CE42 /* RXYuHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63101322B71EEC0018CE42 /* RXYuHeadView.m */; };
 		BE63101622B71F170018CE42 /* RXYuHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE63101522B71F170018CE42 /* RXYuHeadView.xib */; };
 		BE63101A22B722140018CE42 /* RXTravelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63101822B722140018CE42 /* RXTravelTableViewCell.m */; };
@@ -7396,6 +7401,15 @@
 		BE3210B122B8B5E10004E387 /* RXUserInfoVIew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXUserInfoVIew.xib; sourceTree = "<group>"; };
 		BE4D6BE022B5F28C0018F9B9 /* YSBaseInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YSBaseInfoView.xib; sourceTree = "<group>"; };
 		BE4DCB20AA39B32C7C704428A914F3EB /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
+		BE565E4D22BA0704004D9E9E /* RXTabViewHeightObjject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXTabViewHeightObjject.h; sourceTree = "<group>"; };
+		BE565E4E22BA0704004D9E9E /* RXTabViewHeightObjject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXTabViewHeightObjject.m; sourceTree = "<group>"; };
+		BE565E5022BA073A004D9E9E /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
+		BE565E5122BA073A004D9E9E /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
+		BE565E5322BA2FA2004D9E9E /* UILabel+extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+extension.h"; sourceTree = "<group>"; };
+		BE565E5422BA2FA2004D9E9E /* UILabel+extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+extension.m"; sourceTree = "<group>"; };
+		BE565E5622BA422D004D9E9E /* RXZhangKaiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXZhangKaiTableViewCell.h; sourceTree = "<group>"; };
+		BE565E5722BA422D004D9E9E /* RXZhangKaiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXZhangKaiTableViewCell.m; sourceTree = "<group>"; };
+		BE565E5822BA422D004D9E9E /* RXZhangKaiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXZhangKaiTableViewCell.xib; sourceTree = "<group>"; };
 		BE63101222B71EEC0018CE42 /* RXYuHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXYuHeadView.h; sourceTree = "<group>"; };
 		BE63101322B71EEC0018CE42 /* RXYuHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXYuHeadView.m; sourceTree = "<group>"; };
 		BE63101522B71F170018CE42 /* RXYuHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXYuHeadView.xib; sourceTree = "<group>"; };
@@ -17055,6 +17069,19 @@
 			path = "SaveRepoerDone(录入完成)";
 			sourceTree = "<group>";
 		};
+		BE565E4C22BA06D9004D9E9E /* RXObject */ = {
+			isa = PBXGroup;
+			children = (
+				BE565E5022BA073A004D9E9E /* Unit.h */,
+				BE565E5122BA073A004D9E9E /* Unit.m */,
+				BE565E4D22BA0704004D9E9E /* RXTabViewHeightObjject.h */,
+				BE565E4E22BA0704004D9E9E /* RXTabViewHeightObjject.m */,
+				BE565E5322BA2FA2004D9E9E /* UILabel+extension.h */,
+				BE565E5422BA2FA2004D9E9E /* UILabel+extension.m */,
+			);
+			path = RXObject;
+			sourceTree = "<group>";
+		};
 		BE63101C22B740090018CE42 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -17095,6 +17122,9 @@
 				BE3210A922B899AE0004E387 /* RXBloodPressureTableViewCell.h */,
 				BE3210AA22B899AE0004E387 /* RXBloodPressureTableViewCell.m */,
 				BE3210AB22B899AE0004E387 /* RXBloodPressureTableViewCell.xib */,
+				BE565E5622BA422D004D9E9E /* RXZhangKaiTableViewCell.h */,
+				BE565E5722BA422D004D9E9E /* RXZhangKaiTableViewCell.m */,
+				BE565E5822BA422D004D9E9E /* RXZhangKaiTableViewCell.xib */,
 			);
 			path = tabView;
 			sourceTree = "<group>";
@@ -17102,6 +17132,7 @@
 		BE94076022B664AE00741F1B /* RX */ = {
 			isa = PBXGroup;
 			children = (
+				BE565E4C22BA06D9004D9E9E /* RXObject */,
 				BE63101D22B740230018CE42 /* tabView */,
 				BE63101C22B740090018CE42 /* view */,
 			);
@@ -19185,6 +19216,7 @@
 				70B6E3481C7EAAEF004E9F41 /* JGYearMonthDayCell.xib in Resources */,
 				B48AC0C31C1FC1210056EDE4 /* DownToUpAlertView.xib in Resources */,
 				705FC56F1D6EC4BC00F4C49A /* YSGoMissionCell.xib in Resources */,
+				BE565E5A22BA422D004D9E9E /* RXZhangKaiTableViewCell.xib in Resources */,
 				21A0B0A4331F5C10212E742FC250D94F /* mainPublicTableViewCell.xib in Resources */,
 				214050183B6DAA31304511A4BCCE1C79 /* mainPublicTableViewHeader.xib in Resources */,
 				5120EE2E22478CBB0033C1E4 /* guizeViewController.xib in Resources */,
@@ -19777,6 +19809,7 @@
 				091238E41D7FA37500E64820 /* AppleCheckedResponse.m in Sources */,
 				F0C600E1117CE99556AD3F7BD72DB59A /* HanyuPinyinOutputFormat.m in Sources */,
 				705F585D1C2AD87200DDC31D /* PersonalRecommStoreListResponse.m in Sources */,
+				BE565E5222BA073B004D9E9E /* Unit.m in Sources */,
 				63ABB710E0C2F923C27C60AFDE143E47 /* HappyShoppingCollectionView.m in Sources */,
 				28FFEFAC4FA17D35A76C2A8F47731601 /* HappyShoppingFirstSectionHeaderView.m in Sources */,
 				70CCA7551C4FB1D300ADD4A0 /* QueryLogisticsViewController.m in Sources */,
@@ -20562,6 +20595,7 @@
 				8497B9B050436C11B90226439AD6E3C8 /* OrderConfirmViewController.m in Sources */,
 				C0F625651E4A7C78FA07F1C8DA36B7CB /* OrderDetailAddressCell.m in Sources */,
 				09B2BA901F024EA50034AFB9 /* YSConnectDeviceCell.m in Sources */,
+				BE565E5522BA2FA2004D9E9E /* UILabel+extension.m in Sources */,
 				0ED1F4215E3BAEBA960A70F478134600 /* OrderDetailCell.m in Sources */,
 				704F9EB91C852BB500F52995 /* OpenIdBindingDeleteResponse.m in Sources */,
 				0923DD121D4096B5002B7F8A /* CALayer+YYAdd.m in Sources */,
@@ -21034,6 +21068,7 @@
 				705F57561C2AD87200DDC31D /* SearchClassGoodsRequest.m in Sources */,
 				18A8F1BB415656550262BD6698BDB612 /* UIView+Animation.m in Sources */,
 				705F58771C2AD87200DDC31D /* SalePromotionAdInfoResponse.m in Sources */,
+				BE565E5922BA422D004D9E9E /* RXZhangKaiTableViewCell.m in Sources */,
 				099D3AF01D46308F0056E7EA /* YSHealthyMessageDatas.m in Sources */,
 				DF2AF457F45A30DCE3FCB05D07CFDEA0 /* UIView+BlockGesture.m in Sources */,
 				705F56CC1C2AD87200DDC31D /* GroupCheckInSaveRequest.m in Sources */,
@@ -21539,6 +21574,7 @@
 				703402631E9F196B00AEAEEA /* PersonalGroupOrderAllResponse.m in Sources */,
 				70BAF50D1D38715400793F5C /* JGPayResultController.m in Sources */,
 				705F57751C2AD87200DDC31D /* ShopStoreInfoGetRequest.m in Sources */,
+				BE565E4F22BA0704004D9E9E /* RXTabViewHeightObjject.m in Sources */,
 				705F56A51C2AD87200DDC31D /* SysTrans.m in Sources */,
 				09C640D21F56B5EA0056EDDE /* YSAIOSaveBindingDataManager.m in Sources */,
 				096BFFB41DC1F9E80001B97C /* IntegralFlipCardsGetResponse.m in Sources */,

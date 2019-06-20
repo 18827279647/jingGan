@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="KGk-i7-Jjw" customClass="RXZhangKaiTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4T-eB-c7b">
+                        <rect key="frame" x="0.0" y="18.5" width="82.5" height="38"/>
+                        <state key="normal" image="智能硬件">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Oh-Pm-fPv">
+                        <rect key="frame" x="82.5" y="18.5" width="82" height="38"/>
+                        <state key="normal" image="智能硬件">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csE-RZ-OM6">
+                        <rect key="frame" x="164.5" y="18.5" width="82.5" height="38"/>
+                        <state key="normal" image="智能硬件">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="My3-Xg-7ew">
+                        <rect key="frame" x="247" y="18.5" width="82" height="38"/>
+                        <state key="normal" image="智能硬件">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Q4T-eB-c7b" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ErK-30-Jx9"/>
+                    <constraint firstAttribute="trailing" secondItem="My3-Xg-7ew" secondAttribute="trailing" id="Gbo-rR-bxY"/>
+                    <constraint firstItem="My3-Xg-7ew" firstAttribute="centerY" secondItem="csE-RZ-OM6" secondAttribute="centerY" id="IPU-g9-iVp"/>
+                    <constraint firstItem="6Oh-Pm-fPv" firstAttribute="leading" secondItem="Q4T-eB-c7b" secondAttribute="trailing" id="TXl-OJ-Iuh"/>
+                    <constraint firstItem="Q4T-eB-c7b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="V1z-RL-qU6"/>
+                    <constraint firstItem="csE-RZ-OM6" firstAttribute="centerY" secondItem="6Oh-Pm-fPv" secondAttribute="centerY" id="Y3v-qY-PSb"/>
+                    <constraint firstItem="6Oh-Pm-fPv" firstAttribute="width" secondItem="Q4T-eB-c7b" secondAttribute="width" id="eZx-rP-Jvx"/>
+                    <constraint firstItem="csE-RZ-OM6" firstAttribute="leading" secondItem="6Oh-Pm-fPv" secondAttribute="trailing" id="gJS-RS-5Fe"/>
+                    <constraint firstItem="6Oh-Pm-fPv" firstAttribute="centerY" secondItem="Q4T-eB-c7b" secondAttribute="centerY" id="imv-CS-ko3"/>
+                    <constraint firstItem="Q4T-eB-c7b" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/4" id="kjm-Zy-BT9"/>
+                    <constraint firstItem="My3-Xg-7ew" firstAttribute="width" secondItem="csE-RZ-OM6" secondAttribute="width" id="oiq-tk-cbl"/>
+                    <constraint firstItem="csE-RZ-OM6" firstAttribute="width" secondItem="6Oh-Pm-fPv" secondAttribute="width" id="pKT-4h-ogs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="144.80000000000001" y="146.17691154422789"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="智能硬件" width="38" height="38"/>
+    </resources>
+</document>

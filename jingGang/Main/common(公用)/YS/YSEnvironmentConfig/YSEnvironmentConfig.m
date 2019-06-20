@@ -127,21 +127,20 @@
 }
 
 + (NSString *)mobileWebUrl {
-//    YSProjectEnvironmentMode mode = [YSEnvironmentConfig examineEnironmentMode];
-//    switch (mode) {
-//        case YSProject209EnvironmentModel:
-//            return @"http://192.168.1.209:8080";
-//            break;
-//        case YSProjectCNEnvironmentMode:
-//            return @"http://api.bhesky.cn";
-//            break;
-//        case YSProjectCOMEnvironmentMode:
-//            return @"http://api.bhesky.com";
-//            break;
-//        default:
-//            break;
-//    }
-     return @"http://192.168.8.160:8080/carnation-apis-resource";
+    YSProjectEnvironmentMode mode = [YSEnvironmentConfig examineEnironmentMode];
+    switch (mode) {
+        case YSProject209EnvironmentModel:
+            return @"http://192.168.1.209:8080";
+            break;
+        case YSProjectCNEnvironmentMode:
+            return @"http://api.bhesky.cn";
+            break;
+        case YSProjectCOMEnvironmentMode:
+            return @"http://api.bhesky.com";
+            break;
+        default:
+            break;
+    }
 }
 
 + (NSString *)jpushEnvirStr {

@@ -18,8 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString*healthServiceRecommendBgBO;
 @property(nonatomic,copy)NSString*healthServiceRecommendJdBO;
 @property(nonatomic,copy)NSString*healthServiceRecommendXyBO;
-@property(nonatomic,copy)NSString*invitationList;
+@property(nonatomic,copy)NSArray*invitationList;
 @property(nonatomic,copy)NSArray*keywordGoodsList;
+
+//默认数据
+@property(nonatomic,copy)NSArray*healthList;
 
 @end
 

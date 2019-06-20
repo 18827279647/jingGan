@@ -74,7 +74,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="165" y="62"/>
+            <connections>
+                <outlet property="conterlabel" destination="3oN-EA-Y1V" id="zuS-jc-ezT"/>
+                <outlet property="dianButton" destination="ciL-1t-Hgc" id="eMw-qp-fji"/>
+                <outlet property="flashButton" destination="7Xc-20-Ov1" id="BJU-bs-ZkS"/>
+                <outlet property="iconimage" destination="8qU-iZ-Ul7" id="t7M-By-3rD"/>
+                <outlet property="pingButton" destination="AlN-Uu-ZA1" id="Poe-EX-Ctd"/>
+            </connections>
+            <point key="canvasLocation" x="14" y="58"/>
         </tableViewCell>
     </objects>
     <resources>

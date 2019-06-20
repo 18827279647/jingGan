@@ -29,6 +29,7 @@ static NSString*myreuseIdentifier;
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     if ([myreuseIdentifier isEqualToString:@"RXBloodPressureTableViewID1"]) {
         
         [self.zhouButton setTitleColor:JGColor(245, 166, 35, 1) forState:UIControlStateNormal];
