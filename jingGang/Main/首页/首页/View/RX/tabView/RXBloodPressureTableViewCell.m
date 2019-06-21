@@ -17,14 +17,19 @@ static NSString*myreuseIdentifier;
         myreuseIdentifier=reuseIdentifier;
         if ([myreuseIdentifier isEqualToString:@"RXBloodPressureTableViewID1"]) {
              return [[[NSBundle mainBundle]loadNibNamed:@"RXBloodPressureTableViewCell" owner:self options:nil]firstObject];
+        }else if([myreuseIdentifier isEqualToString:@"RXBloodPressureTableViewID2"]){
+             return [[NSBundle mainBundle]loadNibNamed:@"RXBloodPressureTableViewCell" owner:self options:nil][1];
+        }else if([myreuseIdentifier isEqualToString:@"RXBloodPressureTableViewID3"]){
+            return [[NSBundle mainBundle]loadNibNamed:@"RXBloodPressureTableViewCell" owner:self options:nil][2];
         }
-        return [[NSBundle mainBundle]loadNibNamed:@"RXBloodPressureTableViewCell" owner:self options:nil][1];
+        return [[NSBundle mainBundle]loadNibNamed:@"RXBloodPressureTableViewCell" owner:self options:nil][0];
     }
     return self;
 }
 - (void)setFrame:(CGRect)frame{
-    frame.origin.x+=20;
-    frame.size.width -= 40;
+    frame.origin.x+=10;
+    frame.size.width -= 20;
+    frame.size.height-=10;
     [super setFrame:frame];
 }
 - (void)awakeFromNib {
@@ -62,7 +67,7 @@ static NSString*myreuseIdentifier;
         
         self.shuzhangWaiImage.layer.cornerRadius=self.shuzhangbackImage.layer.cornerRadius=5;
         self.shouBackImage.layer.cornerRadius=self.shouWaiImage.layer.cornerRadius=5;
-    }else{
+    }else if ([myreuseIdentifier isEqualToString:@"RXBloodPressureTableViewID2"]){
         
         [self.twozhouButton setTitleColor:JGColor(245, 166, 35, 1) forState:UIControlStateNormal];
         [self.twoyueButton setTitleColor:JGColor(245, 166, 35, 1) forState:UIControlStateNormal];
@@ -90,6 +95,8 @@ static NSString*myreuseIdentifier;
         self.twoxueWaiImage.backgroundColor=JGColor(88, 212, 153, 0.82);
         
         self.twoxuebackImage.layer.cornerRadius= self.twoxueWaiImage.layer.cornerRadius=5;
+    }else if([myreuseIdentifier isEqualToString:@"RXBloodPressureTableViewID3"]){
+        
     }
     // Initialization code
     

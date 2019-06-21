@@ -18,7 +18,14 @@
              @"healthServiceRecommendJdBO":@"healthServiceRecommendJdBO",
              @"healthServiceRecommendXyBO":@"healthServiceRecommendXyBO",
              @"invitationList":@"invitationList",
-             @"keywordGoodsList":@"keywordGoodsList"
+             @"keywordGoodsList":@"keywordGoodsList",
+             @"others":@"others",
+             @"healthList":@"healthList",
+             @"bgImg":@"bgImg",
+             @"jbImg":@"jbImg",
+             @"xyImg":@"xyImg",
+             @"memberNotice":@"memberNotice",
+             @"memberLastTime":@"memberLastTime"
             };
 }
 @end

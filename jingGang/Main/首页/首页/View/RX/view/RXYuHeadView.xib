@@ -13,11 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RXYuHeadView">
-            <rect key="frame" x="0.0" y="0.0" width="438" height="144"/>
+            <rect key="frame" x="0.0" y="0.0" width="438" height="99"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6Z-c6-niQ">
-                    <rect key="frame" x="10" y="5" width="418" height="134"/>
+                    <rect key="frame" x="10" y="5" width="418" height="89"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yR2-Hr-qm3">
                     <rect key="frame" x="30" y="25" width="24" height="24"/>
@@ -67,25 +67,25 @@
                     <state key="selected" backgroundImage="取消"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="5/20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xs-Lo-iYw">
-                    <rect key="frame" x="379.5" y="68" width="28.5" height="16"/>
+                    <rect key="frame" x="379.5" y="63" width="28.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1级高血压" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhG-ef-fQU">
-                    <rect key="frame" x="30" y="68" width="59.5" height="16"/>
+                    <rect key="frame" x="30" y="63" width="59.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="来源:某品牌智能手环测量仪名称…来源:某品牌智能手环测量仪名称…来源:某品牌智能手环测量仪名称…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHY-uc-c1w">
-                    <rect key="frame" x="115" y="68" width="254.5" height="16"/>
+                    <rect key="frame" x="115" y="63" width="254.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc3-ef-L2J">
-                    <rect key="frame" x="139.5" y="37" width="0.0" height="0.0"/>
+                    <rect key="frame" x="134.5" y="37" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -100,8 +100,8 @@
                 <constraint firstItem="QYm-zE-bz1" firstAttribute="leading" secondItem="yR2-Hr-qm3" secondAttribute="trailing" constant="10" id="Ee9-8Q-d5m"/>
                 <constraint firstItem="kUY-aT-cpe" firstAttribute="centerY" secondItem="QYm-zE-bz1" secondAttribute="centerY" id="IHF-uP-gAG"/>
                 <constraint firstItem="gHY-uc-c1w" firstAttribute="centerY" secondItem="6xs-Lo-iYw" secondAttribute="centerY" id="Jjt-G7-3Bl"/>
-                <constraint firstItem="6xs-Lo-iYw" firstAttribute="top" secondItem="Zv1-6K-R8k" secondAttribute="bottom" constant="10" id="Jwh-JP-JB6"/>
-                <constraint firstItem="sc3-ef-L2J" firstAttribute="leading" secondItem="tkL-rT-xcW" secondAttribute="trailing" constant="10" id="JxA-1A-qaL"/>
+                <constraint firstItem="6xs-Lo-iYw" firstAttribute="top" secondItem="Zv1-6K-R8k" secondAttribute="bottom" constant="5" id="Jwh-JP-JB6"/>
+                <constraint firstItem="sc3-ef-L2J" firstAttribute="leading" secondItem="tkL-rT-xcW" secondAttribute="trailing" constant="5" id="JxA-1A-qaL"/>
                 <constraint firstItem="yR2-Hr-qm3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="OMv-ab-OSw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zv1-6K-R8k" secondAttribute="trailing" constant="30" id="awh-78-ZqH"/>
                 <constraint firstItem="yR2-Hr-qm3" firstAttribute="top" secondItem="a6Z-c6-niQ" secondAttribute="top" constant="20" id="b78-Dy-Fkj"/>
@@ -133,7 +133,7 @@
                 <outlet property="zhangkiaButton" destination="kUY-aT-cpe" id="Sna-p3-fMM"/>
                 <outlet property="zhangkileft" destination="ruP-Go-8TR" id="P2y-mu-LB3"/>
             </connections>
-            <point key="canvasLocation" x="-244.80000000000001" y="-223.98800599700152"/>
+            <point key="canvasLocation" x="-446.39999999999998" y="-244.22788605697153"/>
         </view>
     </objects>
     <resources>

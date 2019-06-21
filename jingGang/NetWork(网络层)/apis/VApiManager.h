@@ -722,6 +722,11 @@
 #import "RXUserDetailRequest.h"
 #import "RXUserDetailResponse.h"
 
+
+//用户个人数据详情
+#import "RXParamDetailResponse.h"
+#import "RXParamDetailRequest.h"
+
 @interface VApiManager : AFHTTPRequestOperationManager
 
 @property (readonly, nonatomic) NSString *clientId;
@@ -1854,4 +1859,7 @@
 //新增用户个人数据中心及健康参数数据，及专区数据
 -(void)RXMakeUserDetail:(RXUserDetailRequest*)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserDetailResponse *response))success
                 failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+//个人数据中心详情
+-(void)RXMakeParamDetail:(RXParamDetailRequest*)request success:(void (^)(AFHTTPRequestOperation *operation,RXParamDetailResponse *response))success
+                 failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
 @end

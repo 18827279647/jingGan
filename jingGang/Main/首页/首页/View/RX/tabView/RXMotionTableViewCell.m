@@ -24,8 +24,9 @@
     return self;
 }
 - (void)setFrame:(CGRect)frame{
-    frame.origin.x+=20;
-    frame.size.width -= 40;
+    frame.origin.x+=10;
+    frame.size.width -= 20;
+    frame.size.height-=10;
     [super setFrame:frame];
 }
 -(void)setup;{
@@ -56,7 +57,7 @@
             jrrwView.lishiButton.layer.borderColor=JGColor(245, 166, 35, 1).CGColor;
             
             //设置视图大小
-            CircleLoader *view=[[CircleLoader alloc]initWithFrame:CGRectMake(jrrwView.naImage.width/2+20,jrrwView.naImage.origin.y,jrrwView.naImage.size.width,jrrwView.naImage.size.height)];
+            CircleLoader *view=[[CircleLoader alloc]initWithFrame:CGRectMake(10+jrrwView.naImage.width/2+20,jrrwView.naImage.origin.y,jrrwView.naImage.size.width,jrrwView.naImage.size.height)];
             //设置轨道颜色
             view.trackTintColor=JGColor(204, 240, 236, 1);
             //设置进度条颜色

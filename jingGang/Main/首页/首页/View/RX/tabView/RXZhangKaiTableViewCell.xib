@@ -20,8 +20,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4T-eB-c7b">
-                        <rect key="frame" x="0.0" y="18.5" width="82.5" height="38"/>
-                        <state key="normal" image="智能硬件">
+                        <rect key="frame" x="0.0" y="20.5" width="82.5" height="34"/>
+                        <state key="normal">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -35,14 +35,14 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csE-RZ-OM6">
                         <rect key="frame" x="164.5" y="18.5" width="82.5" height="38"/>
-                        <state key="normal" image="智能硬件">
+                        <state key="normal" image="手机检测">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="My3-Xg-7ew">
-                        <rect key="frame" x="247" y="18.5" width="82" height="38"/>
-                        <state key="normal" image="智能硬件">
+                        <rect key="frame" x="247" y="20.5" width="82" height="34"/>
+                        <state key="normal">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -64,10 +64,17 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="144.80000000000001" y="146.17691154422789"/>
+            <connections>
+                <outlet property="fiveButton" destination="My3-Xg-7ew" id="5UT-TN-D1q"/>
+                <outlet property="freeButton" destination="csE-RZ-OM6" id="qo9-aa-hQy"/>
+                <outlet property="oneButton" destination="Q4T-eB-c7b" id="6BN-Xe-hCC"/>
+                <outlet property="twoButton" destination="6Oh-Pm-fPv" id="85L-xH-xWM"/>
+            </connections>
+            <point key="canvasLocation" x="138" y="131"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="手机检测" width="38" height="38"/>
         <image name="智能硬件" width="38" height="38"/>
     </resources>
 </document>

@@ -53,7 +53,81 @@
                 <outlet property="travelButton" destination="qXl-Jx-BUU" id="akR-Fx-7h0"/>
                 <outlet property="travelImage" destination="10s-nz-2yi" id="ek2-Sq-CgP"/>
             </connections>
-            <point key="canvasLocation" x="-57" y="71"/>
+            <point key="canvasLocation" x="-58" y="8"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="197" id="iCY-7i-5dt" customClass="RXTravelTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="436" height="197"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iCY-7i-5dt" id="2cX-cO-nfV">
+                <rect key="frame" x="0.0" y="0.0" width="436" height="196.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精准健康检测报告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfM-hg-4bN">
+                        <rect key="frame" x="20" y="21" width="131" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGI-Et-T3O">
+                        <rect key="frame" x="386" y="17" width="30" height="28"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="更多">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" image="tr_back_image" translatesAutoresizingMaskIntoConstraints="NO" id="YBE-Ir-hh9">
+                        <rect key="frame" x="20" y="55" width="396" height="131.5"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的健康报告" translatesAutoresizingMaskIntoConstraints="NO" id="fhx-fe-Ucu">
+                        <rect key="frame" x="135" y="85" width="166" height="26"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hne-Fb-zJ9">
+                        <rect key="frame" x="40" y="131" width="356" height="36"/>
+                        <attributedString key="attributedText">
+                            <fragment content="李玉芮：您好！综合您提供的所有正常数据，评估出心血管风险水平：很高危。点击完美档案报告了解">
+                                <attributes>
+                                    <font key="NSFont" size="13" name=".PingFangSC-Regular"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                            <fragment content="…">
+                                <attributes>
+                                    <font key="NSFont" metaFont="system"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="Hne-Fb-zJ9" secondAttribute="trailing" constant="20" id="5sU-kt-yF2"/>
+                    <constraint firstItem="YBE-Ir-hh9" firstAttribute="leading" secondItem="2cX-cO-nfV" secondAttribute="leading" constant="20" id="CNt-HD-dTT"/>
+                    <constraint firstItem="lfM-hg-4bN" firstAttribute="leading" secondItem="2cX-cO-nfV" secondAttribute="leading" constant="20" id="Div-uP-N3P"/>
+                    <constraint firstAttribute="trailing" secondItem="eGI-Et-T3O" secondAttribute="trailing" constant="20" id="Dtb-5A-HiH"/>
+                    <constraint firstItem="eGI-Et-T3O" firstAttribute="centerY" secondItem="lfM-hg-4bN" secondAttribute="centerY" id="HcL-Lm-lwf"/>
+                    <constraint firstItem="fhx-fe-Ucu" firstAttribute="top" secondItem="YBE-Ir-hh9" secondAttribute="top" constant="30" id="KkZ-fU-PtM"/>
+                    <constraint firstItem="Hne-Fb-zJ9" firstAttribute="leading" secondItem="2cX-cO-nfV" secondAttribute="leadingMargin" constant="20" id="TA6-1n-TvQ"/>
+                    <constraint firstItem="YBE-Ir-hh9" firstAttribute="top" secondItem="eGI-Et-T3O" secondAttribute="bottom" constant="10" id="TAa-fy-1rG"/>
+                    <constraint firstItem="fhx-fe-Ucu" firstAttribute="centerX" secondItem="2cX-cO-nfV" secondAttribute="centerX" id="UMf-z2-fiJ"/>
+                    <constraint firstAttribute="bottom" secondItem="YBE-Ir-hh9" secondAttribute="bottom" constant="10" id="Yd8-bV-2cs"/>
+                    <constraint firstItem="Hne-Fb-zJ9" firstAttribute="top" secondItem="fhx-fe-Ucu" secondAttribute="bottom" constant="20" id="hXw-Xd-ddJ"/>
+                    <constraint firstAttribute="trailing" secondItem="YBE-Ir-hh9" secondAttribute="trailing" constant="20" id="reE-Pg-7ay"/>
+                    <constraint firstItem="lfM-hg-4bN" firstAttribute="top" secondItem="2cX-cO-nfV" secondAttribute="topMargin" constant="10" id="wkP-F8-CaA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="T7S-Cb-MAJ"/>
+            <connections>
+                <outlet property="twoConterlabel" destination="fhx-fe-Ucu" id="7Xc-ce-V4e"/>
+                <outlet property="twoTitlelabel" destination="lfM-hg-4bN" id="Jy3-Xq-w72"/>
+                <outlet property="twoTravelButton" destination="eGI-Et-T3O" id="wqq-oi-vAm"/>
+                <outlet property="twoWenTilabel" destination="Hne-Fb-zJ9" id="aWU-bP-ymd"/>
+            </connections>
+            <point key="canvasLocation" x="-52.799999999999997" y="236.13193403298354"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="tr_back_image" width="690" height="199"/>
+        <image name="我的健康报告" width="166" height="26"/>
+    </resources>
 </document>

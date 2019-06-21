@@ -14,6 +14,8 @@
 
 #import "projectViewController.h"
 #import "AppDelegate.h"
+//
+//#import "WRNavigationBar.h"
 
 @interface JGBaseViewController ()<SDCycleScrollViewDelegate>
 
@@ -33,13 +35,26 @@
     [self _init];
     
 }
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    
+//视图将要显示时隐藏
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+//    [self wr_setNavBarBackgroundImage:[self buttonImageFromColor:JGColor(101, 187, 177, 1)]];
+//    [self wr_setNavBarShadowImageHidden:true];
 }
 
-
+-(UIImage *)buttonImageFromColor:(UIColor *)color;{
+    
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 
 #pragma mark ---------public Method 供子类调用-----------
 -(void)initBaseVCInfo {

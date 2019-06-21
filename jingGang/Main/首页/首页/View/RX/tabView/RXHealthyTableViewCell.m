@@ -10,6 +10,17 @@
 
 @implementation RXHealthyTableViewCell
 
+- (void)setFrame:(CGRect)frame
+{
+    if (frame.size.height>140) {
+        frame.origin.x+=10;
+        frame.size.width -= 20;
+        frame.size.height-=10;
+        [super setFrame:frame];
+    }else{
+        [super setFrame:frame];
+    }
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

@@ -15,6 +15,9 @@
 //智能输入
 #import "RXZhangKaiTableViewCell.h"
 
+//第二次数据,用于判断返回多少个cell
+#import "RXParamDetailResponse.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(CGFloat)getTabViewHeight:(NSMutableDictionary*)dic;
 +(UITableViewCell*)getTabViewCell:(NSMutableDictionary*)dic;
-+(NSInteger)getTabviewNumber:(NSMutableDictionary*)dic;
++(NSInteger)getTabviewNumber:(NSMutableDictionary*)dic with:(RXParamDetailResponse*)response;
 
 //根据itemCode判断，是那一个
 +(NSString*)getItemCodeNumber:(NSMutableDictionary*)dic;

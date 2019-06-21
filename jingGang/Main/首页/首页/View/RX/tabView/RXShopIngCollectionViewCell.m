@@ -1,14 +1,14 @@
 //
-//  RXShopCollectionViewCell.m
+//  RXShopIngCollectionViewCell.m
 //  jingGang
 //
-//  Created by 荣旭 on 2019/6/17.
+//  Created by 荣旭 on 2019/6/20.
 //  Copyright © 2019年 dengxf_dev. All rights reserved.
 //
 
-#import "RXShopCollectionViewCell.h"
+#import "RXShopIngCollectionViewCell.h"
 
-@implementation RXShopCollectionViewCell
+@implementation RXShopIngCollectionViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

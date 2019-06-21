@@ -17,6 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *pingButton;
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *twoConterlabel;
+@property (weak, nonatomic) IBOutlet UIImageView *twoIconimage;
+@property (weak, nonatomic) IBOutlet UIButton *twoDianButton;
+@property (weak, nonatomic) IBOutlet UIButton *twoPingButton;
+@property (weak, nonatomic) IBOutlet UIButton *twoFlashButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *twoTitellabel;
+@property (weak, nonatomic) IBOutlet UIButton *twoGengButton;
+
 @end
 
 NS_ASSUME_NONNULL_END

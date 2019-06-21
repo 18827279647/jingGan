@@ -15,6 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *travelButton;
 @property (weak, nonatomic) IBOutlet UIImageView *travelImage;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *twoTitlelabel;
+@property (weak, nonatomic) IBOutlet UIButton *twoTravelButton;
+@property (weak, nonatomic) IBOutlet UIImageView *twoConterlabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *twoWenTilabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

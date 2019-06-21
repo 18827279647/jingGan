@@ -514,4 +514,15 @@
     }
     return ageNumber;
 }
+//+(UIImage *)buttonImageFromColor:(UIColor *)color;{
+//    
+//    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+//    UIGraphicsBeginImageContext(rect.size);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, [color CGColor]);
+//    CGContextFillRect(context, rect);
+//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return img;
+//}
 @end

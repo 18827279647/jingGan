@@ -14,11 +14,15 @@
         return 80;
     }else{
         if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动步数"]) {
-            return 280;
+            return 290;
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血压"]){
-            return 330;
+            return 340;
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血糖"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体重"]){
-            return 270;
+            return 280;
+        }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血氧"]){
+            return 290;
+        }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血脂"]){
+            return 500;
         }
         return 0;
     }
@@ -32,12 +36,16 @@
             return [[RXMotionTableViewCell alloc]init];
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血压"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血糖"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体重"]){
             return [[RXBloodPressureTableViewCell alloc]init];
+        }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血氧"]){
+            return [[RXMotionTableViewCell alloc]init];
+        }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血脂"]){
+            return [[RXBloodPressureTableViewCell alloc]init];
         }
     }
     return [[UITableViewCell alloc]init];
 }
 
-+(NSInteger)getTabviewNumber:(NSMutableDictionary*)dic;{
++(NSInteger)getTabviewNumber:(NSMutableDictionary*)dic with:(RXParamDetailResponse*)response;{
     int index=0;
     if ([Unit JSONBool:dic key:@"myZhankaiType"]) {
         return 1;
@@ -48,13 +56,20 @@
         }
         if ([RXTabViewHeightObjject getType:dic]) {
             index=index+1;
-            //NOOP
+            if (response) {
+                if (response.keywordGoodsList.count>0) {
+                    index=index+1;
+                }
+                if (response.invitationList.count>0) {
+                    index=index+1;
+                }
+            }
         }
     }
     return index;
 }
 +(bool)getType:(NSMutableDictionary*)dic;{
-    if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动"]) {
+    if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动步数"]) {
          return true;
     }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血压"]){
          return true;

@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RXAdvertisingTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *back_image;
 
 @end
 

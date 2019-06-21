@@ -67,4 +67,5 @@
 
 + (NSString*)getWeekDayFordate;
 
+//+(UIImage *)buttonImageFromColor:(UIColor *)color;
 @end

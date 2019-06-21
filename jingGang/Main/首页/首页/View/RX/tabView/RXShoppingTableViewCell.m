@@ -7,13 +7,14 @@
 //
 
 #import "RXShoppingTableViewCell.h"
-#import "RXShopCollectionViewCell.h"
+#import "RXShopIngCollectionViewCell.h"
 
 static NSString *cellId = @"jifenrenwucellid";
 static NSString *const kContentCellIdentifier = @"kContentCellIdentifier";
 static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
 @interface RXShoppingTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic,strong)UICollectionView *collectionView;
+@property(nonatomic,strong)NSMutableArray*mykeywordGoodsList;
 @end
 
 @implementation RXShoppingTableViewCell
@@ -26,6 +27,13 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     }
     return self;
 }
+-(void)setFrame:(CGRect)frame;{
+    frame.origin.x+=10;
+    frame.size.width -= 20;
+    frame.size.height-=10;
+    [super setFrame:frame];
+}
+
 - (void)setUpUI{
     
     CGFloat labHeight = 84.0 / 2;
@@ -42,20 +50,22 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     titleLab.userInteractionEnabled=NO;
     [self addSubview:titleLab];
 
-    
+
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 //    layout.itemSize = CGSizeMake(90, 85);
 //    layout.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16);
 //    layout.minimumLineSpacing = 8;
 //    layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,labHeight+10, ScreenWidth,200-labHeight-10) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10,labHeight+10, ScreenWidth-20,280-labHeight-10) collectionViewLayout:layout];
 
     _collectionView.backgroundColor =[UIColor whiteColor];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.tag=1;
-    [_collectionView registerClass:[RXShopCollectionViewCell class] forCellWithReuseIdentifier:@"RXShopCollectionViewCell"];
+    UINib *nib = [UINib nibWithNibName:@"RXShopIngCollectionViewCell"
+                                bundle: [NSBundle mainBundle]];
+    [_collectionView registerNib:nib forCellWithReuseIdentifier:@"RXShopCollectionViewCell"];
 
     _collectionView.showsVerticalScrollIndicator = NO;
     _collectionView.showsHorizontalScrollIndicator = NO;
@@ -76,13 +86,13 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return 3;
 }
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
    
-    return CGSizeMake(100,200);
+    return CGSizeMake((ScreenWidth-40)/3,280-84.2/2-10);
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -93,16 +103,21 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10;
+    return 5;
 }
 
 //设置每个item垂直间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10;
+    return 5;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    RXShopCollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"RXShopCollectionViewCell" forIndexPath:indexPath];
+    RXShopIngCollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"RXShopCollectionViewCell" forIndexPath:indexPath];
+//    NSMutableDictionary*dic=self.mykeywordGoodsList[indexPath.row];
+//    [cell.iconImage sd_setImageWithURL:[NSURL URLWithString:dic[@"mainPhotoUrl"]]];
+//    cell.titlelabel.text=dic[@"title"];
+//    cell.yuanlabel.text=dic[@"cashPrice"];
+//    cell.jingyuanlabel.text=dic[@"storePrice"];
     return cell;
 }
 

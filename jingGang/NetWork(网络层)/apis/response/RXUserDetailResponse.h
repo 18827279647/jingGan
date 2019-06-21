@@ -14,15 +14,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSDictionary * healthUserBO;
 @property (nonatomic, copy) NSString * recommends;
-@property(nonatomic,copy)NSString*adContentBO;
+@property(nonatomic,copy)NSArray*adContentBO;
 @property(nonatomic,copy)NSString*healthServiceRecommendBgBO;
 @property(nonatomic,copy)NSString*healthServiceRecommendJdBO;
 @property(nonatomic,copy)NSString*healthServiceRecommendXyBO;
 @property(nonatomic,copy)NSArray*invitationList;
 @property(nonatomic,copy)NSArray*keywordGoodsList;
-
+@property(nonatomic,copy)NSArray*others;
 //默认数据
 @property(nonatomic,copy)NSArray*healthList;
+
+@property(nonatomic,copy)NSString*bgImg;
+@property(nonatomic,copy)NSString*jdImg;
+@property(nonatomic,copy)NSString*xyImg;
+
+@property(nonatomic,copy)NSString*memberNotice;
+@property(nonatomic,copy)NSString*memberLastTime;
 
 @end
 

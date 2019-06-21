@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *showShuzhangWaiWight;
 
 
+
 //体重和血糖使用一个cell
 @property (weak, nonatomic) IBOutlet UILabel *twoNamelabel;
 @property (weak, nonatomic) IBOutlet UILabel *twoTitlelabel;
