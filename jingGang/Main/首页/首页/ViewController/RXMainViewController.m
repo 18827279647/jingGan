@@ -1500,13 +1500,14 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     if (section==self.dataArray.count+1+4) {
         return 0.01;
     }
-    return 10;
+    return 0.01;
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section;{
     UIView*view=[[UIView alloc]initWithFrame:CGRectMake(0,0,ScreenWidth,10)];
     view.backgroundColor=JGColor(250, 250, 250, 1);
     return view;
 }
+//跳转到测试界面
 -(void)zhangKaiButtonFounction;{
     YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
     [self.navigationController pushViewController:multipleTypesTestController animated:YES];
@@ -1531,7 +1532,6 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             
                 [cell.twoButton addTarget:self action:@selector(zhangKaiButtonFounction) forControlEvents:UIControlEventTouchUpInside];
                 [cell.freeButton addTarget:self action:@selector(zhangKaiButtonFounction) forControlEvents:UIControlEventTouchUpInside];
-                
                 return cell;
             }else{
                 //默认第一个显示
@@ -1728,16 +1728,22 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
         if (indexPath.row==1) {
             if (self.healthServiceRecommendBgBOArray.count>0) {
                 dic=self.healthServiceRecommendBgBOArray[0];
+            }else{
+                return  [[UITableViewCell alloc]init];
             }
         }
         if (indexPath.row==2) {
             if (self.healthServiceRecommendJdBOArray.count>0) {
                 dic=self.healthServiceRecommendJdBOArray[0];
+            }else{
+                return  [[UITableViewCell alloc]init];
             }
         }
         if (indexPath.row==3) {
             if (self.healthServiceRecommendXyBOArray.count>0) {
               dic=self.healthServiceRecommendXyBOArray[0];
+            }else{
+                return  [[UITableViewCell alloc]init];
             }
         }
         RXTravelTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:reusstring];
@@ -1804,12 +1810,12 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
         if (cell==nil) {
             cell=[[[NSBundle mainBundle]loadNibNamed:@"RXAdvertisingTableViewCell" owner:self options:nil]firstObject];
         }
-        if (self.response.adContentBO.count>0) {
-            NSMutableDictionary*dic=self.response.adContentBO[0];
-            NSArray*adContent=dic[@"adContent"];
-            NSDictionary*dd=adContent[0];
-            [cell.back_image sd_setImageWithURL:[NSURL URLWithString:dd[@"pic"]]];
-        }
+//        if (self.response.adContentBO.count>0) {
+//            NSMutableDictionary*dic=self.response.adContentBO[0];
+//            NSArray*adContent=dic[@"adContent"];
+//            NSDictionary*dd=adContent[0];
+//            [cell.back_image sd_setImageWithURL:[NSURL URLWithString:dd[@"pic"]]];
+//        }
         cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -1976,10 +1982,10 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
          return 180;
     }
     if (indexPath.section==self.dataArray.count+1+4) {
-        if (self.response.adContentBO.count>0) {
-            NSMutableDictionary*dic=self.response.adContentBO[0];
-            return [Unit JSONDouble:dic key:@"adHeight"];
-        }
+//        if (self.response.adContentBO.count>0) {
+//            NSMutableDictionary*dic=self.response.adContentBO[0];
+//            return [Unit JSONDouble:dic key:@"adHeight"];
+//        }
         return 0;
     }
     if (indexPath.section==self.dataArray.count+1+5) {
@@ -1999,6 +2005,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     self.advertisingArray=[[NSMutableArray alloc]init];
     [manager RXMakeUserDetail:request
                       success:^(AFHTTPRequestOperation *operation, RXUserDetailResponse *response) {
+                          
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                   [MBProgressHUD hideAllHUDsForView:self.view animated:YES];

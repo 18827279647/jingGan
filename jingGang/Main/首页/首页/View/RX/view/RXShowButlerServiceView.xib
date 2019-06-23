@@ -187,15 +187,59 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9k-po-59z">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9k-po-59z">
                     <rect key="frame" x="84" y="524" width="200" height="44"/>
-                    <color key="backgroundColor" red="0.49019075839999998" green="0.92549019610000005" blue="0.7550825457" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="BWb-YS-JKs"/>
                         <constraint firstAttribute="width" constant="200" id="tcJ-gK-2Oy"/>
                     </constraints>
-                    <state key="normal" title="立即支付">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="立即支付" backgroundImage="invitationFriendButton">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected" title="立即支付" backgroundImage="invitationFriendButton">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="invitationFriendButton">
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zx4-YZ-pCt">
+                    <rect key="frame" x="324" y="415" width="24" height="24"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="Nui-Tb-1Ks"/>
+                        <constraint firstAttribute="height" constant="24" id="V8P-NI-kL0"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="rx_showButler_add">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tP-qj-Lvp">
+                    <rect key="frame" x="294" y="418.5" width="30" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="nEP-sk-WOo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rh-FD-sLu">
+                    <rect key="frame" x="270" y="415" width="24" height="24"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="Al5-O0-d5r"/>
+                        <constraint firstAttribute="height" constant="24" id="KBB-kB-E0C"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="rx_showButer_jian">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
             </subviews>
@@ -224,6 +268,7 @@
                 <constraint firstItem="9mW-Ta-DN8" firstAttribute="width" secondItem="VDx-PQ-jma" secondAttribute="width" multiplier="1/3.5" id="GNG-tP-zEm"/>
                 <constraint firstItem="5PP-Xv-9i3" firstAttribute="leading" secondItem="9mW-Ta-DN8" secondAttribute="trailing" constant="10" id="Gaf-Aw-8Ff"/>
                 <constraint firstItem="5PG-dO-SRN" firstAttribute="centerY" secondItem="eXe-kW-QWT" secondAttribute="centerY" id="JER-hj-aNa"/>
+                <constraint firstItem="8tP-qj-Lvp" firstAttribute="centerY" secondItem="ABb-gr-IG1" secondAttribute="centerY" id="KQv-tk-gWE"/>
                 <constraint firstItem="K7j-KY-SWr" firstAttribute="leading" secondItem="5PG-dO-SRN" secondAttribute="trailing" constant="5" id="OE2-69-101"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pVt-eR-a20" secondAttribute="trailing" constant="20" id="OnV-KR-IT2"/>
                 <constraint firstItem="VDx-PQ-jma" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="PR8-jd-XZM"/>
@@ -237,6 +282,7 @@
                 <constraint firstItem="3ji-u7-hxg" firstAttribute="centerY" secondItem="SXK-aH-0vY" secondAttribute="centerY" id="YfN-fV-vxQ"/>
                 <constraint firstItem="zWu-R8-J8V" firstAttribute="leading" secondItem="eXe-kW-QWT" secondAttribute="leading" id="ayi-U2-ppo"/>
                 <constraint firstItem="f6C-IR-xDO" firstAttribute="top" secondItem="5PP-Xv-9i3" secondAttribute="top" constant="20" id="bVz-hh-nk5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zx4-YZ-pCt" secondAttribute="trailing" constant="20" id="ceU-Ms-Ezf"/>
                 <constraint firstItem="Txb-7X-sIG" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="co0-Xf-RRa"/>
                 <constraint firstItem="9mW-Ta-DN8" firstAttribute="top" secondItem="LxH-sc-7BT" secondAttribute="bottom" constant="20" id="ekJ-DA-u1t"/>
                 <constraint firstItem="f9k-po-59z" firstAttribute="centerX" secondItem="VDx-PQ-jma" secondAttribute="centerX" id="h9o-bH-F86"/>
@@ -252,22 +298,27 @@
                 <constraint firstItem="vbg-ne-Tbn" firstAttribute="centerY" secondItem="Txb-7X-sIG" secondAttribute="centerY" id="k61-uu-1zm"/>
                 <constraint firstItem="eO8-5z-080" firstAttribute="top" secondItem="mtR-9W-Jxt" secondAttribute="bottom" constant="10" id="kxb-CY-ZYf"/>
                 <constraint firstItem="9LD-D1-FaB" firstAttribute="centerX" secondItem="pVt-eR-a20" secondAttribute="centerX" id="l9R-ZV-tg9"/>
+                <constraint firstItem="7rh-FD-sLu" firstAttribute="centerY" secondItem="ABb-gr-IG1" secondAttribute="centerY" id="lYi-8o-34g"/>
                 <constraint firstItem="0WX-qE-1lC" firstAttribute="bottom" secondItem="9mW-Ta-DN8" secondAttribute="bottom" id="lc2-tP-D86"/>
                 <constraint firstItem="K7j-KY-SWr" firstAttribute="centerY" secondItem="eXe-kW-QWT" secondAttribute="centerY" id="lch-Vj-nve"/>
                 <constraint firstItem="hlU-rK-Z4v" firstAttribute="top" secondItem="ZUo-Py-9iG" secondAttribute="bottom" constant="10" id="ngR-cX-MUC"/>
                 <constraint firstItem="HcV-zP-4lY" firstAttribute="centerX" secondItem="5PP-Xv-9i3" secondAttribute="centerX" id="od5-Hs-kKA"/>
+                <constraint firstItem="8tP-qj-Lvp" firstAttribute="leading" secondItem="7rh-FD-sLu" secondAttribute="trailing" id="q4F-HI-uON"/>
                 <constraint firstItem="pVt-eR-a20" firstAttribute="centerY" secondItem="5PP-Xv-9i3" secondAttribute="centerY" id="qZY-yZ-xqb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="VDx-PQ-jma" secondAttribute="bottom" id="rJv-Gl-gHm"/>
                 <constraint firstItem="f6C-IR-xDO" firstAttribute="centerX" secondItem="5PP-Xv-9i3" secondAttribute="centerX" id="rLR-L2-bC7"/>
                 <constraint firstItem="VDx-PQ-jma" firstAttribute="top" secondItem="E7Z-Ub-FdP" secondAttribute="bottom" constant="-20" id="sur-El-IcJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VDx-PQ-jma" secondAttribute="trailing" id="v4m-AM-QX6"/>
+                <constraint firstItem="zx4-YZ-pCt" firstAttribute="centerY" secondItem="ABb-gr-IG1" secondAttribute="centerY" id="vCq-dK-oK5"/>
                 <constraint firstItem="E7Z-Ub-FdP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="voF-Jb-L5L"/>
+                <constraint firstItem="zx4-YZ-pCt" firstAttribute="leading" secondItem="8tP-qj-Lvp" secondAttribute="trailing" id="wlq-Lq-8pD"/>
                 <constraint firstItem="Dar-7j-h3Q" firstAttribute="trailing" secondItem="5PP-Xv-9i3" secondAttribute="trailing" id="woV-7e-7Ey"/>
                 <constraint firstItem="HcV-zP-4lY" firstAttribute="top" secondItem="24C-3T-Ytt" secondAttribute="bottom" constant="10" id="yf1-SI-kCs"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="addButton" destination="zx4-YZ-pCt" id="q06-1E-rDx"/>
                 <outlet property="backImage" destination="VDx-PQ-jma" id="Ahh-wo-fov"/>
                 <outlet property="freeDanlabel" destination="mtR-9W-Jxt" id="4pr-u7-OKg"/>
                 <outlet property="freeImage" destination="pVt-eR-a20" id="QkZ-xR-e3a"/>
@@ -275,12 +326,14 @@
                 <outlet property="freeTimelabel" destination="9LD-D1-FaB" id="4I1-of-S6W"/>
                 <outlet property="freeYlabel" destination="eO8-5z-080" id="Td1-AD-71g"/>
                 <outlet property="helabel" destination="3ji-u7-hxg" id="W4B-sL-MlK"/>
+                <outlet property="jianButton" destination="7rh-FD-sLu" id="BGW-ib-xaA"/>
                 <outlet property="lijiButton" destination="f9k-po-59z" id="B41-0w-GJq"/>
                 <outlet property="oneDanLabel" destination="ZUo-Py-9iG" id="BVE-as-kvJ"/>
                 <outlet property="oneImage" destination="9mW-Ta-DN8" id="lvY-ub-obX"/>
                 <outlet property="oneSelectImage" destination="0WX-qE-1lC" id="57W-dH-22i"/>
                 <outlet property="oneTimelabel" destination="gtD-z4-DaK" id="6Ps-Hd-zv2"/>
                 <outlet property="oneYlabel" destination="hlU-rK-Z4v" id="Ti2-Qe-L7w"/>
+                <outlet property="shuNumberlabel" destination="8tP-qj-Lvp" id="SCC-sR-ukb"/>
                 <outlet property="timelabel" destination="LxH-sc-7BT" id="6D9-9u-kLb"/>
                 <outlet property="titlelabel" destination="vbg-ne-Tbn" id="Efq-YJ-avk"/>
                 <outlet property="twoDanlabel" destination="24C-3T-Ytt" id="Mgq-PJ-i0g"/>
@@ -298,7 +351,10 @@
     <resources>
         <image name="VIP" width="100" height="100"/>
         <image name="VIP_Back_image" width="750" height="218"/>
+        <image name="invitationFriendButton" width="180" height="44"/>
         <image name="rx_right_image" width="48" height="48"/>
+        <image name="rx_showButer_jian" width="30" height="30"/>
+        <image name="rx_showButler_add" width="30" height="30"/>
         <image name="选中" width="56" height="56"/>
     </resources>
 </document>

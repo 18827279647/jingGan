@@ -10,6 +10,7 @@
 #import "VTMagic.h"
 #import "YSTelTestController.h"
 #import "AboutYunEs.h"
+#import "RXIntelligentEquipmentViewController.h"
 
 @interface YSMultipleTypesTestController ()<VTMagicViewDataSource, VTMagicViewDelegate>
 
@@ -35,7 +36,7 @@
         _controllers.magicView.layoutStyle = VTLayoutStyleCenter;
         _controllers.magicView.navigationHeight = 44.f;
         _controllers.magicView.sliderExtension = 10.f;
-        _controllers.magicView.itemSpacing = ScreenWidth / 4;
+        _controllers.magicView.itemSpacing = ScreenWidth/8-20;
         _controllers.magicView.dataSource = self;
         _controllers.magicView.delegate = self;
     }
@@ -66,7 +67,7 @@
     self.controllers.view.width = ScreenWidth;
     self.controllers.view.height = ScreenHeight - 100;
     [self buildTextView];
-    self.menuLists = @[@"手机测量", @"手动输入"];
+    self.menuLists = @[@"手机测量",@"智能设备",@"健康一体机",@"手动输入"];
     [self.controllers.magicView reloadData];
 }
 
@@ -232,7 +233,30 @@
             return viewController;
         }
             break;
+       
         case 1:
+        {
+            static NSString *gridId = @"relate.identifier.Intelligent";
+            RXIntelligentEquipmentViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
+            if (!viewController) {
+                viewController = [[RXIntelligentEquipmentViewController alloc]init];
+            }
+            viewController.view.backgroundColor = JGWhiteColor;
+            return viewController;
+        }
+            break;
+        case 2:
+        {
+            static NSString *gridId = @"relate.identifier.Manual";
+            YSManualTestController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
+            if (!viewController) {
+                viewController = [[YSManualTestController alloc] initWithTestType:self.testType];
+            }
+            viewController.view.backgroundColor = JGWhiteColor;
+            return viewController;
+        }
+            break;
+        case 3:
         {
             static NSString *gridId = @"relate.identifier.Manual";
             YSManualTestController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];

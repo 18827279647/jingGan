@@ -21,11 +21,10 @@
              @"keywordGoodsList":@"keywordGoodsList",
              @"others":@"others",
              @"healthList":@"healthList",
-             @"bgImg":@"bgImg",
-             @"jbImg":@"jbImg",
-             @"xyImg":@"xyImg",
+//             @"bgImg":@"bgImg",
+
              @"memberNotice":@"memberNotice",
-             @"memberLastTime":@"memberLastTime"
+             @"memberLastTime":@"memberLastTime",
             };
 }
 @end

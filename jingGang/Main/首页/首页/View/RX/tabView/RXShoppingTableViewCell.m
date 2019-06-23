@@ -8,7 +8,8 @@
 
 #import "RXShoppingTableViewCell.h"
 #import "RXShopIngCollectionViewCell.h"
-
+#import "Unit.h"
+#import "UILabel+extension.h"
 static NSString *cellId = @"jifenrenwucellid";
 static NSString *const kContentCellIdentifier = @"kContentCellIdentifier";
 static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
@@ -37,7 +38,7 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
 - (void)setUpUI{
     
     CGFloat labHeight = 84.0 / 2;
-    CGFloat marginX = 20;
+    CGFloat marginX = 10;
     UILabel *titleLab = [[UILabel alloc] init];
     titleLab.x =marginX;
     titleLab.y = 5;
@@ -52,10 +53,6 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
 
 
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    layout.itemSize = CGSizeMake(90, 85);
-//    layout.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16);
-//    layout.minimumLineSpacing = 8;
-//    layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10,labHeight+10, ScreenWidth-20,280-labHeight-10) collectionViewLayout:layout];
 
@@ -70,9 +67,7 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     _collectionView.showsVerticalScrollIndicator = NO;
     _collectionView.showsHorizontalScrollIndicator = NO;
     [self addSubview:_collectionView];
-    
 }
-
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -86,24 +81,24 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;
+    return self.keywordGoodsList.count;
 }
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
    
-    return CGSizeMake((ScreenWidth-40)/3,280-84.2/2-10);
+    return CGSizeMake((ScreenWidth-45)/3,280-84.2/2-10);
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(0,0,0,0);
 }
 
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 5;
+    return 8;
 }
 
 //设置每个item垂直间距
@@ -113,14 +108,32 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     RXShopIngCollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"RXShopCollectionViewCell" forIndexPath:indexPath];
-//    NSMutableDictionary*dic=self.mykeywordGoodsList[indexPath.row];
-//    [cell.iconImage sd_setImageWithURL:[NSURL URLWithString:dic[@"mainPhotoUrl"]]];
-//    cell.titlelabel.text=dic[@"title"];
-//    cell.yuanlabel.text=dic[@"cashPrice"];
-//    cell.jingyuanlabel.text=dic[@"storePrice"];
+    if (self.keywordGoodsList.count>0) {
+        NSMutableDictionary*dic=self.keywordGoodsList[indexPath.row];
+        [cell.iconImage sd_setImageWithURL:[NSURL URLWithString:dic[@"mainPhotoUrl"]]];
+        cell.titlelabel.text=dic[@"title"];
+        cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
+        
+        cell.yuanlabel.text=[NSString stringWithFormat:@"%.2f",[Unit JSONDouble:dic key:@"cashPrice"]];
+        cell.yuanlabel.textColor=JGColor(239, 82, 80, 1);
+        
+        cell.jingyuanlabel.text=[NSString stringWithFormat:@"%.2f",[Unit JSONDouble:dic key:@"storePrice"]];
+        cell.jingyuanlabel.textColor=JGColor(153, 153, 153, 1);
+
+        cell.iconImage.layer.masksToBounds=YES;
+        cell.iconImage.layer.cornerRadius = 4;
+        //中划线
+        NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:cell.jingyuanlabel.text attributes:attribtDic];
+        // 赋值
+        cell.jingyuanlabel.attributedText = attribtStr;
+        if (cell.titlelabel.text.length>0) {
+            cell.titlelabel.numberOfLines = 2;
+            [cell.titlelabel setRowSpace:5];
+        }
+    }
     return cell;
 }
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 //    [_delegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
 }

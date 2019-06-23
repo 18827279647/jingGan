@@ -44,8 +44,8 @@
         self.freeView.lijiButton.backgroundColor=JGColor(157, 96, 247,1);
         self.freeView.titlelabel.text=string;
         self.freeView.userInteractionEnabled=YES;
-        self.freeView.lijiButton.userInteractionEnabled=YES;
         [self.freeView.lijiButton addTarget:self action:@selector(lijiButtonFountion) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     [self addSubview:self.freeView];
     

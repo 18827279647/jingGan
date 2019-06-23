@@ -16,6 +16,8 @@
 #import "YSEnvironmentConfig.h"
 #import "YSLoginPopManager.h"
 #import "YSAFNetworking.h"
+
+
 //记录是否设置了订单提醒
 static NSString *const kOrderStatuskey = @"kOrderStatuskey";
 static NSString *const kUserStatuskey = @"kUserStatuskey";
@@ -38,8 +40,13 @@ static NSString *const kUserStatuskey = @"kUserStatuskey";
 #define kJPushEnvirStr      [YSEnvironmentConfig jpushEnvirStr]
 #define JPushAppKey         [YSEnvironmentConfig jpushAppkey]
 
+
+
 //测试环境
 /*********外网测试**********/
+
+//#define BaseAuthUrl @"http://1t6y344017.iask.in"
+
 //#define BaseAuthUrl @"http://auth.bhesky.cn"
 //#define StaticBase_Url @"http://static.bhesky.cn"
 //#define Base_URL @"http://api.bhesky.cn/carnation-apis-resource"

@@ -2492,6 +2492,9 @@
 		BE63103122B795440018CE42 /* RXUserDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63103022B795440018CE42 /* RXUserDetailRequest.m */; };
 		BE63103422B795900018CE42 /* RXUserDetailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63103322B795900018CE42 /* RXUserDetailResponse.m */; };
 		BE6B262F22BCFEC900D0C05E /* RXZhangKaiTableViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = BE565E5622BA422D004D9E9E /* RXZhangKaiTableViewCell.h */; };
+		BE6B263922BE65A500D0C05E /* RXIntelligentEquipmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6B263822BE65A500D0C05E /* RXIntelligentEquipmentViewController.m */; };
+		BE6B263C22BE65F500D0C05E /* RXShowIntelligentEquipmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6B263B22BE65F500D0C05E /* RXShowIntelligentEquipmentView.m */; };
+		BE6B263E22BE661300D0C05E /* RXShowIntelligentEquipmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE6B263D22BE661300D0C05E /* RXShowIntelligentEquipmentView.xib */; };
 		BE94076322B6651600741F1B /* RXMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE94076222B6651600741F1B /* RXMainViewController.m */; };
 		BE94076A22B672D600741F1B /* YUFoldingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE94076522B672D400741F1B /* YUFoldingTableView.m */; };
 		BE94076B22B672D600741F1B /* YUFoldingSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BE94076622B672D400741F1B /* YUFoldingSectionHeader.m */; };
@@ -7455,6 +7458,11 @@
 		BE63103022B795440018CE42 /* RXUserDetailRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXUserDetailRequest.m; sourceTree = "<group>"; };
 		BE63103222B795900018CE42 /* RXUserDetailResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXUserDetailResponse.h; sourceTree = "<group>"; };
 		BE63103322B795900018CE42 /* RXUserDetailResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXUserDetailResponse.m; sourceTree = "<group>"; };
+		BE6B263722BE65A500D0C05E /* RXIntelligentEquipmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXIntelligentEquipmentViewController.h; sourceTree = "<group>"; };
+		BE6B263822BE65A500D0C05E /* RXIntelligentEquipmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXIntelligentEquipmentViewController.m; sourceTree = "<group>"; };
+		BE6B263A22BE65F500D0C05E /* RXShowIntelligentEquipmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXShowIntelligentEquipmentView.h; sourceTree = "<group>"; };
+		BE6B263B22BE65F500D0C05E /* RXShowIntelligentEquipmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXShowIntelligentEquipmentView.m; sourceTree = "<group>"; };
+		BE6B263D22BE661300D0C05E /* RXShowIntelligentEquipmentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXShowIntelligentEquipmentView.xib; sourceTree = "<group>"; };
 		BE70FC002E50E2641A47E9BA57A12D09 /* MerchantListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantListTableViewCell.m; sourceTree = "<group>"; };
 		BE94076122B6651600741F1B /* RXMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXMainViewController.h; sourceTree = "<group>"; };
 		BE94076222B6651600741F1B /* RXMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXMainViewController.m; sourceTree = "<group>"; };
@@ -8868,6 +8876,8 @@
 				09B7F11B1D4F0029001DD36A /* YSTelTestController.mm */,
 				09B7F11D1D4F00A9001DD36A /* YSManualTestController.h */,
 				09B7F11E1D4F00A9001DD36A /* YSManualTestController.m */,
+				BE6B263722BE65A500D0C05E /* RXIntelligentEquipmentViewController.h */,
+				BE6B263822BE65A500D0C05E /* RXIntelligentEquipmentViewController.m */,
 			);
 			path = physicalExamination;
 			sourceTree = "<group>";
@@ -9671,6 +9681,9 @@
 				099D3AF21D4642D50056E7EA /* YSHealthyMessageCell.m */,
 				093AE82A1D61AE12006E5884 /* YSHealthyStepHeaderView.h */,
 				093AE82B1D61AE12006E5884 /* YSHealthyStepHeaderView.m */,
+				BE6B263A22BE65F500D0C05E /* RXShowIntelligentEquipmentView.h */,
+				BE6B263B22BE65F500D0C05E /* RXShowIntelligentEquipmentView.m */,
+				BE6B263D22BE661300D0C05E /* RXShowIntelligentEquipmentView.xib */,
 			);
 			path = YSView;
 			sourceTree = "<group>";
@@ -17144,6 +17157,7 @@
 		BE5ABCBE22BBACB100D06AF4 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
+				BE6B263022BE12B800D0C05E /* NetWorkManager */,
 				BE58F4FD22BCC1A200CCF627 /* other */,
 				BE5ABCBF22BBACD600D06AF4 /* WRNavigationBar */,
 			);
@@ -17213,6 +17227,13 @@
 				BE2564FD22BBE38800E9ED35 /* RXShopIngCollectionViewCell.xib */,
 			);
 			path = tabView;
+			sourceTree = "<group>";
+		};
+		BE6B263022BE12B800D0C05E /* NetWorkManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetWorkManager;
 			sourceTree = "<group>";
 		};
 		BE94076022B664AE00741F1B /* RX */ = {
@@ -19336,6 +19357,7 @@
 				BE4D6BE122B5F28C0018F9B9 /* YSBaseInfoView.xib in Resources */,
 				B48B554C1C1537CF00E1E2DC /* cropArrowBottomLeft.png in Resources */,
 				B48B55501C1537CF00E1E2DC /* cropArrowTopLeft.png in Resources */,
+				BE6B263E22BE661300D0C05E /* RXShowIntelligentEquipmentView.xib in Resources */,
 				0949B87D1EF7B66B008D0B80 /* comitGestureCtrlList.plist in Resources */,
 				70CCA76B1C4FB20600ADD4A0 /* JGHealthStoreController.xib in Resources */,
 				5130D40B223B7DD7007BBEC5 /* XRHeandeView.xib in Resources */,
@@ -20977,6 +20999,7 @@
 				705F586E1C2AD87200DDC31D /* ReportRepDetailsResponse.m in Sources */,
 				5560A31D88FCD240ED4C3EDF4AA80BD8 /* SetCount.m in Sources */,
 				09EF3C371DFFF3AF00313F9C /* HZWaitingView.m in Sources */,
+				BE6B263C22BE65F500D0C05E /* RXShowIntelligentEquipmentView.m in Sources */,
 				7045C2831F677DB700893E56 /* ShopJuanpiShareRequest.m in Sources */,
 				705F56431C2AD87200DDC31D /* GoodsChildInfo.m in Sources */,
 				6554ABDEF73F10E6C3D344B2A2A167CC /* SettingVC.m in Sources */,
@@ -21142,6 +21165,7 @@
 				705F580D1C2AD87200DDC31D /* GroupStoreCustomerListResponse.m in Sources */,
 				099CA17A1DADD05800FF870D /* YSShareBgView.m in Sources */,
 				0923DD351D4096B5002B7F8A /* YYTextContainerView.m in Sources */,
+				BE6B263922BE65A500D0C05E /* RXIntelligentEquipmentViewController.m in Sources */,
 				7026B2FF1C311E7E000C8DBE /* JGCloudValueCell.m in Sources */,
 				990D366122A8B6D2000CC8D0 /* WSJShoppingCartInfoModel.m in Sources */,
 				0990944D1FB196430053D3D7 /* YSScreenLauchAdItem.m in Sources */,

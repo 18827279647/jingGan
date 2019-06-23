@@ -34,7 +34,7 @@
 - (NSString *) getApiUrl
 {
 //    NSString*url=[NSString stringWithFormat:@"%@/v1/hp/userDetail",self.baseUrl];
-    NSString*url=[NSString stringWithFormat:@"http://1t6y344017.iask.in/v1/hp/userDetail"];
+    NSString*url=[NSString stringWithFormat:@"http://192.168.8.160:8080/carnation-apis-resource/v1/hp/userDetail"];
     return url;
 }
 

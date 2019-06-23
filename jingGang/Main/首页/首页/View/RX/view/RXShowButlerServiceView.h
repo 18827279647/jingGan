@@ -37,6 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *helabel;
 @property (weak, nonatomic) IBOutlet UIButton *lijiButton;
 
+
+@property (weak, nonatomic) IBOutlet UIButton *jianButton;
+@property (weak, nonatomic) IBOutlet UILabel *shuNumberlabel;
+@property (weak, nonatomic) IBOutlet UIButton *addButton;
 @end
 
 NS_ASSUME_NONNULL_END

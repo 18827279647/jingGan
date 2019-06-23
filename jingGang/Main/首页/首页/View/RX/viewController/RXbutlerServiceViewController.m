@@ -14,15 +14,23 @@
 #define colorSelect [UIColor colorWithRed:228/255.0 green:46/255.0 blue:114/255.0 alpha:1.0]
 #define colorNoSelect [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]
 
-#define colorboardSelect [UIColor colorWithRed:252/255.0 green:238/255.0 blue:233/255.0 alpha:1.0].CGColor
-#define colorboardNOSelect UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
+#define colorboardSelect [UIColor colorWithRed:228/255.0 green:46/255.0 blue:114/255.0 alpha:1.0].CGColor;
+#define colorboardNOSelect JGColor(194, 194, 194, 0.5).CGColor;
 
+#define colorBackSelect [UIColor colorWithRed:252/255.0 green:238/255.0 blue:233/255.0 alpha:1.0].CGColor
+#define colorBackNoSelect [UIColor colorWithRed:252/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
 
 @interface RXbutlerServiceViewController ()
 
 @property(nonatomic,strong)RXShowButlerServiceView*butlerServiceView;
 
-@property (nonatomic, weak) UIImageView *lineView;
+//时间
+@property(nonatomic,strong)NSString*myTimelabel;
+
+//金额
+@property(nonatomic,strong)NSString*myMoneylabel;
+//数量
+@property(nonatomic,strong)NSString*myNumlabel;
 
 @end
 
@@ -42,11 +50,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [YSThemeManager setNavigationTitle:@"健康管家服务" andViewController:self];
+    
+    self.myNumlabel=@"1";
+    self.myMoneylabel=@"5";
     [self setUI];
 }
 -(void)setUI;{
     if (!self.butlerServiceView) {
-       self.butlerServiceView=[[[NSBundle mainBundle]loadNibNamed:@"RXShowButlerServiceView" owner:self options:nil]firstObject];
+        self.butlerServiceView=[[[NSBundle mainBundle]loadNibNamed:@"RXShowButlerServiceView" owner:self options:nil]firstObject];
+        self.butlerServiceView.userInteractionEnabled=YES;
         self.butlerServiceView.frame=CGRectMake(0,0,kScreenWidth,kScreenHeight);
         self.butlerServiceView.backgroundColor=[UIColor whiteColor];
         self.butlerServiceView.backImage.layer.masksToBounds=YES;
@@ -60,47 +72,210 @@
 
     
         //不一样的4个地方
-        self.butlerServiceView.oneImage.layer.backgroundColor = [UIColor colorWithRed:252/255.0 green:238/255.0 blue:233/255.0 alpha:1.0].CGColor;
+        self.butlerServiceView.oneImage.layer.backgroundColor =colorBackSelect;
         self.butlerServiceView.oneImage.layer.borderWidth = 2;
-        self.butlerServiceView.oneImage.layer.borderColor = [UIColor colorWithRed:228/255.0 green:46/255.0 blue:114/255.0 alpha:1.0].CGColor;
+        self.butlerServiceView.oneImage.layer.borderColor = colorboardSelect;
         self.butlerServiceView.oneYlabel.textColor=colorSelect;
         self.butlerServiceView.oneTimelabel.textColor=colorSelect;
         self.butlerServiceView.oneDanLabel.textColor=colorSelect;
         self.butlerServiceView.oneSelectImage.hidden=NO;
-    
         
+        [self.butlerServiceView.oneTimelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17]];
+        
+        self.butlerServiceView.oneImage.tag=1;
+        UITapGestureRecognizer *tapGR1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapButtonFountion:)];
+        self.butlerServiceView.oneImage.userInteractionEnabled=YES;
+        [self.butlerServiceView.oneImage addGestureRecognizer:tapGR1];
+    
         
         //第二个
         self.butlerServiceView.twoImage.layer.masksToBounds=YES;
         self.butlerServiceView.twoImage.layer.cornerRadius = 10;
+        self.butlerServiceView.twoImage.userInteractionEnabled=YES;
+        
+        
+        self.butlerServiceView.twoImage.layer.borderWidth = 1;
+
         self.butlerServiceView.twoSelectImage.hidden=YES;
         self.butlerServiceView.twoImage.layer.borderWidth = 1;
-        self.butlerServiceView.twoImage.layer.borderColor = JGColor(194, 194, 194, 0.5).CGColor;
+        self.butlerServiceView.twoImage.layer.borderColor =colorboardNOSelect;
+        [self.butlerServiceView.twoTimelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17]];
+        self.butlerServiceView.twoYlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.twoTimelabel.textColor=JGColor(102, 102, 102, 1);
+        self.butlerServiceView.twoDanlabel.textColor=JGColor(51, 51, 51, 1);
         
-        
-        
+        self.butlerServiceView.twoImage.layer.backgroundColor =colorBackNoSelect;
+    
+        self.butlerServiceView.twoImage.tag=2;
+        UITapGestureRecognizer *tapGR2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapButtonFountion:)];
+        [self.butlerServiceView.twoImage addGestureRecognizer:tapGR2];
+    
         //第3个
         self.butlerServiceView.freeImage.layer.masksToBounds=YES;
-        self.butlerServiceView.freeSelectImage.hidden=YES;
         self.butlerServiceView.freeImage.layer.cornerRadius = 10;
-
+        self.butlerServiceView.freeImage.userInteractionEnabled=YES;
         
+        self.butlerServiceView.freeSelectImage.hidden=YES;
         self.butlerServiceView.freeImage.layer.borderWidth = 1;
-        self.butlerServiceView.freeImage.layer.borderColor = JGColor(194, 194, 194, 0.5).CGColor;
-
+        self.butlerServiceView.freeImage.layer.borderColor =colorboardNOSelect;
         
-        self.butlerServiceView.lijiButton.layer.masksToBounds=YES;
-        self.butlerServiceView.lijiButton.layer.cornerRadius=22;
+        self.butlerServiceView.freeYlabel.textColor=JGColor(51, 51, 51, 1);
+        [self.butlerServiceView.freeTimelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17]];
+        self.butlerServiceView.freeTimelabel.textColor=JGColor(102, 102, 102, 1);
+        self.butlerServiceView.freeDanlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.freeImage.layer.backgroundColor =colorBackNoSelect;
+       
         
-        [self.butlerServiceView.lijiButton.layer addSublayer:[self setGradualChangingColor:self.butlerServiceView.lijiButton fromColor:@"65BBB1" toColor:@"58D499"]];//渐变开始
+        self.butlerServiceView.freeImage.tag=3;
+        UITapGestureRecognizer *tapGR3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapButtonFountion:)];
+        [self.butlerServiceView.freeImage addGestureRecognizer:tapGR3];
+        
+        //合计
+        self.butlerServiceView.helabel.text=[NSString stringWithFormat:@"¥%.2f",[self.myMoneylabel floatValue]];
+        self.butlerServiceView.helabel.textColor=JGColor(239, 82, 80, 1);
+        
+        //数量加减
+        [self.butlerServiceView.jianButton addTarget:self action:@selector(editButtonFouction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.butlerServiceView.addButton addTarget:self action:@selector(editButtonFouction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+         [self.butlerServiceView.lijiButton addTarget:self action:@selector(lijiButtonFountion) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     [self.view addSubview:self.butlerServiceView];
 }
 
+-(void)lijiButtonFountion;{
+    
+}
+-(void)editButtonFouction:(UIButton*)button;{
+    NSInteger index=[self.butlerServiceView.shuNumberlabel.text integerValue];
+    if (button.tag==1) {
+        if (index==1) {
+            return;
+        }
+        index--;
+    }else{
+        if (index>=20) {
+            return;
+        }
+        index++;
+    }
+    self.butlerServiceView.shuNumberlabel.text=[NSString stringWithFormat:@"%ld",index];
+    //数量
+    self.myNumlabel=[NSString stringWithFormat:@"%ld",index];
+    self.butlerServiceView.helabel.text=[NSString stringWithFormat:@"¥%.2f",[self.myMoneylabel floatValue]*index];
+}
 
+-(void)tapButtonFountion:(UITapGestureRecognizer*)tap;{
+    
+    if (tap.view.tag==1) {
+        
+        //第一个
+        self.butlerServiceView.oneImage.layer.backgroundColor = colorBackSelect;
+        self.butlerServiceView.oneImage.layer.borderWidth = 2;
+        self.butlerServiceView.oneImage.layer.borderColor = colorboardSelect;
+        self.butlerServiceView.oneYlabel.textColor=colorSelect;
+        self.butlerServiceView.oneTimelabel.textColor=colorSelect;
+        self.butlerServiceView.oneDanLabel.textColor=colorSelect;
+        self.butlerServiceView.oneSelectImage.hidden=NO;
+        
+        
+        //第二个
+        self.butlerServiceView.twoSelectImage.hidden=YES;
+        self.butlerServiceView.twoImage.layer.borderWidth = 1;
+        self.butlerServiceView.twoImage.layer.borderColor =colorboardNOSelect;
+        self.butlerServiceView.twoYlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.twoTimelabel.textColor=JGColor(102, 102, 102, 1);
+        self.butlerServiceView.twoDanlabel.textColor=JGColor(51, 51, 51, 1);
+        
+        self.butlerServiceView.twoImage.layer.backgroundColor =colorBackNoSelect;
+        //第3个
 
+        self.butlerServiceView.freeSelectImage.hidden=YES;
+        self.butlerServiceView.freeImage.layer.borderWidth = 1;
+        self.butlerServiceView.freeImage.layer.borderColor =colorboardNOSelect;
+        
+        self.butlerServiceView.freeYlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.freeTimelabel.textColor=JGColor(102, 102, 102, 1);
+        self.butlerServiceView.freeDanlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.freeImage.layer.backgroundColor =colorBackNoSelect;
+        
+        self.myMoneylabel=@"5";
+        
+    }else if(tap.view.tag==2){
+        //第一个
+        self.butlerServiceView.oneImage.layer.backgroundColor =colorBackNoSelect;
+        self.butlerServiceView.oneImage.layer.borderWidth = 1;
+        self.butlerServiceView.oneImage.layer.borderColor = colorboardNOSelect;
+        self.butlerServiceView.oneYlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.oneTimelabel.textColor=JGColor(102, 102, 102, 1);
+        self.butlerServiceView.oneDanLabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.oneSelectImage.hidden=YES;
+        
+       
+        self.myMoneylabel=@"15";
+        //第二个
+        self.butlerServiceView.twoSelectImage.hidden=NO;
+        self.butlerServiceView.twoImage.layer.borderWidth = 2;
+        self.butlerServiceView.twoImage.layer.borderColor =colorboardSelect;
+        self.butlerServiceView.twoYlabel.textColor=colorSelect;
+        self.butlerServiceView.twoTimelabel.textColor=colorSelect;
+        self.butlerServiceView.twoDanlabel.textColor=colorSelect;
+        self.butlerServiceView.twoImage.layer.backgroundColor =colorBackSelect;
+    
+        
+        //第3个
+        
+        self.butlerServiceView.freeSelectImage.hidden=YES;
+        self.butlerServiceView.freeImage.layer.borderWidth = 1;
+        self.butlerServiceView.freeImage.layer.borderColor =colorboardNOSelect;
+        
+        self.butlerServiceView.freeImage.layer.backgroundColor =colorBackNoSelect;
+        self.butlerServiceView.freeYlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.freeTimelabel.textColor=JGColor(102, 102, 102, 1);
+        self.butlerServiceView.freeDanlabel.textColor=JGColor(51, 51, 51, 1);
+        
+        
+    }else if(tap.view.tag==3){
+        
+        self.myMoneylabel=@"60";
+        
+        //第一个
+        self.butlerServiceView.oneImage.layer.backgroundColor =colorBackNoSelect;
+        self.butlerServiceView.oneImage.layer.borderWidth = 1;
+        self.butlerServiceView.oneImage.layer.borderColor = colorboardNOSelect;
+        self.butlerServiceView.oneYlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.oneTimelabel.textColor=JGColor(102, 102, 102, 1);
+        self.butlerServiceView.oneDanLabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.oneSelectImage.hidden=YES;
+        
+        
+        //第二个
+        self.butlerServiceView.twoSelectImage.hidden=YES;
+        self.butlerServiceView.twoImage.layer.borderWidth = 1;
+        self.butlerServiceView.twoImage.layer.backgroundColor =colorBackNoSelect;
+        self.butlerServiceView.twoImage.layer.borderColor =colorboardNOSelect;
+        self.butlerServiceView.twoYlabel.textColor=JGColor(51, 51, 51, 1);
+        self.butlerServiceView.twoTimelabel.textColor=JGColor(102, 102, 102, 1);
+        self.butlerServiceView.twoDanlabel.textColor=JGColor(51, 51, 51, 1);
+        //第3个
+        
+        self.butlerServiceView.freeSelectImage.hidden=NO;
+        self.butlerServiceView.freeImage.layer.backgroundColor =colorBackSelect;
+        self.butlerServiceView.freeImage.layer.borderWidth = 2;
+        self.butlerServiceView.freeImage.layer.borderColor =colorboardSelect;
+        
+        self.butlerServiceView.freeYlabel.textColor=colorSelect;
+        self.butlerServiceView.freeTimelabel.textColor=colorSelect;
+        self.butlerServiceView.freeDanlabel.textColor=colorSelect;
+        
+        
+    }
+    self.butlerServiceView.helabel.text=[NSString stringWithFormat:@"¥%.2f",[self.myMoneylabel floatValue]*[self.myNumlabel integerValue]];
 
-
+}
 //绘制渐变色颜色的方法
 - (CAGradientLayer *)setGradualChangingColor:(UIView *)view fromColor:(NSString *)fromHexColorStr toColor:(NSString *)toHexColorStr{
     

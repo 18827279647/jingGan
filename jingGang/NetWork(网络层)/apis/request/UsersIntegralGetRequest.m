@@ -35,7 +35,7 @@
 
 - (NSString *) getApiUrl
 {
-     NSString *url = [NSString stringWithFormat:@"%@/v1/users/integral/get",self.baseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/users/integral/get",self.baseUrl];
     return url;
 }
 
