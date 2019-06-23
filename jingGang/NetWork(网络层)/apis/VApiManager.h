@@ -727,6 +727,10 @@
 #import "RXParamDetailResponse.h"
 #import "RXParamDetailRequest.h"
 
+//用户领取VIP
+#import "RXMemberDetailRequest.h"
+#import "RXMemberDetailResponse.h"
+
 @interface VApiManager : AFHTTPRequestOperationManager
 
 @property (readonly, nonatomic) NSString *clientId;
@@ -1862,4 +1866,8 @@
 //个人数据中心详情
 -(void)RXMakeParamDetail:(RXParamDetailRequest*)request success:(void (^)(AFHTTPRequestOperation *operation,RXParamDetailResponse *response))success
                  failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+//是否领取VIP
+-(void)RXMemberDetailRequest:(RXMemberDetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXMemberDetailResponse *response))success
+                failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
 @end

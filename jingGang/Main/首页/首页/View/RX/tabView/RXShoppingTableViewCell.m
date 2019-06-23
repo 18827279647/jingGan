@@ -42,7 +42,7 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     UILabel *titleLab = [[UILabel alloc] init];
     titleLab.x =marginX;
     titleLab.y = 5;
-    titleLab.width = ScreenWidth;
+    titleLab.width = ScreenWidth-20;
     titleLab.height = labHeight;
     titleLab.textColor=JGColor(51, 51, 51, 1);
     titleLab.text = @"今日健康商品";
@@ -51,10 +51,12 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     titleLab.userInteractionEnabled=NO;
     [self addSubview:titleLab];
 
+    
+    
 
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10,labHeight+10, ScreenWidth-20,280-labHeight-10) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,labHeight+10, ScreenWidth-20,280-labHeight-20) collectionViewLayout:layout];
 
     _collectionView.backgroundColor =[UIColor whiteColor];
     _collectionView.delegate = self;
@@ -87,7 +89,7 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
    
-    return CGSizeMake((ScreenWidth-45)/3,280-84.2/2-10);
+    return CGSizeMake((ScreenWidth-20)/3,280-84.2/2-10);
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -114,10 +116,10 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
         cell.titlelabel.text=dic[@"title"];
         cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
         
-        cell.yuanlabel.text=[NSString stringWithFormat:@"%.2f",[Unit JSONDouble:dic key:@"cashPrice"]];
+        cell.yuanlabel.text=[NSString stringWithFormat:@"¥%.2f",[Unit JSONDouble:dic key:@"cashPrice"]];
         cell.yuanlabel.textColor=JGColor(239, 82, 80, 1);
         
-        cell.jingyuanlabel.text=[NSString stringWithFormat:@"%.2f",[Unit JSONDouble:dic key:@"storePrice"]];
+        cell.jingyuanlabel.text=[NSString stringWithFormat:@"¥%.2f",[Unit JSONDouble:dic key:@"storePrice"]];
         cell.jingyuanlabel.textColor=JGColor(153, 153, 153, 1);
 
         cell.iconImage.layer.masksToBounds=YES;

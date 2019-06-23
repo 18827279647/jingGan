@@ -14,15 +14,19 @@
         return 80;
     }else{
         if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动步数"]) {
-            return 290;
+            return 270;
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血压"]){
             return 340;
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血糖"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体重"]){
             return 280;
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血氧"]){
-            return 290;
+            return 250;
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血脂"]){
             return 500;
+        }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体脂"]){
+            return 250;
+        }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"尿酸"]){
+            return 280;
         }
         return 0;
     }
@@ -34,12 +38,14 @@
     }else{
         if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动步数"]) {
             return [[RXMotionTableViewCell alloc]init];
-        }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血压"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血糖"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体重"]){
+        }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血压"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血糖"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体重"]||[[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"尿酸"]){
             return [[RXBloodPressureTableViewCell alloc]init];
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血氧"]){
             return [[RXMotionTableViewCell alloc]init];
         }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血脂"]){
             return [[RXBloodPressureTableViewCell alloc]init];
+        }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体脂"]) {
+            return [[RXMotionTableViewCell alloc]init];
         }
     }
     return [[UITableViewCell alloc]init];
@@ -77,11 +83,11 @@
          return true;
     }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血糖"]){
          return true;
-    }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体脂率"]){
+    }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体脂"]){
          return true;
     }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血脂"]){
          return true;
-    }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血尿酸"]){
+    }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"尿酸"]){
          return true;
     }else if([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血氧"]){
         return true;

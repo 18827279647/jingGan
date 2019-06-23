@@ -56,7 +56,6 @@
     [self.zh_popupController presentContentView:self duration:0.5 springAnimated:YES];
 }
 -(void)lijiButtonFountion;{
-    [self.zh_popupController dismissWithDuration:0.5 springAnimated:YES];
     [_mself performSelector:_msel withObject:nil];
 }
 -(void)p_dismissView;{

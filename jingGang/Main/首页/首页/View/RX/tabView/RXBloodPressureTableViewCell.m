@@ -67,6 +67,7 @@ static NSString*myreuseIdentifier;
         
         self.shuzhangWaiImage.layer.cornerRadius=self.shuzhangbackImage.layer.cornerRadius=5;
         self.shouBackImage.layer.cornerRadius=self.shouWaiImage.layer.cornerRadius=5;
+        
     }else if ([myreuseIdentifier isEqualToString:@"RXBloodPressureTableViewID2"]){
         
         [self.twozhouButton setTitleColor:JGColor(245, 166, 35, 1) forState:UIControlStateNormal];
@@ -96,11 +97,51 @@ static NSString*myreuseIdentifier;
         
         self.twoxuebackImage.layer.cornerRadius= self.twoxueWaiImage.layer.cornerRadius=5;
     }else if([myreuseIdentifier isEqualToString:@"RXBloodPressureTableViewID3"]){
+        [self.freelishiButton setTitleColor:JGColor(245, 166, 35, 1) forState:UIControlStateNormal];
+        self.freelishiButton.layer.masksToBounds=YES;
+        self.freelishiButton.layer.cornerRadius=10;
+        self.freelishiButton.layer.borderWidth=1;
+        self.freelishiButton.layer.borderColor=JGColor(245, 166, 35, 1).CGColor;
         
-    }
-    // Initialization code
+        self.freeTcBackImage.layer.masksToBounds=YES;
+        self.freeTcWaiImage.layer.masksToBounds=YES;
+        self.freeTGwaiImage.layer.masksToBounds=YES;
+        self.freeTGbackImage.layer.masksToBounds=YES;
+        
+        self.freeHDLCWaiimage.layer.masksToBounds=YES;
+        self.freeHDLCBackimage.layer.masksToBounds=YES;
+        self.freeLDLCWaiImage.layer.masksToBounds=YES;
+        self.freeLDLCBackImage.layer.masksToBounds=YES;
+        
+        //画个圆角
+
+
+    self.freeTcBackImage.layer.cornerRadius=self.freeTcWaiImage.layer.cornerRadius=self.freeTGwaiImage.layer.cornerRadius=self.freeTGbackImage.layer.cornerRadius=5;
+    self.freeHDLCWaiimage.layer.cornerRadius=self.freeHDLCBackimage.layer.cornerRadius=self.freeLDLCWaiImage.layer.cornerRadius=self.freeLDLCBackImage.layer.cornerRadius=5;
+        
+        //设置颜色
+        self.freeTcBackImage.backgroundColor=JGColor(252, 238, 233, 1);
+        self.freeTGbackImage.backgroundColor=JGColor(252, 238, 233, 1);
+        self.freeHDLCBackimage.backgroundColor=JGColor(252, 238, 233, 1);
+        self.freeLDLCBackImage.backgroundColor=JGColor(252, 238, 233, 1);
     
+        
+        self.freeTcWaiImage.backgroundColor=JGColor(252, 98, 100, 1);
+        self.freeTGwaiImage.backgroundColor=JGColor(101, 187, 177, 1);
+        self.freeHDLCWaiimage.backgroundColor=JGColor(252, 98, 100, 1);
+        self.freeLDLCWaiImage.backgroundColor=JGColor(101, 187, 177, 1);
+        
+        self.freeJikanglabel.textColor=JGColor(102, 102, 102, 1);
+        self.freeJikangTitellabel.textColor=JGColor(51, 51, 51, 1);
+
+        self.freeTcNumberlabel.textColor=self.freeHDLCNumberlabel.textColor=JGColor(253, 56, 109, 1);
+        self.freeTGNumberlabel.textColor=self.freeLDLCNumberlabel.textColor=JGColor(253, 132, 79, 1);
+        self.freeTclabel.textColor=self.freeHDLClabel.textColor=JGColor(253, 56, 109, 1);
+        self.freeTGlabel.textColor=self.freeLDLClabel.textColor=JGColor(253, 132, 79, 1);
+    }
 }
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

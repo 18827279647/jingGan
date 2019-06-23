@@ -25,6 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *vipButton;
 @property (weak, nonatomic) IBOutlet UILabel *vipNameLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *yichangbackImage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *yichangBottom;
+@property (weak, nonatomic) IBOutlet UIImageView *yichangImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *yichanglabel;
 
 @end
 

@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 //根据itemCode判断，是那一个
 +(NSString*)getItemCodeNumber:(NSMutableDictionary*)dic;
 
++(bool)getType:(NSMutableDictionary*)dic;
+
 @end
 
 NS_ASSUME_NONNULL_END

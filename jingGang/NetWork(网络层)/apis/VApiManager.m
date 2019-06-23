@@ -2951,4 +2951,11 @@ NSString * const kOAuthGrantType = @"password";
     self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
     [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
 }
+//是否领取VIP
+-(void)RXMemberDetailRequest:(RXMemberDetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXMemberDetailResponse *response))success
+                     failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
 @end

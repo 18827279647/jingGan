@@ -31,6 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString*memberNotice;
 @property(nonatomic,copy)NSString*memberLastTime;
 
+@property(nonatomic,assign)int isMember;
+
+@property(nonatomic,strong)NSString*messageTitle;
+
+@property(nonatomic,strong)NSString*isLA;
+
+@property(nonatomic,assign)int hasHealth;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

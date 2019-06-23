@@ -22,6 +22,7 @@ def pods
   pod 'Toast', '~> 4.0.0'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'LKAlarmManager', '~> 0.3'
+  pod 'TBActionSheet'
   
 #  pod 'FDTemplateLayoutCell', '~> 1.0.0'
 #  pod 'YYKit', '~> 1.0.9'

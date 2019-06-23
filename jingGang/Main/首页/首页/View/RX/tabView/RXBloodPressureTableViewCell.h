@@ -55,7 +55,51 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UILabel *twojiangTitle;
 
-    
+
+//血脂
+@property (weak, nonatomic) IBOutlet UILabel *freeNamelabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeTitlelabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *freelishiButton;
+@property (weak, nonatomic) IBOutlet UILabel *freeTclabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeTcNumberlabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeTcStartlabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeTcEndlabel;
+@property (weak, nonatomic) IBOutlet UIImageView *freeTcBackImage;
+@property (weak, nonatomic) IBOutlet UIImageView *freeTcWaiImage;
+@property (weak, nonatomic) IBOutlet UILabel *freeTGStartlabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeTGendlabel;
+@property (weak, nonatomic) IBOutlet UIImageView *freeTGbackImage;
+@property (weak, nonatomic) IBOutlet UIImageView *freeTGwaiImage;
+@property (weak, nonatomic) IBOutlet UILabel *freeTGlabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeTGNumberlabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *freeHDLCStartlabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeHDLCEndlabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *freeHDLCBackimage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *freeHDLCWaiimage;
+
+@property (weak, nonatomic) IBOutlet UILabel *freeHDLCNumberlabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeHDLClabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *freeLDLClStartlabel;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *freeLDLCEndlabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *freeLDLCBackImage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *freeLDLCWaiImage;
+@property (weak, nonatomic) IBOutlet UILabel *freeLDLClabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *freeLDLCNumberlabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *freeJikangTitellabel;
+@property (weak, nonatomic) IBOutlet UILabel *freeJikanglabel;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

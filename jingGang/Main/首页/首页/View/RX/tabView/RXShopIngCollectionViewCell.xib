@@ -80,13 +80,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥123.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QjK-E9-PcS">
-                        <rect key="frame" x="5" y="209" width="71" height="16"/>
+                        <rect key="frame" x="5" y="209" width="89" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.92891609668731689" green="0.21953278779983521" blue="0.19875350594520569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥10000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16z-qY-RMu">
-                        <rect key="frame" x="97" y="209" width="71" height="16"/>
+                        <rect key="frame" x="84" y="209" width="89" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -98,9 +98,9 @@
                 <constraint firstItem="QjK-E9-PcS" firstAttribute="leading" secondItem="Lc8-RH-JzR" secondAttribute="leading" id="CkI-A5-4NB"/>
                 <constraint firstItem="TXR-eq-eLU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="FuE-TP-1Zt"/>
                 <constraint firstItem="Lc8-RH-JzR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Hfq-YH-BTC"/>
-                <constraint firstItem="QjK-E9-PcS" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="1/2.5" id="Iha-Mx-nCk"/>
+                <constraint firstItem="QjK-E9-PcS" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="1/2" id="Iha-Mx-nCk"/>
                 <constraint firstAttribute="trailing" secondItem="TXR-eq-eLU" secondAttribute="trailing" constant="5" id="Wpw-NY-hUd"/>
-                <constraint firstAttribute="trailing" secondItem="16z-qY-RMu" secondAttribute="trailing" constant="10" id="Zmv-en-gML"/>
+                <constraint firstAttribute="trailing" secondItem="16z-qY-RMu" secondAttribute="trailing" constant="5" id="Zmv-en-gML"/>
                 <constraint firstItem="Lc8-RH-JzR" firstAttribute="top" secondItem="TXR-eq-eLU" secondAttribute="bottom" constant="10" id="bwW-ig-0Vo"/>
                 <constraint firstItem="16z-qY-RMu" firstAttribute="width" secondItem="QjK-E9-PcS" secondAttribute="width" id="hbY-aw-xCx"/>
                 <constraint firstAttribute="trailing" secondItem="Lc8-RH-JzR" secondAttribute="trailing" constant="5" id="jPC-Hl-9Ua"/>

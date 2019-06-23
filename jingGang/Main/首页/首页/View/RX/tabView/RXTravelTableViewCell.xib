@@ -19,14 +19,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="429" height="228.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精准健康检测报告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMT-Xb-vmE">
-                        <rect key="frame" x="20" y="21" width="131" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精准健康" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMT-Xb-vmE">
+                        <rect key="frame" x="20" y="21" width="329" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXl-Jx-BUU">
-                        <rect key="frame" x="379" y="17" width="30" height="28"/>
+                        <rect key="frame" x="359" y="17" width="50" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="jR0-uJ-ki1"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="更多">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -37,6 +40,7 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="qXl-Jx-BUU" firstAttribute="leading" secondItem="lMT-Xb-vmE" secondAttribute="trailing" constant="10" id="1HQ-a8-YOM"/>
                     <constraint firstAttribute="bottom" secondItem="10s-nz-2yi" secondAttribute="bottom" constant="10" id="GUW-r0-j8W"/>
                     <constraint firstAttribute="trailing" secondItem="10s-nz-2yi" secondAttribute="trailing" constant="20" id="HLp-pf-C6L"/>
                     <constraint firstItem="10s-nz-2yi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="bkF-ib-zwq"/>
@@ -53,7 +57,7 @@
                 <outlet property="travelButton" destination="qXl-Jx-BUU" id="akR-Fx-7h0"/>
                 <outlet property="travelImage" destination="10s-nz-2yi" id="ek2-Sq-CgP"/>
             </connections>
-            <point key="canvasLocation" x="-58" y="8"/>
+            <point key="canvasLocation" x="-58.399999999999999" y="7.6461769115442282"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="197" id="iCY-7i-5dt" customClass="RXTravelTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="436" height="197"/>
@@ -63,13 +67,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精准健康检测报告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfM-hg-4bN">
-                        <rect key="frame" x="20" y="21" width="131" height="19.5"/>
+                        <rect key="frame" x="20" y="21" width="336" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGI-Et-T3O">
-                        <rect key="frame" x="386" y="17" width="30" height="28"/>
+                        <rect key="frame" x="366" y="17" width="50" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="LPl-r1-U8L"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="更多">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,6 +119,7 @@
                     <constraint firstItem="fhx-fe-Ucu" firstAttribute="centerX" secondItem="2cX-cO-nfV" secondAttribute="centerX" id="UMf-z2-fiJ"/>
                     <constraint firstAttribute="bottom" secondItem="YBE-Ir-hh9" secondAttribute="bottom" constant="10" id="Yd8-bV-2cs"/>
                     <constraint firstItem="Hne-Fb-zJ9" firstAttribute="top" secondItem="fhx-fe-Ucu" secondAttribute="bottom" constant="20" id="hXw-Xd-ddJ"/>
+                    <constraint firstItem="eGI-Et-T3O" firstAttribute="leading" secondItem="lfM-hg-4bN" secondAttribute="trailing" constant="10" id="jkh-aL-l63"/>
                     <constraint firstAttribute="trailing" secondItem="YBE-Ir-hh9" secondAttribute="trailing" constant="20" id="reE-Pg-7ay"/>
                     <constraint firstItem="lfM-hg-4bN" firstAttribute="top" secondItem="2cX-cO-nfV" secondAttribute="topMargin" constant="10" id="wkP-F8-CaA"/>
                 </constraints>

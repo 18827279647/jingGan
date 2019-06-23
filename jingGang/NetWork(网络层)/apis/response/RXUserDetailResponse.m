@@ -22,9 +22,12 @@
              @"others":@"others",
              @"healthList":@"healthList",
 //             @"bgImg":@"bgImg",
-
              @"memberNotice":@"memberNotice",
              @"memberLastTime":@"memberLastTime",
+             @"isMember":@"isMember",
+             @"messageTitle":@"messageTitle",
+             @"isLA":@"isLA",
+             @"hasHealth":@"hasHealth",
             };
 }
 @end
