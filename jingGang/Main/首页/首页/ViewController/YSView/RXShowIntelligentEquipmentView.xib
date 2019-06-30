@@ -17,13 +17,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B054-开发中" translatesAutoresizingMaskIntoConstraints="NO" id="uHC-TU-NKb">
-                    <rect key="frame" x="100" y="100" width="171" height="100"/>
+                    <rect key="frame" x="110.5" y="100" width="150" height="120"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="R1q-du-OA3"/>
+                        <constraint firstAttribute="height" constant="120" id="R1q-du-OA3"/>
+                        <constraint firstAttribute="width" constant="150" id="Xzg-8m-bsQ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="页面正在开发中，敬请期待～" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtW-1E-XuA">
-                    <rect key="frame" x="99.5" y="230" width="172.5" height="16"/>
+                    <rect key="frame" x="99.5" y="250" width="172.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -31,16 +32,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uHC-TU-NKb" secondAttribute="trailing" constant="100" id="8CO-0c-bXj"/>
                 <constraint firstItem="uHC-TU-NKb" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="XYU-OZ-psm"/>
-                <constraint firstItem="uHC-TU-NKb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="100" id="ghc-4p-WRm"/>
                 <constraint firstItem="FtW-1E-XuA" firstAttribute="centerX" secondItem="uHC-TU-NKb" secondAttribute="centerX" id="iA6-pS-wn8"/>
                 <constraint firstItem="FtW-1E-XuA" firstAttribute="top" secondItem="uHC-TU-NKb" secondAttribute="bottom" constant="30" id="mGG-hp-uuA"/>
                 <constraint firstItem="uHC-TU-NKb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="o7i-yN-emC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="135.19999999999999" y="43.178410794602705"/>
+            <point key="canvasLocation" x="266" y="-27"/>
         </view>
     </objects>
     <resources>

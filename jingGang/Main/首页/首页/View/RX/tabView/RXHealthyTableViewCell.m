@@ -15,7 +15,7 @@
     if (frame.size.height>140) {
         frame.origin.x+=10;
         frame.size.width -= 20;
-        frame.size.height-=10;
+        frame.size.height-=5;
         [super setFrame:frame];
     }else{
         [super setFrame:frame];

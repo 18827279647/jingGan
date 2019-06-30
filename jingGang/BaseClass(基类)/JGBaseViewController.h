@@ -85,5 +85,13 @@
 -(void)back;
 
 
+- (void)showHUD;
+- (void)showHUD:(NSString *)aMessage;
+- (void)showHUD:(NSString *)aMessage animated:(BOOL)animated;
+- (void)showStringHUD:(NSString *)aMessage second:(int)aSecond;
+- (void)hideHUD;
+- (void)hideHUD:(BOOL)animated;
+- (void)hideAllHUD;
+
 
 @end

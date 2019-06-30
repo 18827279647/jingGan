@@ -15,6 +15,9 @@
              @"levelList":@"levelList",
              @"keywordGoodsList":@"keywordGoodsList",
              @"invitationList":@"invitationList",
+             @"hasWeek":@"hasWeek",
+             @"hasMonth":@"hasMonth",
+             @"hasMonth":@"hasMonth",
              };
 }
 @end

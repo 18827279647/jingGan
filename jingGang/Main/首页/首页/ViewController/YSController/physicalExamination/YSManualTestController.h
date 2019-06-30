@@ -15,6 +15,10 @@
 
 - (instancetype)initWithTestType:(YSInputValueType)testType;
 
+@property(nonatomic,strong)NSString*navString;
+
+@property(nonatomic,assign)int paramCode;
+
 @end
 
 @interface YSManualTestInputView : UIView
@@ -22,7 +26,6 @@
 - (instancetype)initWithFrame:(CGRect)frame
                         title:(NSString *)title
                   placeHolder:(NSString *)placeHolder limiteValue:(NSInteger)limiteValue;
-
 
 @property (strong,nonatomic) UITextField *textFiled;
 

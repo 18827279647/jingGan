@@ -45,5 +45,6 @@ typedef NS_ENUM(NSUInteger, YSHtmlControllerType) {
 @property(nonatomic,assign)NSInteger ind;
 @property(nonatomic,strong) NSDictionary *dic;
 @property (copy , nonatomic) NSString *navTitle;
+@property(nonatomic,strong)NSString*navString;
 
 @end

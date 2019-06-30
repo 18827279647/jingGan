@@ -71,12 +71,12 @@
     UIButton *addTaskButton = [UIButton buttonWithType:UIButtonTypeCustom];
     addTaskButton.frame = buttonBgImageView.frame;
     [addTaskButton setTitle:@"更多" forState:UIControlStateNormal];
-//    [addTaskButton setImage:[UIImage imageNamed:@"consummate_right_image"] forState:UIControlStateNormal];
-    [addTaskButton setTitleColor: [YSThemeManager themeColor] forState:UIControlStateNormal];
+    [addTaskButton setImage:[UIImage imageNamed:@"rx_right_image"] forState:UIControlStateNormal];
+    [addTaskButton setTitleColor: JGColor(136, 136, 136, 1) forState:UIControlStateNormal];
     addTaskButton.titleLabel.font = JGFont(14);
     addTaskButton.backgroundColor = JGClearColor;
-//    addTaskButton.titleEdgeInsets=UIEdgeInsetsMake(0, -20,0, 0);
-//    addTaskButton.imageEdgeInsets =UIEdgeInsetsMake(0,-20,0, 0);
+    addTaskButton.titleEdgeInsets=UIEdgeInsetsMake(0, -40,0, 0);
+    addTaskButton.imageEdgeInsets =UIEdgeInsetsMake(0,50,0, 0);
     [addTaskButton addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
         BLOCK_EXEC(addTask);
     }];

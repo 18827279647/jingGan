@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @interface YSHotInfoTableViewCell : UITableViewCell
+
+@property(nonatomic,assign)BOOL isRX;
 @property (nonatomic, strong)NSDictionary  *models;
 @property(nonatomic,strong) NSDictionary *dic;
 @property (nonatomic,assign) BOOL isChecked;

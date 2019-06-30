@@ -28,6 +28,7 @@
              @"messageTitle":@"messageTitle",
              @"isLA":@"isLA",
              @"hasHealth":@"hasHealth",
+             @"url":@"url"
             };
 }
 @end

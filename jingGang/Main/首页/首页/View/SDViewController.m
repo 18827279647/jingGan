@@ -74,19 +74,14 @@
         [self.nameArray addObject:[NSString stringWithFormat:@"%d",i]];
     }
     
-    
-    [self.pickerView selectRow:49 inComponent:0 animated:NO];
+    [self.pickerView selectRow:6 inComponent:0 animated:NO];
     NSString *string = [[NSUserDefaults standardUserDefaults] objectForKey:@"sdbs"];
-
-    NSLog(@"%@.................",string);
     if(string.length == 0){
-         _sdbsLabel.text = [self.nameArray objectAtIndex:49];
+         _sdbsLabel.text = [self.nameArray objectAtIndex:6];
     }else{
          _sdbsLabel.text = string;
     }
-    
-   
-    
+
     // Do any additional setup after loading the view from its nib.
 }
 - (UIButton *)confirmButton {
@@ -112,11 +107,10 @@
 }
 
 -(void)changeActions{
-   
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:_sdbsLabel.text forKey:@"sdbs"];
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"SDViewControllerNotification" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

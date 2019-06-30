@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RxMoreDetectionShowView : UIView
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
+@property (weak, nonatomic) IBOutlet UILabel *tiNamelabel;
+@property (weak, nonatomic) IBOutlet UILabel *tiConterlabel;
+@property (weak, nonatomic) IBOutlet UILabel *tiBottomlabel;
+@property (weak, nonatomic) IBOutlet UIImageView *tiButtonImage;
+@property (weak, nonatomic) IBOutlet UILabel *tiButtonlabel;
 
 @end
 

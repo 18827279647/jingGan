@@ -133,12 +133,31 @@
 //提示框
 #import "TBAlertController.h"
 
+#import "RXWeekViewController.h"
+#import "RXWebViewController.h"
+#import "RXWmViewController.h"
+#import "YSHealthAIOController.h"
+#import "RXLISHIViewController.h"
+#import "RXMoreWebViewController.h"
+
+
+//获取h5
+#import "RXUserH5UrlResponse.h"
+#import "NSDate+ChineseDay.h"
+
+//引导页
+#import "RXGuideManager.h"
+
+#import "WebDayVC.h"
+
+
 static NSString *goodsCellID = @"goodsCellID";
-static NSString *heathInfoCellID = @"heathInfoCellID";
+static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
+
 //默认有12个分组，根据数据添加,
 #define headIndex 8
 
-@interface RXMainViewController ()<YSAPIManagerParamSource,YSAPICallbackProtocol,YSHealthManageHeaderViewDelegate,UICollectionViewDelegate,TZImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface RXMainViewController ()<YSAPIManagerParamSource,YSAPICallbackProtocol,YSHealthManageHeaderViewDelegate,UICollectionViewDelegate,TZImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,shopinageDelegate>
 
 @property(strong,nonatomic)UITableView*mtableview;
 @property (strong,nonatomic) NSMutableDictionary *stepUserInfo;
@@ -209,9 +228,14 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
 @property(nonatomic,strong)NSMutableArray*healthServiceRecommendJdBOArray;
 @property(nonatomic,strong)NSMutableArray*healthServiceRecommendXyBOArray;
 
-
 @property(nonatomic,strong)NSMutableArray*dataArray;
 
+@property(nonatomic,strong)NSTimer*MjTimer;
+
+
+@property(nonatomic,assign)double myKaluli;
+@property(nonatomic,assign)double myGongli;
+@property(nonatomic,assign)int myStep;
 
 @end
 
@@ -279,7 +303,6 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     }
     return _stepUserInfo;
 }
-
 - (YSNearAdContentDataManager *)adContentDataManager {
     if (!_adContentDataManager) {
         _adContentDataManager = [[YSNearAdContentDataManager alloc] init];
@@ -296,8 +319,6 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     [self requestMyIntegralExchangeList];
     [self.mtableview reloadData];
     [self requestStepData];
-    [self getRequest];
-
 }
 - (void)requestMyIntegralExchangeList {
     IntegralListByCriteriaRequest *request = [[IntegralListByCriteriaRequest alloc] init:GetToken];
@@ -305,7 +326,6 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     request.api_pageSize = @4;
     request.api_pageNum = @1;
     VApiManager *manager = [[VApiManager alloc] init];
-    
     [manager integralListByCriteria:request success:^(AFHTTPRequestOperation *operation, IntegralListByCriteriaResponse *response) {
         NSArray *arrayList = [response.integralList copy];
         [self.intergralProductsListArrayData removeAllObjects];
@@ -378,9 +398,9 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
         [integralTodayArray addObjectsFromArray:integralOtherArray];
         [self diposeGainIntergralListForModelWithArrry:[integralTodayArray copy]];
         
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        //[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+       // [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
 }
 
@@ -519,9 +539,9 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
    // [self reqeustNoticeMessageNoReadCount];
     //请求未读消息数量
     self.navigationController.navigationBar.barTintColor = [YSThemeManager themeColor];
-    
-    [self hiddenHud];
-    [self showHud];
+//
+//    [self hiddenHud];
+//    [self showHud];
     [self chunYuDoctorEnterRequest];
 #pragma mark 健康管理广告位接口调用
     [[YSConfigAdRequestManager sharedInstance] requestAdContent:YSAdContentWithHealthyManagerType
@@ -554,17 +574,17 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
         self.taskList = taskList;
         self.taskList.successCode = 1;
         [self tableViewReloadDate];
-        [self hiddenHud];
+//        [self hiddenHud];
     } fail:^{
         @strongify(self);
-        [self hiddenHud];
+//        [self hiddenHud];
         self.userCustome.successCode = 0;
         self.questionnaire.successCode = 0;
         self.taskList.successCode = 0;
         [self tableViewReloadDate];
     } error:^{
         @strongify(self);
-        [self hiddenHud];
+//        [self hiddenHud];
         self.userCustome.successCode = 0;
         self.questionnaire.successCode = 0;
         self.taskList.successCode = 0;
@@ -577,7 +597,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
         self.questionnaire.successCode = 0;
         self.taskList.successCode = 0;
         [self tableViewReloadDate];
-        [self hiddenHud];
+//        [self hiddenHud];
     } isCache:NO];
     [self disafterDismiss];
 }
@@ -670,7 +690,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     @weakify(self);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         @strongify(self);
-        [self hiddenHud];
+//        [self hiddenHud];
     });
 }
 #pragma mark --- tableView headerView 点击跳转事件 ---
@@ -716,7 +736,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     // Do any additional setup after loading the view.
     [self setUI];
     self.dataArray=[[NSMutableArray alloc]init];
-    [self.dataArray addObject:@{@"itemName":@"运动步数",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@12}];
+    [self.dataArray addObject:@{@"itemName":@"运动",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@12}];
     [self.dataArray addObject:@{@"itemName":@"血压",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@4}];
     [self.dataArray addObject:@{@"itemName":@"血糖",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@9}];
     [self.dataArray addObject:@{@"itemName":@"体重",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@16}];
@@ -724,12 +744,90 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"kUserDidLoadMainController" object:nil];
     });
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getRequest) name:@"manualTestNotification" object:nil];
+    //设置引导页
+    [self showPageView];
+    //设置运动，并上传数据，避免后台崩溃
+    [self setYunDong];
+    
+    [self getRequest];
 }
-//- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-//    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-//    header.backgroundView.backgroundColor = UIColor.clearColor;
-//}
+-(void)setYunDong;{
+    if ([YSStepManager healthyKitAccess]) {
+        @weakify(self);
+        [YSStepManager healthStoreDataWithStartDate:nil endDate:nil WithFailAccess:^{
+            @strongify(self);
+            [self showErrorHudWithText:@"无运动数据获取权限"];
+            NSMutableDictionary*dic=[[NSMutableDictionary alloc]init];
+            [dic setObject:[NSString stringWithFormat:@"%d",0] forKey:@"inValue"];
+            [self getRuest:dic];
+        } walkRunningCallback:^(NSNumber *walkRunning) {
+        } stepCallback:^(NSNumber *step) {
+            if ([step intValue]==0) {
+                self.myStep= [step intValue];
+                self.myGongli=[step doubleValue] * 0.00065;
+                self.myKaluli=62*self.myGongli*0.8;
+            }else{
+                self.myStep= [step intValue];
+                self.myGongli=[step doubleValue] * 0.00065;
+                self.myKaluli=62*self.myGongli*0.8;
+                [self.mtableview reloadData];
+            }
+            NSMutableDictionary*dic=[[NSMutableDictionary alloc]init];
+            [dic setObject:[NSString stringWithFormat:@"%d",self.myStep] forKey:@"inValue"];
+            [self getRuest:dic];
+        }];
+    }
+}
 
+-(void)getRuest:(NSMutableDictionary*)paramJson;{
+    
+    [paramJson setObject:@"3" forKey:@"type"];
+    //提交数据
+    RXSubmitDataRequest*request=[[RXSubmitDataRequest alloc]init:GetToken];
+    request.paramCode=12;
+    request.paramJson=[self dictionaryToJson:paramJson];
+    VApiManager *manager = [[VApiManager alloc]init];
+    [manager RXSubmitDataRequest:request success:^(AFHTTPRequestOperation *operation, RXSubmitDataResponse *response) {
+        [self hideAllHUD];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideAllHUD];
+    }];
+}
+#pragma mark 字典转化字符串
+-(NSString*)dictionaryToJson:(NSMutableDictionary *)dic
+{
+    NSString *jsonString = nil;
+    NSError *error;
+    if (dic == nil) {
+        return jsonString;
+    }
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    if (! jsonData) {
+        
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
+}
+
+//设置引导页
+-(void)showPageView;{
+    // 判断是否已显示过
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:RXGuidePageHomeKey]) {
+        CRUserSetBOOL(YES, RXGuidePageHomeKey);
+        // 显示
+        [[RXGuideManager shareManager] showGuidePageWithType:RXGuidePageTypeHome completion:^{
+            [[RXGuideManager shareManager]showGuidePageWithType:RXGuidePageTypeMajor completion:^{
+                [[RXGuideManager shareManager]showGuidePageWithType:RXGuidePageTypeThree completion:^{
+                    [[RXGuideManager shareManager]showGuidePageWithType:RXGuidePageTypeFive];
+                }];
+            }];
+        }];
+    }
+}
 -(void)setUI;{
     
     CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
@@ -747,6 +845,12 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     _mtableview.delegate = self;
     _mtableview.dataSource = self;
     _mtableview.tableFooterView = [UIView new];
+    
+    [_mtableview registerClass:[YSHotInfoTableViewCell class] forCellReuseIdentifier:heathInfoCellID];
+    
+    self.mtableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getRequest];
+    }];
 
     if (@available(iOS 11.0, *)) {
          _mtableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -1110,21 +1214,22 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
 #pragma mark ---requestData
 - (void)requestData;{
     
-    //商品推荐
-    [self _requestGoodsShowcaseGoodsDataWithCaseID];
-    @weakify(self);
-    [self showHud];
-    self.pageNum = 1;
-    [YSHealthyMessageDatas healthyMessageMostDaysSuccess:^(NSArray *datas) {
-        @strongify(self);
-        [self.InfosModels removeAllObjects];
-        [self.InfosModels xf_safeAddObjectsFromArray:datas];
-        [self.mtableview reloadData];
-        [self hiddenHud];
-    } fail:^{
-        @strongify(self);
-        [self hiddenHud];
-    } pageNumber:self.pageNum];
+    
+//    //商品推荐
+//    [self _requestGoodsShowcaseGoodsDataWithCaseID];
+//    @weakify(self);
+////    [self showHud];
+//    self.pageNum = 1;
+//    [YSHealthyMessageDatas healthyMessageMostDaysSuccess:^(NSArray *datas) {
+//        @strongify(self);
+//        [self.InfosModels removeAllObjects];
+//        [self.InfosModels xf_safeAddObjectsFromArray:datas];
+//        [self.mtableview reloadData];
+////        [self hiddenHud];
+//    } fail:^{
+//        @strongify(self);
+////        [self hiddenHud];
+//    } pageNumber:self.pageNum];
     
 }
 
@@ -1185,11 +1290,29 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             self.rxBaseInfoView.shuoMingLabel.layer.cornerRadius=10;
             self.rxBaseInfoView.shuoMingLabel.backgroundColor=JGColor(73, 140, 122, 1);
             
-            self.rxBaseInfoView.yichangBottom.constant=0;
-            self.rxBaseInfoView.yichangbackImage.hidden=YES;
-            self.rxBaseInfoView.yichangImage.hidden=YES;
-            self.rxBaseInfoView.yichanglabel.hidden=YES;
+    
+            @weakify(self);
+            [YSBaseInfoManager loadBaseInfo:^(NSString *city, YSWeatherInfo *weatherInfo) {
+                @strongify(self);
+               // NSString *dateText = [NSDate getChineseCalendarWithDate:[NSDate date]];
+                if (weatherInfo) {
+                    self.rxBaseInfoView.wearherLable.text = [NSString stringWithFormat:@"今天  %@  %@",weatherInfo.weather,weatherInfo.temperature];
+                    self.rxBaseInfoView.weatherImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"weatherStatus%02ld",[weatherInfo.weatherTag integerValue]]];
+                }else {
+                    weatherInfo = [[YSWeatherInfo alloc] init];
+                    weatherInfo.temperature = @"20℃";
+                    weatherInfo.weather = @"晴天";
+                    weatherInfo.weatherTag =  @"0";
+                    self.rxBaseInfoView.wearherLable.text = [NSString stringWithFormat:@"今天  %@  %@",weatherInfo.weather,weatherInfo.temperature];
+                    self.rxBaseInfoView.weatherImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"weatherStatus%02ld",[weatherInfo.weatherTag integerValue]]];
+                }
+            }];
+        
         }
+        self.rxBaseInfoView.yichangBottom.constant=0;
+        self.rxBaseInfoView.yichangbackImage.hidden=YES;
+        self.rxBaseInfoView.yichangImage.hidden=YES;
+        self.rxBaseInfoView.yichanglabel.hidden=YES;
         
         if (self.response) {
             if (self.response.hasHealth==1) {
@@ -1199,22 +1322,39 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                 self.rxBaseInfoView.yichanglabel.hidden=NO;
                 self.rxBaseInfoView.yichanglabel.textColor=JGColor(255, 130, 46, 1);
                 self.rxBaseInfoView.yichanglabel.font=JGFont(13);
+                self.rxBaseInfoView.yichangbackImage.backgroundColor=[UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
             }
+            //姓名
             self.rxBaseInfoView.nameLabel.text=self.response.healthUserBO[@"nickName"]?self.response.healthUserBO[@"nickName"]:@"--";
+            self.rxBaseInfoView.nameLabel.font=JGFont(14);
             //头像
             [self.rxBaseInfoView.iconImage sd_setImageWithURL:[NSURL URLWithString:self.response.healthUserBO[@"headImage"]]];
             //年龄
             self.rxBaseInfoView.ageLabel.text=self.response.healthUserBO[@"age"]?self.response.healthUserBO[@"age"]:@"--";
             //性别
             int sexage=[self.response.healthUserBO[@"sex"] intValue];
-            self.rxBaseInfoView.sexLabel.text=sexage==0?@"男":@"女";
+            self.rxBaseInfoView.sexLabel.text=sexage==1?@"男":@"女";
             //身高
             self.rxBaseInfoView.heightLabel.text=self.response.healthUserBO[@"height"]?self.response.healthUserBO[@"height"]:@"--";
+            if (![self.response.healthUserBO[@"height"] isEqualToString:@"--"]) {
+                 [[NSUserDefaults standardUserDefaults] setObject:self.response.healthUserBO[@"height"] forKey:@"_sbHeight"];
+            }else{
+                 [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"_sbHeight"];
+            }
             //体重
             self.rxBaseInfoView.weghtlabel.text=self.response.healthUserBO[@"weight"]?self.response.healthUserBO[@"weight"]:@"--";
             //说明
             self.rxBaseInfoView.shuoMingLabel.text=[NSString stringWithFormat:@"   %@     ",self.response.messageTitle?self.response.messageTitle:@"--"];
+            self.rxBaseInfoView.shuoMingLabel.font=JGFont(10);
+            self.rxBaseInfoView.shuoMingLabel.backgroundColor=JGColor(73, 140, 122,0.5);
             
+            self.rxBaseInfoView.vipLabel.textColor=[UIColor whiteColor];
+            self.rxBaseInfoView.vipLabel.font=JGFont(12);
+            if (self.response.isMember!=1) {
+                self.rxBaseInfoView.vipLabel.text=@"您的健康管家VIP已到期";
+            }else{
+                self.rxBaseInfoView.vipLabel.text=[NSString stringWithFormat:@"%@到期",self.response.offTime];
+            }
             self.rxBaseInfoView.userInteractionEnabled=YES;
             self.rxBaseInfoView.shuoMingLabel.userInteractionEnabled=YES;
             
@@ -1260,8 +1400,13 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                 rxheadView.frame=CGRectMake(0,0,kScreenWidth,80);
             }
             UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(10,10,kScreenWidth-20,rxheadView.frame.size.height-15)];
+            
             //背景
-            imageView.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
+            if ([Unit JSONInt:dic key:@"execption"]==1) {
+                imageView.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0].CGColor;
+            }else{
+                imageView.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
+            }
             imageView.layer.cornerRadius = 8;
             imageView.layer.shadowColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:0.9].CGColor;
             imageView.layer.shadowOffset = CGSizeMake(0,0);
@@ -1311,11 +1456,9 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             [rxheadView addSubview:danweilabel];
             [danweilabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.mas_equalTo(itemNamelabel.mas_centerY);
-                make.left.equalTo(shuominglabel.mas_right).offset(10);
+                make.left.equalTo(shuominglabel.mas_right).offset(5);
             }];
             danweilabel.hidden=YES;
-            
-            
             
             //是否正常
             UILabel*typelabel=[[UILabel alloc]init];
@@ -1330,39 +1473,85 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             timelabel.textAlignment=NSTextAlignmentRight;
             [rxheadView addSubview:timelabel];
             
+            //来源
+            UILabel*laiyuanlabel=[[UILabel alloc]init];
+            [rxheadView addSubview:laiyuanlabel];
+            [laiyuanlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.mas_equalTo(typelabel.mas_centerY);
+                make.left.equalTo(itemNamelabel.mas_right).offset(20);
+            }];
+            laiyuanlabel.hidden=YES;
             timelabel.hidden=YES;
             typelabel.hidden=YES;
-            if (keyValue.count>0) {
-                //当有数据时统一配置
-                if ([Unit JSONInt:dic key:@"execption"]==1) {
-                    typelabel.hidden=NO;
-                    typelabel.text=@" 异常 ";
-                    typelabel.font=JGFont(12);
-                    typelabel.textColor=JGColor(239, 82, 80, 1);
-                    typelabel.backgroundColor=JGColor(252, 238, 233, 1);
-                    typelabel.layer.masksToBounds=YES;
-                    typelabel.layer.cornerRadius=10;
-                    typelabel.textAlignment=1;
-                }
-                if ([Unit JSONString:dic key:@"timeName"].length>0) {
-                    timelabel.hidden=NO;
-                    timelabel.text=[Unit JSONString:dic key:@"timeName"];
-                }
-                shuominglabel.textColor=JGColor(101, 187, 177, 1);
-                [shuominglabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17]];
-                danweilabel.hidden=NO;
-                danweilabel.text=[Unit JSONString:dic key:@"unit"];
-                danweilabel.textColor=JGColor(136, 136, 136, 1);
-                if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血压"]) {
-                    shuominglabel.text=[NSString stringWithFormat:@"%@/%@",[Unit JSONString:keyValue key:@"highValue"],[Unit JSONString:keyValue key:@"lowValue"]];
-                }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血脂"]) {
-                     shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"inValue"]];
-                }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体脂"]) {
-                    shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"bmaValue"]];
-                }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"腰臀比"]) {
-                    shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:dic key:@"testgrade"]];
+            
+            if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动"]){
+                if (self.myStep!=0) {
+                    shuominglabel.textColor=JGColor(101, 187, 177, 1);
+                    [shuominglabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17]];
+                    shuominglabel.text=[NSString stringWithFormat:@"%d",self.myStep];
+                    self.myGongli=self.myStep * 0.00065;
+                    self.myKaluli=62*self.myGongli*0.8;
+                    danweilabel.hidden=NO;
+                    danweilabel.text=@"步";
+                    danweilabel.textColor=JGColor(136, 136, 136, 1);
+                    danweilabel.font=JGFont(12);
                 }else{
-                    shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"inValue"]?[Unit JSONString:keyValue key:@"inValue"]:@"--"];
+                    shuominglabel.text=@"--";
+                }
+            }else{
+                if (keyValue.count>0) {
+                    //当有数据时统一配置
+                    if ([Unit JSONInt:dic key:@"execption"]==1) {
+                        typelabel.hidden=NO;
+                        typelabel.text=[NSString stringWithFormat:@" %@ ",[Unit JSONString:dic key:@"testgrade"]];
+                        typelabel.frame=CGRectMake(30,myheight+24+10,12*typelabel.text.length,20);
+                        typelabel.font=JGFont(12);
+                        typelabel.textColor=JGColor(239, 82, 80, 1);
+                        typelabel.backgroundColor=JGColor(252, 238, 233, 1);
+                        typelabel.layer.masksToBounds=YES;
+                        typelabel.layer.cornerRadius=10;
+                        typelabel.textAlignment=1;
+                    }
+                    if ([Unit JSONString:dic key:@"timeName"].length>0) {
+                        timelabel.hidden=NO;
+                        timelabel.text=[Unit JSONString:dic key:@"timeName"];
+                    }
+                    laiyuanlabel.hidden=NO;
+                    laiyuanlabel.textColor=JGColor(153, 153, 153, 1);
+                    laiyuanlabel.font=JGFont(12);
+                    if ([Unit JSONInt:keyValue key:@"type"]==0) {
+                        laiyuanlabel.text=[NSString stringWithFormat:@"来源:健康一体机录入"];
+                    }else if ([Unit JSONInt:keyValue key:@"type"]==1) {
+                        laiyuanlabel.text=[NSString stringWithFormat:@"来源:手动录入"];
+                    }else if ([Unit JSONInt:keyValue key:@"type"]==2) {
+                        laiyuanlabel.text=[NSString stringWithFormat:@"来源:智能硬件录入"];
+                    }else if ([Unit JSONInt:keyValue key:@"type"]==3) {
+                        laiyuanlabel.text=[NSString stringWithFormat:@"来源:手机检测"];
+                    }else{
+                        laiyuanlabel.hidden=YES;
+                    }
+                    shuominglabel.textColor=JGColor(101, 187, 177, 1);
+                    [shuominglabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17]];
+                    danweilabel.hidden=NO;
+                    danweilabel.text=[Unit JSONString:dic key:@"unit"];
+                    danweilabel.textColor=JGColor(136, 136, 136, 1);
+                    danweilabel.font=JGFont(12);
+                    
+                    if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血压"]) {
+                        shuominglabel.text=[NSString stringWithFormat:@"%@/%@",[Unit JSONString:keyValue key:@"highValue"],[Unit JSONString:keyValue key:@"lowValue"]];
+                    }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血脂"]) {
+                        shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:dic key:@"testgrade"]?[Unit JSONString:dic key:@"testgrade"]:@"--"];
+                    }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体脂"]) {
+                        shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"inValue"]?[Unit JSONString:keyValue key:@"inValue"]:@"--"];
+                    }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"腰臀比"]) {
+                        shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"whrValue"]?[Unit JSONString:keyValue key:@"whrValue"]:@"--"];
+                    }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"视力"]) {
+                        shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"lowValue"]?[Unit JSONString:keyValue key:@"lowValue"]:@"--"];
+                    }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"听力"]) {
+                        shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"lowValue"]?[Unit JSONString:keyValue key:@"lowValue"]:@"--"];
+                    }else{
+                        shuominglabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"inValue"]?[Unit JSONString:keyValue key:@"inValue"]:@"--"];
+                    }
                 }
             }
             //添加button
@@ -1385,7 +1574,6 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             [zhangkiaButton setBackgroundImage:[UIImage imageNamed:@"取消"] forState:UIControlStateSelected];
             zhangkiaButton.tag=10000+section-1;
             [zhangkiaButton addTarget:self action:@selector(rxheadViewZhankaiButton:) forControlEvents:UIControlEventTouchUpInside];
-            
             if ([RXTabViewHeightObjject getType:dic]) {
                 if (keyValue.count>0){
                     addButton.frame=CGRectMake(kScreenWidth-20-20-42/2,20,42,42);
@@ -1424,12 +1612,20 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     }
     return [UIView new];
 }
+//商品列表
+-(void)getKeyGoodId:(NSNumber*)goodId;{
+    KJGoodsDetailViewController *goodsDetailVC = [[KJGoodsDetailViewController alloc] init];
+    goodsDetailVC.goodsID = goodId;
+    goodsDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:goodsDetailVC animated:YES];
+}
+
 -(void)tapButtonFountion;{
-    YSLinkCYDoctorWebController *cyDoctorController = [[YSLinkCYDoctorWebController alloc] initWithWebUrl:@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/report.html"];
-    cyDoctorController.navTitle =@"完美档案";
-    cyDoctorController.tag = 100;
-    cyDoctorController.controllerPushType = YSControllerPushFromHealthyManagerType;
-    [self.navigationController pushViewController:cyDoctorController animated:YES];
+    NSString*string=@"我的健康报告";
+    RXWmViewController*view=[[RXWmViewController alloc]init];
+    view.titlestring=string;
+    view.urlstring=self.response.url;
+    [self.navigationController pushViewController:view animated:NO];
 }
 //vip续费界面
 -(void)vipButtonFounction;{
@@ -1439,47 +1635,239 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
 //显示更多
 -(void)qiTaiGengButtonFounction;{
     RXMoreDetectionViewController*vc=[[RXMoreDetectionViewController alloc]init];
+    vc.url=self.response.url;
     [self.navigationController pushViewController:vc animated:NO];
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section==0) {
-        if (self.response) {
-            if (self.response.hasHealth==1) {
-                return 270+40;
-            }
-        }
-        return 270;
+
+//周报，月报
+-(void)motionzhouButtonFountion:(UIButton*)button;{
+
+    NSString*title=@"week";
+    //周报
+    if (button.tag==1) {
+        title=@"week";
     }
-    if (self.dataArray.count>0) {
-        if (section-1<self.dataArray.count+1){
-            if (section-1==self.dataArray.count){
-                return 40;
-            }
-            NSMutableDictionary*dic=self.dataArray[section-1];
-            NSMutableDictionary*keyValue=[Unit ParseJSONObject:dic[@"keyValue"]];
-            if (keyValue.count>0) {
-                 return 100;
-            }
-            return 80;
-        }
+    //月报
+    if (button.tag==2) {
+        title=@"month";
     }
-    if (self.dataArray.count>0) {
-        if (section==self.dataArray.count+1+2){
-            return 84.0/2;
-        }
-        if (section==self.dataArray.count+1+5) {
-            if (self.response.invitationList.count>0) {
-                return 84.0/2;
-            }
-            return 0.01;;
-        }
-    }
-    return 10;
+    RXWeekViewController*view=[[RXWeekViewController alloc]init];
+    view.type=title;
+    //    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/weekly.html";
+    view.urlstring=@"http://api.bhesky.com/resources/jkgl/weekly.html";
+    [self.navigationController pushViewController:view animated:NO];
 }
+//历史记录
+-(void)motionlishiButtonFountion:(UIButton*)button;{    
+    NSMutableDictionary*dic=self.dataArray[button.tag];
+    NSString*stringTitle=[RXTabViewHeightObjject getItemCodeNumber:dic];
+    NSString*string=stringTitle;
+    RXMoreWebViewController*view=[[RXMoreWebViewController alloc]init];
+    view.titlestring=string;
+    view.urlstring=@"http://api.bhesky.com/resources/jkgl/resultList.html";
+    view.code=[NSString stringWithFormat:@"%d",[Unit JSONInt:dic key:@"itemCode"]];
+    NSMutableArray*array=[[NSMutableArray alloc]init];
+    for (NSMutableDictionary*dic in [RXTabViewHeightObjject getMorenArray]) {
+        NSString*string=[RXTabViewHeightObjject getItemCodeNumber:dic];
+        if ([string isEqualToString:@"听力"]||[string isEqualToString:@"视力"]||[string isEqualToString:@"肺活量"]) {
+            break;
+        }
+        [array addObject:[Unit JSONString:dic key:@"itemName"]];
+    }
+    view.type=true;
+    view.dataArray=[RXTabViewHeightObjject getMorenArray];
+    view.titleArray=array;
+    [self.navigationController pushViewController:view animated:NO];
+}
+//完美档案等
+-(void)gengDuoButton:(UIButton*)button;{
+    NSString*string=@"完美档案";
+    if ([button.titleLabel.text isEqualToString:@"wm"]) {
+        string=@"完美档案报告";
+    }
+    if ([button.titleLabel.text isEqualToString:@"jb"]) {
+        string=@"综合健康数据健康解读";
+    }
+    if ([button.titleLabel.text isEqualToString:@"xy"]) {
+        string=@"健康西游";
+    }
+    if([button.titleLabel.text isEqualToString:@"bg"]){
+        string=@"精准检测报告";
+    }
+    RXWmViewController*view=[[RXWmViewController alloc]init];
+    view.type=button.titleLabel.text;
+    view.titlestring=string;
+//    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/otherReport.html";
+    view.urlstring=@"http://api.bhesky.com/resources/jkgl/otherReport.html";
+    [self.navigationController pushViewController:view animated:NO];
+}
+-(void)travelLabelTap:(UITapGestureRecognizer*)tap;{
+    NSInteger index=tap.view.tag;
+    NSString*type=@"xy";
+    NSString*string=@"完美档案";
+    if (index==0) {
+        string=@"完美档案报告";
+        type=@"wm";
+    }
+    if(index==1){
+        string=@"精准检测报告";
+        type=@"bg";
+    }
+    if (index==2) {
+        string=@"健康解读";
+         type=@"jb";
+    }
+    if (index==3) {
+        string=@"健康西游";
+        type=@"xy";
+    }
+    RXWmViewController*view=[[RXWmViewController alloc]init];
+    view.type=type;
+    view.titlestring=string;
+//    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/otherReport.html";
+    view.urlstring=@"http://api.bhesky.com/resources/jkgl/otherReport.html";
+    [self.navigationController pushViewController:view animated:NO];
+}
+//首页
+-(void)travelImageTap;{
+    RXUserH5UrlRequest*request=[[RXUserH5UrlRequest alloc]init:GetToken];
+    request.code=@"4";
+    VApiManager *manager = [[VApiManager alloc]init];
+    [self showHUD];
+    [manager RXRXUserH5UrlRequest:request
+                          success:^(AFHTTPRequestOperation *operation, RXUserH5UrlResponse *response) {
+          [self hideAllHUD];
+          if (response.isMember==0) {
+              [self showStringHUD:@"会员到期" second:0];
+//              dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+//              dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+//                  RXbutlerServiceViewController*vc=[[RXbutlerServiceViewController alloc]init];
+//                  [self.navigationController pushViewController:vc animated:NO];
+//              });
+          }else{
+              NSString*string=@"我的健康报告";
+              RXWmViewController*view=[[RXWmViewController alloc]init];
+              view.titlestring=string;
+              view.htmlstring=response.messageH5;
+              [self.navigationController pushViewController:view animated:NO];
+          }
+      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          [self hideAllHUD];
+          [self showStringHUD:@"网络错误" second:0];
+      }];
+}
+-(void)travelImageTapOne;{
+    YSHealthAIOController *healthAIOController = [[YSHealthAIOController alloc] init];
+    healthAIOController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:healthAIOController animated:YES];
+}
+-(void)travelImageTapTwo;{
+    
+    if (self.response.isMember!=1){
+        TBAlertController *controller = [TBAlertController alertControllerWithTitle:@"提示" message:@"您的健康管家服务已到期，请先续费后再查看您的专属健康报告。" preferredStyle:TBAlertControllerStyleAlert];
+        TBAlertAction *clickme = [TBAlertAction actionWithTitle:@"立即续费" style: TBAlertActionStyleDestructive handler:^(TBAlertAction * _Nonnull action) {
+            RXbutlerServiceViewController*vc=[[RXbutlerServiceViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:NO];
+        }];
+        TBAlertAction *cancel = [TBAlertAction actionWithTitle:@"暂不考虑" style: TBAlertActionStyleCancel handler:^(TBAlertAction * _Nonnull action) {
+        }];
+        [controller addAction:clickme];
+        [controller addAction:cancel];
+        [self presentViewController:controller animated:YES completion:nil];
+    }else{
+//        if([self.response.memberLastTime integerValue]==0) {
+//            TBAlertController *controller = [TBAlertController alertControllerWithTitle:@"提示" message:@"您的健康管家服务已到期，请先续费后再查看您的专属健康报告。" preferredStyle:TBAlertControllerStyleAlert];
+//            TBAlertAction *clickme = [TBAlertAction actionWithTitle:@"立即续费" style: TBAlertActionStyleDestructive handler:^(TBAlertAction * _Nonnull action) {
+//                RXbutlerServiceViewController*vc=[[RXbutlerServiceViewController alloc]init];
+//                [self.navigationController pushViewController:vc animated:NO];
+//            }];
+//            TBAlertAction *cancel = [TBAlertAction actionWithTitle:@"暂不考虑" style: TBAlertActionStyleCancel handler:^(TBAlertAction * _Nonnull action) {
+//            }];
+//            [controller addAction:clickme];
+//            [controller addAction:cancel];
+//            [self presentViewController:controller animated:YES completion:nil];
+//        }else{
+            NSMutableDictionary*dic=self.healthServiceRecommendJdBOArray[0];
+            NSString*string=@"数据解读";
+            RXWmViewController*view=[[RXWmViewController alloc]init];
+            view.titlestring=string;
+            view.htmlstring=[Unit JSONString:dic key:@"h5"];
+            [self.navigationController pushViewController:view animated:NO];
+//        }
+    }
+}
+-(void)travelImageTapFree;{
+    if (self.response.isMember!=1){
+        TBAlertController *controller = [TBAlertController alertControllerWithTitle:@"提示" message:@"您的健康管家服务已到期，请先续费后再查看您的专属健康报告。" preferredStyle:TBAlertControllerStyleAlert];
+        TBAlertAction *clickme = [TBAlertAction actionWithTitle:@"立即续费" style: TBAlertActionStyleDestructive handler:^(TBAlertAction * _Nonnull action) {
+            RXbutlerServiceViewController*vc=[[RXbutlerServiceViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:NO];
+        }];
+        TBAlertAction *cancel = [TBAlertAction actionWithTitle:@"暂不考虑" style: TBAlertActionStyleCancel handler:^(TBAlertAction * _Nonnull action) {
+        }];
+        [controller addAction:clickme];
+        [controller addAction:cancel];
+        [self presentViewController:controller animated:YES completion:nil];
+    }else{
+//        if([self.response.memberLastTime integerValue]==0) {
+
+//        }else{
+            NSMutableDictionary*dic=self.healthServiceRecommendXyBOArray[0];
+            NSString*string=@"健康西游";
+            RXWmViewController*view=[[RXWmViewController alloc]init];
+            view.titlestring=string;
+            view.htmlstring=[Unit JSONString:dic key:@"h5"];
+            [self.navigationController pushViewController:view animated:NO];
+//        }
+    }
+}
+//点击展开界面
+-(void)oneOneButtonFountion:(UIButton*)button;{
+    
+    NSInteger index=[button.titleLabel.text integerValue];
+    NSMutableDictionary*dic=self.dataArray[index-1];
+    NSMutableArray*array=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:dic];
+    NSString*string=array[button.tag];
+    if ([string isEqualToString:@"智能设备"]) {
+        [self showStringHUD:@"功能正在开发,请期待" second:0];
+        return;
+    }
+    if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动"]&&[string isEqualToString:@"手机检测"]) {
+        if ([YSStepManager healthyKitAccess]) {
+            @weakify(self);
+            [YSStepManager healthStoreDataWithStartDate:nil endDate:nil WithFailAccess:^{
+                @strongify(self);
+                [self showErrorHudWithText:@"无运动数据获取权限"];
+            } walkRunningCallback:^(NSNumber *walkRunning) {
+            } stepCallback:^(NSNumber *step) {
+                if ([step intValue]==0) {
+                    [self showErrorHudWithText:@"无法获取运动数据，请检查"];
+                    self.myStep= [step intValue];
+                    self.myGongli=[step doubleValue] * 0.00065;
+                    self.myKaluli=62*self.myGongli*0.8;
+                    [self.mtableview reloadData];
+                }else{
+                    [self showErrorHudWithText:@"数据已经更新"];
+                    self.myStep= [step intValue];
+                    self.myGongli=[step doubleValue] * 0.00065;
+                    self.myKaluli=62*self.myGongli*0.8;
+                    [self.mtableview reloadData];
+                }
+            }];
+        }
+    }else{
+        YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
+        multipleTypesTestController.rxArray=array;
+        multipleTypesTestController.rxDic=dic;
+        multipleTypesTestController.rxIndex=button.tag;
+        [self.navigationController pushViewController:multipleTypesTestController animated:YES];
+    }
+}
+
 //首页展开
 -(void)rxheadViewZhankaiButton:(UIButton*)button;{
-     button.selected = !button.selected;
-     NSDictionary*dic1=self.dataArray[button.tag-10000];
+    button.selected = !button.selected;
+    NSDictionary*dic1=self.dataArray[button.tag-10000];
     NSMutableDictionary*dic=[[NSMutableDictionary alloc]initWithDictionary:dic1];
     if ([Unit JSONBool:dic key:@"myZhankaiType"]) {
         [dic setObject:[NSNumber numberWithBool:false] forKey:@"myZhankaiType"];
@@ -1509,28 +1897,65 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
         RXParamDetailRequest*request=[[RXParamDetailRequest alloc]init:GetToken];
         request.paramCode=[Unit JSONString:dic key:@"itemCode"];
         request.id=[Unit JSONString:dic key:@"id"];
-        
+        [self showHUD];
         VApiManager *manager = [[VApiManager alloc]init];
         [manager RXMakeParamDetail:request success:^(AFHTTPRequestOperation *operation, RXParamDetailResponse *response) {
-            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
-            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            });
+            [self hideAllHUD];
             if (!self.paramResponse) {
                 self.paramResponse=[[RXParamDetailResponse alloc]init];
             }
             self.paramResponse=response;
             [self.mtableview reloadData];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
-            
-            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            });
+            [self hideAllHUD];
+            [self showStringHUD:@"网络错误" second:0];
+            [dic setObject:[NSNumber numberWithBool:false] forKey:@"mySelectType"];
+            [dic setObject:[NSNumber numberWithBool:false] forKey:@"myZhankaiType"];
+            [self.dataArray replaceObjectAtIndex:button.tag withObject:dic];
             [self.mtableview reloadData];
         }];
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+        int myhight=statusRect.size.height;
+        if (self.response) {
+            if (self.response.hasHealth==1) {
+                return 270+40+myhight;
+            }
+            return 270+myhight;
+        }
+        return 270+myhight;
+    }
+    if (self.dataArray.count>0) {
+        if (section-1<self.dataArray.count+1){
+            if (section-1==self.dataArray.count){
+                return 40;
+            }
+            NSMutableDictionary*dic=self.dataArray[section-1];
+            NSMutableDictionary*keyValue=[Unit ParseJSONObject:dic[@"keyValue"]];
+            if (keyValue.count>0) {
+                 return 100;
+            }
+            return 80;
+        }
+    }
+    if (self.dataArray.count>0) {
+        if (section==self.dataArray.count+1+2){
+            return 84.0/2;
+        }
+        if (section==self.dataArray.count+1+5) {
+            if (self.response.invitationList.count>0) {
+                return 84.0/2;
+            }
+            return 0.01;;
+        }
+    }
+    return 10;
+}
+
 //设置分组间隔
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (section==0) {
@@ -1552,34 +1977,8 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
     view.backgroundColor=JGColor(250, 250, 250, 1);
     return view;
 }
-//跳转到测试界面
--(void)zhangKaiButtonFounction;{
-    YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
-    [self.navigationController pushViewController:multipleTypesTestController animated:YES];
-}
 
--(void)motionzhouButtonFountion:(UIButton*)button;{
-    
-    NSString*title=@"周报";
-    //周报
-    if (button.tag==1) {
-        title=@"周报";
-    }
-    //月报
-    if (button.tag==2) {
-        title=@"月报";
-    }
-    //历史记录
-    if (button.tag==3) {
-        title=@"历史记录";
-    }
-    YSLinkCYDoctorWebController *cyDoctorController = [[YSLinkCYDoctorWebController alloc] initWithWebUrl:@"http://api.bhesky.cn/carnation-apis-resource/resources/jkgl/weekly.html"];
-    cyDoctorController.navTitle=title;
-    cyDoctorController.tag = 100;
-    cyDoctorController.controllerPushType = YSControllerPushFromCustomViewType;
-    [self.navigationController pushViewController:cyDoctorController animated:YES];
-}
-
+#define user_tiezi @"/circle/look_invitation?invitationId="
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;{
     
     if (self.dataArray.count>0) {
@@ -1592,23 +1991,69 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             if ([Unit JSONBool:self.dataArray[indexPath.section-1] key:@"myZhankaiType"]) {
                 static  NSString *reusstring = @"RXZhangKaiTableViewCell";
                 RXZhangKaiTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:reusstring];
+                NSMutableDictionary*dic=self.dataArray[indexPath.section-1];
                 if (cell==nil) {
-                    cell=[[[NSBundle mainBundle]loadNibNamed:@"RXZhangKaiTableViewCell" owner:self options:nil]firstObject];
+                    NSInteger index=[RXTabViewHeightObjject getRXZhangKaiTableViewCell:dic];
+                    if (index==1) {
+                        cell=[[NSBundle mainBundle]loadNibNamed:@"RXZhangKaiTableViewCell" owner:self options:nil][3];
+                    }
+                    if (index==2) {
+                        cell=[[NSBundle mainBundle]loadNibNamed:@"RXZhangKaiTableViewCell" owner:self options:nil][2];
+                    }
+                    if (index==3) {
+                        cell=[[NSBundle mainBundle]loadNibNamed:@"RXZhangKaiTableViewCell" owner:self options:nil][1];
+                    }
+                    if (index==4) {
+                        cell=[[NSBundle mainBundle]loadNibNamed:@"RXZhangKaiTableViewCell" owner:self options:nil][0];
+                    }
+                }
+                //处理显示图片
+                [RXTabViewHeightObjject getButtonShowCell:cell with:dic];
+                //背景
+                if ([Unit JSONInt:dic key:@"execption"]==1) {
+                    cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
+                }else{
+                    cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+                }
+                NSInteger index=[RXTabViewHeightObjject getRXZhangKaiTableViewCell:dic];
+                if (index==1) {
+                    [cell.fiveOneButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.fiveOneButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+                }else if (index==2) {
+                    [cell.freeOneButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.freeTwoButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+        
+                    cell.freeTwoButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+                    cell.freeOneButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+                    
+                }else if (index==3) {
+        
+                    [cell.twoOneButon addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.twoTwoButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.twoFreeButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    cell.twoOneButon.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+                    cell.twoTwoButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+                    cell.twoFreeButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+    
+                }else if (index==4) {
+                    [cell.oneOneButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.oneTwoButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.oneFreeButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.oneFiveButton addTarget:self action:@selector(oneOneButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    cell.oneOneButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+                    cell.oneTwoButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+                    cell.oneFreeButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
+                    cell.oneFiveButton.titleLabel.text=[NSString stringWithFormat:@"%ld",indexPath.section];
                 }
                 cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-                [cell.oneButton addTarget:self action:@selector(zhangKaiButtonFounction) forControlEvents:UIControlEventTouchUpInside];
-                [cell.twoButton addTarget:self action:@selector(zhangKaiButtonFounction) forControlEvents:UIControlEventTouchUpInside];
-                [cell.freeButton addTarget:self action:@selector(zhangKaiButtonFounction) forControlEvents:UIControlEventTouchUpInside];
-                [cell.fiveButton addTarget:self action:@selector(zhangKaiButtonFounction) forControlEvents:UIControlEventTouchUpInside];
-                
                 return cell;
             }else{
                 //默认第一个显示
                 if (indexPath.row==0) {
                     UITableViewCell*mainCell=[RXTabViewHeightObjject getTabViewCell:self.dataArray[indexPath.section-1]];
-                
                     //运动
                     if ([mainCell isKindOfClass:[RXMotionTableViewCell class]]) {
                         
@@ -1621,6 +2066,27 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                         cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                         cell.selectionStyle = UITableViewCellSelectionStyleNone;
                         
+                        //背景
+                        if ([Unit JSONInt:dic key:@"execption"]==1) {
+                            cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
+                        }else{
+                            cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+                        }
+                        
+                        cell.motionyueButton.hidden=YES;
+                        cell.motionzhouButton.hidden=YES;
+                        cell.motionlishiButton.hidden=YES;
+                        
+                        //周报是否显示
+                        if (self.paramResponse.hasWeek==1) {
+                            cell.motionzhouButton.hidden=NO;
+                        }
+                        if (self.paramResponse.hasMonth==1) {
+                            cell.motionyueButton.hidden=NO;
+                        }
+                        if (self.paramResponse.hasHistory==1) {
+                            cell.motionlishiButton.hidden=NO;
+                        }
                         //默认样式
                         [cell.motionzhouButton setTitleColor:JGColor(245, 166, 35, 1) forState:UIControlStateNormal];
                         [cell.motionyueButton setTitleColor:JGColor(245, 166, 35, 1) forState:UIControlStateNormal];
@@ -1645,37 +2111,50 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                         cell.motionlishiButton.layer.borderColor=JGColor(245, 166, 35, 1).CGColor;
                         cell.motionyueButton.layer.borderColor=JGColor(245, 166, 35, 1).CGColor;
                         cell.motionzhouButton.layer.borderColor=JGColor(245, 166, 35, 1).CGColor;
-                        
-                        
+                    
                         //默认视图
-                        CircleLoader *view=[[CircleLoader alloc]initWithFrame:CGRectMake(cell.iconImage.frame.origin.x+10,cell.iconImage.frame.origin.y,cell.iconImage.frame.size.width,cell.iconImage.frame.size.height)];
-                        //设置轨道颜色
-                        view.trackTintColor=JGColor(204, 240, 236, 1);
-                        //设置进度条颜色
-                        view.progressTintColor=JGColor(74, 205, 190, 1);
+                        CircleLoader *view=[[CircleLoader alloc]initWithFrame:CGRectMake(ScreenWidth/2-150/2-10,cell.iconImage.frame.origin.y,cell.iconImage.frame.size.width,cell.iconImage.frame.size.height)];
                         //设置轨道宽度
                         view.lineWidth=8.0;
-                        //设置进度
-                        view.progressValue=0.7;
                         //设置是否转到 YES进度不用设置
                         view.animationing=NO;
                         [cell addSubview:view];
                         
-                        
                         [cell.motionzhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                         [cell.motionyueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
-                        [cell.motionlishiButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
-                        
+                    
+                        [cell.motionlishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                        cell.motionlishiButton.tag=indexPath.section-1;
+    
                         NSMutableDictionary*keyValue=[Unit ParseJSONObject:dic[@"keyValue"]];
-                        if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动步数"]) {
-                            cell.motionCenterlabel.text=@"能量消耗";
-                            cell.motionCenterNumberlabel.text=[Unit JSONString:keyValue key:@"inValue"];
+                        if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动"]) {
+                            cell.motionCenterlabel.text=@"今日步数";
+                            cell.motionCenterNumberlabel.text=[NSString stringWithFormat:@"%d",self.myStep];
                             cell.motionNamelabel.hidden=YES;
+                           
+                            cell.rexiaolabel.text=[NSString stringWithFormat:@"消耗热量:%.1f卡",self.myKaluli];
+                            cell.lejulabel.text=[NSString stringWithFormat:@"累计里程:%.1f公里",self.myGongli];
                             
+                            NSString*string=[[NSUserDefaults standardUserDefaults] objectForKey:@"sdbs"];
+                            if (string.length>0) {
+                                cell.motionCenterMulabel.text=[NSString stringWithFormat:@"目标%@步",string];
+                                float myIndex=[string floatValue];
+                                float floatMy=self.myStep/myIndex;
+                                view.progressValue=floatMy;
+                            }else{
+                                cell.motionCenterMulabel.text=[NSString stringWithFormat:@"未设置目标步数"];
+                                //设置进度
+                                view.progressValue=0;
+                            }
+                            //设置轨道颜色
+                            view.trackTintColor=JGColor(204, 240, 236, 1);
+                            //设置进度条颜色
+                            view.progressTintColor=JGColor(74, 205, 190, 1);
+                      
                         }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"体脂"]) {
                             cell.motionCenterlabel.hidden=YES;
                             cell.motionCenterMulabel.text=@"体脂率(%)";
-                            cell.motionCenterNumberlabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"bmaValue"]];
+                            cell.motionCenterNumberlabel.text=[NSString stringWithFormat:@"%@",[Unit JSONString:keyValue key:@"inValue"]];
                             cell.motionyueButton.hidden=YES;
                             cell.motionzhouButton.hidden=YES;
                             cell.jiaoimage.hidden=YES;
@@ -1685,6 +2164,13 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             cell.motionTitlelabel.text=@"体脂:";
                             cell.motionNamelabel.text=[Unit JSONString:dic key:@"testgrade"];
                             
+                            cell.motionCenterNumberlabel.textColor=JGColor(34, 34, 34, 1);
+                            [cell.motionCenterNumberlabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:30]];
+                            //设置轨道颜色
+                            view.trackTintColor=JGColor(249, 235, 226, 1);
+                            //设置进度条颜色
+                            view.progressTintColor=JGColor(252, 143, 101, 1);
+                            view.progressValue=[[Unit JSONString:keyValue key:@"inValue"] floatValue]*0.01;
                         }else if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"血氧"]) {
                             cell.motionCenterlabel.hidden=YES;
                             cell.motionCenterMulabel.text=@"血氧(%)";
@@ -1697,6 +2183,13 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             cell.lejulabel.hidden=YES;
                             cell.motionTitlelabel.text=@"血氧：";
                             cell.motionNamelabel.text=[Unit JSONString:dic key:@"testgrade"];
+                            
+                            [cell.motionCenterNumberlabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:30]];
+                            //设置轨道颜色
+                            view.trackTintColor=JGColor(249, 235, 226, 1);
+                            //设置进度条颜色
+                            view.progressTintColor=JGColor(252, 143, 101, 1);
+                            view.progressValue=[[Unit JSONString:keyValue key:@"inValue"] floatValue]*0.01;
                         }
                         return cell;
                     }
@@ -1710,6 +2203,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             }
                             cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                        
                             NSMutableDictionary*dic=self.dataArray[indexPath.section-1];
                             cell.titlelabel.text=[Unit JSONString:dic key:@"testgrade"];
                             cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
@@ -1721,20 +2215,53 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             }
                             cell.jiankangTitle.text=[Unit JSONString:dic key:@"title"];
                             NSMutableDictionary*keyValue=[Unit ParseJSONObject:dic[@"keyValue"]];
-                            cell.shoushuiNumberlabel.text=keyValue[@"lowValue"];
-                            cell.shuzhangNumberlabel.text=keyValue[@"highValue"];
+                            cell.shoushuiNumberlabel.text=keyValue[@"highValue"];
+                            cell.shuzhangNumberlabel.text= keyValue[@"lowValue"];
+                           
+                            cell.lishiButton.hidden=YES;
+                            cell.zhouButton.hidden=YES;
+                            cell.yueButton.hidden=YES;
+                            //周报是否显示
+                            if (self.paramResponse.hasWeek==1) {
+                                cell.zhouButton.hidden=NO;
+                            }
+                            if (self.paramResponse.hasMonth==1) {
+                                cell.yueButton.hidden=NO;
+                            }
+                            if (self.paramResponse.hasHistory==1) {
+                                cell.lishiButton.hidden=NO;
+                            }
+                            //取名字反了
+                            float shunzhangNumber=[keyValue[@"highValue"] floatValue]/200;
+                            if (shunzhangNumber>1) {
+                                shunzhangNumber=1;
+                            }
+                            if (shunzhangNumber<=0.15) {
+                                shunzhangNumber=0.25;
+                            }
                             
-                            //
-                            //                            float lowValue=[keyValue[@"lowValue"] floatValue]/200.0;
-                            //                            float hightValue=[keyValue[@"highValue"] floatValue]/200.0;
+                            float shuoNumber=[keyValue[@"lowValue"] floatValue]/200;
+                            if (shuoNumber>1) {
+                                shuoNumber=1;
+                            }
+                            if (shuoNumber<=0.15) {
+                                shuoNumber=0.25;
+                            }
+                            cell.shouTrailling.constant=-(1- shunzhangNumber)*cell.shouBackImage.frame.size.width;
+                            cell.shuzhangTrailling.constant= -(1-shuoNumber)*cell.shouBackImage.frame.size.width;
+                           
+                            [cell.zhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            [cell.yueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                             
-                            //                        cell.showWaiImageWight.constant=cell.shouBackImage.frame.size.width*lowValue;;
+                            [cell.lishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            cell.lishiButton.tag=indexPath.section-1;
                             
-                            
-                            //                    cell.showWaiImageWight.constant=cell.shouBackImage.frame.size.width*lowValue;
-                            
-                            //          cell.shouWaiImage.frame=CGRectMake(cell.shouWaiImage.frame.origin.x,cell.shouWaiImage.frame.origin.y,341,cell.shouWaiImage.frame.size.height);
-                            //                cell.shuzhangWaiImage.frame=CGRectMake(cell.shuzhangWaiImage.frame.origin.x,cell.shuzhangWaiImage.frame.origin.y,cell.shouBackImage.frame.size.width*hightValue,cell.shuzhangWaiImage.frame.size.height);
+                            //背景
+                            if ([Unit JSONInt:dic key:@"execption"]==1) {
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
+                            }else{
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+                            }
                             return cell;
                         }
                         //体重
@@ -1745,6 +2272,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             if (cell==nil) {
                                 cell=[[RXBloodPressureTableViewCell alloc]initWithStyle:0 reuseIdentifier:@"RXBloodPressureTableViewID2"];
                             }
+                            cell.twoxuelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                             cell.selectionStyle = UITableViewCellSelectionStyleNone;
                             cell.twoNamelabel.text=[Unit JSONString:dic key:@"itemName"];
@@ -1758,10 +2286,47 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             }
                             NSMutableDictionary*keyValue=[Unit ParseJSONObject:dic[@"keyValue"]];
                             cell.twoxueNumberlabel.text=[Unit JSONString:keyValue key:@"inValue"];
+                             //进度条
+                            float tizhongNumber=[keyValue[@"inValue"] floatValue]/100;
+                            if (tizhongNumber>1) {
+                                tizhongNumber=1;
+                            }
+                            if (tizhongNumber<=0.15) {
+                                tizhongNumber=0.25;
+                            }
+                            cell.xueTangTrailling.constant=-(1-tizhongNumber)*cell.twoxuebackImage.frame.size.width;
+        
                             cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                             cell.selectionStyle = UITableViewCellSelectionStyleNone;
                             cell.twoxueStartlabel.text=@"0";
-                            cell.twoxueEndlabel.text=@"1";
+                            cell.twoxueEndlabel.text=@"100";
+                            //背景
+                            if ([Unit JSONInt:dic key:@"execption"]==1) {
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
+                            }else{
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+                            }
+                            
+                            [cell.twoyueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            [cell.twozhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            
+                            [cell.twolishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            
+                            cell.twolishiButton.tag=indexPath.section-1;
+                            
+                            cell.twolishiButton.hidden=YES;
+                            cell.twozhouButton.hidden=YES;
+                            cell.twoyueButton.hidden=YES;
+                            //周报是否显示
+                            if (self.paramResponse.hasWeek==1) {
+                                cell.twozhouButton.hidden=NO;
+                            }
+                            if (self.paramResponse.hasMonth==1) {
+                                cell.twoyueButton.hidden=NO;
+                            }
+                            if (self.paramResponse.hasHistory==1) {
+                                cell.twolishiButton.hidden=NO;
+                            }
                             return cell;
                         }
                         //血糖
@@ -1772,8 +2337,9 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             if (cell==nil) {
                                 cell=[[RXBloodPressureTableViewCell alloc]initWithStyle:0 reuseIdentifier:@"RXBloodPressureTableViewID2"];
                             }
+                            cell.twoxuelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.twoNamelabel.text=[Unit JSONString:dic key:@"itemName"];
-                            cell.twoxuelabel.text=[Unit JSONString:dic key:@"testgrade"];
+                            cell.twoxuelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.twojiangTitle.text=[Unit JSONString:dic key:@"title"];
                             cell.twojianglabel.text=[Unit JSONString:dic key:@"suggest"];
                             cell.twojianglabel.textColor=JGColor(102, 102, 102, 1);
@@ -1783,10 +2349,49 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             }
                             NSMutableDictionary*keyValue=[Unit ParseJSONObject:dic[@"keyValue"]];
                             cell.twoxueNumberlabel.text=[Unit JSONString:keyValue key:@"inValue"];
+                             //进度条
+                            float tizhongNumber=[keyValue[@"inValue"] floatValue]/100;
+                            if (tizhongNumber>1) {
+                                tizhongNumber=1;
+                            }
+                            if (tizhongNumber<=0.15) {
+                                tizhongNumber=0.25;
+                            }
+                            cell.xueTangTrailling.constant=-(1-tizhongNumber)*cell.twoxuebackImage.frame.size.width;
+                            
                             cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                             cell.selectionStyle = UITableViewCellSelectionStyleNone;
                             cell.twoxueStartlabel.text=@"0";
-                            cell.twoxueEndlabel.text=@"1";
+                            cell.twoxueEndlabel.text=@"100";
+                            
+                            cell.twoxueWaiImage.backgroundColor=JGColor(101, 187, 177, 1);
+                            cell.twoxuebackImage.backgroundColor=JGColor(210, 242, 238, 1);
+                            
+                            //背景
+                            if ([Unit JSONInt:dic key:@"execption"]==1) {
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
+                            }else{
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+                            }
+                            [cell.twoyueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            [cell.twozhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            
+                            [cell.twolishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            cell.twolishiButton.tag=indexPath.section-1;
+                            
+                            cell.twolishiButton.hidden=YES;
+                            cell.twozhouButton.hidden=YES;
+                            cell.twoyueButton.hidden=YES;
+                            //周报是否显示
+                            if (self.paramResponse.hasWeek==1) {
+                                cell.twozhouButton.hidden=NO;
+                            }
+                            if (self.paramResponse.hasMonth==1) {
+                                cell.twoyueButton.hidden=NO;
+                            }
+                            if (self.paramResponse.hasHistory==1) {
+                                cell.twolishiButton.hidden=NO;
+                            }
                             return cell;
                         }
                         //尿酸
@@ -1798,7 +2403,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                                 cell=[[RXBloodPressureTableViewCell alloc]initWithStyle:0 reuseIdentifier:@"RXBloodPressureTableViewID2"];
                             }
                             cell.twoNamelabel.text=[Unit JSONString:dic key:@"itemName"];
-                            cell.twoxuelabel.text=[Unit JSONString:dic key:@"testgrade"];
+                            cell.twoxuelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.twojiangTitle.text=[Unit JSONString:dic key:@"title"];
                             cell.twojianglabel.text=[Unit JSONString:dic key:@"suggest"];
                             cell.twojianglabel.textColor=JGColor(102, 102, 102, 1);
@@ -1811,11 +2416,50 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                             cell.selectionStyle = UITableViewCellSelectionStyleNone;
                             cell.twoxueStartlabel.text=@"0";
-                            cell.twoxueEndlabel.text=@"1";
+                            cell.twoxueEndlabel.text=@"1000";
+                            
+                            cell.twoxueWaiImage.backgroundColor=JGColor(252, 98, 100, 1);
+                            cell.twoxuebackImage.backgroundColor=JGColor(252, 238, 233, 1);
+                            
+                            //进度条
+                            float tizhongNumber=[keyValue[@"inValue"] floatValue]/1000;
+                            if (tizhongNumber>1) {
+                                tizhongNumber=1;
+                            }
+                            if (tizhongNumber<=0.15) {
+                                tizhongNumber=0.25;
+                            }
+                            cell.xueTangTrailling.constant=-(1-tizhongNumber)*cell.twoxuebackImage.frame.size.width;
+                            
+                            //背景
+                            if ([Unit JSONInt:dic key:@"execption"]==1) {
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
+                            }else{
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+                            }
+                            [cell.twoyueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            [cell.twozhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            
+                            [cell.twolishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            cell.twolishiButton.tag=indexPath.section-1;
+                            cell.twolishiButton.hidden=YES;
+                            cell.twozhouButton.hidden=YES;
+                            cell.twoyueButton.hidden=YES;
+                            //周报是否显示
+                            if (self.paramResponse.hasWeek==1) {
+                                cell.twozhouButton.hidden=NO;
+                            }
+                            if (self.paramResponse.hasMonth==1) {
+                                cell.twoyueButton.hidden=NO;
+                            }
+                            if (self.paramResponse.hasHistory==1) {
+                                cell.twolishiButton.hidden=NO;
+                            }
                             return cell;
                         }
                         //血脂
                         if ([[RXTabViewHeightObjject getItemCodeNumber:self.dataArray[indexPath.section-1]] isEqualToString:@"血脂"]) {
+                            
                             NSMutableDictionary*dic=self.dataArray[indexPath.section-1];
                             static  NSString *reusstring = @"RXBloodPressureTableViewCell";
                             RXBloodPressureTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:reusstring];
@@ -1827,9 +2471,47 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             
                             NSMutableDictionary*keyValue=[Unit ParseJSONObject:dic[@"keyValue"]];
                             cell.freeTcNumberlabel.text=[Unit JSONString:keyValue key:@"tcValue"];
-                             cell.freeTGNumberlabel.text=[Unit JSONString:keyValue key:@"tcValue"];
-                             cell.freeHDLCNumberlabel.text=[Unit JSONString:keyValue key:@"hdlcValue"];
-                             cell.freeLDLCNumberlabel.text=[Unit JSONString:keyValue key:@"ldlcValue"];
+                            cell.freeTGNumberlabel.text=[Unit JSONString:keyValue key:@"tgValue"];
+                            cell.freeHDLCNumberlabel.text=[Unit JSONString:keyValue key:@"hdlcValue"];
+                            cell.freeLDLCNumberlabel.text=[Unit JSONString:keyValue key:@"ldlcValue"];
+                            
+                            //进度条
+                            float tcNumber=[keyValue[@"tcValue"] floatValue]/100;
+                            if (tcNumber>1) {
+                                tcNumber=1;
+                            }
+                            if (tcNumber<=0.15) {
+                                tcNumber=0.25;
+                            }
+                            cell.tcTrailling.constant=-(1-tcNumber)*cell.freeTcBackImage.frame.size.width;
+
+                            float tgNumber=[keyValue[@"tgValue"] floatValue]/100;
+                            if (tgNumber>1) {
+                                tgNumber=1;
+                            }
+                            if (tgNumber<=0.15) {
+                                tgNumber=0.25;
+                            }
+                            cell.tgTrailling.constant=-(1-tgNumber)*cell.freeTGbackImage.frame.size.width;
+
+                            float hdlcNumber=[keyValue[@"hdlcValue"] floatValue]/100;
+                            if (hdlcNumber>1) {
+                                hdlcNumber=1;
+                            }
+                            if (hdlcNumber<=0.15) {
+                                hdlcNumber=0.25;
+                            }
+                            cell.hdlcTrailing.constant=-(1-hdlcNumber)*cell.freeHDLCBackimage.frame.size.width;
+
+                            float ldlcNumber=[keyValue[@"ldlcValue"] floatValue]/100;
+                            if (ldlcNumber>1) {
+                                ldlcNumber=1;
+                            }
+                            if (ldlcNumber<=0.15) {
+                                ldlcNumber=0.25;
+                            }
+                            cell.ldlcTrailing.constant=-(1-ldlcNumber)*cell.freeLDLCBackImage.frame.size.width;
+
                             
                             cell.freeJikanglabel.text=[Unit JSONString:dic key:@"suggest"];
                             cell.freeJikangTitellabel.text=[Unit JSONString:dic key:@"title"];
@@ -1839,6 +2521,19 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                             }
                             cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                            
+                            //背景
+                            if ([Unit JSONInt:dic key:@"execption"]==1) {
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
+                            }else{
+                                cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+                            }
+                            cell.freelishiButton.hidden=YES;
+                            [cell.freelishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            cell.freelishiButton.tag=indexPath.section-1;
+                            if (self.paramResponse.hasHistory==1) {
+                                cell.freelishiButton.hidden=NO;
+                            }
                             return cell;
                         }
                     }
@@ -1846,19 +2541,29 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                 //咨询
                 if (indexPath.row==1) {
                     if (self.paramResponse.invitationList.count>0) {
-                        NSMutableDictionary*dic;
-                        static  NSString *reusstring = @"RXHealthyTableViewCell";
-                        RXHealthyTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:reusstring];
-                        if (cell==nil) {
-                            cell=[[NSBundle mainBundle]loadNibNamed:@"RXHealthyTableViewCell" owner:self options:nil][1];
+                        static NSString *cellId = @"RXHotInfoTableViewShowCell";
+                        YSHotInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RXHotInfoTableViewShowCell"];
+                        if (!cell) {
+                            cell = [[YSHotInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"RXHotInfoTableViewShowCell"];
                         }
-                        if (self.paramResponse.invitationList.count>0) {
-                            dic=self.response.invitationList[0];
-                            [cell.twoIconimage sd_setImageWithURL:[NSURL URLWithString:self.paramResponse.invitationList[0][@"headImgPath"]]];
-                            cell.twoConterlabel.text=self.paramResponse.invitationList[0][@"content"];
-                        }
+                        NSDictionary * dic = self.paramResponse.invitationList[0];
+                        NSString *url = [NSString stringWithFormat:@"%@%@%@",Base_URL,user_tiezi,[dic objectForKey:@"id"]];
+                        cell.strUrl = url;
+                        cell.models=self.paramResponse.invitationList[0];
+                        cell.dic =self.paramResponse.invitationList[0];
+                        cell.nav1 = self.navigationController;
                         cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                        [cell panduandianzan];
+                        cell.isRX=true;
+                        
+                        NSMutableDictionary*dic1=self.dataArray[indexPath.section-1];
+                        //背景
+                        if ([Unit JSONInt:dic1 key:@"execption"]==1) {
+                            cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:253/255.0 blue:246/255.0 alpha:1.0];
+                        }else{
+                            cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+                        }
                         return cell;
                     }
                 }
@@ -1869,7 +2574,10 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                         cell = [[RXShoppingTableViewCell alloc] initWithStyle:UITableViewCellSelectionStyleNone reuseIdentifier:@"RXShoppingTableViewCell"];
                     }
                     cell.keywordGoodsList=[NSMutableArray arrayWithArray:self.paramResponse.keywordGoodsList];
+                    cell.delegate=self;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    NSMutableDictionary*dic=self.dataArray[indexPath.section-1];
+                    cell.dic=dic;
                     return cell;
                 }
             }
@@ -1915,24 +2623,108 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             }
         }
         cell.backgroundColor=[UIColor whiteColor];
+
+        cell.twoGengDuolabel.textColor=JGColor(136, 136, 136, 1);
+        cell.twoGengDuolabel.userInteractionEnabled=YES;
+        cell.conterGengDuolabel.userInteractionEnabled=YES;
+        cell.conterGengDuolabel.textColor=JGColor(136, 136, 136, 1);
         if (indexPath.row==0) {
-            cell.twoTitlelabel.text=dic[@"title"];
-            cell.twoWenTilabel.text=dic[@"introduction"];
-            if (cell.twoWenTilabel.text.length>0) {
+             NSString*mainContent=dic[@"introduction"];
+            if (mainContent.length>0) {
+                cell.twoWenTilabel.text=mainContent;
                 cell.twoWenTilabel.numberOfLines = 2;
                 [cell.twoWenTilabel setRowSpace:10];
             }
-        }else{
-            cell.titlelabel.text=dic[@"title"];
+            cell.twoTitlelabel.text=@"完美档案报告";
+            [cell.twoTitlelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+            cell.twoTitlelabel.textColor=JGColor(51, 51, 51, 1);
+            [cell.twoButton addTarget:self action:@selector(gengDuoButton:) forControlEvents:UIControlEventTouchUpInside];
+            cell.twoButton.titleLabel.text=@"wm";
+
+            
+            cell.twoBackImage.userInteractionEnabled=YES;
+            cell.userInteractionEnabled=YES;
+            
+            UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelImageTap)];
+            [cell.twoBackImage addGestureRecognizer:tap];
+            
+
+            UITapGestureRecognizer*taplabel=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelLabelTap:)];
+            cell.twoGengDuolabel.tag=indexPath.row;
+            [cell.twoGengDuolabel addGestureRecognizer:taplabel];
+            
+        }else if(indexPath.row==1){
+            cell.conterMaskImage.hidden=YES;
+            cell.conterlabel.hidden=YES;
+            cell.contertwoLabel.hidden=YES;
+            cell.titlelabel.text=@"精准健康检测报告";
+            [cell.titlelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+            cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
+            cell.travelButton.titleLabel.text=@"bg";
+            [cell.travelButton addTarget:self action:@selector(gengDuoButton:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UITapGestureRecognizer*taplabel=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelLabelTap:)];
+            cell.conterGengDuolabel.tag=indexPath.row;;
+            [cell.conterGengDuolabel addGestureRecognizer:taplabel];
+        }else if(indexPath.row==2){
+            NSString*mainContent=dic[@"mainContent"];
+            cell.conterMaskImage.hidden=YES;
+            cell.conterlabel.hidden=YES;
+            cell.contertwoLabel.hidden=YES;
+            if (mainContent.length>0) {
+                cell.conterlabel.text=mainContent;
+                cell.conterlabel.font=JGFont(14);
+                cell.conterMaskImage.hidden=NO;
+                cell.conterlabel.hidden=NO;
+            }
+            cell.titlelabel.text=@"综合健康数据解读";
+            [cell.titlelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+            cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
+            cell.travelButton.titleLabel.text=@"jb";
+            [cell.travelButton addTarget:self action:@selector(gengDuoButton:) forControlEvents:UIControlEventTouchUpInside];
+            UITapGestureRecognizer*taplabel=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelLabelTap:)];
+            cell.conterGengDuolabel.tag=indexPath.row;;
+            [cell.conterGengDuolabel addGestureRecognizer:taplabel];
+            
+        }else if(indexPath.row==3){
+            NSString*mainContent=dic[@"mainContent"];
+            cell.conterMaskImage.hidden=YES;
+            cell.conterlabel.hidden=YES;
+            cell.contertwoLabel.hidden=NO;
+            cell.conterMaskImage.hidden=YES;
+            cell.conterlabel.hidden=YES;
+            if (mainContent.length>0) {
+                cell.contertwoLabel.text=mainContent;
+                cell.contertwoLabel.font=JGFont(15);
+                cell.contertwoLabel.numberOfLines = 2;
+                [cell.contertwoLabel setRowSpace:5];
+            }
+            cell.titlelabel.text=@"健康西游";
+            cell.travelButton.titleLabel.text=@"xy";
+            [cell.titlelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+            cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
+            [cell.travelButton addTarget:self action:@selector(gengDuoButton:) forControlEvents:UIControlEventTouchUpInside];
+            UITapGestureRecognizer*taplabel=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelLabelTap:)];
+            cell.conterGengDuolabel.tag=indexPath.row;;
+            [cell.conterGengDuolabel addGestureRecognizer:taplabel];
         }
+        cell.userInteractionEnabled=YES;
+        cell.travelImage.userInteractionEnabled=YES;
+        
         if (indexPath.row==1) {
             [cell.travelImage sd_setImageWithURL:[NSURL URLWithString:self.response.bgImg]];
+            UITapGestureRecognizer*tapOne=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelImageTapOne)];
+            [cell.travelImage addGestureRecognizer:tapOne];
         }
         if (indexPath.row==2) {
             [cell.travelImage sd_setImageWithURL:[NSURL URLWithString:self.response.jdImg]];
+            UITapGestureRecognizer*tapTwo=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelImageTapTwo)];
+            [cell.travelImage addGestureRecognizer:tapTwo];
         }
         if (indexPath.row==3) {
             [cell.travelImage sd_setImageWithURL:[NSURL URLWithString:self.response.xyImg]];
+            UITapGestureRecognizer*tapFree=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelImageTapFree)];
+            [cell.travelImage addGestureRecognizer:tapFree];
         }
         cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -1984,64 +2776,81 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
         return cell;
 
     } else if(indexPath.section==self.dataArray.count+1+5){
-        NSMutableDictionary*dic;
-        static  NSString *reusstring = @"RXHealthyTableViewCell";
-        RXHealthyTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:reusstring];
-        if (cell==nil) {
-            cell=[[[NSBundle mainBundle]loadNibNamed:@"RXHealthyTableViewCell" owner:self options:nil]firstObject];
+        static NSString *cellId = @"RXHotInfoTableViewCell";
+        YSHotInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:heathInfoCellID];
+        if (!cell) {
+            cell = [[YSHotInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         }
-        if (self.response.invitationList.count>0) {
-            dic=self.response.invitationList[0];
-            [cell.iconimage sd_setImageWithURL:[NSURL URLWithString:dic[@"headImgPath"]]];
-            cell.conterlabel.text=dic[@"content"];
-        }
+        NSDictionary * dic =self.response.invitationList[0];
+        NSString *url = [NSString stringWithFormat:@"%@%@%@",Base_URL,user_tiezi,[dic objectForKey:@"id"]];
+        cell.strUrl = url;
+        cell.models=self.response.invitationList[0];
+        cell.dic =self.response.invitationList[0];
+        cell.nav1 = self.navigationController;
         cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell panduandianzan];
+        cell.isRX=true;
         return cell;
     }else if(indexPath.section==self.dataArray.count+1+6){
-       RXShoppingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RXShoppingTableViewCell"];
+        RXShoppingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RXShoppingTableViewCell"];
         if (cell == nil) {
             cell = [[RXShoppingTableViewCell alloc] initWithStyle:UITableViewCellSelectionStyleNone reuseIdentifier:@"RXShoppingTableViewCell"];
         }
+        cell.delegate=self;
         cell.keywordGoodsList=[NSMutableArray arrayWithArray:self.response.keywordGoodsList];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.type=true;
         return cell;
     }
     UITableViewCell*cell=[[UITableViewCell alloc]init];
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section==self.dataArray.count+1+1) {
-        NSDictionary*dic;
-        if (indexPath.row==0) {
-            if (self.othersArray.count>0) {
-                dic=self.othersArray[0];
+    
+    if (self.dataArray.count>0) {
+        if (indexPath.section-1<self.dataArray.count+1) {
+        
+            if (indexPath.row==1) {
+                if (self.paramResponse.invitationList.count>0) {
+                    [[NSUserDefaults standardUserDefaults]setObject:[self.InfosModels objectAtIndex:indexPath.row] forKey:@"circleTitle"];
+                    WebDayVC *weh = [[WebDayVC alloc]init];
+                    NSDictionary * dic = self.paramResponse.invitationList[0];
+                    [[NSUserDefaults standardUserDefaults]setObject:dic[@"title"]  forKey:@"circleTitle"];
+                    NSString *url = [NSString stringWithFormat:@"%@%@%@",Base_URL,user_tiezi,[dic objectForKey:@"id"]];
+                    weh.strUrl = url;
+                    weh.ind = 1;
+                    weh.dic =self.paramResponse.invitationList[0];
+                    weh.backBlock = ^(){
+                    };
+                    UINavigationController *nas = [[UINavigationController alloc]initWithRootViewController:weh];
+                    nas.navigationBar.barTintColor = COMMONTOPICCOLOR;
+                    [self presentViewController:nas animated:YES completion:^{
+                    }];
+                }
             }
         }
-        if (indexPath.row==1) {
-            if (self.healthServiceRecommendBgBOArray.count>0) {
-                dic=self.healthServiceRecommendBgBOArray[0];
-            }
-        }
-        if (indexPath.row==2) {
-            if (self.healthServiceRecommendJdBOArray.count>0) {
-                dic=self.healthServiceRecommendJdBOArray[0];
-            }
-        }
-        if (indexPath.row==3) {
-            if (self.healthServiceRecommendXyBOArray.count>0) {
-                dic=self.healthServiceRecommendXyBOArray[0];
-            }
-        }
-        YSLinkCYDoctorWebController *cyDoctorController = [[YSLinkCYDoctorWebController alloc] initWithWebUrl:@"http://api.bhesky.cn/carnation-apis-resource/resources/jkgl/report.html"];
-        cyDoctorController.navTitle =dic[@"title"];
-        cyDoctorController.tag = 100;
-        cyDoctorController.controllerPushType = YSControllerPushFromHealthyManagerType;
-        [self.navigationController pushViewController:cyDoctorController animated:YES];
     }
+    if (indexPath.section==self.dataArray.count+1+5) {
+        [[NSUserDefaults standardUserDefaults]setObject:[self.InfosModels objectAtIndex:indexPath.row] forKey:@"circleTitle"];
+        WebDayVC *weh = [[WebDayVC alloc]init];
+        NSDictionary * dic = self.response.invitationList[0];
+        [[NSUserDefaults standardUserDefaults]setObject:dic[@"title"]  forKey:@"circleTitle"];
+        NSString *url = [NSString stringWithFormat:@"%@%@%@",Base_URL,user_tiezi,[dic objectForKey:@"id"]];
+        weh.strUrl = url;
+        weh.ind = 1;
+        weh.dic =self.response.invitationList[0];
+        weh.backBlock = ^(){
+        };
+        UINavigationController *nas = [[UINavigationController alloc]initWithRootViewController:weh];
+        nas.navigationBar.barTintColor = COMMONTOPICCOLOR;
+        [self presentViewController:nas animated:YES completion:^{
+        }];
+    }
+    
 }
-
 //cell个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -2092,7 +2901,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             //商品推荐
             if (self.paramResponse.keywordGoodsList.count>0) {
                 if (indexPath.row==2) {
-                    return 280;
+                    return 250;
                 }
             }else{
                  return 0;
@@ -2155,23 +2964,48 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
         return 125;
     }
     if (indexPath.section==self.dataArray.count+1+6) {
-        return 280;
+        return 250;
     }
     return 0;
 }
+
+//请求超时
+-(void)chaoshiFunotion;{
+    if (self.MjTimer!=nil) {
+        [self.MjTimer invalidate];
+        self.MjTimer=nil;
+        [self.mtableview.mj_header endRefreshing];
+    }
+    [self showStringHUD:@"请求超时,请刷新重试" second:0];
+}
+
+
 /**个人信息**/
 -(void)getRequest;{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //设置超时
+    if (self.MjTimer!=nil) {
+        [self.MjTimer invalidate];
+        self.MjTimer=nil;
+    }
+    self.MjTimer=[NSTimer scheduledTimerWithTimeInterval:10.0f target:self selector:@selector(chaoshiFunotion) userInfo:nil  repeats:NO];
+    
+    self.response=[[RXUserDetailResponse alloc]init];
+    [self showHUD];
     RXUserDetailRequest*request=[[RXUserDetailRequest alloc]init:GetToken];
     VApiManager *manager = [[VApiManager alloc]init];
-    self.othersArray=[[NSMutableArray alloc]init];
-    self.advertisingArray=[[NSMutableArray alloc]init];
     [manager RXMakeUserDetail:request
                       success:^(AFHTTPRequestOperation *operation, RXUserDetailResponse *response) {
-                          
+            //设置超时
+            if (self.MjTimer!=nil) {
+              [self.MjTimer invalidate];
+              self.MjTimer=nil;
+            }
+            self.othersArray=[[NSMutableArray alloc]init];
+            self.advertisingArray=[[NSMutableArray alloc]init];
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                  [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [self hideAllHUD];
+                [self.mtableview.mj_header endRefreshing];
             });
             if (!self.freeCollectionView) {
                 [self.freeCollectionView p_dismissView];
@@ -2182,25 +3016,23 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             [self.healthServiceRecommendJdBOArray removeAllObjects];
             [self.othersArray removeAllObjects];
             [self.advertisingArray removeAllObjects];
-            if (!self.response) {
-                self.response=[[RXUserDetailResponse alloc]init];
-            }
             self.response = response;
-                   
-            //是否需要提示
-            if ([self.response.memberNotice isEqualToString:@"1"]){
-                //先判断是否是VIP
-                if (self.response.isMember!=1){
-                    if ([self.response.isLA isEqualToString:@"0"]) {
-                        self.freeCollectionView=[[RXFreeCollectionView alloc]init];
-                        [self.freeCollectionView showView:@"健康管家，定时监测您的身体状态，打造专属健康服务。点击领取即可免费体验1个月" with:self with:@selector(freeCollectViewButton)];
-                    }else{
-                        self.freeCollectionView=[[RXFreeCollectionView alloc]init];
-                        [self.freeCollectionView showView:@"健康管家，定时监测您的身体状态，打造专属健康服务。点击领取即可免费使用1年" with:self with:@selector(freeCollectViewButton)];
-                    }
-                }else{
+            //是否领取过会员
+            int index=[Unit JSONInt:[[NSMutableDictionary alloc]initWithDictionary:self.response.healthUserBO] key:@"isGet"];
+            if (index==0){
+                  if ([self.response.isLA isEqualToString:@"0"]) {
+                      self.freeCollectionView=[[RXFreeCollectionView alloc]init];
+                      [self.freeCollectionView showView:@"健康管家，定时监测您的身体状态，打造专属健康服务。点击领取即可免费体验1个月" with:self with:@selector(freeCollectViewButton)];
+                  }else{
+                      self.freeCollectionView=[[RXFreeCollectionView alloc]init];
+                      [self.freeCollectionView showView:@"健康管家，定时监测您的身体状态，打造专属健康服务。点击领取即可免费使用1年" with:self with:@selector(freeCollectViewButton)];
+                  }
+            }else{
+                //是否需要提示
+                if ([self.response.memberNotice isEqualToString:@"1"]){
+                    
                     if ([self.response.memberLastTime integerValue]>0&&[self.response.memberLastTime integerValue]<5) {
-                        TBAlertController *controller = [TBAlertController alertControllerWithTitle:@"提示" message:@"您的健康管家数据服务还有5天到期，到期后所有监测服务将不再支持。" preferredStyle:TBAlertControllerStyleAlert];
+                        TBAlertController *controller = [TBAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"您的健康管家数据服务还有%@天到期，到期后所有监测服务将不再支持",self.response.memberLastTime] preferredStyle:TBAlertControllerStyleAlert];
                         TBAlertAction *clickme = [TBAlertAction actionWithTitle:@"立即续费" style: TBAlertActionStyleDestructive handler:^(TBAlertAction * _Nonnull action) {
                             RXbutlerServiceViewController*vc=[[RXbutlerServiceViewController alloc]init];
                             [self.navigationController pushViewController:vc animated:NO];
@@ -2222,8 +3054,8 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
                         [controller addAction:cancel];
                         [self presentViewController:controller animated:YES completion:nil];
                     }
+                    
                 }
-                
             }
             //3种不同服务
             if (self.response.healthServiceRecommendXyBO) {
@@ -2239,10 +3071,11 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             if (self.response.others) {
                 self.othersArray=[NSMutableArray arrayWithArray:self.response.others];
             }
+            [self.InfosModels xf_safeAddObjectsFromArray:self.response.invitationList];
             //广告位
-            if (self.response.adContentBO) {
-                self.advertisingArray=[NSMutableArray arrayWithArray:self.response.adContentBO];
-            }
+//            if (self.response.adContentBO) {
+//                self.advertisingArray=[NSMutableArray arrayWithArray:self.response.adContentBO];
+//            }
             if (self.response.healthList.count>0) {
                 [self.dataArray removeAllObjects];
                 for (NSDictionary*dic in self.response.healthList) {
@@ -2254,28 +3087,37 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
             }
            [self.mtableview reloadData];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+         [self hideAllHUD];
          [self.mtableview reloadData];
+         [self showStringHUD:@"网络错误" second:0];
+         //设置超时
+         if (self.MjTimer!=nil) {
+             [self.MjTimer invalidate];
+             self.MjTimer=nil;
+         }
+         [self.mtableview.mj_header endRefreshing];
     }];
 }
 //领取会员
 -(void)freeCollectViewButton;{
-    RXMemberDetailRequest*request=[[ RXMemberDetailRequest alloc]init:GetToken];
+    RXMemberDetailRequest*request=[[RXMemberDetailRequest alloc]init:GetToken];
     VApiManager *manager = [[VApiManager alloc]init];
     [manager RXMemberDetailRequest:request success:^(AFHTTPRequestOperation *operation, RXMemberDetailResponse *response) {
-        if (response.isSuccuess==1) {
-            [UIAlertView xf_showWithTitle:@"会员领取成功" message:nil onDismiss:^{
-                
-            }];
-            [self.freeCollectionView p_dismissView];
-        }else{
-            [UIAlertView xf_showWithTitle:@"会员领取失败,请重新再试!" message:nil onDismiss:^{
-                
-            }];
-        }
+         [self.freeCollectionView p_dismissView];
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            if (response.isSuccuess==1) {
+                [self showStringHUD:@"领取成功" second:0];
+            }else{
+                [self showStringHUD:@"领取失败" second:0];
+            }
+        });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [self.freeCollectionView p_dismissView];
+        [self showStringHUD:@"网络错误" second:0];
     }];
 }
-
+-(void)dealloc;{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"manualTestNotification" object:nil];
+}
 @end

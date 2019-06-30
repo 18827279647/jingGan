@@ -11,11 +11,27 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RXZhangKaiTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *oneButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *twoButton;
-@property (weak, nonatomic) IBOutlet UIButton *freeButton;
-@property (weak, nonatomic) IBOutlet UIButton *fiveButton;
+//默认有4个
+
+@property (weak, nonatomic) IBOutlet UIButton *oneOneButton;
+@property (weak, nonatomic) IBOutlet UIButton *oneTwoButton;
+@property (weak, nonatomic) IBOutlet UIButton *oneFreeButton;
+@property (weak, nonatomic) IBOutlet UIButton *oneFiveButton;
+
+//默认3个
+@property (weak, nonatomic) IBOutlet UIButton *twoOneButon;
+
+@property (weak, nonatomic) IBOutlet UIButton *twoTwoButton;
+@property (weak, nonatomic) IBOutlet UIButton *twoFreeButton;
+
+
+//默认2个
+@property (weak, nonatomic) IBOutlet UIButton *freeOneButton;
+@property (weak, nonatomic) IBOutlet UIButton *freeTwoButton;
+
+//默认1个
+@property (weak, nonatomic) IBOutlet UIButton *fiveOneButton;
 
 @end
 

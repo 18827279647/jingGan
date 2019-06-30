@@ -45,13 +45,14 @@
     YSProjectEnvironmentMode mode = [YSEnvironmentConfig examineEnironmentMode];
     switch (mode) {
         case YSProject209EnvironmentModel:
-            return @"http://192.168.1.209:8080";
+            //    return @"http://192.168.1.102:8080/carnation-apis-resource";
+            return @"http://api.bhesky.com";///carnation-apis-resource
             break;
         case YSProjectCNEnvironmentMode:
-            return @"http://api.bhesky.cn";
+            return @"http://api.bhesky.com";//http://api.bhesky.com/carnation-apis-resource
             break;
         case YSProjectCOMEnvironmentMode:
-            return @"http://api.bhesky.com";
+            return @"http://api.bhesky.com";//http://api.bhesky.com/carnation-apis-resource
             break;
         default:
             break;
@@ -62,13 +63,13 @@
     YSProjectEnvironmentMode mode = [YSEnvironmentConfig examineEnironmentMode];
     switch (mode) {
         case YSProject209EnvironmentModel:
-            return @"http://192.168.8.160:8080/carnation-apis-resource";//
+            return @"http://auth.bhesky.com/carnation-apis-auth-server";//http://192.168.1.209:8080
             break;
         case YSProjectCNEnvironmentMode:
-            return @"http://auth.bhesky.cn/carnation-apis-auth-server";//
+            return @"http://auth.bhesky.com/carnation-apis-auth-server";//http://auth.bhesky.com
             break;
         case YSProjectCOMEnvironmentMode:
-            return @"http://auth.bhesky.com/carnation-apis-auth-server";//
+            return @"http://auth.bhesky.com/carnation-apis-auth-server";//http://auth.bhesky.com
             break;
         default:
             break;
@@ -79,13 +80,13 @@
     YSProjectEnvironmentMode mode = [YSEnvironmentConfig examineEnironmentMode];
     switch (mode) {
         case YSProject209EnvironmentModel:
-            return @"http://192.168.1.209:8080";
+            return @"http://static.bhesky.com";
             break;
         case YSProjectCNEnvironmentMode:
-            return @"http://api.bhesky.cn";
+            return @"http://static.bhesky.com";
             break;
         case YSProjectCOMEnvironmentMode:
-            return @"http://api.bhesky.com";
+            return @"http://static.bhesky.com";
             break;
         default:
             break;
@@ -96,10 +97,11 @@
     YSProjectEnvironmentMode mode = [YSEnvironmentConfig examineEnironmentMode];
     switch (mode) {
         case YSProject209EnvironmentModel:
-            return @"http://192.168.1.209:8080";
+            //            return @"http://192.168.1.14:8080/carnation-apis-resource";
+            return @"http://api.bhesky.com";
             break;
         case YSProjectCNEnvironmentMode:
-            return @"http://api.bhesky.cn";
+            return @"http://api.bhesky.com";
             break;
         case YSProjectCOMEnvironmentMode:
             return @"http://api.bhesky.com";
@@ -113,13 +115,13 @@
     YSProjectEnvironmentMode mode = [YSEnvironmentConfig examineEnironmentMode];
     switch (mode) {
         case YSProject209EnvironmentModel:
-            return @"http://192.168.1.209:8080";
+            return @"http://shop.bhesky.com";
             break;
         case YSProjectCNEnvironmentMode:
-            return @"http://api.bhesky.cn";
+            return @"http://shop.bhesky.com";
             break;
         case YSProjectCOMEnvironmentMode:
-            return @"http://api.bhesky.com";
+            return @"http://shop.bhesky.com";
             break;
         default:
             break;
@@ -130,13 +132,13 @@
     YSProjectEnvironmentMode mode = [YSEnvironmentConfig examineEnironmentMode];
     switch (mode) {
         case YSProject209EnvironmentModel:
-            return @"http://192.168.1.209:8080";
+            return @"http://mobile.bhesky.com";
             break;
         case YSProjectCNEnvironmentMode:
-            return @"http://api.bhesky.cn";
+            return @"http://mobile.bhesky.com";
             break;
         case YSProjectCOMEnvironmentMode:
-            return @"http://api.bhesky.com";
+            return @"http://mobile.bhesky.com";
             break;
         default:
             break;

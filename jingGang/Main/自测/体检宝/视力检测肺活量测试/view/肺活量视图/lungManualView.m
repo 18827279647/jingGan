@@ -12,6 +12,13 @@
 #import "MJRefresh.h"
 #import "WSJHeartRateResultViewController.h"
 
+#import "Unit.h"
+#import "VApiManager.h"
+#import "RXSubmitDataRequest.h"
+#import "RXSubmitDataResponse.h"
+#import "GlobeObject.h"
+#import "RXWebViewController.h"
+
 @implementation lungManualView
 {
     UITextField *_lungValueTextField;
@@ -101,11 +108,10 @@
 {
     if ([_lungValueTextField.text integerValue] > 0 && [_lungValueTextField.text integerValue] < 10000 )
     {
-        WSJLungResultViewController *lungResultVC = [[WSJLungResultViewController alloc] initWithNibName:@"WSJLungResultViewController" bundle:nil];
-        lungResultVC.type = lungCapacityType;
-        lungResultVC.lungValue = [_lungValueTextField.text integerValue];
-        [self.VC.navigationController pushViewController:lungResultVC animated:YES];
-        
+        NSMutableDictionary*paramJson=[[NSMutableDictionary alloc]init];
+        [paramJson setObject:_lungValueTextField.text forKey:@"inValue"];
+        //上传接口
+        [self getRuest:paramJson];
     }
     else
     {
@@ -114,6 +120,121 @@
         _lungValueTextField.text = @"";
     }
 }
+-(void)getRuest:(NSMutableDictionary*)paramJson;{
+    
+    [paramJson setObject:@"3" forKey:@"type"];
+    [self showHUD];
+    //提交数据
+    RXSubmitDataRequest*request=[[RXSubmitDataRequest alloc]init:GetToken];
+    request.paramCode=8;
+    request.paramJson=[self dictionaryToJson:paramJson];
+    VApiManager *manager = [[VApiManager alloc]init];
+    [manager RXSubmitDataRequest:request success:^(AFHTTPRequestOperation *operation, RXSubmitDataResponse *response) {
+        [self hideAllHUD];
+        if ([response.msg isEqualToString:@"success"]) {
+            [self showStringHUD:@"提交成功" second:0];
+            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"manualTestNotification" object:nil];
+                WSJLungResultViewController *lungResultVC = [[WSJLungResultViewController alloc] initWithNibName:@"WSJLungResultViewController" bundle:nil];
+                lungResultVC.type = lungCapacityType;
+                lungResultVC.lungValue = [_lungValueTextField.text integerValue];
+                [self.VC.navigationController pushViewController:lungResultVC animated:YES];
+            });
+        }else{
+            [self showStringHUD:@"提交失败" second:0];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideAllHUD];
+        [self showStringHUD:@"网络错误" second:0];
+    }];
+}
+#pragma mark 字典转化字符串
+-(NSString*)dictionaryToJson:(NSMutableDictionary *)dic
+{
+    NSString *jsonString = nil;
+    NSError *error;
+    if (dic == nil) {
+        return jsonString;
+    }
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    if (! jsonData) {
+        
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
+}
+
+
+
+
+
+
+
+- (void)showHUD{
+    
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+}
+/**
+ *  功能:显示字符串hud
+ */
+- (void)showHUD:(NSString *)aMessage
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aMessage;
+}
+- (void)showHUD:(NSString *)aMessage animated:(BOOL)animated
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:animated];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aMessage;
+}
+/**
+ *  功能:显示字符串hud几秒钟时间
+ */
+- (void)showStringHUD:(NSString *)aMessage second:(int)aSecond{
+    
+    [self hideAllHUD];
+    if(aSecond==0){
+        aSecond = 2;
+    }
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = aMessage;
+    [self performSelector:@selector(hideHUD) withObject:nil afterDelay:aSecond];
+}
+
+
+/**
+ *  功能:隐藏hud
+ */
+- (void)hideHUD
+{
+    [MBProgressHUD hideHUDForView:self animated:YES];
+}
+
+/**
+ *  功能:隐藏所有hud
+ */
+- (void)hideAllHUD
+{
+    
+    [MBProgressHUD hideAllHUDsForView:self animated:YES];
+}
+
+/**
+ *  功能:隐藏hud
+ */
+- (void)hideHUD:(BOOL)animated
+{
+    [MBProgressHUD hideHUDForView:self animated:animated];
+}
+
 - (void) tapHiddenKey
 {
     [self endEditing:YES];

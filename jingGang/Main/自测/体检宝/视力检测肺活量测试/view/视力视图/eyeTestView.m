@@ -10,6 +10,12 @@
 #import "PublicInfo.h"
 #import "eyeTestModel.h"
 #import "examineResultViewController.h"
+
+#import "Unit.h"
+#import "VApiManager.h"
+#import "GlobeObject.h"
+#import "RXWebViewController.h"
+
 #define K_Heigth (__MainScreen_Height - 108)
 
 #define UIColorFromRGB(rgbValue) \
@@ -298,11 +304,14 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
             [self createButtonAction:btn];
             if (self.resultModel)
             {
-                examineResultViewController *resultVC = [[examineResultViewController alloc] initWithNibName:@"examineResultViewController" bundle:nil];
+                
                 eyeTestModel *model = self.dataSource[self.resultModel];
-                resultVC.eyeValue = model.rightLabel;
-                resultVC.type = k_Eye;
-                [self.VC.navigationController pushViewController:resultVC animated:YES];
+                
+                NSMutableDictionary*paramJson=[[NSMutableDictionary alloc]init];
+                [paramJson setObject:model.rightLabel forKey:@"inValue"];
+                //上传接口
+                [self getRuest:paramJson];
+                
             }
         }
     }
@@ -313,11 +322,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         {
 //            NSLog(@"你的实力真好5.0");
 #warning 正确结果在这里，下标      模型在self.dataSource
-            self.resultModel = _selectBtn.tag;//标记当前正确的位置
-            examineResultViewController *resultVC = [[examineResultViewController alloc] initWithNibName:@"examineResultViewController" bundle:nil];
-            resultVC.eyeValue = @"5.2";
-            resultVC.type = k_Eye;
-            [self.VC.navigationController pushViewController:resultVC animated:YES];
+            NSMutableDictionary*paramJson=[[NSMutableDictionary alloc]init];
+            [paramJson setObject:@"5.2" forKey:@"inValue"];
+            //上传接口
+            [self getRuest:paramJson];
         }
         else
         {
@@ -326,7 +334,119 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
             [self createButtonAction:btn];
         }
     }
+}
+-(void)getRuest:(NSMutableDictionary*)paramJson;{
     
+    [paramJson setObject:@"3" forKey:@"type"];
+    [self showHUD];
+    //提交数据
+    RXSubmitDataRequest*request=[[RXSubmitDataRequest alloc]init:GetToken];
+    request.paramCode=15;
+    request.paramJson=[self dictionaryToJson:paramJson];
+    VApiManager *manager = [[VApiManager alloc]init];
+    [manager RXSubmitDataRequest:request success:^(AFHTTPRequestOperation *operation, RXSubmitDataResponse *response) {
+        [self hideAllHUD];
+        if ([response.msg isEqualToString:@"success"]) {
+            [self showStringHUD:@"提交成功" second:0];
+            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"manualTestNotification" object:nil];
+                self.resultModel = _selectBtn.tag;//标记当前正确的位置
+                examineResultViewController *resultVC = [[examineResultViewController alloc] initWithNibName:@"examineResultViewController" bundle:nil];
+                resultVC.eyeValue = [Unit JSONString:paramJson key:@"inValue"];
+                resultVC.type = k_Eye;
+                [self.VC.navigationController pushViewController:resultVC animated:YES];
+            });
+        }else{
+            [self showStringHUD:@"提交失败" second:0];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideAllHUD];
+        [self showStringHUD:@"网络错误" second:0];
+    }];
+}
+#pragma mark 字典转化字符串
+-(NSString*)dictionaryToJson:(NSMutableDictionary *)dic
+{
+    NSString *jsonString = nil;
+    NSError *error;
+    if (dic == nil) {
+        return jsonString;
+    }
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    if (! jsonData) {
+        
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
+}
+
+
+
+
+
+
+- (void)showHUD{
+    
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+}
+/**
+ *  功能:显示字符串hud
+ */
+- (void)showHUD:(NSString *)aMessage
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aMessage;
+}
+- (void)showHUD:(NSString *)aMessage animated:(BOOL)animated
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:animated];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aMessage;
+}
+/**
+ *  功能:显示字符串hud几秒钟时间
+ */
+- (void)showStringHUD:(NSString *)aMessage second:(int)aSecond{
+    
+    [self hideAllHUD];
+    if(aSecond==0){
+        aSecond = 2;
+    }
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = aMessage;
+    [self performSelector:@selector(hideHUD) withObject:nil afterDelay:aSecond];
+}
+
+
+/**
+ *  功能:隐藏hud
+ */
+- (void)hideHUD
+{
+    [MBProgressHUD hideHUDForView:self animated:YES];
+}
+
+/**
+ *  功能:隐藏所有hud
+ */
+- (void)hideAllHUD
+{
+    
+    [MBProgressHUD hideAllHUDsForView:self animated:YES];
+}
+
+/**
+ *  功能:隐藏hud
+ */
+- (void)hideHUD:(BOOL)animated
+{
+    [MBProgressHUD hideHUDForView:self animated:animated];
 }
 //创建视力数按钮
 - (UIButton *) createUIButtonWithBackgroundColor:(UIColor *)color withIndex:(NSInteger)idx withLeft:(NSString *)left withRight:(NSString *)right

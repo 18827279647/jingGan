@@ -70,7 +70,7 @@
 }
 - (void) setBlindnessData
 {
-    self.eyeValueLabel.text = [NSString stringWithFormat:@"%ld",self.blindnessValue * 20];
+    self.eyeValueLabel.text = [NSString stringWithFormat:@"%.2ld",self.blindnessValue * 20];
     self.eyeValueLabel.textColor = [YSThemeManager buttonBgColor];
 //    self.resultLabel.text = [NSString stringWithFormat:@"%ld",self.blindnessValue * 20];
     self.resultLabel.adjustsFontSizeToFitWidth = YES;
@@ -222,7 +222,7 @@
 - (void) initUI
 {
     self.saveDataLabel.layer.cornerRadius = 5;
-    self.eyeValueLabel.text = self.eyeValue;
+    self.eyeValueLabel.text = [NSString stringWithFormat:@"%@",self.eyeValue];
     self.eyeValueLabel.textColor = [YSThemeManager buttonBgColor];
     //返回上一级控制器按钮
     

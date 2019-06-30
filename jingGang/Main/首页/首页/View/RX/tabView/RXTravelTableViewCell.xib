@@ -20,39 +20,84 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精准健康" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMT-Xb-vmE">
-                        <rect key="frame" x="20" y="21" width="329" height="20"/>
+                        <rect key="frame" x="20" y="21" width="65.5" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXl-Jx-BUU">
-                        <rect key="frame" x="359" y="17" width="50" height="28"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXl-Jx-BUU">
+                        <rect key="frame" x="389" y="21" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="jR0-uJ-ki1"/>
+                            <constraint firstAttribute="height" constant="20" id="747-mZ-Yf9"/>
+                            <constraint firstAttribute="width" constant="20" id="QBu-1u-X4k"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="更多">
+                        <state key="normal" image="rx_right_image">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="10s-nz-2yi">
-                        <rect key="frame" x="20" y="55" width="389" height="163.5"/>
+                        <rect key="frame" x="20" y="51" width="389" height="167.5"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask" translatesAutoresizingMaskIntoConstraints="NO" id="bfJ-2e-aCS">
+                        <rect key="frame" x="20" y="188.5" width="389" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="N5Y-rT-D0J"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【综合健康数据解读】您好！糖友规划正常饮食的最简洁方…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lN7-aN-T4X">
+                        <rect key="frame" x="30" y="196.5" width="369" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJ2-qi-eK2">
+                        <rect key="frame" x="40" y="127" width="155.5" height="16"/>
+                        <attributedString key="attributedText">
+                            <fragment content="--">
+                                <attributes>
+                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更多" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-Hm-kLE">
+                        <rect key="frame" x="364" y="24" width="25" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="qXl-Jx-BUU" firstAttribute="leading" secondItem="lMT-Xb-vmE" secondAttribute="trailing" constant="10" id="1HQ-a8-YOM"/>
+                    <constraint firstItem="cJ2-qi-eK2" firstAttribute="width" secondItem="10s-nz-2yi" secondAttribute="width" multiplier="1/2.5" id="5Da-N9-8gl"/>
                     <constraint firstAttribute="bottom" secondItem="10s-nz-2yi" secondAttribute="bottom" constant="10" id="GUW-r0-j8W"/>
                     <constraint firstAttribute="trailing" secondItem="10s-nz-2yi" secondAttribute="trailing" constant="20" id="HLp-pf-C6L"/>
+                    <constraint firstItem="aBF-Hm-kLE" firstAttribute="centerY" secondItem="qXl-Jx-BUU" secondAttribute="centerY" id="J3z-MJ-Pgp"/>
+                    <constraint firstItem="bfJ-2e-aCS" firstAttribute="bottom" secondItem="10s-nz-2yi" secondAttribute="bottom" id="LhM-by-kPt"/>
+                    <constraint firstItem="lN7-aN-T4X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="ODP-s9-bmw"/>
+                    <constraint firstItem="qXl-Jx-BUU" firstAttribute="leading" secondItem="aBF-Hm-kLE" secondAttribute="trailing" id="OXs-8U-2t2"/>
+                    <constraint firstItem="bfJ-2e-aCS" firstAttribute="leading" secondItem="10s-nz-2yi" secondAttribute="leading" id="Z1o-Ar-hfe"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lN7-aN-T4X" secondAttribute="trailing" constant="10" id="bDo-9r-BTf"/>
                     <constraint firstItem="10s-nz-2yi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="bkF-ib-zwq"/>
+                    <constraint firstItem="bfJ-2e-aCS" firstAttribute="trailing" secondItem="10s-nz-2yi" secondAttribute="trailing" id="cwZ-Ml-cNh"/>
                     <constraint firstItem="lMT-Xb-vmE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="dWz-mC-VQA"/>
                     <constraint firstItem="lMT-Xb-vmE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="gzJ-FJ-O7V"/>
                     <constraint firstItem="10s-nz-2yi" firstAttribute="top" secondItem="qXl-Jx-BUU" secondAttribute="bottom" constant="10" id="kUZ-1s-1ZI"/>
+                    <constraint firstItem="cJ2-qi-eK2" firstAttribute="centerY" secondItem="10s-nz-2yi" secondAttribute="centerY" id="mYR-hf-U3c"/>
                     <constraint firstAttribute="trailing" secondItem="qXl-Jx-BUU" secondAttribute="trailing" constant="20" id="nSZ-Jy-5gc"/>
                     <constraint firstItem="qXl-Jx-BUU" firstAttribute="centerY" secondItem="lMT-Xb-vmE" secondAttribute="centerY" id="qgj-Br-gNL"/>
+                    <constraint firstItem="cJ2-qi-eK2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="qnD-JT-bf1"/>
+                    <constraint firstItem="lN7-aN-T4X" firstAttribute="centerY" secondItem="bfJ-2e-aCS" secondAttribute="centerY" id="wUT-TF-qb1"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="conterGengDuolabel" destination="aBF-Hm-kLE" id="kYS-F8-uxJ"/>
+                <outlet property="conterMaskImage" destination="bfJ-2e-aCS" id="6bD-Ze-1tf"/>
+                <outlet property="conterlabel" destination="lN7-aN-T4X" id="PXR-sd-Wy4"/>
+                <outlet property="contertwoLabel" destination="cJ2-qi-eK2" id="cEL-dz-Eok"/>
                 <outlet property="titlelabel" destination="lMT-Xb-vmE" id="e7y-m0-B5b"/>
                 <outlet property="travelButton" destination="qXl-Jx-BUU" id="akR-Fx-7h0"/>
                 <outlet property="travelImage" destination="10s-nz-2yi" id="ek2-Sq-CgP"/>
@@ -67,29 +112,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精准健康检测报告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfM-hg-4bN">
-                        <rect key="frame" x="20" y="21" width="336" height="19.5"/>
+                        <rect key="frame" x="20" y="20" width="131" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGI-Et-T3O">
-                        <rect key="frame" x="366" y="17" width="50" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="LPl-r1-U8L"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="更多">
-                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" image="tr_back_image" translatesAutoresizingMaskIntoConstraints="NO" id="YBE-Ir-hh9">
-                        <rect key="frame" x="20" y="55" width="396" height="131.5"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="tr_back_image" translatesAutoresizingMaskIntoConstraints="NO" id="YBE-Ir-hh9">
+                        <rect key="frame" x="20" y="54.5" width="396" height="132"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的健康报告" translatesAutoresizingMaskIntoConstraints="NO" id="fhx-fe-Ucu">
-                        <rect key="frame" x="135" y="85" width="166" height="26"/>
+                        <rect key="frame" x="176" y="84.5" width="84" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="rcI-Vc-ZBz"/>
+                            <constraint firstAttribute="width" constant="84" id="u8j-LG-Agx"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hne-Fb-zJ9">
-                        <rect key="frame" x="40" y="131" width="356" height="36"/>
+                        <rect key="frame" x="40" y="119.5" width="356" height="36"/>
                         <attributedString key="attributedText">
                             <fragment content="李玉芮：您好！综合您提供的所有正常数据，评估出心血管风险水平：很高危。点击完美档案报告了解">
                                 <attributes>
@@ -106,35 +145,57 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erH-7u-REt">
+                        <rect key="frame" x="396" y="20" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="r6r-bT-ULB"/>
+                            <constraint firstAttribute="width" constant="20" id="smo-tF-Mvk"/>
+                        </constraints>
+                        <state key="normal" image="rx_right_image">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更多" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4r-PE-96P">
+                        <rect key="frame" x="369" y="22" width="27" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="Hne-Fb-zJ9" secondAttribute="trailing" constant="20" id="5sU-kt-yF2"/>
-                    <constraint firstItem="YBE-Ir-hh9" firstAttribute="leading" secondItem="2cX-cO-nfV" secondAttribute="leading" constant="20" id="CNt-HD-dTT"/>
                     <constraint firstItem="lfM-hg-4bN" firstAttribute="leading" secondItem="2cX-cO-nfV" secondAttribute="leading" constant="20" id="Div-uP-N3P"/>
-                    <constraint firstAttribute="trailing" secondItem="eGI-Et-T3O" secondAttribute="trailing" constant="20" id="Dtb-5A-HiH"/>
-                    <constraint firstItem="eGI-Et-T3O" firstAttribute="centerY" secondItem="lfM-hg-4bN" secondAttribute="centerY" id="HcL-Lm-lwf"/>
+                    <constraint firstAttribute="trailing" secondItem="YBE-Ir-hh9" secondAttribute="trailing" constant="20" id="F8g-xb-UJb"/>
+                    <constraint firstItem="E4r-PE-96P" firstAttribute="centerY" secondItem="erH-7u-REt" secondAttribute="centerY" id="Khx-0h-juk"/>
                     <constraint firstItem="fhx-fe-Ucu" firstAttribute="top" secondItem="YBE-Ir-hh9" secondAttribute="top" constant="30" id="KkZ-fU-PtM"/>
+                    <constraint firstItem="erH-7u-REt" firstAttribute="leading" secondItem="E4r-PE-96P" secondAttribute="trailing" id="MkD-wj-pfg"/>
+                    <constraint firstItem="erH-7u-REt" firstAttribute="centerY" secondItem="lfM-hg-4bN" secondAttribute="centerY" id="RXR-dK-ksX"/>
                     <constraint firstItem="Hne-Fb-zJ9" firstAttribute="leading" secondItem="2cX-cO-nfV" secondAttribute="leadingMargin" constant="20" id="TA6-1n-TvQ"/>
-                    <constraint firstItem="YBE-Ir-hh9" firstAttribute="top" secondItem="eGI-Et-T3O" secondAttribute="bottom" constant="10" id="TAa-fy-1rG"/>
                     <constraint firstItem="fhx-fe-Ucu" firstAttribute="centerX" secondItem="2cX-cO-nfV" secondAttribute="centerX" id="UMf-z2-fiJ"/>
-                    <constraint firstAttribute="bottom" secondItem="YBE-Ir-hh9" secondAttribute="bottom" constant="10" id="Yd8-bV-2cs"/>
+                    <constraint firstAttribute="trailing" secondItem="erH-7u-REt" secondAttribute="trailing" constant="20" id="ZXT-uB-1P7"/>
+                    <constraint firstItem="YBE-Ir-hh9" firstAttribute="top" secondItem="lfM-hg-4bN" secondAttribute="bottom" constant="15" id="aHe-15-39F"/>
                     <constraint firstItem="Hne-Fb-zJ9" firstAttribute="top" secondItem="fhx-fe-Ucu" secondAttribute="bottom" constant="20" id="hXw-Xd-ddJ"/>
-                    <constraint firstItem="eGI-Et-T3O" firstAttribute="leading" secondItem="lfM-hg-4bN" secondAttribute="trailing" constant="10" id="jkh-aL-l63"/>
-                    <constraint firstAttribute="trailing" secondItem="YBE-Ir-hh9" secondAttribute="trailing" constant="20" id="reE-Pg-7ay"/>
-                    <constraint firstItem="lfM-hg-4bN" firstAttribute="top" secondItem="2cX-cO-nfV" secondAttribute="topMargin" constant="10" id="wkP-F8-CaA"/>
+                    <constraint firstItem="lfM-hg-4bN" firstAttribute="top" secondItem="2cX-cO-nfV" secondAttribute="top" constant="20" id="mDB-9y-qxK"/>
+                    <constraint firstAttribute="bottom" secondItem="YBE-Ir-hh9" secondAttribute="bottom" constant="10" id="odr-Wi-YTo"/>
+                    <constraint firstItem="YBE-Ir-hh9" firstAttribute="leading" secondItem="2cX-cO-nfV" secondAttribute="leading" constant="20" id="zbm-q5-bBm"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="T7S-Cb-MAJ"/>
             <connections>
+                <outlet property="twoBackImage" destination="YBE-Ir-hh9" id="sJY-ac-WP7"/>
+                <outlet property="twoButton" destination="erH-7u-REt" id="a9N-Cf-iB5"/>
                 <outlet property="twoConterlabel" destination="fhx-fe-Ucu" id="7Xc-ce-V4e"/>
+                <outlet property="twoGengDuolabel" destination="E4r-PE-96P" id="QYe-Y7-0kq"/>
                 <outlet property="twoTitlelabel" destination="lfM-hg-4bN" id="Jy3-Xq-w72"/>
-                <outlet property="twoTravelButton" destination="eGI-Et-T3O" id="wqq-oi-vAm"/>
                 <outlet property="twoWenTilabel" destination="Hne-Fb-zJ9" id="aWU-bP-ymd"/>
             </connections>
             <point key="canvasLocation" x="-52.799999999999997" y="236.13193403298354"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Mask" width="690" height="60"/>
+        <image name="rx_right_image" width="48" height="48"/>
         <image name="tr_back_image" width="690" height="199"/>
         <image name="我的健康报告" width="166" height="26"/>
     </resources>

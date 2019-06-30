@@ -13,4 +13,11 @@
 
 - (instancetype)initWithTestType:(YSInputValueType)testType;
 
+//头部数据
+@property(nonatomic,strong)NSMutableArray*rxArray;
+//下标位置
+@property(nonatomic,assign)NSInteger rxIndex;
+//数据来源
+@property(nonatomic,strong)NSMutableDictionary*rxDic;
+
 @end

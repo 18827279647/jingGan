@@ -35,6 +35,68 @@
     [self _init];
     
 }
+
+
+- (void)showHUD{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+/**
+ *  功能:显示字符串hud
+ */
+- (void)showHUD:(NSString *)aMessage
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aMessage;
+}
+- (void)showHUD:(NSString *)aMessage animated:(BOOL)animated
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:animated];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aMessage;
+}
+/**
+ *  功能:显示字符串hud几秒钟时间
+ */
+- (void)showStringHUD:(NSString *)aMessage second:(int)aSecond{
+    
+    [self hideAllHUD];
+    if(aSecond==0){
+        aSecond = 2;
+    }
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = aMessage;
+    [self performSelector:@selector(hideHUD) withObject:nil afterDelay:aSecond];
+}
+
+
+/**
+ *  功能:隐藏hud
+ */
+- (void)hideHUD
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+/**
+ *  功能:隐藏所有hud
+ */
+- (void)hideAllHUD
+{
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
+/**
+ *  功能:隐藏hud
+ */
+- (void)hideHUD:(BOOL)animated
+{
+    [MBProgressHUD hideHUDForView:self.view animated:animated];
+}
+
 //视图将要显示时隐藏
 - (void)viewWillAppear:(BOOL)animated
 {

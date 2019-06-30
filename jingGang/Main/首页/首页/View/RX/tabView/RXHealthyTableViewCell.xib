@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oN-EA-Y1V">
-                        <rect key="frame" x="20" y="15" width="221" height="42"/>
+                        <rect key="frame" x="20" y="15" width="239" height="42"/>
                         <attributedString key="attributedText">
                             <fragment content="健身与不健身的区别有多大？来看看，你就明白为什么要健身？">
                                 <attributes>
@@ -33,7 +33,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="8qU-iZ-Ul7">
-                        <rect key="frame" x="256" y="15" width="138" height="79.5"/>
+                        <rect key="frame" x="274" y="20" width="120" height="79.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="CEh-xL-cdV"/>
+                        </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciL-1t-Hgc">
                         <rect key="frame" x="20" y="78" width="43" height="16"/>
@@ -43,14 +46,14 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlN-Uu-ZA1">
-                        <rect key="frame" x="85" y="78" width="91" height="16"/>
+                        <rect key="frame" x="118" y="78" width="43" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="评论(+1000)" image="评论">
+                        <state key="normal" title="评论" image="评论">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xc-20-Ov1">
-                        <rect key="frame" x="205" y="78" width="41" height="16"/>
+                        <rect key="frame" x="223" y="78" width="41" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="分享" image="分享">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,16 +64,15 @@
                     <constraint firstItem="8qU-iZ-Ul7" firstAttribute="leading" secondItem="3oN-EA-Y1V" secondAttribute="trailing" constant="15" id="1Nx-0S-yLd"/>
                     <constraint firstItem="AlN-Uu-ZA1" firstAttribute="centerX" secondItem="3oN-EA-Y1V" secondAttribute="centerX" id="93b-vi-3Ar"/>
                     <constraint firstItem="3oN-EA-Y1V" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Any-JZ-5xu"/>
+                    <constraint firstAttribute="bottom" secondItem="8qU-iZ-Ul7" secondAttribute="bottom" constant="15" id="F03-5R-0a7"/>
                     <constraint firstAttribute="trailing" secondItem="8qU-iZ-Ul7" secondAttribute="trailing" constant="20" id="Fm4-HX-DeZ"/>
                     <constraint firstItem="AlN-Uu-ZA1" firstAttribute="centerY" secondItem="ciL-1t-Hgc" secondAttribute="centerY" id="GSJ-FX-MAq"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ciL-1t-Hgc" secondAttribute="bottom" constant="10" id="Mrr-Hw-Xsu"/>
-                    <constraint firstItem="8qU-iZ-Ul7" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/3" id="Yuc-i0-6dM"/>
-                    <constraint firstItem="8qU-iZ-Ul7" firstAttribute="top" secondItem="3oN-EA-Y1V" secondAttribute="top" id="dyV-XV-jPO"/>
                     <constraint firstItem="3oN-EA-Y1V" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="etV-gq-skQ"/>
                     <constraint firstItem="8qU-iZ-Ul7" firstAttribute="leading" secondItem="7Xc-20-Ov1" secondAttribute="trailing" constant="10" id="fpu-su-KkO"/>
-                    <constraint firstAttribute="bottom" secondItem="8qU-iZ-Ul7" secondAttribute="bottom" constant="20" id="qAf-uF-hVn"/>
                     <constraint firstItem="7Xc-20-Ov1" firstAttribute="centerY" secondItem="AlN-Uu-ZA1" secondAttribute="centerY" id="tXJ-KC-mVK"/>
                     <constraint firstItem="ciL-1t-Hgc" firstAttribute="leading" secondItem="3oN-EA-Y1V" secondAttribute="leading" id="vB8-kI-9zY"/>
+                    <constraint firstItem="8qU-iZ-Ul7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="wiy-FP-bmJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -91,7 +93,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSZ-U8-mDI">
-                        <rect key="frame" x="20" y="63.5" width="225" height="42"/>
+                        <rect key="frame" x="10" y="63.5" width="265" height="42"/>
                         <attributedString key="attributedText">
                             <fragment content="健身与不健身的区别有多大？来看看，你就明白为什么要健身？">
                                 <attributes>
@@ -103,32 +105,29 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="ow8-lB-GoG">
-                        <rect key="frame" x="260" y="63.5" width="140" height="93"/>
-                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J53-tp-WML">
-                        <rect key="frame" x="20" y="140" width="43" height="16"/>
+                        <rect key="frame" x="10" y="140" width="43" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="点赞" image="点赞">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziu-TG-mrE">
-                        <rect key="frame" x="87" y="140" width="91" height="16"/>
+                        <rect key="frame" x="121" y="140" width="43" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="评论(+1000)" image="评论">
+                        <state key="normal" title="评论" image="评论">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWc-gK-4lc">
-                        <rect key="frame" x="209" y="140" width="41" height="16"/>
+                        <rect key="frame" x="239" y="140" width="41" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="分享" image="分享">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资讯推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAk-2B-nKs">
-                        <rect key="frame" x="20" y="15" width="61.5" height="18"/>
+                        <rect key="frame" x="10" y="15" width="61.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -152,27 +151,32 @@
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="ow8-lB-GoG">
+                        <rect key="frame" x="290" y="68.5" width="120" height="88"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="YwF-8O-gDe"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SAk-2B-nKs" firstAttribute="top" secondItem="LkT-3E-QW0" secondAttribute="top" constant="15" id="3WQ-sc-Wby"/>
                     <constraint firstAttribute="trailing" secondItem="Eqd-kg-f8a" secondAttribute="trailing" constant="10" id="8LQ-Zg-Jfk"/>
-                    <constraint firstItem="ow8-lB-GoG" firstAttribute="width" secondItem="LkT-3E-QW0" secondAttribute="width" multiplier="1/3" id="CfI-w1-XO7"/>
                     <constraint firstAttribute="trailing" secondItem="2Hd-Nu-wn8" secondAttribute="trailing" constant="20" id="D5d-SB-7TY"/>
-                    <constraint firstItem="ow8-lB-GoG" firstAttribute="top" secondItem="QSZ-U8-mDI" secondAttribute="top" id="JNB-Iu-b1h"/>
                     <constraint firstItem="ow8-lB-GoG" firstAttribute="leading" secondItem="QSZ-U8-mDI" secondAttribute="trailing" constant="15" id="LSe-X0-gHh"/>
                     <constraint firstItem="Eqd-kg-f8a" firstAttribute="top" secondItem="SAk-2B-nKs" secondAttribute="bottom" constant="15" id="Loy-j7-TqQ"/>
-                    <constraint firstAttribute="trailing" secondItem="ow8-lB-GoG" secondAttribute="trailing" constant="20" id="NoA-TT-boy"/>
+                    <constraint firstAttribute="trailing" secondItem="ow8-lB-GoG" secondAttribute="trailing" constant="10" id="NoA-TT-boy"/>
                     <constraint firstItem="J53-tp-WML" firstAttribute="leading" secondItem="QSZ-U8-mDI" secondAttribute="leading" id="OlX-PM-pDH"/>
-                    <constraint firstItem="QSZ-U8-mDI" firstAttribute="leading" secondItem="LkT-3E-QW0" secondAttribute="leading" constant="20" id="SFe-HB-2Q8"/>
+                    <constraint firstItem="QSZ-U8-mDI" firstAttribute="leading" secondItem="LkT-3E-QW0" secondAttribute="leading" constant="10" id="SFe-HB-2Q8"/>
                     <constraint firstItem="ow8-lB-GoG" firstAttribute="leading" secondItem="YWc-gK-4lc" secondAttribute="trailing" constant="10" id="YGv-Cu-eAa"/>
                     <constraint firstItem="ziu-TG-mrE" firstAttribute="centerY" secondItem="J53-tp-WML" secondAttribute="centerY" id="YnP-dJ-rvQ"/>
                     <constraint firstItem="ziu-TG-mrE" firstAttribute="centerX" secondItem="QSZ-U8-mDI" secondAttribute="centerX" id="dux-mk-nQ5"/>
                     <constraint firstItem="QSZ-U8-mDI" firstAttribute="top" secondItem="Eqd-kg-f8a" secondAttribute="bottom" constant="15" id="eL2-rm-Nyq"/>
                     <constraint firstItem="2Hd-Nu-wn8" firstAttribute="centerY" secondItem="SAk-2B-nKs" secondAttribute="centerY" id="ghK-bK-3Z4"/>
+                    <constraint firstItem="ow8-lB-GoG" firstAttribute="top" secondItem="Eqd-kg-f8a" secondAttribute="bottom" constant="20" id="liA-nX-anN"/>
                     <constraint firstItem="Eqd-kg-f8a" firstAttribute="leading" secondItem="LkT-3E-QW0" secondAttribute="leading" constant="10" id="nIe-N2-DFG"/>
-                    <constraint firstItem="SAk-2B-nKs" firstAttribute="leading" secondItem="LkT-3E-QW0" secondAttribute="leading" constant="20" id="oyT-xH-CK1"/>
+                    <constraint firstItem="SAk-2B-nKs" firstAttribute="leading" secondItem="LkT-3E-QW0" secondAttribute="leading" constant="10" id="oyT-xH-CK1"/>
+                    <constraint firstAttribute="bottom" secondItem="ow8-lB-GoG" secondAttribute="bottom" constant="15" id="sK8-bS-pdf"/>
                     <constraint firstAttribute="bottomMargin" secondItem="J53-tp-WML" secondAttribute="bottom" constant="5" id="tMt-QM-Vfb"/>
-                    <constraint firstAttribute="bottom" secondItem="ow8-lB-GoG" secondAttribute="bottom" constant="15" id="wPu-cn-9gX"/>
                     <constraint firstItem="YWc-gK-4lc" firstAttribute="centerY" secondItem="ziu-TG-mrE" secondAttribute="centerY" id="xXp-2H-RKz"/>
                 </constraints>
             </tableViewCellContentView>

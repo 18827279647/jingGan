@@ -16,48 +16,106 @@ static NSString *cellId = @"cellId";
 @interface YSHealthTaskTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic,strong)UICollectionView *collectionView;
 @property (nonatomic,strong)UIView *zeroContioner;
+
+@property(nonatomic,assign)bool type;
 @end
 @implementation YSHealthTaskTableViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        if ([reuseIdentifier isEqualToString:@"RXShowhealthtaskcellid"]) {
+            self.type=true;
+        }
         [self setUpUI];
     }
     return self;
 }
 
 - (void)setUpUI{
-    CGFloat width = (ScreenWidth - 32)/4;
-    _zeroContioner=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 110)];
-    UILabel *addTask=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 230, 45)];
-    addTask.text =@"每天和一百万会员养成健康习惯!";
-    addTask.textColor= JGColor(210, 210, 210, 1);
-     addTask.font = [UIFont systemFontOfSize:15];
-//    addTask.layer.cornerRadius=20;
-//    addTask.backgroundColor =
-//    [addTask setTintColor: [UIColor redColor]];
-//    [addTask setBackgroundImage:[UIImage imageNamed:@"jrrw_jb_bg"] forState:UIControlStateNormal];
-//    [addTask addTarget:self action:@selector(addTask) forControlEvents:UIControlEventTouchUpInside];
-    addTask.center=CGPointMake(ScreenWidth/2, 110/2);
-    [_zeroContioner addSubview:addTask];
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(90, 85);
-    layout.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16);
-    layout.minimumLineSpacing = 8;
-    layout.minimumInteritemSpacing = 0;
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 110) collectionViewLayout:layout];
-    _collectionView.backgroundColor =[UIColor whiteColor];
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
-    _collectionView.tag=0;
-    [_collectionView registerClass:[HealthTaskViewCell class] forCellWithReuseIdentifier:cellId];
-    _collectionView.showsVerticalScrollIndicator = NO;
     
-    _collectionView.showsHorizontalScrollIndicator = NO;
-    [self.contentView addSubview:_collectionView];
-    [self.contentView addSubview:_zeroContioner];
+    if (self.type) {
+        
+        
+        CGFloat width = (ScreenWidth - 32)/4;
+        
+        UIImageView*imageView=[[UIImageView alloc]init];
+        imageView.backgroundColor=[UIColor whiteColor];
+        imageView.frame=CGRectMake(10,0,width-20,84/2);
+        [self addSubview:imageView];
+        UILabel *titleLab1 = [[UILabel alloc] init];
+        titleLab1.x =10;
+        titleLab1.y = 0;
+        titleLab1.width = 100;
+        titleLab1.height = 84/2;
+        titleLab1.textAlignment = NSTextAlignmentLeft;
+        titleLab1.font = JGRegularFont(16);
+        titleLab1.textColor = JGColor(51,51,51,1);
+        titleLab1.text = @"任务推荐";
+        [imageView addSubview:titleLab1];
+        
+        _zeroContioner=[[UIView alloc] initWithFrame:CGRectMake(0,84/2, ScreenWidth, 110)];
+        UILabel *addTask=[[UILabel alloc]initWithFrame:CGRectMake(0,84/2, 230, 45)];
+        addTask.text =@"每天和一百万会员养成健康习惯!";
+        addTask.textColor= JGColor(210, 210, 210, 1);
+        addTask.font = [UIFont systemFontOfSize:15];
+        //    addTask.layer.cornerRadius=20;
+        //    addTask.backgroundColor =
+        //    [addTask setTintColor: [UIColor redColor]];
+        //    [addTask setBackgroundImage:[UIImage imageNamed:@"jrrw_jb_bg"] forState:UIControlStateNormal];
+        //    [addTask addTarget:self action:@selector(addTask) forControlEvents:UIControlEventTouchUpInside];
+        addTask.center=CGPointMake(ScreenWidth/2, 110/2);
+        [_zeroContioner addSubview:addTask];
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.itemSize = CGSizeMake(90, 85);
+        layout.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16);
+        layout.minimumLineSpacing = 8;
+        layout.minimumInteritemSpacing = 0;
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 84/2, ScreenWidth, 110) collectionViewLayout:layout];
+        _collectionView.backgroundColor =[UIColor whiteColor];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.tag=0;
+        [_collectionView registerClass:[HealthTaskViewCell class] forCellWithReuseIdentifier:cellId];
+        _collectionView.showsVerticalScrollIndicator = NO;
+        
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        [self.contentView addSubview:_collectionView];
+        [self.contentView addSubview:_zeroContioner];
+        
+    }else{
+        CGFloat width = (ScreenWidth - 32)/4;
+        _zeroContioner=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 110)];
+        UILabel *addTask=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 230, 45)];
+        addTask.text =@"每天和一百万会员养成健康习惯!";
+        addTask.textColor= JGColor(210, 210, 210, 1);
+        addTask.font = [UIFont systemFontOfSize:15];
+        //    addTask.layer.cornerRadius=20;
+        //    addTask.backgroundColor =
+        //    [addTask setTintColor: [UIColor redColor]];
+        //    [addTask setBackgroundImage:[UIImage imageNamed:@"jrrw_jb_bg"] forState:UIControlStateNormal];
+        //    [addTask addTarget:self action:@selector(addTask) forControlEvents:UIControlEventTouchUpInside];
+        addTask.center=CGPointMake(ScreenWidth/2, 110/2);
+        [_zeroContioner addSubview:addTask];
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.itemSize = CGSizeMake(90, 85);
+        layout.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16);
+        layout.minimumLineSpacing = 8;
+        layout.minimumInteritemSpacing = 0;
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 110) collectionViewLayout:layout];
+        _collectionView.backgroundColor =[UIColor whiteColor];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.tag=0;
+        [_collectionView registerClass:[HealthTaskViewCell class] forCellWithReuseIdentifier:cellId];
+        _collectionView.showsVerticalScrollIndicator = NO;
+        
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        [self.contentView addSubview:_collectionView];
+        [self.contentView addSubview:_zeroContioner];
+    }
 }
 
 - (void)awakeFromNib {

@@ -18,12 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
     self.view.backgroundColor = JGBaseColor;
     if (!_headView) {
         self.headView=[[[NSBundle mainBundle]loadNibNamed:@"RXShowIntelligentEquipmentView" owner:self options:nil]firstObject];
         self.headView.frame=self.view.frame;
-        self.headView.backgroundColor = JGBaseColor;
+        self.headView.backgroundColor = [UIColor whiteColor];
     }
     [self.view addSubview:self.headView];
 }

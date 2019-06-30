@@ -571,97 +571,97 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
 }
 
 - (void)requestStepData {
-//    if ([YSStepManager healthyKitAccess]) {
-//        @weakify(self);
-//        [YSStepManager healthStoreDataWithStartDate:nil endDate:nil WithFailAccess:^{
-//            @strongify(self);
-//            [self showErrorHudWithText:@"无数据获取权限"];
-//        } walkRunningCallback:^(NSNumber *walkRunning) {
-//            @strongify(self);
-//            [self.stepUserInfo xf_safeSetObject:walkRunning forKey:kStepCount];
-////            _headerView.jrrwView.ljlc.text= [NSString stringWithFormat:@"累计里程：%@公里",[walkRunning stringValue]];
-////            _headerView.jrrwView.processView.persentage=[walkRunning intValue]/80000;
-////            NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
-////            [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
-//
-//        } stepCallback:^(NSNumber *step) {
-//            CGFloat margin2=(self.tableView.size.width -95*3)/3;
-//            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-//
-//            NSString * api_XYmaxValue = [[defaults objectForKey:@"XYmaxValue"] stringValue];
-//            NSString * api_XYminValue = [[defaults objectForKey:@"XYminValue"] stringValue];
-//
-//            NSString * str = [NSString stringWithFormat:@"%@/%@",api_XYmaxValue,api_XYminValue];
-//            NSString * api_xinlv =[[defaults objectForKey:@"heartRateValue"] stringValue];
-//            NSString * api_xueyang =[[defaults objectForKey:@"xueyangRateValue"] stringValue];
-//
-//                if (api_XYmaxValue == NULL) {
-//                [ _headerView.jrrwView.xueyang removeFromSuperview];
-//           _headerView.jrrwView.xueya= [_headerView.jrrwView genItem:@"xueya" titles:@[@"血压",@"--/--",@"mmHg"]];
-//                } else {
-//                    [_headerView.jrrwView.xueya removeFromSuperview];
-//                _headerView.jrrwView.xueya= [_headerView.jrrwView genItem:@"xueya" titles:@[@"血压",str,@"mmHg"]];
-//                }
-//
-//
-//            if (api_xinlv== NULL) {
-//                  [ _headerView.jrrwView.xueyang removeFromSuperview];
-//                _headerView.jrrwView.xinlv= [_headerView.jrrwView genItem:@"xinlv" titles:@[@"心率",@"--",@"BMP"]];
-//            }else{
-//                [_headerView.jrrwView.xinlv removeFromSuperview];
-//                _headerView.jrrwView.xinlv= [_headerView.jrrwView genItem:@"xinlv" titles:@[@"心率",api_xinlv,@"BMP"]];
-//            }
-//
-//            if (api_xueyang==NULL) {
-//                  [ _headerView.jrrwView.xueyang removeFromSuperview];
-//               _headerView.jrrwView.xueyang= [_headerView.jrrwView genItem:@"xueyang" titles:@[@"血氧",@"--",@"%"]];
-//            } else {
-//
-//                [ _headerView.jrrwView.xueyang removeFromSuperview];
-//
-//              _headerView.jrrwView.xueyang= [_headerView.jrrwView genItem:@"xueyang" titles:@[@"血氧",api_xueyang,@"%"]];
-//            }
-//            _headerView.jrrwView.xueya.x =margin2;
-//            _headerView.jrrwView.xinlv.x=_headerView.jrrwView.xueya.x+_headerView.jrrwView.xueya.width+margin2+10;
-//            _headerView.jrrwView.xueyang.x=_headerView.jrrwView.xinlv.x+_headerView.jrrwView.xinlv.width+margin2;
-//            [_headerView.jrrwView.part2 addSubview:_headerView.jrrwView.xueya];
-//            [_headerView.jrrwView.part2 addSubview: _headerView.jrrwView.xinlv];
-//            [_headerView.jrrwView.part2 addSubview:_headerView.jrrwView.xueyang];
-//
-//            @strongify(self);
-//            [self.stepUserInfo xf_safeSetObject:step forKey:kStepCount];
-//
-//
-//            NSString *string1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"sdbs"];
-//
-//            if(string1.length == 0){
-//
-//                _headerView.jrrwView.count.text=@"- -";
-//
-//                _headerView.jrrwView.ljlc.text =[NSString stringWithFormat:@"累计里程：--公里"];
-//                _headerView.jrrwView.reliangLabel.text = [NSString stringWithFormat:@"消耗热量：--卡"];
-//                 _headerView.jrrwView.mubiao.textColor=kGetColor(93,187,177);
-//
-//                _headerView.jrrwView.processView.persentage= 0.00/80000;
-//                NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
-//                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
-//
-//
-//            }else  {
-//
-//                _headerView.jrrwView.count.text=[step stringValue];
-//                double gongli = [step doubleValue] * 0.00065;
-//                _headerView.jrrwView.mubiao.text =[NSString stringWithFormat:@"设定目标：%@",string1];;
-//                _headerView.jrrwView.ljlc.text =[NSString stringWithFormat:@"累计里程：%.2f公里",gongli];
-//                int kaluli =  62*gongli*0.8;
-//                _headerView.jrrwView.reliangLabel.text = [NSString stringWithFormat:@"消耗热量：%d卡",kaluli];
-//                _headerView.jrrwView.processView.persentage= [step floatValue]/[string1 longValue];
-//                NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
-//                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
-//            }
-//
-//        }];
-//    }
+    if ([YSStepManager healthyKitAccess]) {
+        @weakify(self);
+        [YSStepManager healthStoreDataWithStartDate:nil endDate:nil WithFailAccess:^{
+            @strongify(self);
+            [self showErrorHudWithText:@"无数据获取权限"];
+        } walkRunningCallback:^(NSNumber *walkRunning) {
+            @strongify(self);
+            [self.stepUserInfo xf_safeSetObject:walkRunning forKey:kStepCount];
+//            _headerView.jrrwView.ljlc.text= [NSString stringWithFormat:@"累计里程：%@公里",[walkRunning stringValue]];
+//            _headerView.jrrwView.processView.persentage=[walkRunning intValue]/80000;
+//            NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
+//            [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
+
+        } stepCallback:^(NSNumber *step) {
+            CGFloat margin2=(self.tableView.size.width -95*3)/3;
+            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+
+            NSString * api_XYmaxValue = [[defaults objectForKey:@"XYmaxValue"] stringValue];
+            NSString * api_XYminValue = [[defaults objectForKey:@"XYminValue"] stringValue];
+
+            NSString * str = [NSString stringWithFormat:@"%@/%@",api_XYmaxValue,api_XYminValue];
+            NSString * api_xinlv =[[defaults objectForKey:@"heartRateValue"] stringValue];
+            NSString * api_xueyang =[[defaults objectForKey:@"xueyangRateValue"] stringValue];
+
+                if (api_XYmaxValue == NULL) {
+                [ _headerView.jrrwView.xueyang removeFromSuperview];
+           _headerView.jrrwView.xueya= [_headerView.jrrwView genItem:@"xueya" titles:@[@"血压",@"--/--",@"mmHg"]];
+                } else {
+                    [_headerView.jrrwView.xueya removeFromSuperview];
+                _headerView.jrrwView.xueya= [_headerView.jrrwView genItem:@"xueya" titles:@[@"血压",str,@"mmHg"]];
+                }
+
+
+            if (api_xinlv== NULL) {
+                  [ _headerView.jrrwView.xueyang removeFromSuperview];
+                _headerView.jrrwView.xinlv= [_headerView.jrrwView genItem:@"xinlv" titles:@[@"心率",@"--",@"BMP"]];
+            }else{
+                [_headerView.jrrwView.xinlv removeFromSuperview];
+                _headerView.jrrwView.xinlv= [_headerView.jrrwView genItem:@"xinlv" titles:@[@"心率",api_xinlv,@"BMP"]];
+            }
+
+            if (api_xueyang==NULL) {
+                  [ _headerView.jrrwView.xueyang removeFromSuperview];
+               _headerView.jrrwView.xueyang= [_headerView.jrrwView genItem:@"xueyang" titles:@[@"血氧",@"--",@"%"]];
+            } else {
+
+                [ _headerView.jrrwView.xueyang removeFromSuperview];
+
+              _headerView.jrrwView.xueyang= [_headerView.jrrwView genItem:@"xueyang" titles:@[@"血氧",api_xueyang,@"%"]];
+            }
+            _headerView.jrrwView.xueya.x =margin2;
+            _headerView.jrrwView.xinlv.x=_headerView.jrrwView.xueya.x+_headerView.jrrwView.xueya.width+margin2+10;
+            _headerView.jrrwView.xueyang.x=_headerView.jrrwView.xinlv.x+_headerView.jrrwView.xinlv.width+margin2;
+            [_headerView.jrrwView.part2 addSubview:_headerView.jrrwView.xueya];
+            [_headerView.jrrwView.part2 addSubview: _headerView.jrrwView.xinlv];
+            [_headerView.jrrwView.part2 addSubview:_headerView.jrrwView.xueyang];
+
+            @strongify(self);
+            [self.stepUserInfo xf_safeSetObject:step forKey:kStepCount];
+
+
+            NSString *string1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"sdbs"];
+
+            if(string1.length == 0){
+
+                _headerView.jrrwView.count.text=@"- -";
+
+                _headerView.jrrwView.ljlc.text =[NSString stringWithFormat:@"累计里程：--公里"];
+                _headerView.jrrwView.reliangLabel.text = [NSString stringWithFormat:@"消耗热量：--卡"];
+                 _headerView.jrrwView.mubiao.textColor=kGetColor(93,187,177);
+
+                _headerView.jrrwView.processView.persentage= 0.00/80000;
+                NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
+                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
+
+
+            }else  {
+
+                _headerView.jrrwView.count.text=[step stringValue];
+                double gongli = [step doubleValue] * 0.00065;
+                _headerView.jrrwView.mubiao.text =[NSString stringWithFormat:@"设定目标：%@",string1];;
+                _headerView.jrrwView.ljlc.text =[NSString stringWithFormat:@"累计里程：%.2f公里",gongli];
+                int kaluli =  62*gongli*0.8;
+                _headerView.jrrwView.reliangLabel.text = [NSString stringWithFormat:@"消耗热量：%d卡",kaluli];
+                _headerView.jrrwView.processView.persentage= [step floatValue]/[string1 longValue];
+                NSIndexSet *set = [NSIndexSet indexSetWithIndex:3];
+                [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
+            }
+
+        }];
+    }
 }
 
 - (void)disafterDismiss {
@@ -1257,6 +1257,7 @@ CGFloat dynamicCalculateConsultCellHeight(CGSize imageSize) {
         [UIAlertView xf_showWithTitle:@"网络好像是不很给力，请检查网络后再试" message:nil delay:1.0 onDismiss:NULL];
     }];
 }
+
 
 
 - (void)fixesToolsActionWithType:(ToolsButtonsClickType)type indexPath:(NSIndexPath *)indexPath {

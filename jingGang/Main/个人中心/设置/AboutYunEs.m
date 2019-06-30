@@ -97,7 +97,11 @@
         default:
             break;
     }
-    [YSThemeManager setNavigationTitle:title andViewController:self];
+    if (self.navString.length>0) {
+         [YSThemeManager setNavigationTitle:[self.navString stringByAppendingString:@"介绍"] andViewController:self];
+    }else{
+         [YSThemeManager setNavigationTitle:title andViewController:self];
+    }
     UIView *factionView = [UIView new];
     factionView.x = 0;
     factionView.y = 0;
@@ -134,49 +138,81 @@
             self.loadingHub = [[ZkgLoadingHub alloc] initHubInView:self.view withLoadingType:LoadingSystemtype];
             UsersSysHelpRequest *request = [[UsersSysHelpRequest alloc] init:GetToken];
             NSString *apiCode;
-            switch (self.controllerType) {
-                case YSHtmlControllerWithAboutUs:
-                {
-                    apiCode = @"pappabout";
+            if (self.navString.length>0) {
+                if ([self.navString isEqualToString:@"血脂"]) {
+                    apiCode=@"xuezhi";
+                }else if([self.navString isEqualToString:@"血氧"]){
+                    apiCode=@"pappoximeter";
+                }else if([self.navString isEqualToString:@"血压"]){
+                    apiCode=@"pappblood";
+                }else if([self.navString isEqualToString:@"血糖"]){
+                    apiCode=@"xuetang";
+                }else if([self.navString isEqualToString:@"体脂"]){
+                    apiCode=@"tizhilv";
+                }else if([self.navString isEqualToString:@"心电图"]){
+                    apiCode=@"xindiantu";
+                }else if([self.navString isEqualToString:@"听力"]){
+                    apiCode=@"pappratings";
+                }else if([self.navString isEqualToString:@"心率"]){
+                    apiCode=@"papphearrate";
+                }else if([self.navString isEqualToString:@"运动步数"]){
+                    apiCode=@"pappblood";
+                }else if([self.navString isEqualToString:@"呼吸"]){
+                    apiCode=@"huxilv";
+                }else if([self.navString isEqualToString:@"尿酸"]){
+                    apiCode=@"niaosuan";
+                }else if([self.navString isEqualToString:@"体温"]){
+                    apiCode=@"tiwen";
+                }else if([self.navString isEqualToString:@"体重"]){
+                    apiCode=@"tizhong";
+                }else{
+                    apiCode=@"pappblood";
                 }
-                    break;
-                case YSHtmlControllerWithBloodPressure:
-                {
-                    apiCode = @"pappblood";
+            }else{
+                switch (self.controllerType) {
+                    case YSHtmlControllerWithAboutUs:
+                    {
+                        apiCode = @"pappabout";
+                    }
+                        break;
+                    case YSHtmlControllerWithBloodPressure:
+                    {
+                        apiCode = @"pappblood";
+                    }
+                        break;
+                    case YSHtmlControllerWithHeartRate:
+                    {
+                        apiCode = @"papphearrate";
+                    }
+                        break;
+                    case YSHtmlControllerWithBloodOxyen:
+                    {
+                        apiCode = @"pappoximeter";
+                    }
+                        break;
+                    case YSHtmlControllerWithLung:
+                    {
+                        apiCode = @"papppulmonary";
+                    }
+                        break;
+                    case YSHtmlControllerWithCashRule:
+                    {
+                        apiCode = @"yonghutixianshuoming";
+                    }
+                        break;
+                    case YSHtmlControllerWithAIO:
+                    {
+                        apiCode = self.strUrl;
+                    }
+                        break;
+                        
+                    case YSHtmlControllerWithUserServicetreaty:
+                    {
+                        apiCode = @"user-protocol";
+                    }
+                    default:
+                        break;
                 }
-                    break;
-                case YSHtmlControllerWithHeartRate:
-                {
-                    apiCode = @"papphearrate";
-                }
-                    break;
-                case YSHtmlControllerWithBloodOxyen:
-                {
-                    apiCode = @"pappoximeter";
-                }
-                    break;
-                case YSHtmlControllerWithLung:
-                {
-                    apiCode = @"papppulmonary";
-                }
-                    break;
-                case YSHtmlControllerWithCashRule:
-                {
-                    apiCode = @"yonghutixianshuoming";
-                }
-                    break;
-                case YSHtmlControllerWithAIO:
-                {
-                    apiCode = self.strUrl;
-                }
-                    break;
-                    
-                case YSHtmlControllerWithUserServicetreaty:
-                {
-                    apiCode = @"user-protocol";
-                }
-                default:
-                    break;
             }
             request.api_code = apiCode;
             @weakify(self);

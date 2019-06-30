@@ -731,6 +731,30 @@
 #import "RXMemberDetailRequest.h"
 #import "RXMemberDetailResponse.h"
 
+//运动状态所有数据接口
+#import "RXAllParamDatasRequest.h"
+#import "RXAllParamDatasResponse.h"
+
+//续费接口
+#import "RXbutlerServiceResponse.h"
+#import "RXbutlerServiceRequest.h"
+
+//续费
+#import "RXbuyHealthGoodsRequest.h"
+#import "RXbuyHealthGoodsResponse.h"
+
+//提交
+#import "RXSubmitDataRequest.h"
+#import "RXSubmitDataResponse.h"
+
+//获取h5
+#import "RXUserH5UrlRequest.h"
+#import "RXUserH5UrlResponse.h"
+
+//完美档案
+#import "RXUserOtherRequest.h"
+#import "RXUserOtherResponse.h"
+
 @interface VApiManager : AFHTTPRequestOperationManager
 
 @property (readonly, nonatomic) NSString *clientId;
@@ -1870,4 +1894,30 @@
 //是否领取VIP
 -(void)RXMemberDetailRequest:(RXMemberDetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXMemberDetailResponse *response))success
                 failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+//运动状态所有数据接口
+-(void)RXAllParamDatasRequest:(RXAllParamDatasRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXAllParamDatasResponse *response))success
+                     failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+
+//续费首页接口
+-(void)RXButlerServiceRequest:(RXbutlerServiceRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXbutlerServiceResponse *response))success
+                      failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+//续费接口
+-(void)RXBuyHealthGoodsRequest:(RXbuyHealthGoodsRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXbuyHealthGoodsResponse *response))success
+                      failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+//体检报告提交
+-(void)RXSubmitDataRequest:(RXSubmitDataRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXSubmitDataResponse *response))success
+                       failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+//h5
+-(void)RXRXUserH5UrlRequest:(RXUserH5UrlRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserH5UrlResponse *response))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+//完美档案
+-(void)RXUserOtherRequest:(RXUserOtherRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserOtherResponse *response))success
+                    failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+
 @end

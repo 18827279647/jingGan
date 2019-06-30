@@ -10,6 +10,12 @@
 
 @implementation RXZhangKaiTableViewCell
 
+-(void)setFrame:(CGRect)frame;{
+    frame.origin.x+=10;
+    frame.size.width -= 20;
+    frame.size.height-=5;
+    [super setFrame:frame];
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

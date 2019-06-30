@@ -34,8 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *jiankanglabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *jiankangTitle;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *showWaiImageWight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *showShuzhangWaiWight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shuzhangTrailling;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shouTrailling;
 
 
 
@@ -46,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *twoyueButton;
 @property (weak, nonatomic) IBOutlet UIButton *twozhouButton;
 @property (weak, nonatomic) IBOutlet UILabel *twoxuelabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *twoxueNumberlabel;
 @property (weak, nonatomic) IBOutlet UILabel *twoxueStartlabel;
 @property (weak, nonatomic) IBOutlet UILabel *twoxueEndlabel;
@@ -54,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *twojianglabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *twojiangTitle;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *xueTangTrailling;
 
 //血脂
 @property (weak, nonatomic) IBOutlet UILabel *freeNamelabel;
@@ -98,6 +100,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UILabel *freeJikangTitellabel;
 @property (weak, nonatomic) IBOutlet UILabel *freeJikanglabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tcTrailling;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tgTrailling;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hdlcTrailing;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ldlcTrailing;
 
 
 @end

@@ -51,8 +51,6 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     titleLab.userInteractionEnabled=NO;
     [self addSubview:titleLab];
 
-    
-    
 
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -116,10 +114,10 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
         cell.titlelabel.text=dic[@"title"];
         cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
         
-        cell.yuanlabel.text=[NSString stringWithFormat:@"¥%.2f",[Unit JSONDouble:dic key:@"cashPrice"]];
+        cell.yuanlabel.text=[NSString stringWithFormat:@"¥%.2f",[Unit JSONDouble:dic key:@"storePrice"]];
         cell.yuanlabel.textColor=JGColor(239, 82, 80, 1);
         
-        cell.jingyuanlabel.text=[NSString stringWithFormat:@"¥%.2f",[Unit JSONDouble:dic key:@"storePrice"]];
+        cell.jingyuanlabel.text=[NSString stringWithFormat:@"¥%.2f",[Unit JSONDouble:dic key:@"cashPrice"]];
         cell.jingyuanlabel.textColor=JGColor(153, 153, 153, 1);
 
         cell.iconImage.layer.masksToBounds=YES;
@@ -137,6 +135,9 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    [_delegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+    NSMutableDictionary*dic=self.keywordGoodsList[indexPath.row];
+    if ([_delegate respondsToSelector:@selector(getKeyGoodId:)]) {
+        [_delegate getKeyGoodId:[NSNumber numberWithInt:[Unit JSONInt:dic key:@"id"]]];
+    }
 }
 @end

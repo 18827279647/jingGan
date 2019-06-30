@@ -20,29 +20,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4T-eB-c7b">
-                        <rect key="frame" x="0.0" y="20.5" width="82.5" height="34"/>
-                        <state key="normal">
+                        <rect key="frame" x="0.0" y="18.5" width="82.5" height="38"/>
+                        <state key="normal" image="健康一体机">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <state key="selected" image="健康一体机"/>
+                        <state key="highlighted" image="健康一体机"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Oh-Pm-fPv">
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Oh-Pm-fPv">
                         <rect key="frame" x="82.5" y="18.5" width="82" height="38"/>
-                        <state key="normal" image="智能硬件">
+                        <state key="normal" image="智能设备">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <state key="selected" image="智能设备"/>
+                        <state key="highlighted" image="智能设备"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csE-RZ-OM6">
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csE-RZ-OM6">
                         <rect key="frame" x="164.5" y="18.5" width="82.5" height="38"/>
                         <state key="normal" image="手机检测">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="My3-Xg-7ew">
-                        <rect key="frame" x="247" y="20.5" width="82" height="34"/>
-                        <state key="normal">
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="My3-Xg-7ew">
+                        <rect key="frame" x="247" y="18.5" width="82" height="38"/>
+                        <state key="normal" image="手动输入">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -65,16 +69,132 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="fiveButton" destination="My3-Xg-7ew" id="5UT-TN-D1q"/>
-                <outlet property="freeButton" destination="csE-RZ-OM6" id="qo9-aa-hQy"/>
-                <outlet property="oneButton" destination="Q4T-eB-c7b" id="6BN-Xe-hCC"/>
-                <outlet property="twoButton" destination="6Oh-Pm-fPv" id="85L-xH-xWM"/>
+                <outlet property="oneFiveButton" destination="My3-Xg-7ew" id="6VB-SX-GdQ"/>
+                <outlet property="oneFreeButton" destination="csE-RZ-OM6" id="n4j-YM-Tcg"/>
+                <outlet property="oneOneButton" destination="Q4T-eB-c7b" id="Th5-2q-OVc"/>
+                <outlet property="oneTwoButton" destination="6Oh-Pm-fPv" id="wDQ-bC-S3Q"/>
             </connections>
-            <point key="canvasLocation" x="138" y="131"/>
+            <point key="canvasLocation" x="137" y="-81"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="lLg-Ji-nfa" customClass="RXZhangKaiTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lLg-Ji-nfa" id="Jg9-YU-IMC">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q75-tL-KKs">
+                        <rect key="frame" x="0.0" y="18.5" width="109.5" height="38"/>
+                        <state key="normal" image="健康一体机">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KO0-09-Q8S">
+                        <rect key="frame" x="109.5" y="18.5" width="110" height="38"/>
+                        <state key="normal" image="智能设备">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6i2-P5-mar">
+                        <rect key="frame" x="219.5" y="18.5" width="109.5" height="38"/>
+                        <state key="normal" image="手机检测">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="q75-tL-KKs" firstAttribute="width" secondItem="Jg9-YU-IMC" secondAttribute="width" multiplier="1/3" id="4no-QE-ijc"/>
+                    <constraint firstItem="q75-tL-KKs" firstAttribute="leading" secondItem="Jg9-YU-IMC" secondAttribute="leading" id="6Z9-wU-GkV"/>
+                    <constraint firstItem="KO0-09-Q8S" firstAttribute="centerY" secondItem="q75-tL-KKs" secondAttribute="centerY" id="9ZN-pd-KFd"/>
+                    <constraint firstItem="KO0-09-Q8S" firstAttribute="width" secondItem="q75-tL-KKs" secondAttribute="width" id="9o4-Aw-ZJo"/>
+                    <constraint firstItem="6i2-P5-mar" firstAttribute="centerY" secondItem="KO0-09-Q8S" secondAttribute="centerY" id="OH1-jX-1n8"/>
+                    <constraint firstItem="KO0-09-Q8S" firstAttribute="leading" secondItem="q75-tL-KKs" secondAttribute="trailing" id="iOA-2G-vLM"/>
+                    <constraint firstItem="6i2-P5-mar" firstAttribute="leading" secondItem="KO0-09-Q8S" secondAttribute="trailing" id="sQM-jo-fV6"/>
+                    <constraint firstItem="q75-tL-KKs" firstAttribute="centerY" secondItem="Jg9-YU-IMC" secondAttribute="centerY" id="vvs-I2-fDY"/>
+                    <constraint firstItem="6i2-P5-mar" firstAttribute="width" secondItem="KO0-09-Q8S" secondAttribute="width" id="ynS-sq-iXb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="tes-lK-0lS"/>
+            <connections>
+                <outlet property="twoFreeButton" destination="6i2-P5-mar" id="Jjn-Pe-g3j"/>
+                <outlet property="twoOneButon" destination="q75-tL-KKs" id="UEv-0R-BgP"/>
+                <outlet property="twoTwoButton" destination="KO0-09-Q8S" id="LYw-fc-eBt"/>
+            </connections>
+            <point key="canvasLocation" x="137" y="54"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="37T-eh-i0w" customClass="RXZhangKaiTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="37T-eh-i0w" id="Qy5-hR-AdH">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrk-Ca-7pK">
+                        <rect key="frame" x="0.0" y="18.5" width="164.5" height="38"/>
+                        <state key="normal" image="健康一体机">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPe-9U-VB3">
+                        <rect key="frame" x="164.5" y="18.5" width="164.5" height="38"/>
+                        <state key="normal" image="智能设备">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GPe-9U-VB3" firstAttribute="centerY" secondItem="vrk-Ca-7pK" secondAttribute="centerY" id="AlF-qc-sZI"/>
+                    <constraint firstItem="vrk-Ca-7pK" firstAttribute="width" secondItem="Qy5-hR-AdH" secondAttribute="width" multiplier="1/2" id="D8h-0n-OWk"/>
+                    <constraint firstItem="GPe-9U-VB3" firstAttribute="leading" secondItem="vrk-Ca-7pK" secondAttribute="trailing" id="FUh-4C-6mq"/>
+                    <constraint firstItem="GPe-9U-VB3" firstAttribute="width" secondItem="vrk-Ca-7pK" secondAttribute="width" id="HN9-ea-nHY"/>
+                    <constraint firstItem="vrk-Ca-7pK" firstAttribute="leading" secondItem="Qy5-hR-AdH" secondAttribute="leading" id="JzY-EL-Q2v"/>
+                    <constraint firstItem="vrk-Ca-7pK" firstAttribute="centerY" secondItem="Qy5-hR-AdH" secondAttribute="centerY" id="xv1-yB-Xge"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="7Ie-L0-nRw"/>
+            <connections>
+                <outlet property="freeOneButton" destination="vrk-Ca-7pK" id="ygd-8a-Rxn"/>
+                <outlet property="freeTwoButton" destination="GPe-9U-VB3" id="AKD-zk-fPL"/>
+            </connections>
+            <point key="canvasLocation" x="126" y="226"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="bbE-PP-xsw" customClass="RXZhangKaiTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bbE-PP-xsw" id="1yN-fB-kRv">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMR-0z-Aas">
+                        <rect key="frame" x="0.0" y="18.5" width="329" height="38"/>
+                        <state key="normal" image="智能设备">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MMR-0z-Aas" firstAttribute="width" secondItem="1yN-fB-kRv" secondAttribute="width" id="4re-1o-AAw"/>
+                    <constraint firstItem="MMR-0z-Aas" firstAttribute="centerY" secondItem="1yN-fB-kRv" secondAttribute="centerY" id="YVk-a9-DQp"/>
+                    <constraint firstItem="MMR-0z-Aas" firstAttribute="leading" secondItem="1yN-fB-kRv" secondAttribute="leading" id="cHS-tg-2Ai"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="IRa-Sa-OQa"/>
+            <connections>
+                <outlet property="fiveOneButton" destination="MMR-0z-Aas" id="H00-ff-une"/>
+            </connections>
+            <point key="canvasLocation" x="137" y="354"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="健康一体机" width="38" height="38"/>
+        <image name="手动输入" width="38" height="38"/>
         <image name="手机检测" width="38" height="38"/>
-        <image name="智能硬件" width="38" height="38"/>
+        <image name="智能设备" width="38" height="38"/>
     </resources>
 </document>

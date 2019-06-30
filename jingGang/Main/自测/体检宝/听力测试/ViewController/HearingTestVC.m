@@ -13,7 +13,10 @@
 #import "TGSineWaveToneGenerator.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "blindnessResultViewController.h"
-
+#import "GlobeObject.h"
+#import "Unit.h"
+#import "VApiManager.h"
+#import "RXWebViewController.h"
 
 @interface HearingTestVC ()<UIScrollViewDelegate>
 {
@@ -390,13 +393,127 @@
     }
     else
     {
-        blindnessResultViewController *resultVC = [[blindnessResultViewController alloc] initWithNibName:@"blindnessResultViewController" bundle:nil];
-        resultVC.type = k_Hearing;
-        resultVC.minValue = self.resultSlider.intLeft;
-        resultVC.maxValue = self.resultSlider.intRight;
-        [self.navigationController pushViewController:resultVC animated:YES];
+        NSMutableDictionary*paramJson=[[NSMutableDictionary alloc]init];
+        [paramJson setObject:[NSString stringWithFormat:@"%ld",self.resultSlider.intLeft] forKey:@"lowValue"];
+        //上传接口
+        [self getRuest:paramJson];
     }
     
+}
+
+-(void)getRuest:(NSMutableDictionary*)paramJson;{
+    
+    [paramJson setObject:@"3" forKey:@"type"];
+    [self showHUD];
+    //提交数据
+    RXSubmitDataRequest*request=[[RXSubmitDataRequest alloc]init:GetToken];
+    request.paramCode=6;
+    request.paramJson=[self dictionaryToJson:paramJson];
+    VApiManager *manager = [[VApiManager alloc]init];
+    [manager RXSubmitDataRequest:request success:^(AFHTTPRequestOperation *operation, RXSubmitDataResponse *response) {
+        [self hideAllHUD];
+        if ([response.msg isEqualToString:@"success"]) {
+            [self showStringHUD:@"提交成功" second:0];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"manualTestNotification" object:nil];
+            blindnessResultViewController *resultVC = [[blindnessResultViewController alloc] initWithNibName:@"blindnessResultViewController" bundle:nil];
+            resultVC.type = k_Hearing;
+            resultVC.minValue = self.resultSlider.intLeft;
+            resultVC.maxValue = self.resultSlider.intRight;
+            [self.navigationController pushViewController:resultVC animated:YES];
+        }else{
+
+            [self showStringHUD:@"提交失败" second:0];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideAllHUD];
+        [self showStringHUD:@"网络错误" second:0];
+    }];
+}
+#pragma mark 字典转化字符串
+-(NSString*)dictionaryToJson:(NSMutableDictionary *)dic
+{
+    NSString *jsonString = nil;
+    NSError *error;
+    if (dic == nil) {
+        return jsonString;
+    }
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    if (! jsonData) {
+        
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
+
+
+
+
+
+- (void)showHUD{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+/**
+ *  功能:显示字符串hud
+ */
+- (void)showHUD:(NSString *)aMessage
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aMessage;
+}
+- (void)showHUD:(NSString *)aMessage animated:(BOOL)animated
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:animated];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aMessage;
+}
+/**
+ *  功能:显示字符串hud几秒钟时间
+ */
+- (void)showStringHUD:(NSString *)aMessage second:(int)aSecond{
+    
+    [self hideAllHUD];
+    if(aSecond==0){
+        aSecond = 2;
+    }
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = aMessage;
+    [self performSelector:@selector(hideHUD) withObject:nil afterDelay:aSecond];
+}
+
+
+/**
+ *  功能:隐藏hud
+ */
+- (void)hideHUD
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+/**
+ *  功能:隐藏所有hud
+ */
+- (void)hideAllHUD
+{
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
+/**
+ *  功能:隐藏hud
+ */
+- (void)hideHUD:(BOOL)animated
+{
+    [MBProgressHUD hideHUDForView:self.view animated:animated];
 }
 /**
  *  动态设置频率调用方法

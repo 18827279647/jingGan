@@ -17,13 +17,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="free_back_image" translatesAutoresizingMaskIntoConstraints="NO" id="OIU-kM-QEE">
-                    <rect key="frame" x="50" y="109" width="290" height="350"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="350" id="NQ4-DS-G4x"/>
-                    </constraints>
+                    <rect key="frame" x="48" y="132" width="294" height="304"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQA-UB-ifH">
-                    <rect key="frame" x="70" y="253.5" width="250" height="50.5"/>
+                    <rect key="frame" x="68" y="240.5" width="254" height="50.5"/>
                     <attributedString key="attributedText">
                         <fragment content="健康管家，定时监测您的身体状态，打造专属健康服务。点击领取即可免费使用1年">
                             <attributes>
@@ -34,14 +31,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUq-sl-WaU">
-                    <rect key="frame" x="120" y="404" width="150" height="35"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="120" y="381" width="150" height="35"/>
+                    <color key="backgroundColor" red="0.49019075839999998" green="0.92549019610000005" blue="0.7550825457" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Jz0-yc-7qc"/>
                         <constraint firstAttribute="width" constant="150" id="zeL-8l-9IC"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="立即领取" backgroundImage="invitationFriendButton">
+                    <state key="normal" title="立即领取">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -49,35 +47,61 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
-                    <state key="selected" title="立即领取" backgroundImage="invitationFriendButton">
+                    <state key="selected" title="立即领取">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
-                    <state key="highlighted" backgroundImage="invitationFriendButton">
+                    <state key="highlighted" title="立即领取">
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iz8-gm-z2M">
-                    <rect key="frame" x="70" y="334" width="250" height="50"/>
+                    <rect key="frame" x="68" y="311" width="254" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="4pH-VJ-5kV"/>
                     </constraints>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vip_head_image" translatesAutoresizingMaskIntoConstraints="NO" id="80C-9f-4Us">
+                    <rect key="frame" x="88" y="328.5" width="25" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="6jR-33-gIg"/>
+                        <constraint firstAttribute="height" constant="15" id="WaV-su-qv5"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="健康管家数据服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moT-in-AFu">
+                    <rect key="frame" x="133" y="317.5" width="114.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.49019075839999998" green="0.92549019610000005" blue="0.7550825457" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定制服务，健康自己做主" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igm-jg-xZX">
+                    <rect key="frame" x="133" y="339" width="135" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="80C-9f-4Us" firstAttribute="centerY" secondItem="Iz8-gm-z2M" secondAttribute="centerY" id="8CL-Qy-l4b"/>
                 <constraint firstItem="OIU-kM-QEE" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="CJf-MD-Rvb"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OIU-kM-QEE" secondAttribute="trailing" constant="50" id="CKh-d6-9Mx"/>
+                <constraint firstItem="igm-jg-xZX" firstAttribute="centerY" secondItem="80C-9f-4Us" secondAttribute="centerY" constant="10" id="HDD-U7-ySH"/>
                 <constraint firstItem="vQA-UB-ifH" firstAttribute="trailing" secondItem="OIU-kM-QEE" secondAttribute="trailing" constant="-20" id="IXc-cT-mFX"/>
                 <constraint firstItem="mUq-sl-WaU" firstAttribute="bottom" secondItem="OIU-kM-QEE" secondAttribute="bottom" constant="-20" id="Ixz-7q-hWd"/>
-                <constraint firstItem="OIU-kM-QEE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="50" id="JNP-Cc-ec1"/>
+                <constraint firstItem="igm-jg-xZX" firstAttribute="leading" secondItem="moT-in-AFu" secondAttribute="leading" id="MiU-0E-5gx"/>
                 <constraint firstItem="mUq-sl-WaU" firstAttribute="centerX" secondItem="OIU-kM-QEE" secondAttribute="centerX" id="NM1-UH-b2Y"/>
                 <constraint firstItem="Iz8-gm-z2M" firstAttribute="trailing" secondItem="OIU-kM-QEE" secondAttribute="trailing" constant="-20" id="O62-cq-V1E"/>
+                <constraint firstItem="OIU-kM-QEE" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1/2" id="RMV-kC-HIv"/>
+                <constraint firstItem="moT-in-AFu" firstAttribute="leading" secondItem="80C-9f-4Us" secondAttribute="trailing" constant="20" id="Tek-aH-A0x"/>
                 <constraint firstItem="vQA-UB-ifH" firstAttribute="leading" secondItem="OIU-kM-QEE" secondAttribute="leading" constant="20" id="Tnr-SN-hSc"/>
+                <constraint firstItem="moT-in-AFu" firstAttribute="centerY" secondItem="80C-9f-4Us" secondAttribute="centerY" constant="-10" id="UZy-Qx-iTi"/>
                 <constraint firstItem="mUq-sl-WaU" firstAttribute="top" secondItem="Iz8-gm-z2M" secondAttribute="bottom" constant="20" id="WSv-fx-m12"/>
+                <constraint firstItem="80C-9f-4Us" firstAttribute="leading" secondItem="Iz8-gm-z2M" secondAttribute="leading" constant="20" id="XhO-HJ-5EP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OIU-kM-QEE" secondAttribute="trailing" constant="48" id="ku8-pb-HfY"/>
+                <constraint firstItem="OIU-kM-QEE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="48" id="mbf-Ek-99k"/>
                 <constraint firstItem="vQA-UB-ifH" firstAttribute="centerX" secondItem="OIU-kM-QEE" secondAttribute="centerX" id="rZ7-iP-tpk"/>
                 <constraint firstItem="Iz8-gm-z2M" firstAttribute="leading" secondItem="OIU-kM-QEE" secondAttribute="leading" constant="20" id="sTi-qF-cCr"/>
-                <constraint firstItem="Iz8-gm-z2M" firstAttribute="top" secondItem="vQA-UB-ifH" secondAttribute="bottom" constant="30" id="t2k-9E-Dmx"/>
+                <constraint firstItem="Iz8-gm-z2M" firstAttribute="top" secondItem="vQA-UB-ifH" secondAttribute="bottom" constant="20" id="t2k-9E-Dmx"/>
                 <constraint firstItem="OIU-kM-QEE" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-30" id="yqC-xN-Dw7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -85,14 +109,17 @@
             <connections>
                 <outlet property="back_image" destination="OIU-kM-QEE" id="Oj0-jK-Uon"/>
                 <outlet property="iconImage" destination="Iz8-gm-z2M" id="7fc-EP-uH6"/>
+                <outlet property="jiangkanglabel" destination="moT-in-AFu" id="6Sv-3M-sX4"/>
+                <outlet property="jiangkangztwolabel" destination="igm-jg-xZX" id="Pyo-ep-QrI"/>
                 <outlet property="lijiButton" destination="mUq-sl-WaU" id="nCT-QW-SRU"/>
                 <outlet property="titlelabel" destination="vQA-UB-ifH" id="37T-7N-mY8"/>
             </connections>
-            <point key="canvasLocation" x="-82" y="-118"/>
+            <point key="canvasLocation" x="-83.200000000000003" y="-118.74062968515743"/>
         </view>
     </objects>
     <resources>
         <image name="free_back_image" width="558" height="629"/>
         <image name="invitationFriendButton" width="180" height="44"/>
+        <image name="vip_head_image" width="50" height="30"/>
     </resources>
 </document>

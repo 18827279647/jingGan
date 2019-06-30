@@ -10,10 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol shopinageDelegate <NSObject>
+
+-(void)getKeyGoodId:(NSNumber*)goodId;
+
+@end
+
 @interface RXShoppingTableViewCell : UITableViewCell
+
+@property (nonatomic, strong)id <shopinageDelegate>delegate;
 
 @property(nonatomic,strong)NSMutableArray*keywordGoodsList;
 
+@property(nonatomic,strong)NSMutableDictionary*dic;
+
+@property(nonatomic,assign)bool type;
 
 @end
 

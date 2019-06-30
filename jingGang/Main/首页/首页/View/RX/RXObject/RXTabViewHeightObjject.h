@@ -29,11 +29,23 @@ NS_ASSUME_NONNULL_BEGIN
 +(CGFloat)getTabViewHeight:(NSMutableDictionary*)dic;
 +(UITableViewCell*)getTabViewCell:(NSMutableDictionary*)dic;
 +(NSInteger)getTabviewNumber:(NSMutableDictionary*)dic with:(RXParamDetailResponse*)response;
-
 //根据itemCode判断，是那一个
 +(NSString*)getItemCodeNumber:(NSMutableDictionary*)dic;
 
 +(bool)getType:(NSMutableDictionary*)dic;
+
++(void)getButtonShowCell:(RXZhangKaiTableViewCell*)cell with:(NSMutableDictionary*)dic;
+
++(NSInteger)getRXZhangKaiTableViewCell:(NSMutableDictionary*)dic;
+
++(NSMutableArray*)getRXZhangKaiTablelViewImageArray:(NSMutableDictionary*)dic;
+
++(NSMutableArray*)getRXZhangKaiTablelViewTitleArray:(NSMutableDictionary*)dic;
+
++(NSMutableArray*)getRXLISHITablelViewImageArray:(NSMutableDictionary*)dic;
+
++(NSMutableArray*)getMorenArray;
+
 
 @end
 

@@ -2958,4 +2958,45 @@ NSString * const kOAuthGrantType = @"password";
     self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
     [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
 }
+//运动状态所有数据接口
+-(void)RXAllParamDatasRequest:(RXAllParamDatasRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXAllParamDatasResponse *response))success
+                      failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
+//续费接口
+-(void)RXButlerServiceRequest:(RXbutlerServiceRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXbutlerServiceResponse *response))success
+                      failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
+-(void)RXBuyHealthGoodsRequest:(RXbuyHealthGoodsRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXbuyHealthGoodsResponse *response))success
+                       failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
+//体检报告提交
+-(void)RXSubmitDataRequest:(RXSubmitDataRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXSubmitDataResponse *response))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
+//h5
+-(void)RXRXUserH5UrlRequest:(RXUserH5UrlRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserH5UrlResponse *response))success
+                    failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
+//完美档案
+-(void)RXUserOtherRequest:(RXUserOtherRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserOtherResponse *response))success
+                  failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
 @end

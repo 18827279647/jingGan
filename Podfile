@@ -23,7 +23,7 @@ def pods
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'LKAlarmManager', '~> 0.3'
   pod 'TBActionSheet'
-  
+  pod 'WebViewJavascriptBridge', '~> 6.0'
 #  pod 'FDTemplateLayoutCell', '~> 1.0.0'
 #  pod 'YYKit', '~> 1.0.9'
 #  pod 'IQKeyboardManager', '~> 6.3.0'

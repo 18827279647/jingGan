@@ -303,9 +303,9 @@ static NSString *const kUserStatuskey = @"kUserStatuskey";
 /*
  *  宏定义导航栏高度 / Tarbar高度
  */
-#define kNarbarH (kScreenHeight == 812 ? 88.0 : 64.0)
+#define kNarbarH (kScreenHeight >800 ? 88.0 : 64.0)
 
-#define kTarbarH (kScreenHeight == 812 ? 83.0 : 49.0)
+#define kTarbarH (kScreenHeight >800 ? 83.0 : 49.0)
 
 
 

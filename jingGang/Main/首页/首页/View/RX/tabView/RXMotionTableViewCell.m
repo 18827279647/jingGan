@@ -20,10 +20,10 @@ static NSString*myreuseIdentifier;
     return self;
 }
 -(void)setFrame:(CGRect)frame;{
-    [super setFrame:frame];
     frame.origin.x+=10;
     frame.size.width -= 20;
-    frame.size.height-=10;
+    frame.size.height-=5;
+    [super setFrame:frame];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

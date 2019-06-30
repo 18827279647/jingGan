@@ -13,20 +13,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RXShopIngCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="178" height="255"/>
+            <rect key="frame" x="0.0" y="0.0" width="167" height="271"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="178" height="255"/>
+                <rect key="frame" x="0.0" y="0.0" width="167" height="271"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="TXR-eq-eLU">
-                        <rect key="frame" x="5" y="5" width="168" height="150"/>
+                        <rect key="frame" x="4" y="5" width="158" height="158"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="150" id="wCp-q6-uT0"/>
+                            <constraint firstAttribute="width" secondItem="TXR-eq-eLU" secondAttribute="height" multiplier="1:1" id="hAB-wT-WzG"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-RH-JzR">
-                        <rect key="frame" x="5" y="165" width="168" height="34"/>
+                        <rect key="frame" x="5" y="183" width="157" height="34"/>
                         <attributedString key="attributedText">
                             <fragment content="小米（">
                                 <attributes>
@@ -80,13 +80,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥123.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QjK-E9-PcS">
-                        <rect key="frame" x="5" y="209" width="89" height="16"/>
+                        <rect key="frame" x="5" y="227" width="50" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.92891609668731689" green="0.21953278779983521" blue="0.19875350594520569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥10000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16z-qY-RMu">
-                        <rect key="frame" x="84" y="209" width="89" height="16"/>
+                        <rect key="frame" x="112" y="227" width="50" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -94,28 +94,27 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="QjK-E9-PcS" firstAttribute="top" secondItem="Lc8-RH-JzR" secondAttribute="bottom" constant="10" id="8pP-Fn-Df1"/>
+                <constraint firstItem="TXR-eq-eLU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="7Oa-UL-o4X"/>
+                <constraint firstItem="QjK-E9-PcS" firstAttribute="top" secondItem="Lc8-RH-JzR" secondAttribute="bottom" constant="10" id="9Eb-1O-szD"/>
                 <constraint firstItem="QjK-E9-PcS" firstAttribute="leading" secondItem="Lc8-RH-JzR" secondAttribute="leading" id="CkI-A5-4NB"/>
                 <constraint firstItem="TXR-eq-eLU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="FuE-TP-1Zt"/>
                 <constraint firstItem="Lc8-RH-JzR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Hfq-YH-BTC"/>
-                <constraint firstItem="QjK-E9-PcS" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="1/2" id="Iha-Mx-nCk"/>
-                <constraint firstAttribute="trailing" secondItem="TXR-eq-eLU" secondAttribute="trailing" constant="5" id="Wpw-NY-hUd"/>
+                <constraint firstItem="Lc8-RH-JzR" firstAttribute="top" secondItem="TXR-eq-eLU" secondAttribute="bottom" constant="20" id="XYK-76-yk6"/>
                 <constraint firstAttribute="trailing" secondItem="16z-qY-RMu" secondAttribute="trailing" constant="5" id="Zmv-en-gML"/>
-                <constraint firstItem="Lc8-RH-JzR" firstAttribute="top" secondItem="TXR-eq-eLU" secondAttribute="bottom" constant="10" id="bwW-ig-0Vo"/>
                 <constraint firstItem="16z-qY-RMu" firstAttribute="width" secondItem="QjK-E9-PcS" secondAttribute="width" id="hbY-aw-xCx"/>
                 <constraint firstAttribute="trailing" secondItem="Lc8-RH-JzR" secondAttribute="trailing" constant="5" id="jPC-Hl-9Ua"/>
-                <constraint firstItem="TXR-eq-eLU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="t70-eE-MjY"/>
+                <constraint firstAttribute="trailing" secondItem="TXR-eq-eLU" secondAttribute="trailing" constant="5" id="zBR-Wn-azq"/>
                 <constraint firstItem="16z-qY-RMu" firstAttribute="centerY" secondItem="QjK-E9-PcS" secondAttribute="centerY" id="zxf-ac-xcc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
-            <size key="customSize" width="178" height="255"/>
+            <size key="customSize" width="167" height="271"/>
             <connections>
                 <outlet property="iconImage" destination="TXR-eq-eLU" id="x1G-lz-QFf"/>
                 <outlet property="jingyuanlabel" destination="16z-qY-RMu" id="yJ0-fc-1LW"/>
                 <outlet property="titlelabel" destination="Lc8-RH-JzR" id="yvI-rH-tLd"/>
                 <outlet property="yuanlabel" destination="QjK-E9-PcS" id="Ofr-bm-jbH"/>
             </connections>
-            <point key="canvasLocation" x="-83" y="80"/>
+            <point key="canvasLocation" x="-92" y="85.907046476761622"/>
         </collectionViewCell>
     </objects>
     <resources>

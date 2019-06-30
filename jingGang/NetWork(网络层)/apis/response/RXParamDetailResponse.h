@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSArray*keywordGoodsList;
 @property(nonatomic,copy)NSArray*invitationList;
 
+@property(nonatomic,assign)int hasWeek;
+@property(nonatomic,assign)int hasMonth;
+@property(nonatomic,assign)int hasHistory;
+
 @end
 
 NS_ASSUME_NONNULL_END

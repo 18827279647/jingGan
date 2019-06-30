@@ -130,9 +130,9 @@
                     <constraint firstItem="QNq-5z-ezT" firstAttribute="leading" secondItem="ys0-R9-pMJ" secondAttribute="trailing" constant="5" id="Ole-bz-vOk"/>
                     <constraint firstItem="cC0-Az-67m" firstAttribute="centerX" secondItem="OBy-ui-DWM" secondAttribute="centerX" id="Pcx-Q6-ALj"/>
                     <constraint firstItem="0UN-9a-JCr" firstAttribute="centerY" secondItem="ss6-5z-d8k" secondAttribute="centerY" id="R9R-vy-bUY"/>
-                    <constraint firstItem="OBy-ui-DWM" firstAttribute="top" secondItem="jAU-S4-2ae" secondAttribute="bottom" constant="20" id="TsF-VV-9BQ"/>
                     <constraint firstAttribute="trailing" secondItem="Fuw-Rv-gBB" secondAttribute="trailing" constant="20" id="Xu2-JW-sRH"/>
                     <constraint firstItem="o0Z-5Z-Vno" firstAttribute="top" secondItem="ss6-5z-d8k" secondAttribute="bottom" constant="20" id="ZeJ-ld-UCk"/>
+                    <constraint firstItem="OBy-ui-DWM" firstAttribute="centerY" secondItem="o0Z-5Z-Vno" secondAttribute="centerY" id="c92-ca-sHa"/>
                     <constraint firstAttribute="trailing" secondItem="ZMI-O3-3WB" secondAttribute="trailing" constant="20" id="fAa-le-Rn0"/>
                     <constraint firstItem="fOf-oa-X5n" firstAttribute="leading" secondItem="tIn-of-Hld" secondAttribute="trailing" constant="10" id="fp2-fR-ADX"/>
                     <constraint firstItem="ys0-R9-pMJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gsu-xo-fAt"/>

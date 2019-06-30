@@ -34,8 +34,7 @@
 }
 - (NSString *) getApiUrl
 {
-    //    NSString*url=[NSString stringWithFormat:@"%@/v1/hp/getParamDetail",self.baseUrl];
-    NSString*url=[NSString stringWithFormat:@"http://1t6y344017.iask.in/v1/hp/getParamDetail"];
+    NSString*url=[NSString stringWithFormat:@"%@/v1/hp/getParamDetail",self.baseUrl];
     return url;
 }
 

@@ -38,39 +38,56 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBZ-H8-B0t">
-                    <rect key="frame" x="380" y="42.5" width="100" height="28"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zY8-OP-3kF">
+                    <rect key="frame" x="365" y="41.5" width="120" height="30"/>
+                    <color key="backgroundColor" red="0.92891609668731689" green="0.21953278779983521" blue="0.19875350594520569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="FeY-19-nYb"/>
-                        <constraint firstAttribute="height" constant="28" id="UAg-Hn-8d0"/>
+                        <constraint firstAttribute="width" constant="120" id="5pi-Tn-O7v"/>
+                        <constraint firstAttribute="height" constant="30" id="Cdy-y2-ea9"/>
                     </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rx_more_right_image" translatesAutoresizingMaskIntoConstraints="NO" id="fmd-ro-mbY">
+                    <rect key="frame" x="463" y="50.5" width="12" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="12" id="88e-us-X0u"/>
+                        <constraint firstAttribute="height" constant="12" id="q0i-Dy-OJ4"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看个人档案" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uh6-bK-6aR">
+                    <rect key="frame" x="375" y="49" width="74" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <inset key="titleEdgeInsets" minX="-70" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="查看个人档案" image="rx_more_right_image">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                </button>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fmd-ro-mbY" firstAttribute="trailing" secondItem="zY8-OP-3kF" secondAttribute="trailing" constant="-10" id="1r8-U1-kfE"/>
                 <constraint firstItem="xlZ-kr-6Df" firstAttribute="top" secondItem="HPG-ct-92R" secondAttribute="bottom" constant="5" id="2s5-Ka-0nX"/>
                 <constraint firstItem="HPG-ct-92R" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="3zh-DE-hOJ"/>
                 <constraint firstItem="buu-x7-qjK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="4Mq-w8-lb1"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="buu-x7-qjK" secondAttribute="bottom" id="5h8-XJ-BIv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="buu-x7-qjK" secondAttribute="trailing" id="7bu-Vy-oXW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zY8-OP-3kF" secondAttribute="trailing" constant="20" id="E8O-F0-cBN"/>
+                <constraint firstItem="uh6-bK-6aR" firstAttribute="leading" secondItem="zY8-OP-3kF" secondAttribute="leading" constant="10" id="Gad-Ow-p4T"/>
                 <constraint firstItem="buu-x7-qjK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KKd-TW-dwE"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aBZ-H8-B0t" secondAttribute="trailing" constant="25" id="Uax-7M-CKG"/>
+                <constraint firstItem="fmd-ro-mbY" firstAttribute="centerY" secondItem="zY8-OP-3kF" secondAttribute="centerY" id="Qsd-as-pV7"/>
                 <constraint firstItem="xlZ-kr-6Df" firstAttribute="leading" secondItem="HPG-ct-92R" secondAttribute="leading" id="WYB-wl-ibn"/>
                 <constraint firstItem="PJS-jO-kmz" firstAttribute="leading" secondItem="xlZ-kr-6Df" secondAttribute="leading" id="ha1-3E-RHw"/>
                 <constraint firstItem="HPG-ct-92R" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="rmN-nb-XuD"/>
+                <constraint firstItem="uh6-bK-6aR" firstAttribute="centerY" secondItem="zY8-OP-3kF" secondAttribute="centerY" id="skw-47-MTd"/>
                 <constraint firstItem="PJS-jO-kmz" firstAttribute="top" secondItem="xlZ-kr-6Df" secondAttribute="bottom" constant="5" id="xgY-O3-fv0"/>
-                <constraint firstItem="aBZ-H8-B0t" firstAttribute="centerY" secondItem="xlZ-kr-6Df" secondAttribute="centerY" id="xzs-UP-Jwr"/>
+                <constraint firstItem="zY8-OP-3kF" firstAttribute="centerY" secondItem="xlZ-kr-6Df" secondAttribute="centerY" id="yk2-n1-roh"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="backImage" destination="buu-x7-qjK" id="Tys-dL-CqS"/>
+                <outlet property="tiBottomlabel" destination="PJS-jO-kmz" id="0ag-m9-F26"/>
+                <outlet property="tiButtonImage" destination="zY8-OP-3kF" id="zl8-Tz-FPV"/>
+                <outlet property="tiButtonlabel" destination="uh6-bK-6aR" id="EsL-ct-fYC"/>
+                <outlet property="tiConterlabel" destination="xlZ-kr-6Df" id="0If-jZ-fjV"/>
+                <outlet property="tiNamelabel" destination="HPG-ct-92R" id="qDw-gn-Qrz"/>
             </connections>
             <point key="canvasLocation" x="-12" y="19.340329835082461"/>
         </view>

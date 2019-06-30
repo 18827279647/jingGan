@@ -515,6 +515,7 @@ static NSString *heathInfoCellID = @"heathInfoCellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section==3){
+        static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [[NSUserDefaults standardUserDefaults]setObject:[self.InfosModels objectAtIndex:indexPath.row] forKey:@"circleTitle"];
         WebDayVC *weh = [[WebDayVC alloc]init];

@@ -20,6 +20,7 @@
 #import "YSBindIdentityCardController.h"
 #import "YSAchiveAIOInfoDataManager.h"
 #import "YSUserAIOInfoItem.h"
+#import "RXWebViewController.h"
 
 typedef NS_ENUM(NSUInteger, YSAIODataRequestType) {
     YSAIODataRequestNoneType = 60,
@@ -215,7 +216,7 @@ typedef NS_ENUM(NSUInteger, YSAIODataRequestType) {
     }
     if (!item.m_status) {
         [self showContentView];
-        self.contentView.dataItem = item;
+//        self.contentView.dataItem = item;
     }else {
         [self buildNavRightItem:NO];
         [self showNoneDataView];
@@ -302,17 +303,23 @@ typedef NS_ENUM(NSUInteger, YSAIODataRequestType) {
     [self hiddenNoneDataView];
     self.contentView.hidden = NO;
     if (self.isPush) {
-        self.contentView.aioHearderView.isRemind = YES;
-        self.contentView.aioHearderView.height = 90.;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:2. delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.contentView.aioHearderView.height = 60.;
-                
-            } completion:^(BOOL finished) {
-                self.contentView.aioHearderView.isRemind = NO;
-                [self.contentView.tableView reloadData];
-            }];
-        });
+        self.contentView.hidden = YES;
+//        self.contentView.aioHearderView.isRemind = YES;
+//        self.contentView.aioHearderView.height = 90.;
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [UIView animateWithDuration:2. delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                self.contentView.aioHearderView.height = 60.;
+//
+//            } completion:^(BOOL finished) {
+//                self.contentView.aioHearderView.isRemind = NO;
+//                [self.contentView.tableView reloadData];
+//            }];
+//        });
+        RXWebViewController*view=[[RXWebViewController alloc]init];
+        //view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/healthData.html";
+        view.urlstring=@"http://api.bhesky.com/resources/jkgl/healthData.html";
+        view.titlestring=@"健康数据";
+        [self.navigationController pushViewController:view animated:NO];
         self.isPush = NO;
     }else {
         self.contentView.aioHearderView.isRemind = NO;
@@ -425,44 +432,44 @@ typedef NS_ENUM(NSUInteger, YSAIODataRequestType) {
 
 #pragma mark YSAIOHealthDataContentViewDelegate
 - (void)contentView:(YSAIOHealthDataContentView *)contentView didSelectTime:(NSString *)currentTime {
-    JGDropdownMenu *menu = [JGDropdownMenu menu];
-    [menu configTouchViewDidDismissController:NO];
-    [menu configBgShowMengban];
-    UIViewController *controllerView = [UIViewController new];
-    controllerView.view.backgroundColor = JGClearColor;
-    controllerView.view.width = ScreenWidth;
-    controllerView.view.height = ScreenHeight;
-    YSAIODatePickerView *datePickerView = [[YSAIODatePickerView alloc] initWithFrame:CGRectMake(0, ScreenHeight - 216 - 42, ScreenWidth, 216 + 42)];
-    @weakify(self);
-    datePickerView.cancelPickerCallback = ^{
-        @strongify(self);
-        [self.menu dismiss];
-    };
-    
-    datePickerView.selectedDateCallback = ^(NSString *msg) {
-        @strongify(self);
-        [self.menu dismiss];
-        [self.contentView.aioHearderView configHeaderDate:msg];
-        // 去请求
-        self.requestDateString = msg;
-        [self getAIODateRequestWithType:YSAIODataRequestSelectedDateType];
-    };
-    [controllerView.view addSubview:datePickerView];
-    menu.contentController = controllerView;
-    [menu showWithFrameWithDuration:0.32];
-    self.menu = menu;
+//    JGDropdownMenu *menu = [JGDropdownMenu menu];
+//    [menu configTouchViewDidDismissController:NO];
+//    [menu configBgShowMengban];
+//    UIViewController *controllerView = [UIViewController new];
+//    controllerView.view.backgroundColor = JGClearColor;
+//    controllerView.view.width = ScreenWidth;
+//    controllerView.view.height = ScreenHeight;
+//    YSAIODatePickerView *datePickerView = [[YSAIODatePickerView alloc] initWithFrame:CGRectMake(0, ScreenHeight - 216 - 42, ScreenWidth, 216 + 42)];
+//    @weakify(self);
+//    datePickerView.cancelPickerCallback = ^{
+//        @strongify(self);
+//        [self.menu dismiss];
+//    };
+//
+//    datePickerView.selectedDateCallback = ^(NSString *msg) {
+//        @strongify(self);
+//        [self.menu dismiss];
+//        [self.contentView.aioHearderView configHeaderDate:msg];
+//        // 去请求
+//        self.requestDateString = msg;
+//        [self getAIODateRequestWithType:YSAIODataRequestSelectedDateType];
+//    };
+//    [controllerView.view addSubview:datePickerView];
+//    menu.contentController = controllerView;
+//    [menu showWithFrameWithDuration:0.32];
+//    self.menu = menu;
 }
 
 - (void)contentView:(YSAIOHealthDataContentView *)contentView didSelecteDetailRowWithUrl:(NSString *)detailUrl itemTitle:(NSString *)title characteristicCode:(NSString *)characteristicCode
 {
-    // 数据详情页统计
-    [YSUMMobClickManager beginLogPageWithKey:[NSString stringWithFormat:@"%@%@",@"um_",title]];
-    NSString *link = [NSString stringWithFormat:@"%@%@?uid=%@",[YSEnvironmentConfig mobileWebUrl],detailUrl,[self userInfo][@"uid"]];
-    YSLinkElongHotelWebController *elongHotelWebController = [[YSLinkElongHotelWebController alloc] initWithWebUrl:link];
-//    elongHotelWebController.title = title;
-    [YSThemeManager setNavigationTitle:title andViewController:elongHotelWebController];
-    [elongHotelWebController buildRightItemWithTilte:@"数据说明" params:characteristicCode navTitle:title];
-    [self.navigationController pushViewController:elongHotelWebController animated:YES];
+//    // 数据详情页统计
+//    [YSUMMobClickManager beginLogPageWithKey:[NSString stringWithFormat:@"%@%@",@"um_",title]];
+//    NSString *link = [NSString stringWithFormat:@"%@%@?uid=%@",[YSEnvironmentConfig mobileWebUrl],detailUrl,[self userInfo][@"uid"]];
+//    YSLinkElongHotelWebController *elongHotelWebController = [[YSLinkElongHotelWebController alloc] initWithWebUrl:link];
+////    elongHotelWebController.title = title;
+//    [YSThemeManager setNavigationTitle:title andViewController:elongHotelWebController];
+//    [elongHotelWebController buildRightItemWithTilte:@"数据说明" params:characteristicCode navTitle:title];
+//    [self.navigationController pushViewController:elongHotelWebController animated:YES];
 }
 
 - (void)dealloc {

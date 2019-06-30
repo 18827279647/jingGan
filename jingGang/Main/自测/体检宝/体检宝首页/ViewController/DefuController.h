@@ -20,7 +20,13 @@ typedef NS_ENUM(NSUInteger, YSInputValueType) {
     YSInputValyeWithLungcapacityType,
     /**
      *  心率值 */
-    YSInputValyeWithHeartRateType
+    YSInputValyeWithHeartRateType,
+    /**
+     体重
+     */
+    
+    
+    
 };
 
 @interface DefuController : UIViewController

@@ -40,7 +40,9 @@ static NSString *cellId = @"cellId";
 @property (strong,nonatomic)  UIWebView *web;
 @property (assign, nonatomic) int isPraise;
 @property (nonatomic, assign)BOOL  isSel;
-@property(nonatomic,assign)BOOL isRX;
+
+@property(nonatomic,assign)bool typeShow;
+
 @end
 
 @implementation YSHotInfoTableViewCell
@@ -51,6 +53,9 @@ static NSString *cellId = @"cellId";
         if ([reuseIdentifier isEqualToString:@"RXHotInfoTableViewCell"]) {
             self.isRX=true;
         }
+        if ([reuseIdentifier isEqualToString:@"RXHotInfoTableViewShowCell"]) {
+            self.typeShow=true;
+        }
         [self setUpUI];
     }
     return self;
@@ -60,59 +65,145 @@ static NSString *cellId = @"cellId";
 
 //首页点赞
 - (void)setUpUI{
-    CGFloat w=ScreenWidth;
-    CGFloat h=ScreenWidth/4+20;
-    UIView *whiteView;
-    if (self.isRX) {
-        whiteView = [[UIView alloc] initWithFrame:CGRectMake(10,0, w-20, h)];
+    
+    if (self.typeShow) {
+        
+        CGFloat w=ScreenWidth;
+        CGFloat h=ScreenWidth/4+20;
+        
+        UIImageView*imageView=[[UIImageView alloc]init];
+        imageView.backgroundColor=[UIColor whiteColor];
+        imageView.frame=CGRectMake(10,0,w-20,84/2);
+        [self addSubview:imageView];
+        UILabel *titleLab1 = [[UILabel alloc] init];
+        titleLab1.x =10;
+        titleLab1.y = 0;
+        titleLab1.width = 100;
+        titleLab1.height = 84/2;
+        titleLab1.textAlignment = NSTextAlignmentLeft;
+        titleLab1.font = JGRegularFont(16);
+        titleLab1.textColor = JGColor(51,51,51,1);
+        titleLab1.text = @"今日健康资讯";
+        [imageView addSubview:titleLab1];
+    
+        UIView *whiteView;
+        whiteView = [[UIView alloc] initWithFrame:CGRectMake(10,84/2, w-20, h+10)];
+        self.contentView.backgroundColor = JGColor(249, 249, 249, 1);
+        whiteView.backgroundColor=[UIColor whiteColor];
+        [self.contentView addSubview:whiteView];
+        _titleLab = [[UILabelTopLeft alloc] initWithFrame:CGRectMake(10, 20, (w-30)/3*2-10, (h-30)/3*2)];
+        _titleLab.numberOfLines = 2;
+        [whiteView addSubview:_titleLab];
+        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLab.frame)+10, 10, (w-30)/3-10, (h-30))];
+        _iconView.layer.cornerRadius=8;
+        _iconView.clipsToBounds = YES;
+        [whiteView addSubview:_iconView];
+        
+        
+        UIView *buttonView=[[UIView alloc] initWithFrame:CGRectMake(5, CGRectGetMaxY(_titleLab.frame), (w-30)/3*2, (h-30)/3)];
+        buttonView.userInteractionEnabled = YES;
+
+        _agreeButton = [[UIButton alloc] initWithFrame:CGRectMake(5,20,(buttonView.width-20)/3, buttonView.height-10)];
+        
+        [_agreeButton setTitle:@"点赞" forState:UIControlStateNormal];
+        [_agreeButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
+        [_agreeButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
+        [_agreeButton setImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
+        [_agreeButton addTarget:self action:@selector(like:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //    [_agreeButton setImage:[UIImage imageNamed:@"点赞-选中"] forState:UIControlStateNormal];
+        [buttonView addSubview:_agreeButton];
+        
+        _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_agreeButton.frame),20, (buttonView.width-20)/3+25, buttonView.height-10)];
+        
+          
+        [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
+        [_commentButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
+        [_commentButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
+        [_commentButton setImage:[UIImage imageNamed:@"评论"] forState:UIControlStateNormal];
+        [_commentButton addTarget:self action:@selector(fallow:) forControlEvents:UIControlEventTouchUpInside];
+        //    [_commentButton setImage:[UIImage imageNamed:@"评论-选中"] forState:UIControlStateNormal];
+        [buttonView addSubview:_commentButton];
+        
+        _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_commentButton.frame),20, (buttonView.width-20)/3, buttonView.height-10)];
+        
+        [_shareButton setTitle:@"分享" forState:UIControlStateNormal];
+        [_shareButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
+        [_shareButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
+        [_shareButton setImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
+        [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+        //    [_shareButton setImage:[UIImage imageNamed:@"分享-选中"] forState:UIControlStateNormal];
+        [buttonView addSubview:_shareButton];
+        _agreeButton.titleLabel.font =_commentButton.titleLabel.font =_shareButton.titleLabel.font = JGRegularFont(14);
+        _titleLab.font=JGRegularFont(17);
+        [whiteView addSubview:buttonView];
+        
     }else{
-        whiteView = [[UIView alloc] initWithFrame:CGRectMake(10,10, w-20, h-10)];
+        CGFloat w=ScreenWidth;
+        CGFloat h=ScreenWidth/4+20;
+        UIView *whiteView;
+        if (self.isRX) {
+            whiteView = [[UIView alloc] initWithFrame:CGRectMake(10,0, w-20, h+10)];
+        }else{
+            whiteView = [[UIView alloc] initWithFrame:CGRectMake(10,10, w-20, h-10)];
+        }
+        self.contentView.backgroundColor = JGColor(249, 249, 249, 1);
+        whiteView.backgroundColor=[UIColor whiteColor];
+        [self.contentView addSubview:whiteView];
+        _titleLab = [[UILabelTopLeft alloc] initWithFrame:CGRectMake(10, 20, (w-30)/3*2-10, (h-30)/3*2)];
+        _titleLab.numberOfLines = 2;
+        [whiteView addSubview:_titleLab];
+        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLab.frame)+10, 10, (w-30)/3-10, (h-30))];
+        _iconView.layer.cornerRadius=8;
+        _iconView.clipsToBounds = YES;
+        [whiteView addSubview:_iconView];
+        
+        
+        UIView *buttonView=[[UIView alloc] initWithFrame:CGRectMake(5, CGRectGetMaxY(_titleLab.frame), (w-30)/3*2, (h-30)/3)];
+        buttonView.userInteractionEnabled = YES;
+        if (self.isRX) {
+            _agreeButton = [[UIButton alloc] initWithFrame:CGRectMake(5,20,(buttonView.width-20)/3, buttonView.height-10)];
+        }else{
+            _agreeButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 0,(buttonView.width-20)/3, buttonView.height-10)];
+        }
+        [_agreeButton setTitle:@"点赞" forState:UIControlStateNormal];
+        [_agreeButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
+        [_agreeButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
+        [_agreeButton setImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
+        [_agreeButton addTarget:self action:@selector(like:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //    [_agreeButton setImage:[UIImage imageNamed:@"点赞-选中"] forState:UIControlStateNormal];
+        [buttonView addSubview:_agreeButton];
+        
+        if (self.isRX) {
+            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_agreeButton.frame),20, (buttonView.width-20)/3+25, buttonView.height-10)];
+        }else{
+            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_agreeButton.frame),0, (buttonView.width-20)/3+25, buttonView.height-10)];
+        }
+        [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
+        [_commentButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
+        [_commentButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
+        [_commentButton setImage:[UIImage imageNamed:@"评论"] forState:UIControlStateNormal];
+        [_commentButton addTarget:self action:@selector(fallow:) forControlEvents:UIControlEventTouchUpInside];
+        //    [_commentButton setImage:[UIImage imageNamed:@"评论-选中"] forState:UIControlStateNormal];
+        [buttonView addSubview:_commentButton];
+        
+        if (self.isRX) {
+            _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_commentButton.frame),20, (buttonView.width-20)/3, buttonView.height-10)];
+        }else{
+            _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_commentButton.frame),0, (buttonView.width-20)/3, buttonView.height-10)];
+        }
+        [_shareButton setTitle:@"分享" forState:UIControlStateNormal];
+        [_shareButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
+        [_shareButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
+        [_shareButton setImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
+        [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+        //    [_shareButton setImage:[UIImage imageNamed:@"分享-选中"] forState:UIControlStateNormal];
+        [buttonView addSubview:_shareButton];
+        _agreeButton.titleLabel.font =_commentButton.titleLabel.font =_shareButton.titleLabel.font = JGRegularFont(14);
+        _titleLab.font=JGRegularFont(17);
+        [whiteView addSubview:buttonView];
     }
-    self.contentView.backgroundColor = JGColor(249, 249, 249, 1);
-    whiteView.backgroundColor=[UIColor whiteColor];
-    [self.contentView addSubview:whiteView];
-
-
-    _titleLab = [[UILabelTopLeft alloc] initWithFrame:CGRectMake(10, 20, (w-30)/3*2-10, (h-30)/3*2)];
-    _titleLab.numberOfLines = 2;
-    [whiteView addSubview:_titleLab];
-
-    _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLab.frame)+10, 10, (w-30)/3-10, (h-30))];
-    _iconView.layer.cornerRadius=8;
-    _iconView.clipsToBounds = YES;
-    [whiteView addSubview:_iconView];
-    UIView *buttonView=[[UIView alloc] initWithFrame:CGRectMake(5, CGRectGetMaxY(_titleLab.frame), (w-30)/3*2, (h-30)/3)];
-    buttonView.userInteractionEnabled = YES;
-    _agreeButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 0,(buttonView.width-20)/3, buttonView.height-10)];
-    [_agreeButton setTitle:@"点赞" forState:UIControlStateNormal];
-    [_agreeButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
-    [_agreeButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
-    [_agreeButton setImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
-    [_agreeButton addTarget:self action:@selector(like:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    [_agreeButton setImage:[UIImage imageNamed:@"点赞-选中"] forState:UIControlStateNormal];
-    [buttonView addSubview:_agreeButton];
-    
-    _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_agreeButton.frame),0, (buttonView.width-20)/3+25, buttonView.height-10)];
-    [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
-    [_commentButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
-    [_commentButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
-    [_commentButton setImage:[UIImage imageNamed:@"评论"] forState:UIControlStateNormal];
-     [_commentButton addTarget:self action:@selector(fallow:) forControlEvents:UIControlEventTouchUpInside];
-//    [_commentButton setImage:[UIImage imageNamed:@"评论-选中"] forState:UIControlStateNormal];
-    [buttonView addSubview:_commentButton];
-    
-    _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_commentButton.frame),0, (buttonView.width-20)/3, buttonView.height-10)];
-    [_shareButton setTitle:@"分享" forState:UIControlStateNormal];
-    [_shareButton setTitleColor:JGColor(221, 221, 221, 1) forState:UIControlStateNormal];
-    [_shareButton setTitleColor:[YSThemeManager themeColor] forState:UIControlStateSelected];
-    [_shareButton setImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
-       [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
-//    [_shareButton setImage:[UIImage imageNamed:@"分享-选中"] forState:UIControlStateNormal];
-    [buttonView addSubview:_shareButton];
-    _agreeButton.titleLabel.font =_commentButton.titleLabel.font =_shareButton.titleLabel.font = JGRegularFont(14);
-    _titleLab.font=JGRegularFont(17);
-    [whiteView addSubview:buttonView];
 }
 
 - (void)awakeFromNib {
@@ -129,13 +220,26 @@ static NSString *cellId = @"cellId";
 -(void)setModels:(NSDictionary *)dict{
     NSLog(@"dict+++++++++%@",[dict objectForKey:@"title"]);
     
-    NSString *url = [NSString stringWithFormat:@"%@",[dict objectForKey:@"thumbnail"]];
-    NSString *picUrlString = [YSThumbnailManager healthyManagerHealthyInformationThumbnailPicUrlString:url];
-    [YSImageConfig yy_view:self.iconView setImageWithURL:[NSURL URLWithString:picUrlString] placeholder:[UIImage imageNamed:@"ys_placeholder_circle"] options:YYWebImageOptionShowNetworkActivity completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-    }];
-    self.titleLab.text = [dict objectForKey:@"title"];
-    NSString *praise=[NSString stringWithFormat:@"评论(+%@)",[dict objectForKey:@"praiseCount"] ];
-    [_commentButton setTitle:praise forState:UIControlStateNormal];
+    if (self.isRX) {
+        NSString *url = [NSString stringWithFormat:@"%@",[dict objectForKey:@"thumbnail"]];
+        NSString *picUrlString = [YSThumbnailManager healthyManagerHealthyInformationThumbnailPicUrlString:url];
+        [YSImageConfig yy_view:self.iconView setImageWithURL:[NSURL URLWithString:picUrlString] placeholder:[UIImage imageNamed:@"ys_placeholder_circle"] options:YYWebImageOptionShowNetworkActivity completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+        }];
+        self.titleLab.text = [dict objectForKey:@"title"];
+       NSString *praise=[NSString stringWithFormat:@"评论(+%@)",[dict objectForKey:@"praiseCount"] ];
+        [_commentButton setTitle:praise forState:UIControlStateNormal];
+        
+    }else{
+        NSString *url = [NSString stringWithFormat:@"%@",[dict objectForKey:@"thumbnail"]];
+        NSString *picUrlString = [YSThumbnailManager healthyManagerHealthyInformationThumbnailPicUrlString:url];
+        [YSImageConfig yy_view:self.iconView setImageWithURL:[NSURL URLWithString:picUrlString] placeholder:[UIImage imageNamed:@"ys_placeholder_circle"] options:YYWebImageOptionShowNetworkActivity completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+        }];
+        self.titleLab.text = [dict objectForKey:@"title"];
+        NSString *praise=[NSString stringWithFormat:@"评论(+%@)",[dict objectForKey:@"praiseCount"] ];
+        [_commentButton setTitle:praise forState:UIControlStateNormal];
+    }
+    
+    
 }
 
 - (NSString *)filterHTML:(NSString *)html

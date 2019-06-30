@@ -53,7 +53,7 @@
                     <state key="selected" backgroundImage="向上"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUY-aT-cpe">
-                    <rect key="frame" x="314" y="16" width="42" height="42"/>
+                    <rect key="frame" x="319" y="16" width="42" height="42"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="3pK-Vx-3l4"/>
@@ -112,7 +112,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="a6Z-c6-niQ" secondAttribute="trailing" constant="10" id="je4-4x-Q2J"/>
                 <constraint firstItem="tkL-rT-xcW" firstAttribute="leading" secondItem="QYm-zE-bz1" secondAttribute="trailing" constant="20" id="qAe-YD-orZ"/>
                 <constraint firstItem="BhG-ef-fQU" firstAttribute="centerY" secondItem="6xs-Lo-iYw" secondAttribute="centerY" id="qoX-bZ-SLb"/>
-                <constraint firstItem="Zv1-6K-R8k" firstAttribute="leading" secondItem="kUY-aT-cpe" secondAttribute="trailing" constant="10" id="ruP-Go-8TR"/>
+                <constraint firstItem="Zv1-6K-R8k" firstAttribute="leading" secondItem="kUY-aT-cpe" secondAttribute="trailing" constant="5" id="ruP-Go-8TR"/>
                 <constraint firstItem="6xs-Lo-iYw" firstAttribute="leading" secondItem="gHY-uc-c1w" secondAttribute="trailing" constant="10" id="y4O-WE-RCX"/>
                 <constraint firstItem="BhG-ef-fQU" firstAttribute="leading" secondItem="yR2-Hr-qm3" secondAttribute="leading" id="y8z-jO-Zkp"/>
                 <constraint firstItem="6xs-Lo-iYw" firstAttribute="trailing" secondItem="Zv1-6K-R8k" secondAttribute="trailing" id="z73-Av-KP9"/>

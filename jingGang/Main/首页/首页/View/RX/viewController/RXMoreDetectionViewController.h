@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RXMoreDetectionViewController : JGBaseViewController
 
+@property(nonatomic,strong)NSString*url;
 @end
 
 NS_ASSUME_NONNULL_END

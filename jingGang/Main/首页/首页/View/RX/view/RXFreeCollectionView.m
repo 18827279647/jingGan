@@ -9,6 +9,7 @@
 #import "RXFreeCollectionView.h"
 #import "zhPopupController.h"
 #import "RXFreeView.h"
+#import "UILabel+extension.h"
 @interface RXFreeCollectionView()
 
 @property (strong)zhPopupController *zh_popupController;
@@ -45,7 +46,16 @@
         self.freeView.titlelabel.text=string;
         self.freeView.userInteractionEnabled=YES;
         [self.freeView.lijiButton addTarget:self action:@selector(lijiButtonFountion) forControlEvents:UIControlEventTouchUpInside];
-        
+        self.freeView.iconImage.backgroundColor=JGColor(255, 251, 240, 1);
+        self.freeView.jiangkanglabel.textColor=JGColor(186, 145, 78, 1);
+        self.freeView.jiangkangztwolabel.textColor=[UIColor colorWithRed:186/255.0 green:145/255.0 blue:78/255.0 alpha:1.0];
+        self.freeView.lijiButton.layer.masksToBounds=YES;
+        self.freeView.lijiButton.layer.cornerRadius=35/2;
+        self.freeView.lijiButton.backgroundColor=JGColor(135, 26, 255, 1);
+        self.freeView.titlelabel.numberOfLines=3;
+        [self.freeView.titlelabel setRowSpace:5];
+        self.freeView.titlelabel.textColor=JGColor(51, 51, 51, 1);
+    
     }
     [self addSubview:self.freeView];
     
@@ -59,7 +69,7 @@
     [_mself performSelector:_msel withObject:nil];
 }
 -(void)p_dismissView;{
-      [self.zh_popupController dismissWithDuration:0.5 springAnimated:YES];
+    [self.zh_popupController dismissWithDuration:0.5 springAnimated:YES];
 }
 
 @end

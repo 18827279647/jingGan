@@ -38,6 +38,7 @@ PODS:
   - TBActionSheet (1.7.0)
   - Toast (4.0.0)
   - UMengAnalytics-NO-IDFA (4.0.5)
+  - WebViewJavascriptBridge (6.0.3)
 
 DEPENDENCIES:
   - Aspects (~> 1.4.1)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - TBActionSheet
   - Toast (~> 4.0.0)
   - UMengAnalytics-NO-IDFA (~> 4.0.5)
+  - WebViewJavascriptBridge (~> 6.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -82,6 +84,7 @@ SPEC REPOS:
     - TBActionSheet
     - Toast
     - UMengAnalytics-NO-IDFA
+    - WebViewJavascriptBridge
 
 EXTERNAL SOURCES:
   CRBoost:
@@ -126,7 +129,8 @@ SPEC CHECKSUMS:
   TBActionSheet: 3352bc20aba463db76ef192cd44ad59d3ce308d9
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
+  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
 
-PODFILE CHECKSUM: d23e2510199c6c65dc5d5678bad09b9ca47a23ec
+PODFILE CHECKSUM: 368ef56ff19b74d9466eb0f4158e3502b85b5c79
 
 COCOAPODS: 1.5.3
