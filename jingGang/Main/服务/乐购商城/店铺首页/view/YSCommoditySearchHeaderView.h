@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSelect;
+@property (weak, nonatomic) IBOutlet UILabel *btnlabel;
 
 + (instancetype)commodityHeaderView;
 @property (copy, nonatomic) void (^filterOnClick)(UIButton *btn);

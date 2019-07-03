@@ -170,6 +170,7 @@
                 <outlet property="btnSelect" destination="W3o-YM-0HD" id="AoF-UZ-hcU"/>
                 <outlet property="btnSortSale" destination="Hj8-uG-mtl" id="lo5-Fk-Hbu"/>
                 <outlet property="btnZongHe" destination="ucR-1l-eLH" id="nU5-eZ-Uqa"/>
+                <outlet property="btnlabel" destination="heS-BR-cBT" id="vaK-6k-3fX"/>
                 <outlet property="selectBgView" destination="xyZ-tC-vfC" id="bQu-71-wIa"/>
                 <outlet property="sortView" destination="hvo-LK-ZI4" id="qfu-yP-fyP"/>
             </connections>

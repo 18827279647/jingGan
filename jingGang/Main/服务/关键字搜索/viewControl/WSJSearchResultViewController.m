@@ -96,6 +96,7 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     YSCommoditySearchHeaderView *headerView = [YSCommoditySearchHeaderView commodityHeaderView];
+    
     CRWeekRef(self);
     headerView.filterOnClick = ^(UIButton * _Nonnull btn) {
         [__self filterOnClick:btn];
@@ -103,6 +104,8 @@
     [headerView.btnZongHe addTarget:self action:@selector(btnZongHeOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [headerView.btnSortSale addTarget:self action:@selector(btnSortSaleOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [headerView.btnSelect addTarget:self action:@selector(btnSelectOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    headerView.btnlabel.hidden=YES;
+    headerView.btnSelect.hidden=YES;
     [self.view addSubview:headerView];
     _headerView = headerView;
     [headerView mas_makeConstraints:^(MASConstraintMaker *make) {

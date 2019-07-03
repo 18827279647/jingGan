@@ -755,6 +755,11 @@
 #import "RXUserOtherRequest.h"
 #import "RXUserOtherResponse.h"
 
+//周报详情
+#import "RXUserweeklyreportdetailResponse.h"
+#import "RXUserweeklyreportdetailRequest.h"
+
+
 @interface VApiManager : AFHTTPRequestOperationManager
 
 @property (readonly, nonatomic) NSString *clientId;
@@ -1919,5 +1924,7 @@
 -(void)RXUserOtherRequest:(RXUserOtherRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserOtherResponse *response))success
                     failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
 
-
+//周报详情
+-(void)RXUserweeklyreportdetailRequest:(RXUserweeklyreportdetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserweeklyreportdetailResponse *response))success
+                         failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
 @end

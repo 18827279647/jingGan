@@ -46,15 +46,32 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     titleLab.height = labHeight;
     titleLab.textColor=JGColor(51, 51, 51, 1);
     titleLab.text = @"今日健康商品";
-    titleLab.font = JGRegularFont(16);
     titleLab.textAlignment = NSTextAlignmentLeft;
     titleLab.userInteractionEnabled=NO;
+    [titleLab  setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
     [self addSubview:titleLab];
-
-
+    
+    
+    UIButton *addTaskButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    addTaskButton.frame = buttonBgImageView.frame;
+    
+    addTaskButton.frame=CGRectMake(ScreenWidth-10-60,(labHeight-27)/2,60,27);
+    [addTaskButton setTitle:@"更多" forState:UIControlStateNormal];
+    [addTaskButton setImage:[UIImage imageNamed:@"rx_right_image"] forState:UIControlStateNormal];
+    [addTaskButton setTitleColor: JGColor(136, 136, 136, 1) forState:UIControlStateNormal];
+    addTaskButton.titleLabel.font = JGFont(14);
+    addTaskButton.backgroundColor = JGClearColor;
+    addTaskButton.titleEdgeInsets=UIEdgeInsetsMake(0, -45,0, 0);
+    addTaskButton.imageEdgeInsets =UIEdgeInsetsMake(0,30,0, 0);
+    
+    [addTaskButton addTarget:self action:@selector(shoppingButton) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:addTaskButton];
+    
+    
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,labHeight+10, ScreenWidth-20,280-labHeight-20) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5,labHeight+15, ScreenWidth-20-4,280-labHeight-20) collectionViewLayout:layout];
 
     _collectionView.backgroundColor =[UIColor whiteColor];
     _collectionView.delegate = self;
@@ -138,6 +155,12 @@ static NSString *const kHeaderIdentifier = @"kHeaderIdentifier";
     NSMutableDictionary*dic=self.keywordGoodsList[indexPath.row];
     if ([_delegate respondsToSelector:@selector(getKeyGoodId:)]) {
         [_delegate getKeyGoodId:[NSNumber numberWithInt:[Unit JSONInt:dic key:@"id"]]];
+    }
+}
+
+-(void)shoppingButton;{
+    if ([_delegate respondsToSelector:@selector(shoppingButton)]) {
+        [_delegate shoppingButton];
     }
 }
 @end

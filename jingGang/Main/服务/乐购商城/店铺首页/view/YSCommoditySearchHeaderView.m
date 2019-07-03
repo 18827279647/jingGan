@@ -25,6 +25,7 @@
 + (instancetype)commodityHeaderView
 {
     NSArray *nib = [CRBundle loadNibNamed:@"YSCommoditySearchHeaderView" owner:self options:nil];
+    
     UIView *tmpCustomView = [nib objectAtIndex:0];
     return (YSCommoditySearchHeaderView *)tmpCustomView;
 }

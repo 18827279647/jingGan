@@ -180,8 +180,11 @@
     [self.dataArray addObject:@{@"itemName":@"体重",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@16}];
     CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
     int myhight=statusRect.size.height;
-    
-    _mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0,self.moreView.frame.size.height-kNarbarH,kScreenWidth,kScreenHeight-160) style:0];
+    if (kScreenHeight>800) {
+         _mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0,self.moreView.frame.size.height-kNarbarH+myhight,kScreenWidth,kScreenHeight-160-myhight) style:0];
+    }else{
+         _mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0,self.moreView.frame.size.height-kNarbarH,kScreenWidth,kScreenHeight-160) style:0];
+    }
     _mtableview.backgroundColor =JGColor(250, 250, 250, 1);
     _mtableview.delegate = self;
     _mtableview.dataSource = self;

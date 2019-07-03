@@ -23,6 +23,7 @@
 #import "FollwerContent.h"
 
 
+#import "YSHealthyMessageController.h"
 
 #define kHealthyMessageCellHeight 100
 #define k_ShareImage @"http://static.bhesky.cn/static/person.png"
@@ -62,6 +63,9 @@ static NSString *cellId = @"cellId";
 }
 
 
+//点击
+-(void)hradTapView;{
+}
 
 //首页点赞
 - (void)setUpUI{
@@ -74,6 +78,8 @@ static NSString *cellId = @"cellId";
         UIImageView*imageView=[[UIImageView alloc]init];
         imageView.backgroundColor=[UIColor whiteColor];
         imageView.frame=CGRectMake(10,0,w-20,84/2);
+        
+        imageView.userInteractionEnabled=YES;
         [self addSubview:imageView];
         UILabel *titleLab1 = [[UILabel alloc] init];
         titleLab1.x =10;
@@ -81,24 +87,47 @@ static NSString *cellId = @"cellId";
         titleLab1.width = 100;
         titleLab1.height = 84/2;
         titleLab1.textAlignment = NSTextAlignmentLeft;
-        titleLab1.font = JGRegularFont(16);
         titleLab1.textColor = JGColor(51,51,51,1);
         titleLab1.text = @"今日健康资讯";
+        [titleLab1 setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
         [imageView addSubview:titleLab1];
     
+        
+        UIButton *addTaskButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        //    addTaskButton.frame = buttonBgImageView.frame;
+        
+        addTaskButton.frame=CGRectMake(ScreenWidth-10-60,(84/2-27)/2,60,27);
+        [addTaskButton setTitle:@"更多" forState:UIControlStateNormal];
+        [addTaskButton setImage:[UIImage imageNamed:@"rx_right_image"] forState:UIControlStateNormal];
+        [addTaskButton setTitleColor: JGColor(136, 136, 136, 1) forState:UIControlStateNormal];
+        addTaskButton.titleLabel.font = JGFont(14);
+        addTaskButton.backgroundColor = JGClearColor;
+        addTaskButton.titleEdgeInsets=UIEdgeInsetsMake(0, -45,0, 0);
+        addTaskButton.imageEdgeInsets =UIEdgeInsetsMake(0,30,0, 0);
+        
+        [addTaskButton addTarget:self action:@selector(shoppingButton) forControlEvents:UIControlEventTouchUpInside];
+        [imageView addSubview:addTaskButton];
+        
+    
+        
         UIView *whiteView;
         whiteView = [[UIView alloc] initWithFrame:CGRectMake(10,84/2, w-20, h+10)];
         self.contentView.backgroundColor = JGColor(249, 249, 249, 1);
+        whiteView.userInteractionEnabled=YES;
         whiteView.backgroundColor=[UIColor whiteColor];
+//        
+//        UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hradTapView)];
+//    
+//        [whiteView addGestureRecognizer:tap];
+        
         [self.contentView addSubview:whiteView];
         _titleLab = [[UILabelTopLeft alloc] initWithFrame:CGRectMake(10, 20, (w-30)/3*2-10, (h-30)/3*2)];
         _titleLab.numberOfLines = 2;
         [whiteView addSubview:_titleLab];
-        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLab.frame)+10, 10, (w-30)/3-10, (h-30))];
+        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLab.frame)+10, 20, (w-30)/3-10, (h-20))];
         _iconView.layer.cornerRadius=8;
         _iconView.clipsToBounds = YES;
         [whiteView addSubview:_iconView];
-        
         
         UIView *buttonView=[[UIView alloc] initWithFrame:CGRectMake(5, CGRectGetMaxY(_titleLab.frame), (w-30)/3*2, (h-30)/3)];
         buttonView.userInteractionEnabled = YES;
@@ -153,7 +182,13 @@ static NSString *cellId = @"cellId";
         _titleLab = [[UILabelTopLeft alloc] initWithFrame:CGRectMake(10, 20, (w-30)/3*2-10, (h-30)/3*2)];
         _titleLab.numberOfLines = 2;
         [whiteView addSubview:_titleLab];
-        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLab.frame)+10, 10, (w-30)/3-10, (h-30))];
+        
+         if (self.isRX) {
+              _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLab.frame)+10, 20, (w-30)/3-10, (h-20))];
+         }else{
+              _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLab.frame)+10, 10, (w-30)/3-10, (h-30))];
+         }
+       
         _iconView.layer.cornerRadius=8;
         _iconView.clipsToBounds = YES;
         [whiteView addSubview:_iconView];
@@ -211,7 +246,10 @@ static NSString *cellId = @"cellId";
     // Initialization code
 }
 
-
+-(void)shoppingButton;{
+    YSHealthyMessageController *healthyMessageController =[[YSHealthyMessageController alloc] init];
+    [self.nav1 pushViewController:healthyMessageController animated:YES];
+}
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

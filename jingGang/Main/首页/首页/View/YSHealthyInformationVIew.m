@@ -49,10 +49,11 @@
     titleLab1.width = 100;
     titleLab1.height = self.height;
     titleLab1.textAlignment = NSTextAlignmentLeft;
-    titleLab1.font = JGRegularFont(16);
     titleLab1.textColor = JGColor(51,51,51,1);
     titleLab1.text = @"今日健康资讯";
 //    [self addSubview:titleLab];
+    
+    [titleLab1 setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
     [self addSubview:titleLab1];
     
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - 0.5, ScreenWidth, 0.5)];
@@ -65,23 +66,25 @@
     buttonBgImageView.width = 77;
     buttonBgImageView.x = self.width - buttonBgImageView.width - 15;
     buttonBgImageView.y = (self.height - buttonBgImageView.height) / 2;
+    
 //    [self addSubview:buttonBgImageView];
     self.buttonBgImageView = buttonBgImageView;
     
     UIButton *addTaskButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    addTaskButton.frame = buttonBgImageView.frame;
+//    addTaskButton.frame = buttonBgImageView.frame;
+    
+    addTaskButton.frame=CGRectMake(ScreenWidth-60,(self.height-27)/2,60,27);
     [addTaskButton setTitle:@"更多" forState:UIControlStateNormal];
     [addTaskButton setImage:[UIImage imageNamed:@"rx_right_image"] forState:UIControlStateNormal];
     [addTaskButton setTitleColor: JGColor(136, 136, 136, 1) forState:UIControlStateNormal];
     addTaskButton.titleLabel.font = JGFont(14);
     addTaskButton.backgroundColor = JGClearColor;
-    addTaskButton.titleEdgeInsets=UIEdgeInsetsMake(0, -40,0, 0);
-    addTaskButton.imageEdgeInsets =UIEdgeInsetsMake(0,50,0, 0);
+    addTaskButton.titleEdgeInsets=UIEdgeInsetsMake(0, -45,0, 0);
+    addTaskButton.imageEdgeInsets =UIEdgeInsetsMake(0,30,0, 0);
     [addTaskButton addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
         BLOCK_EXEC(addTask);
     }];
     [self addSubview:addTaskButton];
     self.addTaskButton = addTaskButton;
 }
-
 @end

@@ -747,41 +747,18 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getRequest) name:@"manualTestNotification" object:nil];
     //设置引导页
     [self showPageView];
+    self.myStep=0;
     //设置运动，并上传数据，避免后台崩溃
     [self setYunDong];
     
     [self getRequest];
 }
 -(void)setYunDong;{
-    if ([YSStepManager healthyKitAccess]) {
-        @weakify(self);
-        [YSStepManager healthStoreDataWithStartDate:nil endDate:nil WithFailAccess:^{
-            @strongify(self);
-            [self showErrorHudWithText:@"无运动数据获取权限"];
-            NSMutableDictionary*dic=[[NSMutableDictionary alloc]init];
-            [dic setObject:[NSString stringWithFormat:@"%d",0] forKey:@"inValue"];
-            [self getRuest:dic];
-        } walkRunningCallback:^(NSNumber *walkRunning) {
-        } stepCallback:^(NSNumber *step) {
-            if ([step intValue]==0) {
-                self.myStep= [step intValue];
-                self.myGongli=[step doubleValue] * 0.00065;
-                self.myKaluli=62*self.myGongli*0.8;
-            }else{
-                self.myStep= [step intValue];
-                self.myGongli=[step doubleValue] * 0.00065;
-                self.myKaluli=62*self.myGongli*0.8;
-                [self.mtableview reloadData];
-            }
-            NSMutableDictionary*dic=[[NSMutableDictionary alloc]init];
-            [dic setObject:[NSString stringWithFormat:@"%d",self.myStep] forKey:@"inValue"];
-            [self getRuest:dic];
-        }];
-    }
+    NSMutableDictionary*dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:[NSString stringWithFormat:@"%d",self.myStep] forKey:@"inValue"];
+    [self getRuest:dic];
 }
-
 -(void)getRuest:(NSMutableDictionary*)paramJson;{
-    
     [paramJson setObject:@"3" forKey:@"type"];
     //提交数据
     RXSubmitDataRequest*request=[[RXSubmitDataRequest alloc]init:GetToken];
@@ -815,7 +792,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 //设置引导页
 -(void)showPageView;{
-    // 判断是否已显示过
+//    // 判断是否已显示过
     if (![[NSUserDefaults standardUserDefaults] boolForKey:RXGuidePageHomeKey]) {
         CRUserSetBOOL(YES, RXGuidePageHomeKey);
         // 显示
@@ -1370,7 +1347,6 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             if (section-1==self.dataArray.count) {
                 UIView*view=[[UIView alloc]initWithFrame:CGRectMake(10,0,ScreenWidth-20,40)];
                 view.backgroundColor=JGColor(250, 250, 250, 1);
-                
                 UIButton*button=[UIButton buttonWithType:UIButtonTypeCustom];
                 button.frame=CGRectMake(10,5,ScreenWidth-20,35);
                 button.backgroundColor=[UIColor whiteColor];
@@ -1380,10 +1356,10 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                 [button setTitleColor:JGColor(136, 136, 136, 1) forState:UIControlStateSelected];
                 [button setTitleColor:JGColor(136, 136, 136, 1) forState:UIControlStateNormal];
                 button.titleLabel.textAlignment=1;
-                //        [button setImage:[UIImage imageNamed:@"round_down"] forState:UIControlStateNormal];
-                //        [button setImage:[UIImage imageNamed:@"round_down"] forState:UIControlStateSelected];
-                //        [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -button.imageView.size.width, 0, button.imageView.size.width)];
-                //        [button setImageEdgeInsets:UIEdgeInsetsMake(10, button.titleLabel.bounds.size.width, 10, -button.titleLabel.bounds.size.width)];
+                [button setImage:[UIImage imageNamed:@"round_down"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"round_down"] forState:UIControlStateSelected];
+                [button setTitleEdgeInsets:UIEdgeInsetsMake(0,-4*13, 0,0)];
+                [button setImageEdgeInsets:UIEdgeInsetsMake(0,4*13+4*13-10,0,0)];
                 [button addTarget:self action:@selector(qiTaiGengButtonFounction) forControlEvents:UIControlEventTouchUpInside];
                 [view addSubview:button];
                 return view;
@@ -1601,8 +1577,8 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         if (section==self.dataArray.count+1+5) {
             if (self.response.invitationList.count>0) {
                 YSHealthyInformationVIew *view = [[YSHealthyInformationVIew alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 84.0/2)  addTaskCallback:^{
-                    //                YSHealthyManageWebController *testWebController = [[YSHealthyManageWebController alloc] initWithWebType:YSHealthyManageAddTaskType uid:self.userCustome.uid];
-                    //                [self.navigationController pushViewController:testWebController animated:YES];
+                    YSHealthyMessageController *healthyMessageController =[[YSHealthyMessageController alloc] init];
+                    [self.navigationController pushViewController:healthyMessageController animated:YES];
                 }];
                 [view setBackgroundColor:JGWhiteColor];
                 return view;
@@ -1620,6 +1596,12 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     [self.navigationController pushViewController:goodsDetailVC animated:YES];
 }
 
+-(void)shoppingButton;{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UITabBarController *tabViewController = (UITabBarController *) app.window.rootViewController;
+    [tabViewController setSelectedIndex:1];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 -(void)tapButtonFountion;{
     NSString*string=@"我的健康报告";
     RXWmViewController*view=[[RXWmViewController alloc]init];
@@ -1853,6 +1835,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                     self.myKaluli=62*self.myGongli*0.8;
                     [self.mtableview reloadData];
                 }
+                [self setYunDong];
             }];
         }
     }else{
@@ -1908,11 +1891,15 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             [self.mtableview reloadData];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self hideAllHUD];
-            [self showStringHUD:@"网络错误" second:0];
-            [dic setObject:[NSNumber numberWithBool:false] forKey:@"mySelectType"];
-            [dic setObject:[NSNumber numberWithBool:false] forKey:@"myZhankaiType"];
-            [self.dataArray replaceObjectAtIndex:button.tag withObject:dic];
-            [self.mtableview reloadData];
+            if ([[RXTabViewHeightObjject getItemCodeNumber:dic] isEqualToString:@"运动"]){
+                 [self.mtableview reloadData];
+            }else{
+                [self showStringHUD:@"网络错误" second:0];
+                [dic setObject:[NSNumber numberWithBool:false] forKey:@"mySelectType"];
+                [dic setObject:[NSNumber numberWithBool:false] forKey:@"myZhankaiType"];
+                [self.dataArray replaceObjectAtIndex:button.tag withObject:dic];
+                [self.mtableview reloadData];
+            }
         }];
     }
 }
@@ -2231,24 +2218,25 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (self.paramResponse.hasHistory==1) {
                                 cell.lishiButton.hidden=NO;
                             }
-                            //取名字反了
-                            float shunzhangNumber=[keyValue[@"highValue"] floatValue]/200;
-                            if (shunzhangNumber>1) {
-                                shunzhangNumber=1;
-                            }
-                            if (shunzhangNumber<=0.15) {
-                                shunzhangNumber=0.25;
-                            }
+                           
                             
-                            float shuoNumber=[keyValue[@"lowValue"] floatValue]/200;
+                            float shuoNumber=[keyValue[@"highValue"] floatValue]/200;
                             if (shuoNumber>1) {
                                 shuoNumber=1;
                             }
-                            if (shuoNumber<=0.15) {
+                            if (shuoNumber<=0.25) {
                                 shuoNumber=0.25;
                             }
-                            cell.shouTrailling.constant=-(1- shunzhangNumber)*cell.shouBackImage.frame.size.width;
-                            cell.shuzhangTrailling.constant= -(1-shuoNumber)*cell.shouBackImage.frame.size.width;
+    
+                            float shunzhangNumber=[keyValue[@"lowValue"] floatValue]/200;
+                            if (shunzhangNumber>1) {
+                                shunzhangNumber=1;
+                            }
+                            if (shunzhangNumber<=0.25) {
+                                shunzhangNumber=0.25;
+                            }
+                            cell.shouTrailling.constant=-(1- shuoNumber)*cell.shouBackImage.frame.size.width;
+                            cell.shuzhangTrailling.constant= -(1-shunzhangNumber)*cell.shuzhangbackImage.frame.size.width;
                            
                             [cell.zhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                             [cell.yueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
@@ -2291,7 +2279,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (tizhongNumber>1) {
                                 tizhongNumber=1;
                             }
-                            if (tizhongNumber<=0.15) {
+                            if (tizhongNumber<=0.25) {
                                 tizhongNumber=0.25;
                             }
                             cell.xueTangTrailling.constant=-(1-tizhongNumber)*cell.twoxuebackImage.frame.size.width;
@@ -2354,7 +2342,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (tizhongNumber>1) {
                                 tizhongNumber=1;
                             }
-                            if (tizhongNumber<=0.15) {
+                            if (tizhongNumber<=0.25) {
                                 tizhongNumber=0.25;
                             }
                             cell.xueTangTrailling.constant=-(1-tizhongNumber)*cell.twoxuebackImage.frame.size.width;
@@ -2426,7 +2414,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (tizhongNumber>1) {
                                 tizhongNumber=1;
                             }
-                            if (tizhongNumber<=0.15) {
+                            if (tizhongNumber<=0.25) {
                                 tizhongNumber=0.25;
                             }
                             cell.xueTangTrailling.constant=-(1-tizhongNumber)*cell.twoxuebackImage.frame.size.width;
@@ -2480,7 +2468,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (tcNumber>1) {
                                 tcNumber=1;
                             }
-                            if (tcNumber<=0.15) {
+                            if (tcNumber<=0.25) {
                                 tcNumber=0.25;
                             }
                             cell.tcTrailling.constant=-(1-tcNumber)*cell.freeTcBackImage.frame.size.width;
@@ -2489,7 +2477,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (tgNumber>1) {
                                 tgNumber=1;
                             }
-                            if (tgNumber<=0.15) {
+                            if (tgNumber<=0.25) {
                                 tgNumber=0.25;
                             }
                             cell.tgTrailling.constant=-(1-tgNumber)*cell.freeTGbackImage.frame.size.width;
@@ -2498,7 +2486,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (hdlcNumber>1) {
                                 hdlcNumber=1;
                             }
-                            if (hdlcNumber<=0.15) {
+                            if (hdlcNumber<=0.25) {
                                 hdlcNumber=0.25;
                             }
                             cell.hdlcTrailing.constant=-(1-hdlcNumber)*cell.freeHDLCBackimage.frame.size.width;
@@ -2507,7 +2495,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (ldlcNumber>1) {
                                 ldlcNumber=1;
                             }
-                            if (ldlcNumber<=0.15) {
+                            if (ldlcNumber<=0.25) {
                                 ldlcNumber=0.25;
                             }
                             cell.ldlcTrailing.constant=-(1-ldlcNumber)*cell.freeLDLCBackImage.frame.size.width;
@@ -2765,12 +2753,14 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         if (cell==nil) {
             cell=[[[NSBundle mainBundle]loadNibNamed:@"RXAdvertisingTableViewCell" owner:self options:nil]firstObject];
         }
-//        if (self.response.adContentBO.count>0) {
-//            NSMutableDictionary*dic=self.response.adContentBO[0];
-//            NSArray*adContent=dic[@"adContent"];
-//            NSDictionary*dd=adContent[0];
-//            [cell.back_image sd_setImageWithURL:[NSURL URLWithString:dd[@"pic"]]];
-//        }
+        if (self.response.adContentBO.count>0) {
+            NSMutableDictionary*dic=self.response.adContentBO[0];
+            NSArray*adContent=dic[@"adContent"];
+            NSDictionary*dd=adContent[0];
+            [cell.back_image sd_setImageWithURL:[NSURL URLWithString:dd[@"pic"]]];
+        }else{
+            cell.back_image.image=[UIImage imageNamed:@"积分广告"];
+        }
         cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -2809,10 +2799,8 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     if (self.dataArray.count>0) {
         if (indexPath.section-1<self.dataArray.count+1) {
-        
             if (indexPath.row==1) {
                 if (self.paramResponse.invitationList.count>0) {
                     [[NSUserDefaults standardUserDefaults]setObject:[self.InfosModels objectAtIndex:indexPath.row] forKey:@"circleTitle"];
@@ -2832,6 +2820,11 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                 }
             }
         }
+    }
+    if (indexPath.section==self.dataArray.count+1+4) {
+        IntegralNewHomeController *integralShopHomeController = [[IntegralNewHomeController alloc] init];
+        integralShopHomeController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:integralShopHomeController animated:YES];
     }
     if (indexPath.section==self.dataArray.count+1+5) {
         [[NSUserDefaults standardUserDefaults]setObject:[self.InfosModels objectAtIndex:indexPath.row] forKey:@"circleTitle"];
@@ -2866,7 +2859,10 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         return 4;
     }
     if (section==self.dataArray.count+1+4) {
-         return self.advertisingArray.count;
+        if (self.response.adContentBO.count>0) {
+            return self.response.adContentBO.count;
+        }
+        return 1;
     }
     if (section==self.dataArray.count+1+5) {
        return self.response.invitationList.count;
@@ -2954,11 +2950,10 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
          return 180;
     }
     if (indexPath.section==self.dataArray.count+1+4) {
-//        if (self.response.adContentBO.count>0) {
-//            NSMutableDictionary*dic=self.response.adContentBO[0];
-//            return [Unit JSONDouble:dic key:@"adHeight"];
-//        }
-        return 0;
+        if (self.response.adContentBO.count>0) {
+            return 80;
+        }
+        return 80;
     }
     if (indexPath.section==self.dataArray.count+1+5) {
         return 125;
@@ -3073,9 +3068,9 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             }
             [self.InfosModels xf_safeAddObjectsFromArray:self.response.invitationList];
             //广告位
-//            if (self.response.adContentBO) {
-//                self.advertisingArray=[NSMutableArray arrayWithArray:self.response.adContentBO];
-//            }
+            if (self.response.adContentBO) {
+                self.advertisingArray=[NSMutableArray arrayWithArray:self.response.adContentBO];
+            }
             if (self.response.healthList.count>0) {
                 [self.dataArray removeAllObjects];
                 for (NSDictionary*dic in self.response.healthList) {

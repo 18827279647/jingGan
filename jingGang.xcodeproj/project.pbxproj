@@ -2525,6 +2525,8 @@
 		BE6B263E22BE661300D0C05E /* RXShowIntelligentEquipmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE6B263D22BE661300D0C05E /* RXShowIntelligentEquipmentView.xib */; };
 		BE73C01C22C8DD0700BA894A /* RXMoreWebTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73C01A22C8DD0700BA894A /* RXMoreWebTableViewCell.m */; };
 		BE73C01D22C8DD0700BA894A /* RXMoreWebTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE73C01B22C8DD0700BA894A /* RXMoreWebTableViewCell.xib */; };
+		BE7922BE22CB5E07008A14F9 /* RXUserweeklyreportdetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7922BD22CB5E06008A14F9 /* RXUserweeklyreportdetailRequest.m */; };
+		BE7922C122CB5E5C008A14F9 /* RXUserweeklyreportdetailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7922C022CB5E5C008A14F9 /* RXUserweeklyreportdetailResponse.m */; };
 		BE94076322B6651600741F1B /* RXMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE94076222B6651600741F1B /* RXMainViewController.m */; };
 		BE94076A22B672D600741F1B /* YUFoldingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE94076522B672D400741F1B /* YUFoldingTableView.m */; };
 		BE94076B22B672D600741F1B /* YUFoldingSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BE94076622B672D400741F1B /* YUFoldingSectionHeader.m */; };
@@ -7550,6 +7552,10 @@
 		BE73C01922C8DD0700BA894A /* RXMoreWebTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXMoreWebTableViewCell.h; sourceTree = "<group>"; };
 		BE73C01A22C8DD0700BA894A /* RXMoreWebTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXMoreWebTableViewCell.m; sourceTree = "<group>"; };
 		BE73C01B22C8DD0700BA894A /* RXMoreWebTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXMoreWebTableViewCell.xib; sourceTree = "<group>"; };
+		BE7922BC22CB5E06008A14F9 /* RXUserweeklyreportdetailRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXUserweeklyreportdetailRequest.h; sourceTree = "<group>"; };
+		BE7922BD22CB5E06008A14F9 /* RXUserweeklyreportdetailRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXUserweeklyreportdetailRequest.m; sourceTree = "<group>"; };
+		BE7922BF22CB5E5C008A14F9 /* RXUserweeklyreportdetailResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXUserweeklyreportdetailResponse.h; sourceTree = "<group>"; };
+		BE7922C022CB5E5C008A14F9 /* RXUserweeklyreportdetailResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXUserweeklyreportdetailResponse.m; sourceTree = "<group>"; };
 		BE94076122B6651600741F1B /* RXMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXMainViewController.h; sourceTree = "<group>"; };
 		BE94076222B6651600741F1B /* RXMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXMainViewController.m; sourceTree = "<group>"; };
 		BE94076522B672D400741F1B /* YUFoldingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUFoldingTableView.m; sourceTree = "<group>"; };
@@ -12817,9 +12823,11 @@
 				51D48219227212690062970E /* JGOrderRedDetailSucResponse.h */,
 				51D48217227212620062970E /* JGOrderRedDetailSucResponse.m */,
 				51D48218227212640062970E /* JGRedCardSucRequest.h */,
+				51D48216227212600062970E /* JGRedCardSucRequest.m */,
+				BE7922BC22CB5E06008A14F9 /* RXUserweeklyreportdetailRequest.h */,
+				BE7922BD22CB5E06008A14F9 /* RXUserweeklyreportdetailRequest.m */,
 				BE24569E22BF20AE005163D5 /* RXMemberDetailRequest.h */,
 				BE24569F22BF20AE005163D5 /* RXMemberDetailRequest.m */,
-				51D48216227212600062970E /* JGRedCardSucRequest.m */,
 				51D482142272125D0062970E /* JGRedDetailRequest.h */,
 				51D482152272125E0062970E /* JGRedDetailRequest.m */,
 				51C0A28E2266D1AB00CAF725 /* PoundageAndTaxRequest.h */,
@@ -14431,6 +14439,8 @@
 				BE27ED5422C3032200F23A57 /* RXSubmitDataResponse.m */,
 				BE297A5022C661CF005E59D8 /* RXUserH5UrlResponse.h */,
 				BE297A5122C661CF005E59D8 /* RXUserH5UrlResponse.m */,
+				BE7922BF22CB5E5C008A14F9 /* RXUserweeklyreportdetailResponse.h */,
+				BE7922C022CB5E5C008A14F9 /* RXUserweeklyreportdetailResponse.m */,
 			);
 			path = response;
 			sourceTree = "<group>";
@@ -20137,6 +20147,7 @@
 				705F577F1C2AD87200DDC31D /* ShopUserAddressAllRequest.m in Sources */,
 				093AE7EA1D5D80B6006E5884 /* AppDelegate+Preload.m in Sources */,
 				51DC3C83228BFD9F00250B50 /* ShoppingModel.m in Sources */,
+				BE7922C122CB5E5C008A14F9 /* RXUserweeklyreportdetailResponse.m in Sources */,
 				1476BB0C01C08306C550003491879487 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				51687A0A2283C960002530A0 /* YSMakeHeadView.m in Sources */,
 				7095AFB71D5EC0DA00F91AE2 /* JGMessageCenterController.m in Sources */,
@@ -21213,6 +21224,7 @@
 				705F56861C2AD87200DDC31D /* ReturnGoodsLog.m in Sources */,
 				093AE8161D5DD24F006E5884 /* HealthManageIndexRequest.m in Sources */,
 				705F56C81C2AD87200DDC31D /* GoodsListRequest.m in Sources */,
+				BE7922BE22CB5E07008A14F9 /* RXUserweeklyreportdetailRequest.m in Sources */,
 				092CD3471F6A8D3C00B283F7 /* YSCloudBuyMoneyGoodsListCollectionView.m in Sources */,
 				8435F47A6867AFC504E6BC18D11C776B /* ShoppingOrderDetailController.m in Sources */,
 				825AF0B2A1C06EFCAFE9CA80F1374247 /* ShowCaseCollectionView.m in Sources */,

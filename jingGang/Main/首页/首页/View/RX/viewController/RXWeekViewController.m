@@ -13,11 +13,14 @@
 
 //获取h5
 #import "RXUserH5UrlResponse.h"
+#import "RXWebViewController.h"
 
 @interface RXWeekViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate>
 
 @property (strong) WKWebView *webview;
 @property (nonatomic, strong) UIProgressView *progressView;
+
+@property(nonatomic,assign)bool hasLiked;
 
 @end
 
@@ -28,6 +31,7 @@
     // Do any additional setup after loading the view.
     [self setUI];
     [self setNavUI];
+    self.hasLiked=true;
 }
 
 -(void)setNavUI;{
@@ -86,8 +90,8 @@
     self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0,0, kScreenWidth, 2)];
     self.progressView.backgroundColor =JGColor(112, 210, 172, 1);
     
-    self.progressView.tintColor = [UIColor whiteColor];
-    self.progressView.trackTintColor = [UIColor whiteColor];
+    self.progressView.tintColor =   [UIColor clearColor];
+    self.progressView.trackTintColor =   [UIColor clearColor];
     //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.
     self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
     [self.view addSubview:self.progressView];
@@ -97,20 +101,45 @@
 }
 // alert的处理
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-    
     if (message) {
-        if ([message rangeOfString:@"week"].location != NSNotFound) {
-            NSLog(@"week%@",message);
-        }else if([message rangeOfString:@"month"].location != NSNotFound){
-            NSLog(@"month%@",message);
+        if ([message rangeOfString:@"loadHtml"].location != NSNotFound) {
+            NSString*str4=[message substringFromIndex:8];
+            NSRange range = [str4 rangeOfString:@","];
+            NSString*string=[str4 substringToIndex:range.location];
+            NSString*type=@"week";
+            //月报
+            if ([message rangeOfString:@"month"].location!= NSNotFound) {
+                type=@"month";
+            }
+            [self getRuest:type with:string];
         }
     }
-
     completionHandler();
 }
--(void)getRuest:(NSString*)type;{
-    //RXUserH5UrlRequest*request=[[RXUserH5UrlRequest alloc]init];
-    //request.getUrl=
+-(void)getRuest:(NSString*)type with:(NSString*)str{
+    if (!self.hasLiked) {
+        return;
+    }
+    self.hasLiked=false;
+    RXUserweeklyreportdetailRequest*request=[[RXUserweeklyreportdetailRequest alloc]init:GetToken];
+    request.id=str;
+    request.type=type;
+    VApiManager *manager = [[VApiManager alloc]init];
+    [manager RXUserweeklyreportdetailRequest:request success:^(AFHTTPRequestOperation *operation, RXUserweeklyreportdetailResponse *response) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.hasLiked = true; //避免重复请求
+        });
+        RXWebViewController *vc=[[RXWebViewController alloc]init];
+        vc.htmlstring=response.message;
+        NSString*title=@"周报详情";
+        if([type isEqualToString:@"month"]){
+            title=@"月报详情";
+        }
+        vc.titlestring=title;
+        [self.navigationController pushViewController:vc animated:NO];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showStringHUD:@"网络错误" second:0];
+    }];
 }
 
 //开始加载

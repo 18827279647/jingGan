@@ -25,10 +25,12 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQm-xM-3eo">
-                        <rect key="frame" x="408" y="17" width="30" height="27"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="更多">
+                    <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQm-xM-3eo">
+                        <rect key="frame" x="407" y="18.5" width="51" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <inset key="titleEdgeInsets" minX="-50" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="更多" image="rx_right_image">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
@@ -44,8 +46,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Qa6-pj-gIC" firstAttribute="width" secondItem="eBf-Fk-rOg" secondAttribute="width" id="1QE-ao-2ee"/>
-                    <constraint firstItem="Qa6-pj-gIC" firstAttribute="trailing" secondItem="PQm-xM-3eo" secondAttribute="trailing" id="5nV-8V-deT"/>
-                    <constraint firstAttribute="trailing" secondItem="PQm-xM-3eo" secondAttribute="trailing" constant="20" id="9zx-bh-Vqn"/>
+                    <constraint firstAttribute="trailing" secondItem="PQm-xM-3eo" secondAttribute="trailing" id="9zx-bh-Vqn"/>
+                    <constraint firstAttribute="trailing" secondItem="Qa6-pj-gIC" secondAttribute="trailing" constant="20" id="ASr-gf-Uft"/>
                     <constraint firstItem="eBf-Fk-rOg" firstAttribute="leading" secondItem="L1D-Es-DjL" secondAttribute="leading" id="Fc9-nr-UDc"/>
                     <constraint firstItem="eBf-Fk-rOg" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/2.3" id="Plt-DM-rMU"/>
                     <constraint firstItem="Qa6-pj-gIC" firstAttribute="centerY" secondItem="eBf-Fk-rOg" secondAttribute="centerY" id="QdI-JL-Tje"/>
@@ -69,5 +71,6 @@
     <resources>
         <image name="Bitmap" width="340" height="185"/>
         <image name="Bitmap Copy" width="340" height="185"/>
+        <image name="rx_right_image" width="24" height="24"/>
     </resources>
 </document>

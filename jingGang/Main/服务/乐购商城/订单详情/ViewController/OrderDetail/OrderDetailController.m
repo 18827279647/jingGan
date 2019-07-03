@@ -136,6 +136,10 @@ CGFloat const SecondTableCellHiehgt = 43.0f;
     
     WEAK_SELF;
     self.orderDetailGoodsTableView.clickOrderDetailBlock = ^(NSIndexPath *indexPath,NSNumber *goodsID){
+        
+        if ([goodsID integerValue]==16000) {
+            return ;
+        }
         KJGoodsDetailViewController *goodsDetailVC = [[KJGoodsDetailViewController alloc] init];
         goodsDetailVC.goodsID = goodsID;
         switch ([JGActivityHelper enterIntoGoodsDetailState]) {

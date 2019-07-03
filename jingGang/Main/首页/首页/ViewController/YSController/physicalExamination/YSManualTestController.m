@@ -713,8 +713,8 @@
             }
             if (highRet && lowRet) {
             
-                [paramJson setObject:self.firstInputView.textFiled.text forKey:@"lowValue"];
-                [paramJson setObject:self.secondInputView.textFiled.text forKey:@"highValue"];
+                [paramJson setObject:self.firstInputView.textFiled.text forKey:@"highValue"];
+                [paramJson setObject:self.secondInputView.textFiled.text forKey:@"lowValue"];
                 //上传接口
                 [self getRuest:paramJson];
 

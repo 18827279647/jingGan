@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)getKeyGoodId:(NSNumber*)goodId;
 
+-(void)shoppingButton;
+
 @end
 
 @interface RXShoppingTableViewCell : UITableViewCell

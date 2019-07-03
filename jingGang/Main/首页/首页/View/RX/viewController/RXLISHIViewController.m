@@ -66,8 +66,8 @@
     self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0,0, kScreenWidth, 2)];
     self.progressView.backgroundColor =JGColor(112, 210, 172, 1);
     
-    self.progressView.tintColor = [UIColor whiteColor];
-    self.progressView.trackTintColor = [UIColor whiteColor];
+    self.progressView.tintColor =  [UIColor clearColor];
+    self.progressView.trackTintColor =   [UIColor clearColor];
     //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.
     self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
     [self.view addSubview:self.progressView];

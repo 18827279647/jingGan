@@ -34,6 +34,8 @@
 #import "WebDayVC.h"
 #import "RXMoreWebTableViewCell.h"
 
+#import "AppDelegate.h"
+
 static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 @interface RXMoreWebViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,SPPageMenuDelegate,UITableViewDelegate,UITableViewDataSource,shopinageDelegate>
@@ -68,11 +70,53 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 @implementation RXMoreWebViewController
 
+-(void)viewWillAppear:(BOOL)animated;{
+    [super viewWillAppear:animated];
+    [YSThemeManager settingAppThemeType:YSAppThemeNewYearType];
+    self.navigationController.navigationBar.barTintColor = [YSThemeManager themeColor];
+    self.navigationController.navigationBar.barStyle=UIBarStyleBlack;
+    self.navigationController.navigationBar.translucent=NO;
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barTintColor = COMMONTOPICCOLOR;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavUI];
+    [self setNavButton];
     [self configContent];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestSDView) name:@"SDViewControllerNotification" object:nil];
+}
+
+-(void)setNavButton;{
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftButton.frame = CGRectMake(0, 0, 60, 44);
+    [leftButton setTitleColor:[UIColor whiteColor]
+                     forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"navigationBarBack"]
+                forState:UIControlStateNormal];
+    leftButton.titleLabel.font = JGFont(15);
+    [leftButton setAdjustsImageWhenHighlighted:NO];
+    [leftButton addTarget:self action:@selector(backLastViewController) forControlEvents:UIControlEventTouchUpInside];
+    // 修改导航栏左边的item
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    //  隐藏tabbar
+    self.hidesBottomBarWhenPushed = YES;
+}
+//重写返回
+-(void)backLastViewController;{
+    if ([self.webview canGoBack]) {
+        self.navigationItem.rightBarButtonItem=nil;
+        [self.view resignFirstResponder];
+        [self.webview goBack];
+    }else if([self.urlstring rangeOfString:@"resources/jkgl/healthData"].location!= NSNotFound){
+        [self.view resignFirstResponder];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }else{
+        [self.view resignFirstResponder];
+        [self.navigationController popViewControllerAnimated:NO];
+    }
 }
 
 -(void)setNavUI;{
@@ -154,7 +198,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [self.mtableview reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self hideAllHUD];
-        [self showStringHUD:@"网络错误" second:0];
+      //  [self showStringHUD:@"网络错误" second:0];
         [self.mtableview reloadData];
     }];
 }
@@ -228,17 +272,6 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 
 
-
-
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.barTintColor = COMMONTOPICCOLOR;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.barTintColor = COMMONTOPICCOLOR;
-}
 - (NSString *)reSizeImageWithHTML:(NSString *)html {
     return [NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", kScreenWidth-20, html];
 }
@@ -377,15 +410,12 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     }
     self.progressView.backgroundColor =JGColor(112, 210, 172, 1);
     
-    self.progressView.tintColor = [UIColor whiteColor];
-    self.progressView.trackTintColor = [UIColor whiteColor];
+    self.progressView.tintColor = [UIColor clearColor];
+    self.progressView.trackTintColor =  [UIColor clearColor];
     //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.
     self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
     [self.view addSubview:self.progressView];
 }
-
-
-
 
 -(void)setTabView;{
     if ([YSStepManager healthyKitAccess]) {
@@ -436,8 +466,6 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     }
     [self.view addSubview:_mtableview];
 }
-
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -636,6 +664,12 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     goodsDetailVC.goodsID = goodId;
     goodsDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:goodsDetailVC animated:YES];
+}
+-(void)shoppingButton;{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UITabBarController *tabViewController = (UITabBarController *) app.window.rootViewController;
+    [tabViewController setSelectedIndex:1];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 //更多button

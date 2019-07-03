@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSDictionary * healthUserBO;
 @property (nonatomic, copy) NSString * recommends;
-@property(nonatomic,copy)NSDictionary*adContentBO;
+@property(nonatomic,copy)NSArray*adContentBO;
 @property(nonatomic,copy)NSString*healthServiceRecommendBgBO;
 @property(nonatomic,copy)NSString*healthServiceRecommendJdBO;
 @property(nonatomic,copy)NSString*healthServiceRecommendXyBO;
