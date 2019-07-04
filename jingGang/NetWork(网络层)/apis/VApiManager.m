@@ -3006,4 +3006,27 @@ NSString * const kOAuthGrantType = @"password";
     self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
     [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
 }
+//月报详情
+-(void)RXUsermouthreportdetailRequest:(RXUsermouthreportdetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserweeklyreportdetailResponse *response))success
+                              failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
+
+//查询最新一条周报
+-(void)RXUserlastweeklyreportdetailRequest:(RXUserlastweeklyreportdetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserweeklyreportdetailResponse *response))success
+                                   failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+    
+}
+//查询最新一条月报
+-(void)RXUserlastmouthreportdetailRequest:(RXUserlastmouthreportdetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserweeklyreportdetailResponse *response))success
+                                  failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;{
+    [self setAccessTokenHeader: request.accessToken];
+    self.responseSerializer = [SCLMantleResponseSerializer serializerForModelClass:request.responseClazz];
+    [self POST:request.getUrl parameters:request.getQueryParameters success:success failure:failure];
+}
 @end

@@ -2534,6 +2534,9 @@
 		BE961F0F1ECF042A89B531A5F63A0864 /* UIButton+Design.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EC1788E3E4C474C9704329C0589BE /* UIButton+Design.m */; };
 		BEA71D9EAE06D9A59A3981F426B7FBEA /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 72E41431E536EC9CD52C5D79B28A2EAD /* weather.json */; };
 		BEB829EACE77249FC76063239C7166F5 /* QuickTestController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2AC797453D67105E97586FD3C988562A /* QuickTestController.mm */; };
+		BEFD698322CC3EBF0052B90F /* RXUsermouthreportdetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFD698222CC3EBF0052B90F /* RXUsermouthreportdetailRequest.m */; };
+		BEFD698622CC4FE40052B90F /* RXUserlastmouthreportdetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFD698522CC4FE40052B90F /* RXUserlastmouthreportdetailRequest.m */; };
+		BEFD698922CC50040052B90F /* RXUserlastweeklyreportdetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFD698822CC50040052B90F /* RXUserlastweeklyreportdetailRequest.m */; };
 		BF2F093F96137D410D94D836E07F5ABB /* MTLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 323129A548994F4BAF722261327E287F /* MTLValueTransformer.m */; };
 		BF6B827B12BF6EE82629187ED0C1C418 /* KJGuessyouLikeCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADFD44534E370860EE0E3E7F7DC1E868 /* KJGuessyouLikeCollectionCell.xib */; };
 		BF74445EA8C1979F5143EFC8D6CA1C78 /* NewDetailImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31AA1BBD40B4F6D4158F37B86BCF333A /* NewDetailImgCell.xib */; };
@@ -7567,6 +7570,12 @@
 		BEE496EBACE2F13D82831E14CEE63E36 /* ShowCaseCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowCaseCollectionView.h; sourceTree = "<group>"; };
 		BEF20D500FFA0A3F4DFC8A78E23DF83C /* NSObject+MTLComparisonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MTLComparisonAdditions.h"; sourceTree = "<group>"; };
 		BEFC08E25B5A8CF7DB5F20233F11C7F9 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		BEFD698122CC3EBF0052B90F /* RXUsermouthreportdetailRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXUsermouthreportdetailRequest.h; sourceTree = "<group>"; };
+		BEFD698222CC3EBF0052B90F /* RXUsermouthreportdetailRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXUsermouthreportdetailRequest.m; sourceTree = "<group>"; };
+		BEFD698422CC4FE40052B90F /* RXUserlastmouthreportdetailRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXUserlastmouthreportdetailRequest.h; sourceTree = "<group>"; };
+		BEFD698522CC4FE40052B90F /* RXUserlastmouthreportdetailRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXUserlastmouthreportdetailRequest.m; sourceTree = "<group>"; };
+		BEFD698722CC50040052B90F /* RXUserlastweeklyreportdetailRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXUserlastweeklyreportdetailRequest.h; sourceTree = "<group>"; };
+		BEFD698822CC50040052B90F /* RXUserlastweeklyreportdetailRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXUserlastweeklyreportdetailRequest.m; sourceTree = "<group>"; };
 		BF0BD4EE5B461D0B54F7420E0B1FCE84 /* WSJSiftListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSJSiftListModel.h; sourceTree = "<group>"; };
 		BF947BAF19C216494989CE45208B12A3 /* KJShoppingAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJShoppingAlertView.m; sourceTree = "<group>"; };
 		BF9EAFB9C03FEBB638A3D2FD701DFF06 /* NSString+PinYin4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin4Cocoa.h"; sourceTree = "<group>"; };
@@ -12826,6 +12835,8 @@
 				51D48216227212600062970E /* JGRedCardSucRequest.m */,
 				BE7922BC22CB5E06008A14F9 /* RXUserweeklyreportdetailRequest.h */,
 				BE7922BD22CB5E06008A14F9 /* RXUserweeklyreportdetailRequest.m */,
+				BEFD698122CC3EBF0052B90F /* RXUsermouthreportdetailRequest.h */,
+				BEFD698222CC3EBF0052B90F /* RXUsermouthreportdetailRequest.m */,
 				BE24569E22BF20AE005163D5 /* RXMemberDetailRequest.h */,
 				BE24569F22BF20AE005163D5 /* RXMemberDetailRequest.m */,
 				51D482142272125D0062970E /* JGRedDetailRequest.h */,
@@ -13628,6 +13639,10 @@
 				BE297A4E22C661A5005E59D8 /* RXUserH5UrlRequest.m */,
 				BE297A5622C6B3F5005E59D8 /* RXUserOtherRequest.h */,
 				BE297A5722C6B3F5005E59D8 /* RXUserOtherRequest.m */,
+				BEFD698422CC4FE40052B90F /* RXUserlastmouthreportdetailRequest.h */,
+				BEFD698522CC4FE40052B90F /* RXUserlastmouthreportdetailRequest.m */,
+				BEFD698722CC50040052B90F /* RXUserlastweeklyreportdetailRequest.h */,
+				BEFD698822CC50040052B90F /* RXUserlastweeklyreportdetailRequest.m */,
 			);
 			path = request;
 			sourceTree = "<group>";
@@ -20001,6 +20016,7 @@
 				51D48223227212BF0062970E /* JGRedCardSucResponse.m in Sources */,
 				09426A1C1D8404D100C49A7C /* CnuserMobileResponse.m in Sources */,
 				51790B9122857EBB00DCBDB1 /* YSInviteArtifactCell.m in Sources */,
+				BEFD698922CC50040052B90F /* RXUserlastweeklyreportdetailRequest.m in Sources */,
 				09DD26981D59DEAC0010FCDD /* PostPostListLoginRequest.m in Sources */,
 				705F56C71C2AD87200DDC31D /* GoodsEvaluateRequest.m in Sources */,
 				7035F5B11EE6C3B200E2BE71 /* GoodsClassListAllResponse.m in Sources */,
@@ -21247,6 +21263,7 @@
 				705F58171C2AD87200DDC31D /* IntegralListByCriteriaResponse.m in Sources */,
 				705F57C61C2AD87200DDC31D /* UsersPayPasswordUpdateRequest.m in Sources */,
 				BE94076B22B672D600741F1B /* YUFoldingSectionHeader.m in Sources */,
+				BEFD698322CC3EBF0052B90F /* RXUsermouthreportdetailRequest.m in Sources */,
 				099D3B2A1D475FC80056E7EA /* ItemCell.m in Sources */,
 				70FF7BC91C2823AC002E02A6 /* InviteDetailController.m in Sources */,
 				705F577D1C2AD87200DDC31D /* ShopTradeReturnViewRequest.m in Sources */,
@@ -21634,6 +21651,7 @@
 				EEE2FF98FDB92593570DD2DF768142F7 /* WSJSearchListSiftViewController.m in Sources */,
 				705F58401C2AD87200DDC31D /* OVoucherListResponse.m in Sources */,
 				0909D8421E239751002BF135 /* XFStarRateView.m in Sources */,
+				BEFD698622CC4FE40052B90F /* RXUserlastmouthreportdetailRequest.m in Sources */,
 				1088C40AB283175465BC54A86E81EE01 /* WSJSearchResultViewController.m in Sources */,
 				6E39CE1FE90428BAAA854198E42D47C1 /* WSJSelectCityHeader.m in Sources */,
 				B62B1477EF5589A6327E16CDFC71D76B /* WSJSelectCityTableHeaderView.m in Sources */,

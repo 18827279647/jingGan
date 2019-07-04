@@ -759,6 +759,12 @@
 #import "RXUserweeklyreportdetailResponse.h"
 #import "RXUserweeklyreportdetailRequest.h"
 
+//月报详情
+#import "RXUsermouthreportdetailRequest.h"
+
+//最新一条月报和周报信息
+#import "RXUserlastmouthreportdetailRequest.h"
+#import "RXUserlastweeklyreportdetailRequest.h"
 
 @interface VApiManager : AFHTTPRequestOperationManager
 
@@ -1927,4 +1933,16 @@
 //周报详情
 -(void)RXUserweeklyreportdetailRequest:(RXUserweeklyreportdetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserweeklyreportdetailResponse *response))success
                          failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+//月报详情
+-(void)RXUsermouthreportdetailRequest:(RXUsermouthreportdetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserweeklyreportdetailResponse *response))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
+//查询最新一条周报
+-(void)RXUserlastweeklyreportdetailRequest:(RXUserlastweeklyreportdetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserweeklyreportdetailResponse *response))success
+                              failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+//查询最新一条月报
+-(void)RXUserlastmouthreportdetailRequest:(RXUserlastmouthreportdetailRequest *)request success:(void (^)(AFHTTPRequestOperation *operation,RXUserweeklyreportdetailResponse *response))success
+                                   failure:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failure;
+
 @end

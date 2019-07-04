@@ -71,7 +71,7 @@
 - (void)appConfigWithOptions:(NSDictionary *)launchOptions
 {
     // 默认CN环境
-    [YSEnvironmentConfig configDefaultEnvironmentMode:YSProjectCNEnvironmentMode autoModifyAction:NO];
+    [YSEnvironmentConfig configDefaultEnvironmentMode:YSProjectCNEnvironmentMode autoModifyAction:YES];
     [YSThemeManager settingAppThemeType:YSAppThemeNormalType];
     [YSJPushHelper configWithInChunYuH5:NO];
     [YSJPushHelper registerForRemoteNotifications];

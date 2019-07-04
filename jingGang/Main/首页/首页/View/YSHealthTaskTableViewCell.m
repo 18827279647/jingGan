@@ -38,7 +38,6 @@ static NSString *cellId = @"cellId";
         
         
         CGFloat width = (ScreenWidth - 32)/4;
-        
         UIImageView*imageView=[[UIImageView alloc]init];
         imageView.backgroundColor=[UIColor whiteColor];
         imageView.frame=CGRectMake(10,0,width-20,84/2);
@@ -49,9 +48,11 @@ static NSString *cellId = @"cellId";
         titleLab1.width = 100;
         titleLab1.height = 84/2;
         titleLab1.textAlignment = NSTextAlignmentLeft;
-        titleLab1.font = JGRegularFont(16);
+//        titleLab1.font = JGRegularFont(16);
         titleLab1.textColor = JGColor(51,51,51,1);
         titleLab1.text = @"任务推荐";
+        [titleLab1 setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+        
         [imageView addSubview:titleLab1];
         
         _zeroContioner=[[UIView alloc] initWithFrame:CGRectMake(0,84/2, ScreenWidth, 110)];

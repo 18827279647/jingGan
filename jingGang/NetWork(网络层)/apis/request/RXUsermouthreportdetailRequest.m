@@ -1,14 +1,14 @@
 //
-//  RXUserweeklyreportdetailRequest.m
+//  RXUsermouthreportdetailRequest.m
 //  jingGang
 //
-//  Created by 荣旭 on 2019/7/2.
+//  Created by 荣旭 on 2019/7/3.
 //  Copyright © 2019年 dengxf_dev. All rights reserved.
 //
 
-#import "RXUserweeklyreportdetailRequest.h"
+#import "RXUsermouthreportdetailRequest.h"
 #import "RXUserweeklyreportdetailResponse.h"
-@implementation RXUserweeklyreportdetailRequest
+@implementation RXUsermouthreportdetailRequest
 
 - (NSMutableDictionary *) getHeaders
 {
@@ -31,7 +31,7 @@
 }
 - (NSString *) getApiUrl
 {
-    NSString*url=[NSString stringWithFormat:@"%@/v1/hp/userweeklyreportdetail",self.baseUrl];
+    NSString*url=[NSString stringWithFormat:@"%@/v1/hp/usermouthreportdetail",self.baseUrl];
     return url;
 }
 @end

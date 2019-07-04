@@ -26,12 +26,12 @@
                   moduleName = "jingGang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rongxu/Desktop/%E6%A1%8C%E9%9D%A2%20-%20%E5%B0%8F%E6%97%AD%E7%9A%84MacBook%20Air/%E6%A2%A6%E8%BD%AF%E5%85%AC%E5%8F%B8/jingGang/jingGang/Vender(%E7%AC%AC%E4%B8%89%E6%96%B9)/pods/AFNetworking/AFNetworking/AFHTTPSessionManager.m"
-                  timestampString = "583757576.0384229"
+                  timestampString = "583896272.188393"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "138"
                   endingLineNumber = "138"
-                  offsetFromSymbolStart = "380">
+                  offsetFromSymbolStart = "304">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,27 +41,27 @@
                   moduleName = "jingGang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rongxu/Desktop/%E6%A1%8C%E9%9D%A2%20-%20%E5%B0%8F%E6%97%AD%E7%9A%84MacBook%20Air/%E6%A2%A6%E8%BD%AF%E5%85%AC%E5%8F%B8/jingGang/jingGang/Vender(%E7%AC%AC%E4%B8%89%E6%96%B9)/pods/AFNetworking/AFNetworking/AFHTTPSessionManager.m"
-                  timestampString = "583757576.044394"
+                  timestampString = "583896272.191951"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
                   endingLineNumber = "139"
-                  offsetFromSymbolStart = "104">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.86"
+                  symbolName = "__destroy_helper_block_.69"
                   moduleName = "jingGang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rongxu/Desktop/%E6%A1%8C%E9%9D%A2%20-%20%E5%B0%8F%E6%97%AD%E7%9A%84MacBook%20Air/%E6%A2%A6%E8%BD%AF%E5%85%AC%E5%8F%B8/jingGang/jingGang/Vender(%E7%AC%AC%E4%B8%89%E6%96%B9)/pods/AFNetworking/AFNetworking/AFHTTPSessionManager.m"
-                  timestampString = "583757576.0480779"
+                  timestampString = "583896272.202799"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "138"
                   endingLineNumber = "138"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -79,6 +79,22 @@
             startingLineNumber = "136"
             endingLineNumber = "136"
             landmarkName = "-HEAD:parameters:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "jingGang/Main/&#x9996;&#x9875;/&#x9996;&#x9875;/View/RX/viewController/RXWebViewController.m"
+            timestampString = "583896271.665534"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:completionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

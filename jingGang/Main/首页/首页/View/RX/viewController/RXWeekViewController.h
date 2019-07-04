@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 //类型week、moth
 @property(copy)NSString*type;
 
+@property(copy)NSString*getItemCode;
+
 @end
 
 NS_ASSUME_NONNULL_END

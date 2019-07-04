@@ -1423,7 +1423,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             [rxheadView addSubview:shuominglabel];
             [shuominglabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.mas_equalTo(itemNamelabel.mas_centerY);
-                make.left.equalTo(itemNamelabel.mas_right).offset(20);
+                make.left.equalTo(itemNamelabel.mas_right).offset(25);
             }];
             
             //单位
@@ -1454,7 +1454,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             [rxheadView addSubview:laiyuanlabel];
             [laiyuanlabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.mas_equalTo(typelabel.mas_centerY);
-                make.left.equalTo(itemNamelabel.mas_right).offset(20);
+                make.left.equalTo(itemNamelabel.mas_right).offset(25);
             }];
             laiyuanlabel.hidden=YES;
             timelabel.hidden=YES;
@@ -1595,7 +1595,6 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     goodsDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:goodsDetailVC animated:YES];
 }
-
 -(void)shoppingButton;{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     UITabBarController *tabViewController = (UITabBarController *) app.window.rootViewController;
@@ -1623,19 +1622,21 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 //周报，月报
 -(void)motionzhouButtonFountion:(UIButton*)button;{
-
+    NSInteger index=button.tag;
     NSString*title=@"week";
     //周报
-    if (button.tag==1) {
+    if ([button.titleLabel.text isEqualToString:@"周报"]) {
         title=@"week";
-    }
-    //月报
-    if (button.tag==2) {
+         index=index-1000;
+    }else if ([button.titleLabel.text isEqualToString:@"月报"]) {
+        //月报
         title=@"month";
+        index=index-2000;
     }
     RXWeekViewController*view=[[RXWeekViewController alloc]init];
     view.type=title;
     //    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/weekly.html";
+    view.getItemCode=[NSString stringWithFormat:@"%ld",index];
     view.urlstring=@"http://api.bhesky.com/resources/jkgl/weekly.html";
     [self.navigationController pushViewController:view animated:NO];
 }
@@ -1647,6 +1648,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     RXMoreWebViewController*view=[[RXMoreWebViewController alloc]init];
     view.titlestring=string;
     view.urlstring=@"http://api.bhesky.com/resources/jkgl/resultList.html";
+//    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/resultList.html";
     view.code=[NSString stringWithFormat:@"%d",[Unit JSONInt:dic key:@"itemCode"]];
     NSMutableArray*array=[[NSMutableArray alloc]init];
     for (NSMutableDictionary*dic in [RXTabViewHeightObjject getMorenArray]) {
@@ -1667,7 +1669,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     if ([button.titleLabel.text isEqualToString:@"wm"]) {
         string=@"完美档案报告";
     }
-    if ([button.titleLabel.text isEqualToString:@"jb"]) {
+    if ([button.titleLabel.text isEqualToString:@"jd"]) {
         string=@"综合健康数据健康解读";
     }
     if ([button.titleLabel.text isEqualToString:@"xy"]) {
@@ -1697,7 +1699,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     }
     if (index==2) {
         string=@"健康解读";
-         type=@"jb";
+         type=@"jd";
     }
     if (index==3) {
         string=@"健康西游";
@@ -2108,8 +2110,10 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                         [cell addSubview:view];
                         
                         [cell.motionzhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                        
+                        cell.motionzhouButton.tag=12+1000;
                         [cell.motionyueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
-                    
+                        cell.motionyueButton.tag=12+2000;
                         [cell.motionlishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                         cell.motionlishiButton.tag=indexPath.section-1;
     
@@ -2237,8 +2241,9 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             }
                             cell.shouTrailling.constant=-(1- shuoNumber)*cell.shouBackImage.frame.size.width;
                             cell.shuzhangTrailling.constant= -(1-shunzhangNumber)*cell.shuzhangbackImage.frame.size.width;
-                           
                             [cell.zhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            cell.zhouButton.tag=4+1000;
+                            cell.yueButton.tag=4+2000;
                             [cell.yueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                             
                             [cell.lishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
@@ -2294,8 +2299,10 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             }else{
                                 cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
                             }
-                            
                             [cell.twoyueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            
+                            cell.twozhouButton.tag=16+1000;
+                            cell.twoyueButton.tag=16+2000;
                             [cell.twozhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                             
                             [cell.twolishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
@@ -2361,8 +2368,12 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             }else{
                                 cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
                             }
+
+                            
                             [cell.twoyueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                             [cell.twozhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
+                            cell.twozhouButton.tag=9+1000;
+                            cell.twoyueButton.tag=9+2000;
                             
                             [cell.twolishiButton addTarget:self action:@selector(motionlishiButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                             cell.twolishiButton.tag=indexPath.section-1;
@@ -2425,6 +2436,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             }else{
                                 cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
                             }
+                            
                             [cell.twoyueButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                             [cell.twozhouButton addTarget:self action:@selector(motionzhouButtonFountion:) forControlEvents:UIControlEventTouchUpInside];
                             
@@ -2668,7 +2680,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             cell.titlelabel.text=@"综合健康数据解读";
             [cell.titlelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
             cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
-            cell.travelButton.titleLabel.text=@"jb";
+            cell.travelButton.titleLabel.text=@"jd";
             [cell.travelButton addTarget:self action:@selector(gengDuoButton:) forControlEvents:UIControlEventTouchUpInside];
             UITapGestureRecognizer*taplabel=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(travelLabelTap:)];
             cell.conterGengDuolabel.tag=indexPath.row;;

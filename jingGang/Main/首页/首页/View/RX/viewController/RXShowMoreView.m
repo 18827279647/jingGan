@@ -33,13 +33,32 @@
     self.frame =CGRectMake(0,44,kScreenWidth,kScreenHeight-44);
     self.backgroundColor = [UIColor clearColor];
     for (int i=0;i<array.count;i++) {
+        NSString*string=array[i];
         UIButton*button=[UIButton buttonWithType:UIButtonTypeCustom];
         button.frame=CGRectMake(kScreenWidth-80,kScreenHeight-array.count*70+i*70-84,70,70);
-        [button setImage:[UIImage imageNamed:array[i]] forState:UIControlStateNormal];
+
+        if ([string isEqualToString:@"智能硬件_1"]) {
+            [button setTitle:@"智能硬件" forState:UIControlStateNormal];
+            button.titleLabel.font=JGFont(9);
+        }else if ([string isEqualToString:@"智能硬件_2"]) {
+            [button setTitle:@"手机检测" forState:UIControlStateNormal];
+            button.titleLabel.font=JGFont(9);
+        }else if ([string isEqualToString:@"智能硬件_3"]) {
+            [button setTitle:@"健康一体机" forState:UIControlStateNormal];
+            button.titleLabel.font=JGFont(9);
+        }else if([string isEqualToString:@"智能硬件_4"]){
+            [button setTitle:@"手动录入" forState:UIControlStateNormal];
+            button.titleLabel.font=JGFont(9);
+        }
         button.tag=i;
         [button addTarget:self action:@selector(p_toldong:) forControlEvents:UIControlEventTouchUpInside];
-        [button setImageEdgeInsets:UIEdgeInsetsMake(15, 0, 15, 0)];
-        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [button setImage:[UIImage imageNamed:array[i]] forState:UIControlStateNormal];
+        
+//        [button setImageEdgeInsets:UIEdgeInsetsMake(-button.titleLabel.height-8, 0,0, -button.titleLabel.width)];
+//        [button setTitleEdgeInsets:UIEdgeInsetsMake(0,-button.imageView.width,-button.imageView.height-8, 0)];
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(button.imageView.size.height+5, -button.imageView.size.width,-button.imageView.height-15, 0)];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(-15, 0, 0, -button.titleLabel.width-5)];
+//        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:button];
     }
     self.zh_popupController = [zhPopupController new];

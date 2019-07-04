@@ -1,14 +1,16 @@
 //
-//  RXUserweeklyreportdetailRequest.m
+//  RXUserlastweeklyreportdetailRequest.m
 //  jingGang
 //
-//  Created by 荣旭 on 2019/7/2.
+//  Created by 荣旭 on 2019/7/3.
 //  Copyright © 2019年 dengxf_dev. All rights reserved.
 //
 
-#import "RXUserweeklyreportdetailRequest.h"
+#import "RXUserlastweeklyreportdetailRequest.h"
 #import "RXUserweeklyreportdetailResponse.h"
-@implementation RXUserweeklyreportdetailRequest
+
+@implementation RXUserlastweeklyreportdetailRequest
+
 
 - (NSMutableDictionary *) getHeaders
 {
@@ -18,7 +20,7 @@
 
 - (NSMutableDictionary *) getQueryParameters
 {
-    [self.queryParameters setValue:self.id forKey:@"id"];
+    [self.queryParameters setValue:self.itemCode forKey:@"itemCode"];
     return self.queryParameters;
 }
 - (NSMutableDictionary *) getPathParameters
@@ -31,7 +33,8 @@
 }
 - (NSString *) getApiUrl
 {
-    NSString*url=[NSString stringWithFormat:@"%@/v1/hp/userweeklyreportdetail",self.baseUrl];
+    NSString*url=[NSString stringWithFormat:@"%@/v1/hp/userlastweeklyreportdetail",self.baseUrl];
     return url;
 }
+
 @end

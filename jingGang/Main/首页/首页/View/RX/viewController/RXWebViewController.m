@@ -208,7 +208,6 @@
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler {
     if (prompt) {
         if ([prompt isEqualToString:@"getReportType"]) {
-            NSLog(@"%@",self.type);
             completionHandler([NSString stringWithFormat:@"%@",self.type]);
         }
         if ([prompt isEqualToString:@"requestGetToken"]) {
@@ -250,6 +249,10 @@
             YSHealthAIOController *healthAIOController = [[YSHealthAIOController alloc] init];
             healthAIOController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:healthAIOController animated:YES];
+            completionHandler([NSString stringWithFormat:@""]);
+        }
+        if ([prompt isEqualToString:@"requestBack"]) {
+            [self.navigationController popViewControllerAnimated:NO];
             completionHandler([NSString stringWithFormat:@""]);
         }
     }

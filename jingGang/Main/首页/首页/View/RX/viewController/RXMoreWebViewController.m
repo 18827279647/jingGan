@@ -36,6 +36,10 @@
 
 #import "AppDelegate.h"
 
+#import "RXWebViewController.h"
+
+#import "YSGestureNavigationController.h"
+
 static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 @interface RXMoreWebViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,SPPageMenuDelegate,UITableViewDelegate,UITableViewDataSource,shopinageDelegate>
@@ -62,9 +66,9 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 
 @property(nonatomic,strong)RXShowMoreView*showMoreView;
-
-
 @property(nonatomic,strong)RXParamDetailResponse*paramResponse;
+
+@property(nonatomic,assign)bool finshType;
 
 @end
 
@@ -87,6 +91,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     [self setNavButton];
     [self configContent];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestSDView) name:@"SDViewControllerNotification" object:nil];
+    self.finshType=false;
 }
 
 -(void)setNavButton;{
@@ -106,6 +111,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 }
 //重写返回
 -(void)backLastViewController;{
+
     if ([self.webview canGoBack]) {
         self.navigationItem.rightBarButtonItem=nil;
         [self.view resignFirstResponder];
@@ -114,8 +120,25 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [self.view resignFirstResponder];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }else{
-        [self.view resignFirstResponder];
-        [self.navigationController popViewControllerAnimated:NO];
+        if (self.finshType) {
+            [self back];
+        }else{
+            [self.view resignFirstResponder];
+            [self.navigationController popViewControllerAnimated:NO];
+        }
+    }
+}
+
+-(void)back;{
+    if (self.navigationController!=nil) {
+         [self.navigationController popViewControllerAnimated:NO];
+    }else{
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if (appDelegate.window.rootViewController){
+            UITabBarController *tabBarController = (UITabBarController *)appDelegate.window.rootViewController;
+            UINavigationController *navController = tabBarController.selectedViewController;
+            [navController popViewControllerAnimated:NO];
+        }
     }
 }
 
@@ -124,7 +147,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     if (self.labelName==nil) {
         self.labelName =[[UILabel alloc]init];
     }
-    self.labelName.frame=CGRectMake(80/2-(self.titlestring.length*16)/2,10,self.titlestring.length*16, 20);
+    self.labelName.frame=CGRectMake(80/2-(self.titlestring.length*16)/2,(44-20)/2,self.titlestring.length*16, 20);
     self.labelName.font=JGFont(16);
     self.labelName.text=self.titlestring;
     self.labelName.textColor=[UIColor whiteColor];
@@ -134,7 +157,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     [self.labelName addGestureRecognizer:tapLabel];
     
     if (self.imageImage==nil) {
-        self.imageImage=[[UIImageView alloc]initWithFrame:CGRectMake(self.labelName.frame.origin.x+self.titlestring.length*16+10,3.5+10,13,13)];
+        self.imageImage=[[UIImageView alloc]initWithFrame:CGRectMake(self.labelName.frame.origin.x+self.titlestring.length*16+10,(44-13)/2,13,13)];
     }
     UITapGestureRecognizer*tapImage=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showAllQuestions)];
     self.imageImage.userInteractionEnabled=YES;
@@ -142,7 +165,8 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     
     
     self.imageImage.image=[UIImage imageNamed:@"rx_motion_向下"];
-    UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0,20,80,60)];
+    
+    UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0,0,80,44)];
     imageView.userInteractionEnabled=YES;
     [imageView addSubview:self.labelName];
     [imageView addSubview:self.imageImage];
@@ -202,14 +226,15 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [self.mtableview reloadData];
     }];
 }
-
 - (void)pageMenu:(SPPageMenu *)pageMenu itemSelectedFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
 {
     if (!self.type) {
+        self.finshType=false;
         NSMutableDictionary*dic=self.dataArray[toIndex];
         NSString*stringTitle=[RXTabViewHeightObjject getItemCodeNumber:dic];
         if ([stringTitle isEqualToString:@"运动"]) {
             self.titlestring=stringTitle;
+            self.code=[NSString stringWithFormat:@"12"];
             [self request];
             self.mtableview.hidden=NO;
             self.webview.hidden=YES;
@@ -270,8 +295,6 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     return _scrollView;
 }
 
-
-
 - (NSString *)reSizeImageWithHTML:(NSString *)html {
     return [NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", kScreenWidth-20, html];
 }
@@ -280,9 +303,9 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     self.view.backgroundColor = JGColor(165, 11, 34, 1);
 
     if ([self.titlestring isEqualToString:@"运动"]) {
+        self.code=[NSString stringWithFormat:@"12"];
         [self request];
         [self setTabView];
-        
     }else{
         [self setWebView];
     }
@@ -572,8 +595,19 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [cell.gengButton setTitleColor:JGColor(136, 136, 136, 1) forState:UIControlStateNormal];
         cell.gengButton.titleLabel.font=JGFont(12);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         [cell.gengButton addTarget:self action:@selector(gengButtonFounction) forControlEvents:UIControlEventTouchUpInside];
+        [cell.namelabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+        
+        
+        cell.imageZhou.userInteractionEnabled=YES;
+        cell.imageYue.userInteractionEnabled=YES;
+        
+        UITapGestureRecognizer*tapZhou=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zhouImageButton)];
+        [cell.imageZhou addGestureRecognizer:tapZhou];
+        
+        UITapGestureRecognizer*tapYue=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(yueImageButton)];
+        [cell.imageYue addGestureRecognizer:tapYue];
+    
         return cell;
     }else if(indexPath.row==2){
         YSHealthTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RXShowhealthtaskcellid"];
@@ -679,6 +713,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     view.type=title;
     //    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/weekly.html";
     view.urlstring=@"http://api.bhesky.com/resources/jkgl/weekly.html";
+    view.getItemCode=self.code;
     [self.navigationController pushViewController:view animated:NO];
 }
 
@@ -691,15 +726,42 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     [self.mtableview reloadData];
 }
 
-
-
-
-
-
-
-
-
-
+//原生周报详情
+-(void)zhouImageButton;{
+    RXUserlastweeklyreportdetailRequest*request=[[RXUserlastweeklyreportdetailRequest alloc]init:GetToken];
+    request.itemCode=@"12";
+    VApiManager *manager = [[VApiManager alloc]init];
+    [manager RXUserlastweeklyreportdetailRequest:request success:^(AFHTTPRequestOperation *operation, RXUserweeklyreportdetailResponse *response) {
+        if (response.message.length>0) {
+            RXWebViewController*vc=[[RXWebViewController alloc]init];
+            vc.htmlstring=response.message;
+            vc.titlestring=@"周报详情";
+            [self.navigationController pushViewController:vc animated:NO];
+        }else{
+            [self showStringHUD:@"暂无周报信息" second:0];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         [self showStringHUD:@"网络错误" second:0];
+    }];
+}
+//原生月报详情
+-(void)yueImageButton;{
+    RXUserlastmouthreportdetailRequest*request=[[RXUserlastmouthreportdetailRequest alloc]init:GetToken];
+    request.itemCode=@"12";
+    VApiManager *manager = [[VApiManager alloc]init];
+    [manager RXUserlastmouthreportdetailRequest:request success:^(AFHTTPRequestOperation *operation, RXUserweeklyreportdetailResponse *response) {
+        if (response.message.length>0) {
+            RXWebViewController*vc=[[RXWebViewController alloc]init];
+            vc.htmlstring=response.message;
+            vc.titlestring=@"月报详情";
+            [self.navigationController pushViewController:vc animated:NO];
+        }else{
+            [self showStringHUD:@"暂无月报信息" second:0];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showStringHUD:@"网络错误" second:0];
+    }];
+}
 
 // alert的处理
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
@@ -710,6 +772,16 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             self.iconDic=dic;
             self.iconImageArray=[RXTabViewHeightObjject getRXLISHITablelViewImageArray:dic];
             [self.iconImageArray addObject:@"quxiao_lishi_image"];
+        }
+        if ([message rangeOfString:@"look"].location!=NSNotFound) {
+            NSString*str4=[message substringToIndex:4];
+            RXWebViewController*web=[[RXWebViewController alloc]init];
+            //                web.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/result.html";
+            web.urlstring=@"http://api.bhesky.com/resources/jkgl/result.html";
+            web.titlestring=[NSString stringWithFormat:@"%@检测结果",self.titlestring];
+            web.type=[NSString stringWithFormat:@"%@",self.code];
+            web.historyId=str4;
+            [self.navigationController pushViewController:web animated:NO];
         }
     }
     completionHandler();
@@ -753,6 +825,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     view.type=title;
     //    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/weekly.html";
     view.urlstring=@"http://api.bhesky.com/resources/jkgl/weekly.html";
+    view.getItemCode=self.code;
     [self.navigationController pushViewController:view animated:NO];
 }
 //加载完成
@@ -777,6 +850,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     NSLog(@"加载失败");
     //加载失败同样需要隐藏progressView
     self.progressView.hidden = YES;
+    self.finshType=true;
     [self hideAllHUD];
     [self showStringHUD:@"加载失败" second:0];
 }

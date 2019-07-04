@@ -144,7 +144,6 @@
             break;
     }
 }
-
 + (NSString *)jpushEnvirStr {
     return @"p_";
 }

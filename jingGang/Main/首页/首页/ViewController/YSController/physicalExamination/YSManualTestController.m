@@ -952,7 +952,7 @@
                 
                 float a=[self.secondInputView.textFiled.text floatValue];
                 float b=[self.firstInputView.textFiled.text floatValue];
-                float c=a/b;
+                float c=b/a;
                 self.freeInputView.textFiled.text=[NSString stringWithFormat:@"%.1f",c];
                 [paramJson setObject:self.firstInputView.textFiled.text forKey:@"waistValue"];
                 [paramJson setObject:self.secondInputView.textFiled.text forKey:@"hipValue"];

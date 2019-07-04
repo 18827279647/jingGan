@@ -121,25 +121,47 @@
         return;
     }
     self.hasLiked=false;
-    RXUserweeklyreportdetailRequest*request=[[RXUserweeklyreportdetailRequest alloc]init:GetToken];
-    request.id=str;
-    request.type=type;
-    VApiManager *manager = [[VApiManager alloc]init];
-    [manager RXUserweeklyreportdetailRequest:request success:^(AFHTTPRequestOperation *operation, RXUserweeklyreportdetailResponse *response) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.hasLiked = true; //避免重复请求
-        });
-        RXWebViewController *vc=[[RXWebViewController alloc]init];
-        vc.htmlstring=response.message;
-        NSString*title=@"周报详情";
-        if([type isEqualToString:@"month"]){
-            title=@"月报详情";
-        }
-        vc.titlestring=title;
-        [self.navigationController pushViewController:vc animated:NO];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showStringHUD:@"网络错误" second:0];
-    }];
+    if([type isEqualToString:@"month"]){
+        RXUsermouthreportdetailRequest*request=[[RXUsermouthreportdetailRequest alloc]init:GetToken];
+        request.id=str;
+        request.type=type;
+        VApiManager *manager = [[VApiManager alloc]init];
+        [manager RXUsermouthreportdetailRequest:request success:^(AFHTTPRequestOperation *operation, RXUserweeklyreportdetailResponse *response) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.hasLiked = true; //避免重复请求
+            });
+            RXWebViewController *vc=[[RXWebViewController alloc]init];
+            vc.htmlstring=response.message;
+            NSString*title=@"月报详情";
+            vc.titlestring=title;
+            [self.navigationController pushViewController:vc animated:NO];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self showStringHUD:@"网络错误" second:0];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.hasLiked = true; //避免重复请求
+            });
+        }];
+    }else{
+        RXUserweeklyreportdetailRequest*request=[[RXUserweeklyreportdetailRequest alloc]init:GetToken];
+        request.id=str;
+        request.type=type;
+        VApiManager *manager = [[VApiManager alloc]init];
+        [manager RXUserweeklyreportdetailRequest:request success:^(AFHTTPRequestOperation *operation, RXUserweeklyreportdetailResponse *response) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.hasLiked = true; //避免重复请求
+            });
+            RXWebViewController *vc=[[RXWebViewController alloc]init];
+            vc.htmlstring=response.message;
+            NSString*title=@"周报详情";
+            vc.titlestring=title;
+            [self.navigationController pushViewController:vc animated:NO];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self showStringHUD:@"网络错误" second:0];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.hasLiked = true; //避免重复请求
+            });
+        }];
+    }
 }
 
 //开始加载
@@ -169,6 +191,9 @@
         }
         if ([prompt isEqualToString:@"requestGetToken"]) {
             completionHandler(GetToken);
+        }
+        if ([prompt isEqualToString:@"getItemCode"]) {
+            completionHandler([NSString stringWithFormat:@"%@",self.getItemCode]);
         }
     }
 }

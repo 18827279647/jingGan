@@ -92,6 +92,10 @@
 @property (nonatomic, strong) NSString * YouhuijuanString;
 
 
+//定义一个优惠券ID，救急
+@property(nonatomic)long myRxYouHuiID;
+
+
 @end
 
 
@@ -109,6 +113,7 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
     [self setUIContent];
     self.selectYgbPayType = YSUnknownPayType;
     self.transManager = [[APIManager alloc] initWithDelegate:self];
+    self.myRxYouHuiID=0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -321,7 +326,6 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
             orderListAll = [response keyValues];
             orderListDic = ((NSDictionary *)response.orderList);
         }
-        
         NSArray *orderList = ((NSArray *)orderListDic[@"orderList"]);
         self.arrayOrderList = orderList;
         if (orderList == nil) {
@@ -354,8 +358,7 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
         
         
         self.arrayHasYunGouBi = [NSMutableArray array];
-        
-        
+    
         if(_jingxuan == 1){
             for (NSDictionary *isYgbDict in orderList) {
                 [self.arrayHasYunGouBi addObject:(NSNumber *)isYgbDict[@"isYgb"]];
@@ -527,10 +530,8 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
             }else{
                 VC.totalPrice = [((NSDictionary *)response.order)[@"totalPrice"] floatValue];
             }
-            VC.totalPrice = [((NSDictionary *)response.order)[@"totalPrice"] floatValue];
+//            VC.totalPrice = [((NSDictionary *)response.order)[@"totalPrice"] floatValue];
             [self.navigationController pushViewController:VC animated:YES];
-            
-            
         }
     } else if (manager == self.transManager) {
         ShopTransportGetResponse *response = manager.successResponse;
@@ -612,8 +613,13 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
         [transportIds setObject:self.transArray[i] forKey:shopID];
         [msgsDic setObject:self.feedArray[i] forKey:shopID];
         ShopManager *shop = self.shopArray[i];
-        if (shop.youhuiId != 0) {
-            [youhuiIds setObject:@(shop.youhuiId) forKey:shopID];
+        
+        if (self.myRxYouHuiID!=0) {
+            [youhuiIds setObject:@(self.myRxYouHuiID) forKey:shopID];
+        }else{
+            if (shop.youhuiId != 0) {
+                [youhuiIds setObject:@(shop.youhuiId) forKey:shopID];
+            }
         }
         for (int i = 0; i < shop.goodsArray.count; i++) {
             GoodsManager *goodsInfo = shop.goodsArray[i];
@@ -749,18 +755,19 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
     self.YouhuijuanString = [NSString stringWithFormat:@"%f",youhuiPrice];
     
     NSLog(@"选中 的下标是%ld",indexPath.row);
-    
     shop.youhuiId = youhuiId.longValue;
     shop.youhuiVaule = youhuiPrice;
-    
+    self.myRxYouHuiID=youhuiId.longValue;
+
     if (self.labelYgbZoneCashInfo.hidden == NO) {
+        //rxEdit
         if (shop.youhuiVaule == 0 || ([shopCell.needMoney floatValue] - shop.youhuiVaule) < 0) {
             self.ygbZoneNeedMoneyAll = [shopCell.needMoney floatValue];
             shop.youhuiId = 0;
-            shopCell.goodsTotalPrice.text = [NSString stringWithFormat:@"共%lu件商品    合计: ¥%.2f",shop.totalCount,[shop.totalPrice floatValue] - self.HongbaoString.floatValue - self.YouhuijuanString.floatValue];
+//            shopCell.goodsTotalPrice.text = [NSString stringWithFormat:@"共%lu件商品    合计: ¥%.2f",shop.totalCount,[shop.totalPrice floatValue] - self.HongbaoString.floatValue - self.YouhuijuanString.floatValue];
+            shopCell.goodsTotalPrice.text = [NSString stringWithFormat:@"共%lu件商品    合计: ¥%.2f",shop.totalCount,[shop.totalPrice floatValue]];
         }else {
-            
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"共%lu件商品    合计: ¥%.2f",shop.totalCount,[shop.totalPrice floatValue] - self.HongbaoString.floatValue - self.YouhuijuanString.floatValue]];
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"共%lu件商品    合计: ¥%.2f",shop.totalCount,[shop.totalPrice floatValue]]];
             UIColor *priceColor = JGColor(96, 187, 177, 1);
             NSDictionary *attributeDict = [ NSDictionary dictionaryWithObjectsAndKeys:
                                            [UIFont systemFontOfSize:17.0],NSFontAttributeName,
@@ -773,8 +780,6 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
             
             
             shopCell.goodsTotalPrice.attributedText = attributedString.copy;
-            
-            self.ygbZoneNeedMoneyAll =  [shopCell.needMoney floatValue] - shop.youhuiVaule - shop.hongbaoVaule;
         }
         
         [self setYgbZonePriceInfoWithWithSelectYgbPayType];
@@ -832,8 +837,12 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
             
             
             shopCell.goodsTotalPrice.attributedText = attributedString.copy;
-            
-            self.ygbZoneNeedMoneyAll =  [shopCell.needMoney floatValue] - shop.youhuiVaule - shop.hongbaoVaule;
+            //rxEdit
+            if (shopCell.needMoney!=nil) {
+                self.ygbZoneNeedMoneyAll =  [shopCell.needMoney floatValue] - shop.youhuiVaule - shop.hongbaoVaule;
+            }else{
+                self.ygbZoneNeedMoneyAll =  [shopCell.totalPrice floatValue] - shop.youhuiVaule - shop.hongbaoVaule;
+            }
         }
         [self setYgbZonePriceInfoWithWithSelectYgbPayType];
     }else {
@@ -896,14 +905,22 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
             GoodsPayTableViewCell *shopCell = (GoodsPayTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             shopCell.useCouponLab.text = choiceString;
             if (self.labelYgbZoneCashInfo.hidden == NO) {
-                if (([shopCell.needMoney floatValue] - shop.youhuiVaule - shop.hongbaoVaule) < 0) {
-                    
-                    [self hideHubWithOnlyText:@"不符合优惠券使用规则"];
-                    shopCell.useCouponLab.text = @"不使用优惠券";
+                //rxEdit
+                if (shopCell.needMoney!=nil) {
+                    if (([shopCell.needMoney floatValue] - shop.youhuiVaule - shop.hongbaoVaule) < 0) {
+    
+                        [self hideHubWithOnlyText:@"不符合优惠券使用规则"];
+                        shopCell.useCouponLab.text = @"不使用优惠券";
+                    }
+                }else{
+                    if (([shopCell.totalPrice floatValue] - shop.youhuiVaule - shop.hongbaoVaule) < 0) {
+                        
+                        [self hideHubWithOnlyText:@"不符合优惠券使用规则"];
+                        shopCell.useCouponLab.text = @"不使用优惠券";
+                    }
                 }
             }
-           
-            
+        
         } else {
             UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"提示"
                                                              message:@"您的消费额度不足,无法使用此优惠劵"
@@ -971,10 +988,19 @@ static NSString *cellIdentifier = @"GoodsPayTableViewCell";
             shopCell.usehongbaoLab.text = choiceString;
             
             if (self.labelYgbZoneCashInfo.hidden == NO) {
-                if (([shopCell.needMoney floatValue] - shop.hongbaoVaule - shop.youhuiVaule) < 0) {
-                    
-                    [self hideHubWithOnlyText:@"不符合红包使用规则"];
-                    shopCell.usehongbaoLab.text = @"不使用红包";
+                //rxEdit
+                if (shopCell.needMoney!=nil) {
+                    if (([shopCell.needMoney floatValue] - shop.hongbaoVaule - shop.youhuiVaule) < 0) {
+                        
+                        [self hideHubWithOnlyText:@"不符合红包使用规则"];
+                        shopCell.usehongbaoLab.text = @"不使用红包";
+                    }
+                }else{
+                    if (([shopCell.totalPrice floatValue] - shop.hongbaoVaule - shop.youhuiVaule) < 0) {
+                        
+                        [self hideHubWithOnlyText:@"不符合红包使用规则"];
+                        shopCell.usehongbaoLab.text = @"不使用红包";
+                    }
                 }
             }
             

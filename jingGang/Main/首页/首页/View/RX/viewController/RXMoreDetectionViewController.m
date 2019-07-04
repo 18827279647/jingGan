@@ -88,7 +88,7 @@
     VApiManager *manager = [[VApiManager alloc]init];
     [manager RXAllParamDatasRequest:request
                       success:^(AFHTTPRequestOperation *operation, RXAllParamDatasResponse *response) {
-          dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0/*延迟执行时间*/ * NSEC_PER_SEC));
+          dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
           dispatch_after(delayTime, dispatch_get_main_queue(), ^{
               [self hideAllHUD];
               [self.mtableview.mj_header endRefreshing];
@@ -105,7 +105,7 @@
           }
           [self.mtableview reloadData];
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0/*延迟执行时间*/ * NSEC_PER_SEC));
+          dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
           dispatch_after(delayTime, dispatch_get_main_queue(), ^{
               [self hideAllHUD];
               [self.mtableview.mj_header endRefreshing];
@@ -147,19 +147,56 @@
     view.titleArray=array;
     [self.navigationController pushViewController:view animated:NO];
 }
+
+-(void)leftBackFounctionButton;{
+    RXUserH5UrlRequest*request=[[RXUserH5UrlRequest alloc]init:GetToken];
+    request.code=@"4";
+    VApiManager *manager = [[VApiManager alloc]init];
+    [self showHUD];
+    [manager RXRXUserH5UrlRequest:request
+                          success:^(AFHTTPRequestOperation *operation, RXUserH5UrlResponse *response) {
+          [self hideAllHUD];
+          if (response.isMember==0) {
+              [self showStringHUD:@"会员到期" second:0];
+              //              dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+              //              dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+              //                  RXbutlerServiceViewController*vc=[[RXbutlerServiceViewController alloc]init];
+              //                  [self.navigationController pushViewController:vc animated:NO];
+              //              });
+          }else{
+              NSString*string=@"我的健康报告";
+              RXWmViewController*view=[[RXWmViewController alloc]init];
+              view.titlestring=string;
+              view.htmlstring=response.messageH5;
+              [self.navigationController pushViewController:view animated:NO];
+          }
+      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          [self hideAllHUD];
+          [self showStringHUD:@"网络错误" second:0];
+      }];
+}
+
 -(void)leftBackButton;{
-    NSString*string=@"我的健康报告";
-    RXLISHIViewController*view=[[RXLISHIViewController alloc]init];
-    view.titlestring=string;
-    view.urlstring=self.url;
-    [self.navigationController pushViewController:view animated:NO];
+    if (self.url.length>0) {
+        NSString*string=@"我的健康报告";
+        RXLISHIViewController*view=[[RXLISHIViewController alloc]init];
+        view.titlestring=string;
+        view.urlstring=self.url;
+        [self.navigationController pushViewController:view animated:NO];
+    }
 }
 -(void)setUI;{
     
     [self setNavUI];
+    CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+    int myhight=statusRect.size.height;
     if (!self.moreView) {
         self.moreView=[[[NSBundle mainBundle]loadNibNamed:@"RxMoreDetectionShowView" owner:self options:nil]firstObject];
-        self.moreView.frame=CGRectMake(0,0,kScreenWidth,160);
+        if (kScreenHeight>800) {
+            self.moreView.frame=CGRectMake(0,0,kScreenWidth,160+myhight);
+        }else{
+            self.moreView.frame=CGRectMake(0,0,kScreenWidth,160);
+        }
         self.moreView.backImage.backgroundColor=JGColor(101, 187, 177, 1);
         
         self.moreView.tiButtonImage.layer.masksToBounds=YES;
@@ -167,6 +204,10 @@
         self.moreView.tiButtonImage.layer.borderWidth=1;
         self.moreView.tiButtonImage.layer.borderColor=[UIColor whiteColor].CGColor;
         self.moreView.tiButtonImage.backgroundColor=JGColor(101, 187, 177, 1);
+        
+        UITapGestureRecognizer*headTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(leftBackFounctionButton)];
+        self.moreView.userInteractionEnabled=YES;
+        [self.moreView addGestureRecognizer:headTap];
         
         UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(leftBackButton)];
         self.moreView.tiButtonImage.userInteractionEnabled=YES;
@@ -178,13 +219,7 @@
     [self.dataArray addObject:@{@"itemName":@"血压",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@4}];
     [self.dataArray addObject:@{@"itemName":@"血糖",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@9}];
     [self.dataArray addObject:@{@"itemName":@"体重",@"mySelectType":@"false",@"myZhankaiType":@"false",@"itemCode":@16}];
-    CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
-    int myhight=statusRect.size.height;
-    if (kScreenHeight>800) {
-         _mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0,self.moreView.frame.size.height-kNarbarH+myhight,kScreenWidth,kScreenHeight-160-myhight) style:0];
-    }else{
-         _mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0,self.moreView.frame.size.height-kNarbarH,kScreenWidth,kScreenHeight-160) style:0];
-    }
+    _mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0,self.moreView.frame.size.height-kNarbarH,kScreenWidth,kScreenHeight-self.moreView.frame.size.height) style:0];
     _mtableview.backgroundColor =JGColor(250, 250, 250, 1);
     _mtableview.delegate = self;
     _mtableview.dataSource = self;
@@ -433,7 +468,7 @@
         [rxheadView addSubview:shuominglabel];
         [shuominglabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(itemNamelabel.mas_centerY);
-            make.left.equalTo(itemNamelabel.mas_right).offset(20);
+            make.left.equalTo(itemNamelabel.mas_right).offset(25);
         }];
         //单位
         UILabel*danweilabel=[[UILabel alloc]init];
@@ -463,7 +498,7 @@
         [rxheadView addSubview:laiyuanlabel];
         [laiyuanlabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(typelabel.mas_centerY);
-            make.left.equalTo(itemNamelabel.mas_right).offset(20);
+            make.left.equalTo(itemNamelabel.mas_right).offset(25);
         }];
         laiyuanlabel.hidden=YES;
         timelabel.hidden=YES;
