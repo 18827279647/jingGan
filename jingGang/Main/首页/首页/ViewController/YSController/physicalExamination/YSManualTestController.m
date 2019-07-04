@@ -1018,19 +1018,17 @@
             
             if (highRet&&secondhighRet&&freehighRet&&eighthighRet&&sevenhighRet&&sixhighRet&&fivehighRet&&fourhighRet) {
                 
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.firstInputView.textFiled.text floatValue]] forKey:@"inValue"];
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.firstInputView.textFiled.text floatValue]] forKey:@"bmaValue"];
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.secondInputView.textFiled.text floatValue]] forKey:@"pbmValue"];
+                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.firstInputView.textFiled.text floatValue]] forKey:@"bfaValue"];
+                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.secondInputView.textFiled.text floatValue]] forKey:@"bmrValue"];
                 
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.freeInputView.textFiled.text floatValue]] forKey:@"bmrValue"];
+                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.freeInputView.textFiled.text floatValue]] forKey:@"sfValue"];
  
+                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.fourInputView.textFiled.text floatValue]] forKey:@"vatValue"];
+                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.fiveInputView.textFiled.text floatValue]] forKey:@"mpValue"];
+                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.sixInputView.textFiled.text floatValue]] forKey:@"bmaValue"];
                 
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.fourInputView.textFiled.text floatValue]] forKey:@"bfaValue"];
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.fiveInputView.textFiled.text floatValue]] forKey:@"sfValue"];
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.sixInputView.textFiled.text floatValue]] forKey:@"vatValue"];
-                
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.sevenInputView.textFiled.text floatValue]] forKey:@"sfValue"];
-                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.eightInputView.textFiled.text floatValue]] forKey:@"pbwValue"];
+                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.sevenInputView.textFiled.text floatValue]] forKey:@"pbwValue"];
+                [paramJson setObject:[NSString stringWithFormat:@"%.1f",[self.eightInputView.textFiled.text floatValue]] forKey:@"pbmValue"];
             
                 //上传接口
                 [self getRuest:paramJson];

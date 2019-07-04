@@ -40,6 +40,10 @@
 
 #import "YSGestureNavigationController.h"
 
+
+#import "RXMainViewController.h"
+
+
 static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 
 @interface RXMoreWebViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,SPPageMenuDelegate,UITableViewDelegate,UITableViewDataSource,shopinageDelegate>
@@ -111,7 +115,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 }
 //重写返回
 -(void)backLastViewController;{
-
+    
     if ([self.webview canGoBack]) {
         self.navigationItem.rightBarButtonItem=nil;
         [self.view resignFirstResponder];
@@ -120,32 +124,42 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [self.view resignFirstResponder];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }else{
-//        if (self.finshType) {
-//            [self back];
-//        }else{
-//            [self.view resignFirstResponder];
-//            [self.navigationController popViewControllerAnimated:NO];
-//        }
-         [self back];
+        [self back];
     }
 }
 
 -(void)back;{
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    UITabBarController *tabBarController = (UITabBarController *)appDelegate.window.rootViewController;
-    UINavigationController *navController = tabBarController.selectedViewController;
-    [navController popViewControllerAnimated:NO];
+    [_webview removeAllSubviews];
+    [self.mtableview removeAllSubviews];
+    [self.pageMenu removeAllSubviews];
+    [self.scrollView removeAllSubviews];
+    self.mtableview.delegate=nil;
+    _webview.UIDelegate = nil;
+    _webview.navigationDelegate = nil;
+    _webview.scrollView.delegate = nil;
+    _webview.scrollView.scrollEnabled =nil;
+    _pageMenu.delegate =nil;
+    _scrollView.delegate=nil;
+    
+    [self.navigationController popViewControllerAnimated:NO];
+
+
+}
+- (void)viewDidUnload;{
+    [super viewDidUnload];
 }
 -(void)setNavUI;{
-
+    
     if (self.labelName==nil) {
         self.labelName =[[UILabel alloc]init];
     }
+    
+    
     self.labelName.frame=CGRectMake(80/2-(self.titlestring.length*16)/2,(44-20)/2,self.titlestring.length*16, 20);
     self.labelName.font=JGFont(16);
     self.labelName.text=self.titlestring;
     self.labelName.textColor=[UIColor whiteColor];
-
+    
     UITapGestureRecognizer*tapLabel=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showAllQuestions)];
     self.labelName.userInteractionEnabled=YES;
     [self.labelName addGestureRecognizer:tapLabel];
@@ -167,7 +181,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     
     UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showAllQuestions)];
     [imageView addGestureRecognizer:tap];
-
+    
     self.navigationItem.titleView =imageView;
 }
 
@@ -216,7 +230,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [self.mtableview reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self hideAllHUD];
-      //  [self showStringHUD:@"网络错误" second:0];
+        //  [self showStringHUD:@"网络错误" second:0];
         [self.mtableview reloadData];
     }];
 }
@@ -232,16 +246,32 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             [self request];
             self.mtableview.hidden=NO;
             self.webview.hidden=YES;
-            [self.mtableview reloadData];
+            if (self.mtableview==nil) {
+                [self setTabView];
+                [self.mtableview reloadData];
+            }else{
+                [self.mtableview reloadData];
+            }
         }else{
             self.mtableview.hidden=YES;
             self.webview.hidden=NO;
             self.titlestring=stringTitle;
             self.code=[Unit JSONString:dic key:@"itemCode"];
-            [_webview loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlstring]]];
+            self.urlstring=@"http://api.bhesky.com/resources/jkgl/resultList.html";
+            if (_webview==nil) {
+                [self setWebView];
+            }else{
+                if(_urlstring.length){
+                    [_webview loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlstring]]];
+                }else{
+                    _webview.scrollView.delegate = self;
+                    _webview.scrollView.scrollEnabled = YES;
+                    [_webview loadHTMLString:[self reSizeImageWithHTML:_htmlstring] baseURL:[NSURL URLWithString:@"http://s.amazeui.org/"]];
+                }
+            }
         }
         [self setNavUI];
-        [self configContent];
+        //[self configContent];
         self.pageMenu.hidden=YES;
         self.scrollView.hidden=YES;
         self.addbutton.hidden=NO;
@@ -295,7 +325,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 - (void)configContent {
     
     self.view.backgroundColor = JGColor(165, 11, 34, 1);
-
+    
     if ([self.titlestring isEqualToString:@"运动"]) {
         self.code=[NSString stringWithFormat:@"12"];
         [self request];
@@ -304,19 +334,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [self setWebView];
     }
     
-    [self.view addSubview:self.pageMenu];
-    [self.view addSubview:self.scrollView];
-    self.pageMenu.hidden=YES;
-    self.scrollView.hidden=YES;
-    
-    if (self.addbutton==nil) {
-        self.addbutton=[UIButton buttonWithType:UIButtonTypeCustom];
-    }
-    self.addbutton.frame=CGRectMake(ScreenWidth-80,ScreenHeight-90-kNarbarH,70,70);
-    [self.addbutton  setBackgroundImage:[UIImage imageNamed:@"rx_add_xuanFu_image"] forState:UIControlStateSelected];
-    [self.addbutton  setBackgroundImage:[UIImage imageNamed:@"rx_add_xuanFu_image"] forState:UIControlStateNormal];
-    [self.addbutton  addTarget:self action:@selector(addButtonFounction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.addbutton];
+    [self getPageView];
 }
 
 -(void)addButtonFounction:(UIButton*)button;{
@@ -464,6 +482,8 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.
     self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
     [self.view addSubview:self.progressView];
+    
+    [self getPageView];
 }
 
 -(void)setTabView;{
@@ -494,7 +514,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     if (_mtableview==nil) {
         _mtableview=[[UITableView alloc]initWithFrame:CGRectMake(0,0,kScreenWidth,kScreenHeight-kNarbarH) style:0];
     }
-     [_mtableview registerClass:[YSHotInfoTableViewCell class] forCellReuseIdentifier:heathInfoCellID];
+    [_mtableview registerClass:[YSHotInfoTableViewCell class] forCellReuseIdentifier:heathInfoCellID];
     _mtableview.backgroundColor =JGColor(250, 250, 250, 1);
     _mtableview.delegate = self;
     _mtableview.dataSource = self;
@@ -504,8 +524,6 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     _mtableview.estimatedSectionFooterHeight = 0;
     _mtableview.backgroundColor = JGColor(250, 250, 250, 1);
     _mtableview.separatorColor =JGColor(250, 250, 250, 1);
-    _mtableview.delegate = self;
-    _mtableview.dataSource = self;
     _mtableview.tableFooterView = [UIView new];
     if (@available(iOS 11.0, *)) {
         _mtableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -514,7 +532,27 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     [self.view addSubview:_mtableview];
+    
+    [self getPageView];
 }
+
+
+-(void)getPageView;{
+    [self.view addSubview:self.pageMenu];
+    [self.view addSubview:self.scrollView];
+    self.pageMenu.hidden=YES;
+    self.scrollView.hidden=YES;
+    
+    if (self.addbutton==nil) {
+        self.addbutton=[UIButton buttonWithType:UIButtonTypeCustom];
+    }
+    self.addbutton.frame=CGRectMake(ScreenWidth-80,ScreenHeight-90-kNarbarH,70,70);
+    [self.addbutton  setBackgroundImage:[UIImage imageNamed:@"rx_add_xuanFu_image"] forState:UIControlStateSelected];
+    [self.addbutton  setBackgroundImage:[UIImage imageNamed:@"rx_add_xuanFu_image"] forState:UIControlStateNormal];
+    [self.addbutton  addTarget:self action:@selector(addButtonFounction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.addbutton];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -528,18 +566,18 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         return 160;
     }else if (indexPath.row==2) {
         
-//        if (self.taskList.result) {
-//            if (self.taskList.successCode) {
-//                if (self.taskList.healthTaskList.count) {
-//                    return 140.0;
-//                }else {
-//                    return kHealthyTaskCellHeight(140);
-//                }
-//            }else {
-//                return kHealthyTaskCellHeight(140);
-//            }
-//        }else{
-//        }
+        //        if (self.taskList.result) {
+        //            if (self.taskList.successCode) {
+        //                if (self.taskList.healthTaskList.count) {
+        //                    return 140.0;
+        //                }else {
+        //                    return kHealthyTaskCellHeight(140);
+        //                }
+        //            }else {
+        //                return kHealthyTaskCellHeight(140);
+        //            }
+        //        }else{
+        //        }
         return kHealthyTaskCellHeight(140)+84/2;
     }else if (indexPath.row==3) {
         if (self.paramResponse.invitationList.count>0) {
@@ -550,7 +588,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     }else if (indexPath.row==4) {
         //商品推荐
         if (self.paramResponse.keywordGoodsList.count>0) {
-                return 250;
+            return 250;
         }else{
             return 0;
         }
@@ -562,7 +600,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     if (indexPath.row==0) {
         RXMoreTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:@"RXMoreTableViewCell"];
         if(!cell){
-           cell=[[NSBundle mainBundle]loadNibNamed:@"RXMoreTableViewCell" owner:self options:nil][0];
+            cell=[[NSBundle mainBundle]loadNibNamed:@"RXMoreTableViewCell" owner:self options:nil][0];
         }
         cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -584,7 +622,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         cell.relianglabel.text=[NSString stringWithFormat:@"%.1f",self.myKaluli];
         cell.gonglilabel.text=[NSString stringWithFormat:@"%.1f",self.myGongli];
         cell.bushulabel.text=[NSString stringWithFormat:@"%d",self.myStep];
-    
+        
         //默认视图
         CircleLoader *view=[[CircleLoader alloc]initWithFrame:CGRectMake(ScreenWidth/2-150/2,cell.iconImage.frame.origin.y,cell.iconImage.frame.size.width,cell.iconImage.frame.size.height)];
         
@@ -599,7 +637,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             view.progressValue=0;
         }
         [cell.sheButton addTarget:self action:@selector(sheButtonFouction) forControlEvents:UIControlEventTouchUpInside];
-
+        
         //设置轨道宽度
         view.lineWidth=8.0;
         //设置轨道颜色
@@ -633,7 +671,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         
         UITapGestureRecognizer*tapYue=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(yueImageButton)];
         [cell.imageYue addGestureRecognizer:tapYue];
-    
+        
         return cell;
     }else if(indexPath.row==2){
         YSHealthTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RXShowhealthtaskcellid"];
@@ -641,12 +679,12 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             cell = [[YSHealthTaskTableViewCell alloc] initWithStyle:UITableViewCellSelectionStyleNone reuseIdentifier:@"RXShowhealthtaskcellid"];
             //设置你的cell
         }
-//        cell.models = [HealthyManageData taskDatasWithTaskList:self.taskList];
-//        cell.delegate = self;
-//        cell.addTask = ^{
-//            YSHealthyManageWebController *testWebController = [[YSHealthyManageWebController alloc] initWithWebType:YSHealthyManageAddTaskType uid:self.userCustome.uid];
-//            [self.navigationController pushViewController:testWebController animated:YES];
-//        };
+        //        cell.models = [HealthyManageData taskDatasWithTaskList:self.taskList];
+        //        cell.delegate = self;
+        //        cell.addTask = ^{
+        //            YSHealthyManageWebController *testWebController = [[YSHealthyManageWebController alloc] initWithWebType:YSHealthyManageAddTaskType uid:self.userCustome.uid];
+        //            [self.navigationController pushViewController:testWebController animated:YES];
+        //        };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else if(indexPath.row==3){
@@ -767,7 +805,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             [self showStringHUD:@"暂无周报信息" second:0];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self showStringHUD:@"网络错误" second:0];
+        [self showStringHUD:@"网络错误" second:0];
     }];
 }
 //原生月报详情
@@ -919,13 +957,14 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
+

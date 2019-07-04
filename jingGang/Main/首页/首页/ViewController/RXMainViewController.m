@@ -2195,6 +2195,8 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                             cell.selectionStyle = UITableViewCellSelectionStyleNone;
                         
+                        
+                        
                             NSMutableDictionary*dic=self.dataArray[indexPath.section-1];
                             cell.titlelabel.text=[Unit JSONString:dic key:@"testgrade"];
                             cell.titlelabel.textColor=JGColor(51, 51, 51, 1);
@@ -2265,11 +2267,12 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (cell==nil) {
                                 cell=[[RXBloodPressureTableViewCell alloc]initWithStyle:0 reuseIdentifier:@"RXBloodPressureTableViewID2"];
                             }
+                            cell.twoTitlelabel.text=[Unit JSONString:dic key:@"testgrade"];
                             cell.twoxuelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
                             cell.selectionStyle = UITableViewCellSelectionStyleNone;
                             cell.twoNamelabel.text=[Unit JSONString:dic key:@"itemName"];
-                            cell.twojianglabel.text=[Unit JSONString:dic key:@"suggest"];
+                            cell.twojianglabel.text=[Unit JSONString:dic key:@"testgrade"];
                             cell.twojiangTitle.text=[Unit JSONString:dic key:@"title"];
                             cell.twojianglabel.text=[Unit JSONString:dic key:@"suggest"];
                             cell.twojianglabel.textColor=JGColor(102, 102, 102, 1);
@@ -2332,6 +2335,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (cell==nil) {
                                 cell=[[RXBloodPressureTableViewCell alloc]initWithStyle:0 reuseIdentifier:@"RXBloodPressureTableViewID2"];
                             }
+                            cell.twoTitlelabel.text=[Unit JSONString:dic key:@"testgrade"];
                             cell.twoxuelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.twoNamelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.twoxuelabel.text=[Unit JSONString:dic key:@"itemName"];
@@ -2401,6 +2405,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
                             if (cell==nil) {
                                 cell=[[RXBloodPressureTableViewCell alloc]initWithStyle:0 reuseIdentifier:@"RXBloodPressureTableViewID2"];
                             }
+                            cell.twoTitlelabel.text=[Unit JSONString:dic key:@"testgrade"];
                             cell.twoNamelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.twoxuelabel.text=[Unit JSONString:dic key:@"itemName"];
                             cell.twojiangTitle.text=[Unit JSONString:dic key:@"title"];
