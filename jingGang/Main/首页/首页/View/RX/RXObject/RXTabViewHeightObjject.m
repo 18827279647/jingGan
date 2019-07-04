@@ -165,13 +165,13 @@
     [array addObject:@{@"itemCode":@"4",@"itemName":@"血压"}];
     [array addObject:@{@"itemCode":@"9",@"itemName":@"血糖"}];
     [array addObject:@{@"itemCode":@"16",@"itemName":@"体重"}];
-    [array addObject:@{@"itemCode":@"1",@"itemName":@"体脂率"}];
+    [array addObject:@{@"itemCode":@"1",@"itemName":@"体脂"}];
     [array addObject:@{@"itemCode":@"2",@"itemName":@"血脂"}];
-    [array addObject:@{@"itemCode":@"14",@"itemName":@"血尿酸"}];
+    [array addObject:@{@"itemCode":@"14",@"itemName":@"尿酸"}];
     [array addObject:@{@"itemCode":@"3",@"itemName":@"血氧"}];
     [array addObject:@{@"itemCode":@"10",@"itemName":@"心率"}];
     [array addObject:@{@"itemCode":@"13",@"itemName":@"体温"}];
-    [array addObject:@{@"itemCode":@"0",@"itemName":@"呼吸率"}];
+    [array addObject:@{@"itemCode":@"0",@"itemName":@"呼吸"}];
     [array addObject:@{@"itemCode":@"17",@"itemName":@"腰臀比"}];    
     return array;
 }

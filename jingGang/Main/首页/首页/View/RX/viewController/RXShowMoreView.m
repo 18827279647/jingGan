@@ -44,7 +44,7 @@
             [button setTitle:@"手机检测" forState:UIControlStateNormal];
             button.titleLabel.font=JGFont(9);
         }else if ([string isEqualToString:@"智能硬件_3"]) {
-            [button setTitle:@"健康一体机" forState:UIControlStateNormal];
+            [button setTitle:@"一体机" forState:UIControlStateNormal];
             button.titleLabel.font=JGFont(9);
         }else if([string isEqualToString:@"智能硬件_4"]){
             [button setTitle:@"手动录入" forState:UIControlStateNormal];
@@ -56,8 +56,8 @@
         
 //        [button setImageEdgeInsets:UIEdgeInsetsMake(-button.titleLabel.height-8, 0,0, -button.titleLabel.width)];
 //        [button setTitleEdgeInsets:UIEdgeInsetsMake(0,-button.imageView.width,-button.imageView.height-8, 0)];
-        [button setTitleEdgeInsets:UIEdgeInsetsMake(button.imageView.size.height+5, -button.imageView.size.width,-button.imageView.height-15, 0)];
-        [button setImageEdgeInsets:UIEdgeInsetsMake(-15, 0, 0, -button.titleLabel.width-5)];
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(button.imageView.size.height, -button.imageView.size.width, 0, 0)];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(-button.titleLabel.size.height-5, 0, 0, -button.titleLabel.size.width)];
 //        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:button];
     }

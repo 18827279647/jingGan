@@ -120,28 +120,22 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [self.view resignFirstResponder];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }else{
-        if (self.finshType) {
-            [self back];
-        }else{
-            [self.view resignFirstResponder];
-            [self.navigationController popViewControllerAnimated:NO];
-        }
+//        if (self.finshType) {
+//            [self back];
+//        }else{
+//            [self.view resignFirstResponder];
+//            [self.navigationController popViewControllerAnimated:NO];
+//        }
+         [self back];
     }
 }
 
 -(void)back;{
-    if (self.navigationController!=nil) {
-         [self.navigationController popViewControllerAnimated:NO];
-    }else{
-        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        if (appDelegate.window.rootViewController){
-            UITabBarController *tabBarController = (UITabBarController *)appDelegate.window.rootViewController;
-            UINavigationController *navController = tabBarController.selectedViewController;
-            [navController popViewControllerAnimated:NO];
-        }
-    }
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UITabBarController *tabBarController = (UITabBarController *)appDelegate.window.rootViewController;
+    UINavigationController *navController = tabBarController.selectedViewController;
+    [navController popViewControllerAnimated:NO];
 }
-
 -(void)setNavUI;{
 
     if (self.labelName==nil) {
@@ -333,24 +327,26 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
         [self.iconImageArray addObject:@"智能硬件_2"];
         [self.iconImageArray addObject:@"quxiao_lishi_image"];
     }
+    button.selected=!button.selected;
     if (button.selected) {
+        if (self.showMoreView!=nil) {
+            [self.showMoreView p_dismissView];
+            self.showMoreView=nil;
+        }
+        self.showMoreView=[[RXShowMoreView alloc]init];
+        [self.showMoreView showQuickreqlyView:[NSArray arrayWithArray:self.iconImageArray] with:self with:@selector(rxshowButton:)];
+        self.addbutton.hidden=YES;
+    }else{
         self.addbutton.hidden=NO;
         if (self.showMoreView!=nil) {
             [self.showMoreView p_dismissView];
             self.showMoreView=nil;
         }
-    }else{
-        if (self.showMoreView==nil) {
-            self.showMoreView=[[RXShowMoreView alloc]init];
-        }
-        [self.showMoreView showQuickreqlyView:[NSArray arrayWithArray:self.iconImageArray] with:self with:@selector(rxshowButton:)];
-        self.addbutton.hidden=YES;
     }
-    button.selected=!button.selected;
 }
 -(void)rxshowButton:(NSString*)tag;{
-
     self.addbutton.hidden=NO;
+    self.addbutton.selected=false;
     NSInteger index=[tag integerValue];
     if (index==10) {
         if (self.showMoreView!=nil) {
@@ -358,44 +354,74 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             self.showMoreView=nil;
         }
     }else{
-        NSString*string=self.iconImageArray[index];
-        NSMutableDictionary*dicData=[[NSMutableDictionary alloc]init];
-        for (NSMutableDictionary*dic in [RXTabViewHeightObjject getMorenArray]) {
-            NSString*string=[Unit JSONString:dic key:@"itemName"];
-            if ([self.titlestring isEqualToString:string]) {
-                dicData=dic;
+        if ([self.titlestring isEqualToString:@"运动"]) {
+            NSString*string=self.iconImageArray[index];
+            if ([string isEqualToString:@"智能硬件_1"]) {
+                [self showStringHUD:@"功能正在开发，请期待" second:0];
+            }else if ([string isEqualToString:@"智能硬件_2"]){
+                if ([YSStepManager healthyKitAccess]) {
+                    @weakify(self);
+                    [YSStepManager healthStoreDataWithStartDate:nil endDate:nil WithFailAccess:^{
+                        @strongify(self);
+                        [self showErrorHudWithText:@"无数据获取权限"];
+                    } walkRunningCallback:^(NSNumber *walkRunning) {
+                    } stepCallback:^(NSNumber *step) {
+                        if ([step intValue]==0) {
+                            [self showErrorHudWithText:@"无法获取数据，请检查"];
+                            self.myStep= [step intValue];
+                            self.myGongli=[step doubleValue] * 0.00065;
+                            self.myKaluli=62*self.myGongli*0.8;
+                        }else{
+                            [self showErrorHudWithText:@"数据已经更新"];
+                            self.myStep= [step intValue];
+                            self.myGongli=[step doubleValue] * 0.00065;
+                            self.myKaluli=62*self.myGongli*0.8;
+                            
+                        }
+                        [self.mtableview reloadData];
+                    }];
+                }
             }
-        }
-        if ([string isEqualToString:@"智能硬件_1"]) {
-            YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
-            multipleTypesTestController.rxArray=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:self.iconDic];
-            multipleTypesTestController.rxDic=dicData;
-            multipleTypesTestController.rxIndex=index;
-            [self.navigationController pushViewController:multipleTypesTestController animated:YES];
-            
-        }else if([string isEqualToString:@"智能硬件_2"]){
-            YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
-            multipleTypesTestController.rxArray=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:self.iconDic];
-            multipleTypesTestController.rxDic=dicData;
-            multipleTypesTestController.rxIndex=index;
-            [self.navigationController pushViewController:multipleTypesTestController animated:YES];
-            
-        }else if([string isEqualToString:@"智能硬件_3"]){
-            YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
-            multipleTypesTestController.rxArray=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:self.iconDic];
-            multipleTypesTestController.rxDic=dicData;
-            multipleTypesTestController.rxIndex=index;
-            [self.navigationController pushViewController:multipleTypesTestController animated:YES];
-        }else if([string isEqualToString:@"智能硬件_4"]){
-            YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
-            multipleTypesTestController.rxArray=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:self.iconDic];
-            multipleTypesTestController.rxDic=dicData;
-            multipleTypesTestController.rxIndex=index;
-            [self.navigationController pushViewController:multipleTypesTestController animated:YES];
         }else{
-            if (self.showMoreView!=nil) {
-                [self.showMoreView p_dismissView];
-                self.showMoreView=nil;
+            NSString*string=self.iconImageArray[index];
+            NSMutableDictionary*dicData=[[NSMutableDictionary alloc]init];
+            for (NSMutableDictionary*dic in [RXTabViewHeightObjject getMorenArray]) {
+                NSString*string=[Unit JSONString:dic key:@"itemName"];
+                if ([self.titlestring isEqualToString:string]) {
+                    dicData=dic;
+                }
+            }
+            if ([string isEqualToString:@"智能硬件_1"]) {
+                YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
+                multipleTypesTestController.rxArray=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:self.iconDic];
+                multipleTypesTestController.rxDic=dicData;
+                multipleTypesTestController.rxIndex=index;
+                [self.navigationController pushViewController:multipleTypesTestController animated:YES];
+                
+            }else if([string isEqualToString:@"智能硬件_2"]){
+                YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
+                multipleTypesTestController.rxArray=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:self.iconDic];
+                multipleTypesTestController.rxDic=dicData;
+                multipleTypesTestController.rxIndex=index;
+                [self.navigationController pushViewController:multipleTypesTestController animated:YES];
+                
+            }else if([string isEqualToString:@"智能硬件_3"]){
+                YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
+                multipleTypesTestController.rxArray=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:self.iconDic];
+                multipleTypesTestController.rxDic=dicData;
+                multipleTypesTestController.rxIndex=index;
+                [self.navigationController pushViewController:multipleTypesTestController animated:YES];
+            }else if([string isEqualToString:@"智能硬件_4"]){
+                YSMultipleTypesTestController *multipleTypesTestController = [[YSMultipleTypesTestController alloc] initWithTestType:YSInputValueWithBloodPressureType];
+                multipleTypesTestController.rxArray=[RXTabViewHeightObjject getRXZhangKaiTablelViewImageArray:self.iconDic];
+                multipleTypesTestController.rxDic=dicData;
+                multipleTypesTestController.rxIndex=index;
+                [self.navigationController pushViewController:multipleTypesTestController animated:YES];
+            }else{
+                if (self.showMoreView!=nil) {
+                    [self.showMoreView p_dismissView];
+                    self.showMoreView=nil;
+                }
             }
         }
     }
@@ -763,6 +789,17 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     }];
 }
 
+
+
+
+
+
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application
+{
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+}
+
 // alert的处理
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
     if (message) {
@@ -774,7 +811,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
             [self.iconImageArray addObject:@"quxiao_lishi_image"];
         }
         if ([message rangeOfString:@"look"].location!=NSNotFound) {
-            NSString*str4=[message substringToIndex:4];
+            NSString*str4=[message substringFromIndex:4];
             RXWebViewController*web=[[RXWebViewController alloc]init];
             //                web.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/result.html";
             web.urlstring=@"http://api.bhesky.com/resources/jkgl/result.html";

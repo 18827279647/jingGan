@@ -1635,7 +1635,7 @@ static NSString *heathInfoCellID = @"RXHotInfoTableViewCell";
     }
     RXWeekViewController*view=[[RXWeekViewController alloc]init];
     view.type=title;
-    //    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/weekly.html";
+//    view.urlstring=@"http://192.168.8.164:8082/carnation-apis-resource/resources/jkgl/weekly.html";
     view.getItemCode=[NSString stringWithFormat:@"%ld",index];
     view.urlstring=@"http://api.bhesky.com/resources/jkgl/weekly.html";
     [self.navigationController pushViewController:view animated:NO];
