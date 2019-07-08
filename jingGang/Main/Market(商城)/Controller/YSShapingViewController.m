@@ -368,6 +368,10 @@ static const CGFloat kTitleButtonMargin = 22;
 }
 - (void)btnTitleOnClick:(UIButton *)btn
 {
+    //不知道咋处理，直接一样就return。坑
+    if ([btn.titleLabel.text isEqualToString:kRecommendText]&&[self.selectedButton.titleLabel.text isEqualToString:kRecommendText]) {
+        return;
+    }
     YSShopChannelModel *model = btn.userInfo;
     __block BOOL found = NO;
     __block UIViewController *ctrl = nil;

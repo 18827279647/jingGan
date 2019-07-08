@@ -32,6 +32,9 @@
 #import "YSThumbnailManager.h"
 #import "YSAdaptiveFrameConfig.h"
 #import "NSString+YYAdd.h"
+//体验券
+#import "RXFlashSaleTableViewCell.h"
+
 @interface WSJMerchantDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
 {
     VApiManager *_vapiManager;
@@ -49,6 +52,10 @@
 }
 
 @property (nonatomic, strong) YSShareManager *shareManager ;//分享事件
+
+//新的收藏按钮
+@property(nonatomic,strong)UIButton*rightButton;
+
 
 //整体框架
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -97,6 +104,8 @@
 
 static NSString *merchantDetailsTabelViewCell = @"merchantDetailsTabelViewCell";
 
+static NSString*tiyanjuanTabelViewCell=@"RXFlashSaleTableViewCell";
+
 @implementation WSJMerchantDetailViewController
 
 #pragma mark - 网络请求数据
@@ -137,6 +146,19 @@ static NSString *merchantDetailsTabelViewCell = @"merchantDetailsTabelViewCell";
             [self.infoWebView loadHTMLString:storeInfo.storeInfoBO.storeInfo baseURL:nil];
         });
         _loadingView.hidden = YES;
+        
+        NSMutableArray*mutableArray0=[NSMutableArray array];
+        
+        NSDictionary*dict0=@{@"title":@"体验券",
+                             @"data":mutableArray0};
+        [mutableArray0 addObject:@{}];
+        [mutableArray0 addObject:@{}];
+        [mutableArray0 addObject:@{}];
+        
+        if (mutableArray0.count>0) {
+            [self.dataSource addObject:dict0];
+        }
+    
         NSMutableArray *mutableArray1 = [NSMutableArray array];
         NSDictionary *dict1 = @{@"title":@"代金券",
                                @"data":mutableArray1};
@@ -227,6 +249,7 @@ static NSString *merchantDetailsTabelViewCell = @"merchantDetailsTabelViewCell";
             if ([dict[@"id"] intValue] == [self.api_classId intValue])
             {
                 collectionBtn.selected = YES;
+                _rightButton.selected=YES;
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -405,15 +428,36 @@ static NSString *merchantDetailsTabelViewCell = @"merchantDetailsTabelViewCell";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self.dataSource[indexPath.section][@"title"] isEqualToString:@"体验券"]) {
+        RXFlashSaleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tiyanjuanTabelViewCell];
+        NSArray *array = self.dataSource[indexPath.section][@"data"];
+        [cell willCustomCellWithData:array[indexPath.row]];
+        cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+         return cell;
+    }
     WSJMerchantDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:merchantDetailsTabelViewCell];
     NSArray *array = self.dataSource[indexPath.section][@"data"];
     [cell willCustomCellWithData:array[indexPath.row]];
+    cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    if ([self.dataSource[indexPath.section][@"title"] isEqualToString:@"体验券"]) {
+//        
+//        
+//    }else{
+//        NSArray *array = self.dataSource[indexPath.section][@"data"];
+//        NSDictionary *dict = array[indexPath.row];
+//        ServiceDetailController *serviceDetailVC = [[ServiceDetailController alloc ]initWithNibName:@"ServiceDetailController" bundle:nil];
+//        serviceDetailVC.serviceID = dict[@"id"];
+//        [self.navigationController pushViewController:serviceDetailVC animated:YES];
+//    }
     NSArray *array = self.dataSource[indexPath.section][@"data"];
     NSDictionary *dict = array[indexPath.row];
     ServiceDetailController *serviceDetailVC = [[ServiceDetailController alloc ]initWithNibName:@"ServiceDetailController" bundle:nil];
@@ -439,7 +483,7 @@ static NSString *merchantDetailsTabelViewCell = @"merchantDetailsTabelViewCell";
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, __MainScreen_Width - 30, 44)];
     label.text = title;
     label.font = [UIFont systemFontOfSize:15];
-    label.textColor = UIColorFromRGB(0X9b9b9b);
+    label.textColor = JGColor(51, 51, 51, 1);
     [v addSubview:label];
     return v;
 }
@@ -457,6 +501,7 @@ static NSString *merchantDetailsTabelViewCell = @"merchantDetailsTabelViewCell";
     _vapiManager = [[VApiManager alloc] init];
     self.dataSource = [NSMutableArray array];
     [self.tableView registerNib:[UINib nibWithNibName:@"WSJMerchantDetailsTableViewCell" bundle:nil] forCellReuseIdentifier:merchantDetailsTabelViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RXFlashSaleTableViewCell" bundle:nil] forCellReuseIdentifier:tiyanjuanTabelViewCell];
     self.tableView.rowHeight = 100;
     
     _xianHeight.constant = 0.25;
@@ -470,13 +515,23 @@ static NSString *merchantDetailsTabelViewCell = @"merchantDetailsTabelViewCell";
     self.edgesForExtendedLayout = UIRectEdgeNone;
     //设置背景颜色
     self.view.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
-    
+
+    //分享按钮
     UIButton *leftbutton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [leftbutton setBackgroundImage:[UIImage imageNamed:@"JuanPi_ShareGoods_Icon"] forState:UIControlStateNormal];
-    UIBarButtonItem *rightitem=[[UIBarButtonItem alloc]initWithCustomView:leftbutton];
-    self.navigationItem.rightBarButtonItem=rightitem;
     [leftbutton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
-    
+    //收藏按钮
+    if (!_rightButton) {
+        _rightButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    }
+    [_rightButton setBackgroundImage:[UIImage imageNamed:@"star4"] forState:UIControlStateNormal];
+    [_rightButton setBackgroundImage:[UIImage imageNamed:@"star5"] forState:UIControlStateSelected];
+    [_rightButton addTarget:self action:@selector(collectionMerchant:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftitem=[[UIBarButtonItem alloc]initWithCustomView:leftbutton];
+    UIBarButtonItem *rightitem=[[UIBarButtonItem alloc]initWithCustomView:_rightButton];
+
+    collectionBtn.hidden=YES;
+    self.navigationItem.rightBarButtonItems=@[leftitem,rightitem];
     
 //    self.evaluateCountLabel.textColor = [YSThemeManager buttonBgColor];
     self.titleImageViewHeight.constant = [YSAdaptiveFrameConfig width:270];

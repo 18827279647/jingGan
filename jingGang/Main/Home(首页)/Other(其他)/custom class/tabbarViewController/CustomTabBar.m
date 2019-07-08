@@ -208,7 +208,6 @@ static CustomTabBar* s_pCustomTabBar = nil;
     
     //个人中心
     individualCenterViewController *individualCenter = [[individualCenterViewController alloc] init];
-    
 
     YSGestureNavigationController * nav5 = [[YSGestureNavigationController alloc]initWithRootViewController:individualCenter];
     individualCenter.title = @"我的";

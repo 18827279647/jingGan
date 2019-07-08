@@ -120,8 +120,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 //http://192.168.8.160:8080 http://1t6y344017.iask.in
-//#define  ShanrdURL @"http://api.bhesky.cn/" //测试线
-#define  ShanrdURL @"http://api.bhesky.com/" // 正式线
+#define  ShanrdURL @"http://api.bhesky.cn/" //测试线
+//#define  ShanrdURL @"http://api.bhesky.com/" // 正式线
 
 /*
  *  block弱引用

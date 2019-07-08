@@ -141,6 +141,35 @@
     modelScanPay.itemId    = @"2";
     [array addObject:modelScanPay];
     
+    YSNearServiceClassModel *modelTiyanJuan = [[YSNearServiceClassModel alloc]init];
+    modelTiyanJuan.adImgPath = @"User_NearClass_TiyanJuan";
+    modelTiyanJuan.adTitle   = @"体验券";
+    modelTiyanJuan.adType    = 9;
+    modelTiyanJuan.itemId    = @"4";
+    [array addObject:modelTiyanJuan];
+    
+    
+    YSNearServiceClassModel *model2 = [[YSNearServiceClassModel alloc]init];
+    model2.adImgPath = @"";
+    model2.adTitle   = @"";
+    model2.adType    = 0;
+    model2.itemId    = @"-1";
+    
+    YSNearServiceClassModel *model3 = [[YSNearServiceClassModel alloc]init];
+    model3.adImgPath = @"";
+    model3.adTitle   = @"";
+    model3.adType    = 0;
+    model3.itemId    = @"-1";
+    YSNearServiceClassModel *model4= [[YSNearServiceClassModel alloc]init];
+    
+    model4.adImgPath = @"";
+    model4.adTitle   = @"";
+    model4.adType    = 0;
+    model4.itemId    = @"-1";
+    [array addObject:model2];
+    [array addObject:model3];
+    [array addObject:model4];
+    
     return array.copy;
 }
 @end

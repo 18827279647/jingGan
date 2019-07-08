@@ -2455,6 +2455,8 @@
 		BE13DD4622B7D27400A0E868 /* RXAdvertisingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE13DD4422B7D27400A0E868 /* RXAdvertisingTableViewCell.m */; };
 		BE13DD4722B7D27400A0E868 /* RXAdvertisingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE13DD4522B7D27400A0E868 /* RXAdvertisingTableViewCell.xib */; };
 		BE13DD4A22B7D68900A0E868 /* RXShoppingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE13DD4922B7D68900A0E868 /* RXShoppingTableViewCell.m */; };
+		BE14A9F522D3435400A7CC3A /* RXFlashSaleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE14A9F322D3435400A7CC3A /* RXFlashSaleTableViewCell.m */; };
+		BE14A9F622D3435400A7CC3A /* RXFlashSaleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE14A9F422D3435400A7CC3A /* RXFlashSaleTableViewCell.xib */; };
 		BE16658922C1F297005403E5 /* RxHealthIntegrationMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE16658822C1F297005403E5 /* RxHealthIntegrationMachineViewController.m */; };
 		BE16658D22C1F405005403E5 /* RxHeadHealthIntegrationMachineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE16658B22C1F405005403E5 /* RxHeadHealthIntegrationMachineTableViewCell.m */; };
 		BE16658E22C1F405005403E5 /* RxHeadHealthIntegrationMachineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE16658C22C1F405005403E5 /* RxHeadHealthIntegrationMachineTableViewCell.xib */; };
@@ -2464,6 +2466,10 @@
 		BE16659922C231FE005403E5 /* RXbutlerServiceResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BE16659822C231FE005403E5 /* RXbutlerServiceResponse.m */; };
 		BE16659C22C24E6E005403E5 /* RXbuyHealthGoodsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE16659B22C24E6E005403E5 /* RXbuyHealthGoodsRequest.m */; };
 		BE16659F22C24E9A005403E5 /* RXbuyHealthGoodsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BE16659E22C24E9A005403E5 /* RXbuyHealthGoodsResponse.m */; };
+		BE19A07E22D2D3BA00128B25 /* RXFlashSaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE19A07D22D2D3BA00128B25 /* RXFlashSaleView.m */; };
+		BE19A08022D2D50900128B25 /* RXFlashSaleView.h in Sources */ = {isa = PBXBuildFile; fileRef = BE19A07C22D2D3BA00128B25 /* RXFlashSaleView.h */; };
+		BE19A08322D2D79700128B25 /* RXFlashSaleShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE19A08222D2D79700128B25 /* RXFlashSaleShowView.m */; };
+		BE19A08522D2D7A100128B25 /* RXFlashSaleShowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE19A08422D2D7A100128B25 /* RXFlashSaleShowView.xib */; };
 		BE1B66AAA2F550D398C36D047929864B /* NewDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F444EEE22D01435964F54361ED0F0E3 /* NewDetailCell.m */; };
 		BE2456A022BF20AE005163D5 /* RXMemberDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE24569F22BF20AE005163D5 /* RXMemberDetailRequest.m */; };
 		BE2456A322BF2476005163D5 /* RXMemberDetailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2456A222BF2476005163D5 /* RXMemberDetailResponse.m */; };
@@ -7434,6 +7440,9 @@
 		BE13DD4522B7D27400A0E868 /* RXAdvertisingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXAdvertisingTableViewCell.xib; sourceTree = "<group>"; };
 		BE13DD4822B7D68900A0E868 /* RXShoppingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXShoppingTableViewCell.h; sourceTree = "<group>"; };
 		BE13DD4922B7D68900A0E868 /* RXShoppingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXShoppingTableViewCell.m; sourceTree = "<group>"; };
+		BE14A9F222D3435400A7CC3A /* RXFlashSaleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXFlashSaleTableViewCell.h; sourceTree = "<group>"; };
+		BE14A9F322D3435400A7CC3A /* RXFlashSaleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXFlashSaleTableViewCell.m; sourceTree = "<group>"; };
+		BE14A9F422D3435400A7CC3A /* RXFlashSaleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXFlashSaleTableViewCell.xib; sourceTree = "<group>"; };
 		BE16658722C1F297005403E5 /* RxHealthIntegrationMachineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxHealthIntegrationMachineViewController.h; sourceTree = "<group>"; };
 		BE16658822C1F297005403E5 /* RxHealthIntegrationMachineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RxHealthIntegrationMachineViewController.m; sourceTree = "<group>"; };
 		BE16658A22C1F405005403E5 /* RxHeadHealthIntegrationMachineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxHeadHealthIntegrationMachineTableViewCell.h; sourceTree = "<group>"; };
@@ -7451,6 +7460,11 @@
 		BE16659D22C24E9A005403E5 /* RXbuyHealthGoodsResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXbuyHealthGoodsResponse.h; sourceTree = "<group>"; };
 		BE16659E22C24E9A005403E5 /* RXbuyHealthGoodsResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXbuyHealthGoodsResponse.m; sourceTree = "<group>"; };
 		BE16E30065EFFC04C843F5B65E98F769 /* MainTainceResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTainceResultVC.m; sourceTree = "<group>"; };
+		BE19A07C22D2D3BA00128B25 /* RXFlashSaleView.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc.preprocessed; path = RXFlashSaleView.h; sourceTree = "<group>"; };
+		BE19A07D22D2D3BA00128B25 /* RXFlashSaleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXFlashSaleView.m; sourceTree = "<group>"; };
+		BE19A08122D2D79700128B25 /* RXFlashSaleShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXFlashSaleShowView.h; sourceTree = "<group>"; };
+		BE19A08222D2D79700128B25 /* RXFlashSaleShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXFlashSaleShowView.m; sourceTree = "<group>"; };
+		BE19A08422D2D7A100128B25 /* RXFlashSaleShowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXFlashSaleShowView.xib; sourceTree = "<group>"; };
 		BE24569E22BF20AE005163D5 /* RXMemberDetailRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXMemberDetailRequest.h; sourceTree = "<group>"; };
 		BE24569F22BF20AE005163D5 /* RXMemberDetailRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXMemberDetailRequest.m; sourceTree = "<group>"; };
 		BE2456A122BF2476005163D5 /* RXMemberDetailResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXMemberDetailResponse.h; sourceTree = "<group>"; };
@@ -8165,6 +8179,7 @@
 		01A7E029A2975C6A1B4C185936CE3F85 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				BE19A07F22D2D3DD00128B25 /* RXShopView */,
 				A286AECD0D23721675612C43E6EBE935 /* ViewController */,
 				8B38F41F2F807750D104B0A1F1B48A20 /* View */,
 				1583107089012D12DBE1F3A9987DA25F /* Model */,
@@ -10260,6 +10275,9 @@
 				D58261480BF35C1E144D81FFEEB99C7F /* WSJMerchantDetailsTableViewCell.h */,
 				D429F19D03712861B17081F6842AE9C4 /* WSJMerchantDetailsTableViewCell.m */,
 				8701FF52098758F1B2D71CB38AA32FDA /* WSJMerchantDetailsTableViewCell.xib */,
+				BE14A9F222D3435400A7CC3A /* RXFlashSaleTableViewCell.h */,
+				BE14A9F322D3435400A7CC3A /* RXFlashSaleTableViewCell.m */,
+				BE14A9F422D3435400A7CC3A /* RXFlashSaleTableViewCell.xib */,
 			);
 			path = "商户详情页";
 			sourceTree = "<group>";
@@ -17268,6 +17286,18 @@
 			path = "SaveRepoerDone(录入完成)";
 			sourceTree = "<group>";
 		};
+		BE19A07F22D2D3DD00128B25 /* RXShopView */ = {
+			isa = PBXGroup;
+			children = (
+				BE19A07C22D2D3BA00128B25 /* RXFlashSaleView.h */,
+				BE19A07D22D2D3BA00128B25 /* RXFlashSaleView.m */,
+				BE19A08122D2D79700128B25 /* RXFlashSaleShowView.h */,
+				BE19A08222D2D79700128B25 /* RXFlashSaleShowView.m */,
+				BE19A08422D2D7A100128B25 /* RXFlashSaleShowView.xib */,
+			);
+			path = RXShopView;
+			sourceTree = "<group>";
+		};
 		BE297A4122C5EAA5005E59D8 /* slidertableview */ = {
 			isa = PBXGroup;
 			children = (
@@ -19445,6 +19475,7 @@
 				A1F16E0434758378E484E92C38210AD5 /* WSJSelectCityTableHeaderView.xib in Resources */,
 				79DF539016488A054047AB83EE3FA4CA /* WSJSelectCityTableViewCell.xib in Resources */,
 				1230BFF11DA72E2054ED86BADB078E2D /* WSJSelectCityViewController.xib in Resources */,
+				BE14A9F622D3435400A7CC3A /* RXFlashSaleTableViewCell.xib in Resources */,
 				527BFF930EACFD5C668EEC3AA529528B /* WSJShopHomeViewController.xib in Resources */,
 				517127EF226EB8E000441E70 /* HongBaoTCViewController.xib in Resources */,
 				3269A6B0527D659956B2450067AC8E50 /* WSJSiftHeader.xib in Resources */,
@@ -19485,6 +19516,7 @@
 				990D366522A8B6D2000CC8D0 /* WSJShoppingCartTableViewCell.xib in Resources */,
 				ADCBDDC391F9E1874F36681AD9153F3C /* healthChildTableViewCell.xib in Resources */,
 				70CCA74F1C4FB1D300ADD4A0 /* KJDarlingCommentCell.xib in Resources */,
+				BE19A08522D2D7A100128B25 /* RXFlashSaleShowView.xib in Resources */,
 				70BAF5021D38715400793F5C /* JGCashView.xib in Resources */,
 				70CCA77B1C51D5E900ADD4A0 /* JGCouponListCell.xib in Resources */,
 				7035F5961EE526F300E2BE71 /* YSThreeStairClassfyCollectionViewCell.xib in Resources */,
@@ -20828,6 +20860,7 @@
 				705F57291C2AD87200DDC31D /* PersonalCouponRefundRequest.m in Sources */,
 				70BAF56B1D38743900793F5C /* ZhengZhuangCureTable.m in Sources */,
 				D165A4551D6D8BA700E98D56 /* JDStatusBarView.m in Sources */,
+				BE19A08322D2D79700128B25 /* RXFlashSaleShowView.m in Sources */,
 				0923DD061D4096B5002B7F8A /* NSData+YYAdd.m in Sources */,
 				7C2E44E1BF8271D45D36A0BE40571438 /* NSObject+MTLComparisonAdditions.m in Sources */,
 				090D80491D4B26B100354553 /* YSBaseModel.m in Sources */,
@@ -21030,6 +21063,7 @@
 				0960A0DF1D55CE2900A15507 /* PostPagePostListByUserIdRequest.m in Sources */,
 				6A348E2CE35C9256ACE1EDC57248BCBA /* README.md in Sources */,
 				0923DD181D4096B5002B7F8A /* UIControl+YYAdd.m in Sources */,
+				BE19A07E22D2D3BA00128B25 /* RXFlashSaleView.m in Sources */,
 				5139D81D21F01D4400D0DAA5 /* JingXuanClassRequest.m in Sources */,
 				FA7A6C43A13E4B6A4FBBB6A335F995D9 /* RMDisplayLabel.m in Sources */,
 				0923DD261D4096B5002B7F8A /* _YYWebImageSetter.m in Sources */,
@@ -21507,6 +21541,7 @@
 				09B2BAC51F0B78520034AFB9 /* StringAttribute.m in Sources */,
 				0960A0EB1D571B4100A15507 /* YSCirclePositionButton.m in Sources */,
 				D1BA914E1D78167700E8DC65 /* PostPostDetailResponse.m in Sources */,
+				BE14A9F522D3435400A7CC3A /* RXFlashSaleTableViewCell.m in Sources */,
 				70E28C5F1D61A7F000F37C0D /* UsersRelationLevelListRequest.m in Sources */,
 				122526842E7F832EFA4787722EA03BB4 /* WInputXingViewController.m in Sources */,
 				E968AEF38B919691C85A26561C69A84F /* WIntegralCartViewController.m in Sources */,
@@ -21614,6 +21649,7 @@
 				0923DD1D1D4096B5002B7F8A /* UIScreen+YYAdd.m in Sources */,
 				DD0D542287A4A9D85CFC4C814F291FB7 /* WSJEvaluateView.m in Sources */,
 				28207BD65DFB8977564E10D67B5A7DD3 /* WSJHeartRateResultViewController.m in Sources */,
+				BE19A08022D2D50900128B25 /* RXFlashSaleView.h in Sources */,
 				B28DFEAC66730DB9FAD2BE31CE7294EF /* WSJKeySearchViewController.m in Sources */,
 				093AE81F1D5EC501006E5884 /* YSHealthyManageDatas.m in Sources */,
 				F91D66141AF9BB22B504B1BA6B5B5A63 /* WSJLungResultViewController.m in Sources */,

@@ -58,6 +58,10 @@
 #import "YSAdContentDataManager.h"
 #import "YSBaseInfoManager.h"
 #import "HongBaoTCViewController.h"
+
+//首页推荐限时推荐
+#import "RXFlashSaleView.h"
+
 //服务首页广告推荐位
 #define ServiceHomeRecommendCode     @"APP_GROUP_INDEX"
 #define kUnLauchLocateServiceKey  201
@@ -136,6 +140,14 @@
 /**
  *  是否有分类页 */
 @property (assign, nonatomic) BOOL isClassifyPage;
+
+
+/**
+ 
+ 限时推荐界面
+ **/
+@property(nonatomic,strong)RXFlashSaleView*flashSaleView;
+
 
 @end
 
@@ -297,7 +309,23 @@
     floatImageView.hidden = YES;
     self.floatImageView = floatImageView;
     [self.view addSubview:self.floatImageView];
+    
+    //限时推荐界面
+    if (self.flashSaleView!=nil) {
+        [self.flashSaleView p_dismissView];
+        self.flashSaleView=nil;
+    }
+    self.flashSaleView=[[RXFlashSaleView alloc]init];
+    [self.flashSaleView showFlashSaleView:[UIImage imageNamed:@""] with:self with:@selector(showFlashCencelButton)];
 }
+//限时推荐去其他界面
+-(void)showFlashCencelButton;{
+    if (self.flashSaleView!=nil) {
+        [self.flashSaleView p_dismissView];
+        self.flashSaleView=nil;
+    }
+}
+
 -(void)initPos{
     if ([YSLocationManager locationAvailable]) {
         // 已开启定位功能
@@ -560,6 +588,8 @@
             RecommendStoreModel *model = self.arrayRecommStoreInfo[indexPath.row];
             cell.model = model;
         }
+        cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
         static NSString *identifileAway = @"JGPersonalAwayStoreCell";
@@ -572,6 +602,8 @@
         }
         JGPersonalAwayStoreModel *model = self.arrayPersonalAwayStore[indexPath.row];
         cellAway.model = model;
+        cellAway.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
+        cellAway.selectionStyle = UITableViewCellSelectionStyleNone;
         return cellAway;
     }
 }
@@ -686,8 +718,6 @@
             sacnQRCodeNextVC.isScanPay = NO;
             sacnQRCodeNextVC.strScanQRCodeUrl = resultAsString;
         }
-        
-        
         [self.navigationController pushViewController:sacnQRCodeNextVC animated:YES];
     }];
     [self.navigationController pushViewController:reader animated:YES];

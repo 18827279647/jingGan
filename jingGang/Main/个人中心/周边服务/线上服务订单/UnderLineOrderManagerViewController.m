@@ -841,7 +841,6 @@ static NSString *hotelOrderListCellID = @"YSHotelOrderListCell";
 
 - (void)dealloc{
 
-
 }
 
 @end

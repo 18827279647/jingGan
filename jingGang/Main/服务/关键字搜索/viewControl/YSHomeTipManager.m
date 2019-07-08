@@ -63,10 +63,15 @@ CRManager(YSHomeTipManager);
         }
         LampListModel *model = [self.dataSource safeObjectAtIndex:self.currentIdx];
         YSHomeTipView *tipView = [YSHomeTipView homeTipView];
+        tipView.layer.masksToBounds=YES;
         tipView.model = model;
         [tipView addTapRecognizer:self action:@selector(handleTapOnTipView:)];
         [self.supperView addSubview:tipView];
         self.tipView = tipView;
+        self.tipView.iconView.layer.masksToBounds=YES;
+        self.tipView.iconView.layer.cornerRadius=15;
+        self.tipView.layer.masksToBounds=YES;
+        self.tipView.layer.cornerRadius=15;
         tipView.origin = self.origin;
         self.currentIdx++;
     }
