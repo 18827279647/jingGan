@@ -33,6 +33,14 @@
 #import "YSLinkElongHotelWebController.h"
 #import "YSHotelOrderDeleteRequstManager.h"
 #import "YSHotelOrderCancelRequstManager.h"
+
+//体验券cell
+#import "UnderFlashTableViewCell.h"
+
+//体验券详情
+#import "ExperVoucherDesViewController.h"
+
+
 @interface UnderLineOrderManagerViewController () <UITableViewDelegate,UITableViewDataSource,APIManagerDelegate,YSAPICallbackProtocol,YSAPIManagerParamSource>
 
 @property (nonatomic,strong) TLTitleSelectorView *titleView;
@@ -139,7 +147,10 @@ static NSString *hotelOrderListCellID = @"YSHotelOrderListCell";
         YSHotelOrderDetailController *hotelOrderDetailVC = [[YSHotelOrderDetailController alloc]init];
         hotelOrderDetailVC.orderID = model.orderId;
         [self.navigationController pushViewController:hotelOrderDetailVC animated:YES];
-    }else{
+    }else if(self.orderType==9){
+        ExperVoucherDesViewController*vc=[[ExperVoucherDesViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:NO];
+    } else{
         YSOnlineOrderListDataModel *model = self.dataSource[indexPath.row];
         if (model.orderType.integerValue == 2 || model.orderType.integerValue == 3) {
             //是优惠买单或者扫码买单的订单
@@ -157,9 +168,12 @@ static NSString *hotelOrderListCellID = @"YSHotelOrderListCell";
 }
 
 #pragma mark - UITableViewDataSource
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+     //NOOP
+    if (self.orderType==9) {
+        return 10;
+    }
     return self.dataSource.count;
 }
 
@@ -169,6 +183,16 @@ static NSString *hotelOrderListCellID = @"YSHotelOrderListCell";
     if (self.orderType == 6) {
         cell = [tableView dequeueReusableCellWithIdentifier:hotelOrderListCellID];
         [self setDataForHotelListCellContent:cell indexPath:indexPath];
+    }else if(self.orderType==9){
+        static  NSString *reusstring = @"UnderFlashTableViewCell";
+        UnderFlashTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:reusstring];
+        if (cell==nil) {
+            cell=[[NSBundle mainBundle]loadNibNamed:@"UnderFlashTableViewCell" owner:self options:nil][0];
+        }
+        cell.separatorInset = UIEdgeInsetsMake(0,kScreenWidth, 0, 0);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell willCustomCellWithData:@{}];
+        return cell;
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         [self loadCellContent:cell indexPath:indexPath];
@@ -428,12 +452,15 @@ static NSString *hotelOrderListCellID = @"YSHotelOrderListCell";
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             [self.tableView reloadData];
-            if (self.dataSource.count == 0) {
-                NodataShowView *showView = [NodataShowView showInContentView:self.tableView withReloadBlock:^{
-                    AppDelegate *appDelegate = kAppDelegate;
-                    [appDelegate gogogoWithTag:2];
-                } requestResultType:NoDataType];
-                [showView.alertButton setTitle:@"您还没有相关订单，可以去看看有哪些想买的，随便逛逛" forState:UIControlStateNormal];
+            //NOOP
+            if (self.orderType!=9) {
+                if (self.dataSource.count == 0) {
+                    NodataShowView *showView = [NodataShowView showInContentView:self.tableView withReloadBlock:^{
+                        AppDelegate *appDelegate = kAppDelegate;
+                        [appDelegate gogogoWithTag:2];
+                    } requestResultType:NoDataType];
+                    [showView.alertButton setTitle:@"您还没有相关订单，可以去看看有哪些想买的，随便逛逛" forState:UIControlStateNormal];
+                }
             }
         }
     } else if (manager == self.orderCancelManage) {
@@ -749,6 +776,7 @@ static NSString *hotelOrderListCellID = @"YSHotelOrderListCell";
     
     UINib *nibHotelOrderListCell = [UINib nibWithNibName:hotelOrderListCellID bundle:nil];
     [self.tableView registerNib:nibHotelOrderListCell forCellReuseIdentifier:hotelOrderListCellID.copy];
+
     
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];

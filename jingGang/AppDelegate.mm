@@ -50,8 +50,10 @@
 #import "NSObject+LBLaunchImage.h"
 #import "YSConfigAdRequestManager.h"
 #import "YSForceUpdateManager.h"
-
 #import <LKAlarmMamager.h>
+#import "Unit.h"
+
+
 
 #define ISFISTRINSTALL @"ISFISTRINSTALL"
 
@@ -223,6 +225,11 @@
 
 #pragma mark --- didFinishLaunchingWithOptions ----
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    /**
+     NOOP
+     **/
+
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
     application.statusBarHidden = NO;

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ConsumptionCodeShowView">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="608"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5lh-rb-Bhp">
+                    <rect key="frame" x="31" y="118" width="325" height="392"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="392" id="iJV-Xs-CWU"/>
+                        <constraint firstAttribute="width" constant="325" id="o2p-Cg-LTO"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User_NearClass_TiyanJuan" translatesAutoresizingMaskIntoConstraints="NO" id="MzV-Co-Frm">
+                    <rect key="frame" x="168.5" y="98" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="2bD-HC-fTT"/>
+                        <constraint firstAttribute="height" constant="50" id="RIj-h5-mbm"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体验券消费码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBO-1w-l5S">
+                    <rect key="frame" x="141.5" y="168" width="104" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ys_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="mR9-gT-WFe">
+                    <rect key="frame" x="93.5" y="209" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="ni6-zJ-Idn"/>
+                        <constraint firstAttribute="width" constant="200" id="wRB-M9-d8s"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费码：7429874592" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyk-aA-Of8">
+                    <rect key="frame" x="109.5" y="434" width="168.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="PBO-1w-l5S" firstAttribute="top" secondItem="MzV-Co-Frm" secondAttribute="bottom" constant="20" id="Bce-z5-ikS"/>
+                <constraint firstItem="mR9-gT-WFe" firstAttribute="top" secondItem="PBO-1w-l5S" secondAttribute="bottom" constant="20" id="BhM-Hh-FM0"/>
+                <constraint firstItem="5lh-rb-Bhp" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="Li3-qi-wWg"/>
+                <constraint firstItem="Xyk-aA-Of8" firstAttribute="top" secondItem="mR9-gT-WFe" secondAttribute="bottom" constant="25" id="Mja-x0-40m"/>
+                <constraint firstItem="PBO-1w-l5S" firstAttribute="centerX" secondItem="5lh-rb-Bhp" secondAttribute="centerX" id="Rp4-Qo-MSR"/>
+                <constraint firstItem="Xyk-aA-Of8" firstAttribute="centerX" secondItem="mR9-gT-WFe" secondAttribute="centerX" id="SDw-hE-sRn"/>
+                <constraint firstItem="mR9-gT-WFe" firstAttribute="centerX" secondItem="5lh-rb-Bhp" secondAttribute="centerX" id="l22-bh-hS0"/>
+                <constraint firstItem="5lh-rb-Bhp" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="mlr-h7-ehn"/>
+                <constraint firstItem="MzV-Co-Frm" firstAttribute="top" secondItem="5lh-rb-Bhp" secondAttribute="top" constant="-20" id="nOk-ZO-f3i"/>
+                <constraint firstItem="MzV-Co-Frm" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="toG-s8-8p9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="backimage" destination="5lh-rb-Bhp" id="z0q-g3-6lG"/>
+                <outlet property="iconimage" destination="mR9-gT-WFe" id="ZjR-16-jg2"/>
+                <outlet property="namelabel" destination="PBO-1w-l5S" id="WA1-2W-IY8"/>
+                <outlet property="numberlabel" destination="Xyk-aA-Of8" id="iMY-L9-AYR"/>
+            </connections>
+            <point key="canvasLocation" x="148" y="127.736131934033"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="User_NearClass_TiyanJuan" width="35" height="35"/>
+        <image name="ys_placeholder" width="300" height="300"/>
+    </resources>
+</document>

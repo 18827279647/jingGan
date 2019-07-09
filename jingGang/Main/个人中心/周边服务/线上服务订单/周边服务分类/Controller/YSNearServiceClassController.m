@@ -83,7 +83,7 @@
 }
 
 - (void)clickCollectionViewCellWithModel:(YSNearServiceClassModel *)model{
-    if (model.adType == 7) {
+    if (model.adType == 7||model.adType==9) {
         UnderLineOrderManagerViewController *underLineVC = [[UnderLineOrderManagerViewController alloc]init];
         underLineVC.strTitle = model.adTitle;
         underLineVC.orderType = [model.itemId integerValue];
@@ -145,7 +145,7 @@
     modelTiyanJuan.adImgPath = @"User_NearClass_TiyanJuan";
     modelTiyanJuan.adTitle   = @"体验券";
     modelTiyanJuan.adType    = 9;
-    modelTiyanJuan.itemId    = @"4";
+    modelTiyanJuan.itemId    = @"9";
     [array addObject:modelTiyanJuan];
     
     

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CommonCrypto/CommonDigest.h>
+
 @interface Unit : NSObject
 
 +(NSMutableDictionary*)ParseJSONObject:(NSString *)JSONString;
@@ -67,5 +69,16 @@
 
 + (NSString*)getWeekDayFordate;
 
-//+(UIImage *)buttonImageFromColor:(UIColor *)color;
+
+//sha1算法
++(NSString *)sha1:(NSString *)input;
+
+//ASCII排序
++(NSArray*)getAscii:(NSArray*)array;
+
+//普通字符串装16禁止
++ (NSString *)hexStringFromString:(NSString *)string;
+
+// 十六进制转换为普通字符串的。
++ (NSString *)stringFromHexString:(NSString *)hexString;
 @end

@@ -514,15 +514,65 @@
     }
     return ageNumber;
 }
-//+(UIImage *)buttonImageFromColor:(UIColor *)color;{
-//    
-//    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-//    UIGraphicsBeginImageContext(rect.size);
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextSetFillColorWithColor(context, [color CGColor]);
-//    CGContextFillRect(context, rect);
-//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return img;
-//}
+
+//sha1算法
++(NSString *)sha1:(NSString *)input;
+{
+    NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding];
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1(data.bytes, (unsigned int)data.length, digest);
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+    for(int i=0; i<CC_SHA1_DIGEST_LENGTH; i++) {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+    return output;
+}
+//ASCII排序
++(NSArray*)getAscii:(NSArray*)array;{
+    NSStringCompareOptions comparisonOptions =NSCaseInsensitiveSearch|NSNumericSearch|
+    NSWidthInsensitiveSearch|NSForcedOrderingSearch;
+    NSComparator sort = ^(NSString *obj1,NSString *obj2){
+        NSRange range =NSMakeRange(0,obj1.length);
+        return [obj1 compare:obj2 options:comparisonOptions range:range];
+    };
+    NSArray *resultArray2 = [array sortedArrayUsingComparator:sort];
+    return resultArray2;
+}
+// 十六进制转换为普通字符串的。
++ (NSString *)hexStringFromString:(NSString *)string;{
+    NSData *myD = [string dataUsingEncoding:NSUTF8StringEncoding];
+    Byte *bytes = (Byte *)[myD bytes];
+    //下面是Byte 转换为16进制。
+    NSString *hexStr=@"";
+    for(int i=0;i<[myD length];i++)
+        
+    {
+        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
+        if([newHexStr length]==1)
+            
+            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+
+        else
+            
+            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+    }
+    return hexStr;
+}
+
+// 十六进制转换为普通字符串的。
++ (NSString *)stringFromHexString:(NSString *)hexString;{ //
+    
+    char *myBuffer = (char *)malloc((int)[hexString length] / 2 + 1);
+    bzero(myBuffer, [hexString length] / 2 + 1);
+    for (int i = 0; i < [hexString length] - 1; i += 2) {
+        unsigned int anInt;
+        NSString * hexCharStr = [hexString substringWithRange:NSMakeRange(i, 2)];
+        NSScanner * scanner = [[NSScanner alloc] initWithString:hexCharStr];
+        [scanner scanHexInt:&anInt];
+        myBuffer[i / 2] = (char)anInt;
+    }
+    NSString *unicodeString = [NSString stringWithCString:myBuffer encoding:4];
+    NSLog(@"------字符串=======%@",unicodeString);
+    return unicodeString;
+}
 @end
